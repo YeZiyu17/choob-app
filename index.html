@@ -83,9 +83,10 @@
     <div class="top"><button class="back" data-back aria-label="Back">&larr;</button><div class="brand">Discover<span class="brand-dot">.</span></div><span class="demo-chip"><i></i> LIVE INPUT</span></div>
     <div class="eyebrow">Find your next favorite dish</div>
     <h1>What are you <span class="highlight">craving?</span></h1>
-    <p class="pitch">Recommendations use your teammates' Yelp-derived dish dataset and Sentence-Transformers, once the exported data files are added.</p>
+    <p class="pitch">Discover dishes mentioned in restaurant reviews. Describe a dish or flavors you enjoy.</p>
     <div class="upload-box" style="margin-top:20px"><label for="preferenceInput"><b>Describe your food preferences</b></label>
     <textarea id="preferenceInput" class="input-choob" rows="3" placeholder="I love spicy, savory dishes with rich flavors.">I love spicy, savory dishes with rich flavors.</textarea>
+    <p class="confidence-note">Taste matching from sampled reviews. Ingredients, dietary suitability and current menus are not verified.</p>
     <button class="primary" id="findDishes">✦ Find dishes for me</button></div>
     <p id="recommendHint" class="confidence-note" style="margin:14px 2px">Try different descriptions to see the AI results change.</p>
     <div id="liveRecommendations" aria-live="polite"></div>
@@ -241,7 +242,7 @@
     try{
       const r=await fetch('/api/recommend',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({preference:input,top_n:5})});const data=await r.json();
       if(!r.ok)throw new Error(data.error||'Recommendations are unavailable');
-      hint.textContent=`${data.results.length} recommendations · ${data.model||'Sentence-Transformers'} · Yelp-derived dataset`;
+      hint.textContent=`${data.results.length} dishes matched to your preference · Based on sampled Yelp reviews`;
       for(const item of data.results){
         const card=document.createElement('div');card.className='live-result';
         const title=document.createElement('b');title.textContent=item.dish_name;
