@@ -6,3 +6,6 @@ __pycache__/
 .DS_Store
 .ipynb_checkpoints/
 *.zip
+# Evaluation downloads stay in the runtime; curated result JSON is kept separately.
+choob_clip_evaluation/
+choob_clip_comparison/
