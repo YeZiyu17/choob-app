@@ -37,6 +37,7 @@
     .live-result b{font-size:15px}.live-result small{display:block;font-size:11px;color:var(--muted);margin:5px 0}
     .live-result button{background:var(--lime);border:0;border-radius:10px;padding:8px 10px;font-size:11px;font-weight:800}
     .error-note{color:#ad3b28;font-size:12px;line-height:1.5}
+    .section-note{font-size:10px;font-weight:750;color:var(--muted);text-align:right;max-width:115px}.results-copy{font-size:11px;color:var(--muted);line-height:1.5;margin:11px 3px}.results-copy strong{color:var(--ink)}.results-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.results-links a{font-size:11px;font-weight:750;color:#7050cf}
   </style>
 </head>
 <body>
@@ -73,7 +74,7 @@
       <label class="eyebrow" for="correctedDish">Confirm / correct dish name</label>
       <input id="correctedDish" class="input-choob" type="text" placeholder="Dish name" />
       <button class="primary" id="saveRecognizedDish">✓ Confirm & add to Food Passport</button>
-      <button class="text-action" data-nav="resultsScreen">View notebook test results →</button>
+      <button class="text-action" data-nav="resultsScreen">View evaluation results →</button>
     </div>
     <div class="upload-box"><label for="photoUpload"><b>Choose a food photo</b><span>JPG / PNG · Upload your own photo to run inference</span></label><input type="file" id="photoUpload" accept="image/jpeg,image/png,image/webp" /></div>
     <p id="cameraHint" style="text-align:center;color:var(--muted);font-size:13px">Upload a photo, then tap the round button to analyze it.</p>
@@ -123,26 +124,41 @@
     <article class="hero-card community-card"><span class="pill">Maya collected this</span><h3>Spicy Tsukemen</h3><p>“The dipping broth is incredible.”</p><button class="cta" data-open-restaurant>View dish &rarr;</button></article>
   </section>
 
+  <!-- Recorded snapshot: clip_comparison.json, recommendation_smoke.json and the recommendation manifest. -->
   <section class="screen hidden" id="resultsScreen">
-    <div class="top"><button class="back" data-nav="snapScreen" aria-label="Back">&larr;</button><div class="brand">Results<span class="brand-dot">.</span></div><span class="demo-chip"><i></i> TESTED</span></div>
-    <div class="eyebrow">Previously recorded Colab outputs (not live reruns)</div><h1>What works—and what we learned.</h1>
-    <div class="metric-hero"><div class="metric-big">4/4</div><div><h2>Single-dish tests correct</h2><p>Tonkotsu ramen, shoyu ramen, pork dumplings and fried rice.</p></div></div>
-    <div class="section-head"><h2>Recognition tests</h2><button>CLIP baseline</button></div>
+    <div class="top"><button class="back" data-nav="snapScreen" aria-label="Back">&larr;</button><div class="brand">Results<span class="brand-dot">.</span></div><span class="demo-chip"><i></i> RECORDED</span></div>
+    <div class="eyebrow">Recorded evaluation · 23 Oct 2026</div><h1>Tested with <span class="highlight">real data.</span></h1>
+    <div class="metric-hero"><div class="metric-big">340</div><div><h2>Frozen holdout photos</h2><p>180 supported · 160 unsupported<br>260 separate calibration photos</p></div></div>
+    <div class="section-head"><h2>Recognition comparison</h2><span class="section-note">Baseline → Optimized</span></div>
     <div class="test-list">
-      <div class="test-row"><div class="test-icon">✓</div><div><b>Tonkotsu ramen</b><small>Correct top prediction</small></div><div class="test-score">99.87%</div></div>
-      <div class="test-row"><div class="test-icon">✓</div><div><b>Shoyu ramen</b><small>Distinguished from tonkotsu</small></div><div class="test-score">85.31%</div></div>
-      <div class="test-row"><div class="test-icon">✓</div><div><b>Chinese pork dumplings</b><small>Predicted dumplings</small></div><div class="test-score">99.98%</div></div>
-      <div class="test-row"><div class="test-icon">✓</div><div><b>Fried rice</b><small>Correct top prediction</small></div><div class="test-score">99.81%</div></div>
-      <div class="test-row warning"><div class="test-icon">!</div><div><b>Multi-food collage</b><small>Limitation: selected only pizza</small></div><div class="test-score">79.77%</div></div>
+      <div class="test-row"><div class="test-icon">✓</div><div><b>Supported Top-1 ranking</b><small>Before rejection · 175/180 → 176/180</small></div><div class="test-score">97.22%<br>→ 97.78%</div></div>
+      <div class="test-row"><div class="test-icon">✓</div><div><b>Unsupported false accepts</b><small>160/160 → 1/160 · lower is better</small></div><div class="test-score">100%<br>→ 0.625%</div></div>
+      <div class="test-row warning"><div class="test-icon">!</div><div><b>Supported photos marked uncertain</b><small>0/180 → 16/180 · manual input needed</small></div><div class="test-score">8.89%</div></div>
+      <div class="test-row warning"><div class="test-icon">!</div><div><b>Correct and accepted</b><small>175/180 → 162/180 supported photos</small></div><div class="test-score">97.22%<br>→ 90.00%</div></div>
     </div>
-    <p class="confidence-note" style="margin:10px 4px">These are relative similarity scores among supplied candidates—not calibrated confidence. Four images are too few for a general accuracy claim.</p>
-    <div class="section-head"><h2>Data pipeline</h2><button>Real Yelp reviews</button></div>
-    <div class="stat-row"><div class="stat"><b>484</b><span>REVIEWS PROCESSED</span></div><div class="stat"><b>705</b><span>DISH MENTIONS</span></div><div class="stat"><b>631</b><span>FINAL CANDIDATES</span></div></div>
-    <div class="section-head"><h2>Recommendation output</h2></div>
-    <div class="rec-box"><div class="query">“I love spicy, savory food with rich flavors.”</div><div class="rec-item"><div class="rec-rank">#1</div><div><strong>Chicken burrito</strong><span>Fiesta Acapulco · meaty, spicy</span></div></div><div class="rec-item"><div class="rec-rank">#2</div><div><strong>Hot pot</strong><span>K Pot South Philly · spicy, hearty</span></div></div><div class="rec-item"><div class="rec-rank">#3</div><div><strong>Wings</strong><span>Crabby Cafe · sweet, spicy</span></div></div></div>
-    <div class="section-head"><h2>Current technical issues</h2></div>
-    <div class="issues"><span class="issue">Large VLM download</span><span class="issue">GPU required</span><span class="issue">28 JSON failures</span><span class="issue">Sparse dish reviews</span><span class="issue">Multi-food ambiguity</span></div>
-    <button class="primary" id="replayDemo">↻ Replay recognition demo</button>
+    <p class="results-copy">Fixed Food-101 subset across nine supported dish families. Ramen is evaluated at family level. The scope check reduces false accepts but also asks for manual input on some valid dishes. These results do not establish accuracy on all user photos.</p>
+    <div class="section-head"><h2>Review data pipeline</h2><span class="section-note">Current export</span></div>
+    <div class="stat-row"><div class="stat"><b>484</b><span>REVIEWS PROCESSED</span></div><div class="stat"><b>835</b><span>DISH MENTIONS</span></div><div class="stat"><b>711</b><span>RESTAURANT–DISH PAIRS</span></div></div>
+    <p class="results-copy"><strong>50 restaurants covered.</strong> 0 failed reviews; 104 reviews with no extracted dish. A review with no dish is not a processing failure.</p>
+    <div class="section-head"><h2>Recommendation checks</h2></div>
+    <div class="test-list">
+      <div class="test-row"><div class="test-icon">✓</div><div><b>Real model + API smoke checks</b><small>5 preference queries produced 5 distinct top-five lists</small></div><div class="test-score">5/5</div></div>
+      <div class="test-row"><div class="test-icon">✓</div><div><b>Program regression checks</b><small>Synthetic fixtures and mocks · not AI accuracy</small></div><div class="test-score">27 passed</div></div>
+    </div>
+    <p class="results-copy">These checks verify inference, data alignment and API behavior. <strong>Human recommendation relevance evaluation is still pending.</strong></p>
+    <div class="section-head"><h2>Recorded recommendation</h2></div>
+    <div class="rec-box"><div class="query">“I love spicy, savory food with rich flavors.”</div>
+      <div class="rec-item"><div class="rec-rank">#1</div><div><strong>Steak Tacos</strong><span>Unity Taqueria</span></div></div>
+      <div class="rec-item"><div class="rec-rank">#2</div><div><strong>Queso And Chips</strong><span>Unity Taqueria</span></div></div>
+      <div class="rec-item"><div class="rec-rank">#3</div><div><strong>Mexicano</strong><span>El Cafeito</span></div></div>
+    </div>
+    <p class="results-copy">Output from the saved smoke test, not a live rerun or a human quality rating. Try Discover for a new recommendation.</p>
+    <div class="section-head"><h2>Models &amp; runtime</h2></div>
+    <p class="results-copy">CLIP prompt ensemble + calibrated scope check; MiniLM semantic matching + review sentiment. <strong>Both serving models run on CPU.</strong> Review extraction used Codex-assisted annotations. Qwen was not run for this export; no model weights were fine-tuned.</p>
+    <div class="section-head"><h2>Known limitations</h2></div>
+    <div class="issues"><span class="issue">50-restaurant sample</span><span class="issue">Human relevance evaluation pending</span><span class="issue">Dietary suitability unverified</span><span class="issue">Multi-food ambiguity</span><span class="issue">Ranking scores are not probabilities</span></div>
+    <div class="results-links"><a href="https://github.com/YeZiyu17/choob-app/blob/main/evaluation/results/optimization_report.md" target="_blank" rel="noopener noreferrer">Recognition report ↗</a><a href="https://github.com/YeZiyu17/choob-app/blob/main/evaluation/results/recommendation_report.md" target="_blank" rel="noopener noreferrer">Recommendation report ↗</a></div>
+    <button class="primary" id="replayDemo">↻ Try a new photo</button>
   </section>
 
   <div class="detail-overlay hidden" id="dishDetail"><div class="sheet"><div class="handle"></div><div class="sheet-hero">🍜<button class="close" id="closeDetail">×</button></div><h2>Blaze Ramen</h2><p>Spicy tonkotsu broth, pork belly, egg and garlic. Reviewers with a taste profile like yours call it “creamy, warming, and worth the heat.”</p><div class="scores"><div class="score"><b>94%</b><span>TASTE MATCH</span></div><div class="score"><b>🌶🌶</b><span>MEDIUM HEAT</span></div><div class="score"><b>4.9</b><span>DISH RATING</span></div></div><button class="primary" id="collectBtn">＋ Add to my Choob</button></div></div>
