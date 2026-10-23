@@ -9,7 +9,7 @@ app_port: 7860
 
 # Choob — Shared Working AI Prototype
 
-组员请先看：[中文协作与本地运行指南](TEAM_GUIDE.md)。目前使用 GitHub 协作，各自在自己的电脑运行 App。
+Start with the [Team collaboration and local setup guide](TEAM_GUIDE.md). We collaborate through GitHub and run the app on our own computers.
 
 This project preserves the group's **original Choob HTML UI**, adds real food-photo upload and a dynamically populated Discover panel, and supplies Python endpoints based on the same models/logic as `Choob_AI_Dish_Recognition.ipynb`.
 

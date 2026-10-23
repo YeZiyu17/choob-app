@@ -1,15 +1,15 @@
-# Choob 五人协作与本地运行
+# Choob Team Collaboration and Local Setup Guide
 
-大家使用同一个 [GitHub 仓库](https://github.com/YeZiyu17/choob-app)保存和修改代码。目前采用 **GitHub 协作＋各自电脑运行**，无需注册托管账号。
+All five teammates use the same [GitHub repository](https://github.com/YeZiyu17/choob-app) to store and edit the code. We currently **collaborate through GitHub and run the app on our own computers**. No hosting account is required for this workflow.
 
-## 先把 App 跑起来
+## Run the App Locally
 
-1. 安装 **Python 3.11**。Windows 安装时勾选“Add Python to PATH”。
-2. 打开仓库，确认分支是 `main`，点绿色 **Code → Download ZIP**，解压到自己的文件夹。
-3. 在解压后的 `choob-app-main` 文件夹打开终端；确认能看到 `app.py` 和 `requirements.txt`。
-4. 按自己的系统运行下面的命令。
+1. Install **Python 3.11**. On Windows, select **Add Python to PATH** during installation.
+2. Open the repository, select the `main` branch, and choose the green **Code → Download ZIP** button. Extract the ZIP to a folder on your computer.
+3. Open a terminal in the extracted `choob-app-main` folder. Make sure it contains `app.py` and `requirements.txt`.
+4. Run the commands for your operating system below.
 
-macOS：
+macOS:
 
 ```bash
 python3.11 -m venv .venv
@@ -18,7 +18,7 @@ python -m pip install -r requirements.txt
 python app.py
 ```
 
-Windows（命令提示符 CMD）：
+Windows (Command Prompt / CMD):
 
 ```bat
 py -3.11 -m venv .venv
@@ -27,39 +27,39 @@ python -m pip install -r requirements.txt
 python app.py
 ```
 
-在浏览器打开 **http://localhost:7860/**，保留终端窗口；停止服务时在终端按 `Ctrl+C`。下次运行只需进入同一文件夹、激活 `.venv`，再运行 `python app.py`。
+Open **http://localhost:7860/** in your browser and keep the terminal running. To stop the server, press `Ctrl+C` in the terminal. To run the app again later, open the same folder, activate `.venv`, and run `python app.py`.
 
-首次使用图片识别和文字推荐时，会从网上下载公开模型；请保持联网，并预留数 GB 的磁盘空间和可用内存。下载与首次加载可能较慢，建议关闭占内存较多的程序。后续会复用本机模型缓存。
+The first image recognition and text recommendation requests download public models from the internet. Stay connected, allow several GB of free disk space, and make sure enough memory is available. The initial download and loading can take some time; close memory-intensive applications if needed. Later runs reuse the models cached on your computer.
 
-先在 **Discover** 输入英文口味，例如 `cheesecake or tiramisu`；再用 **Snap** 上传食物照片。推荐基于 50 家餐厅的抽样评论，不代表完整或最新菜单，也不能验证饮食禁忌与过敏要求。
+Start with **Discover** and enter an English food preference, such as `cheesecake or tiramisu`. Then try uploading a food photo in **Snap**. Recommendations use sampled reviews from 50 restaurants. They do not represent complete or current menus and cannot verify dietary restrictions or allergy requirements.
 
-## 一起改代码
+## Collaborate on the Code
 
-下载 ZIP 适合先运行；持续开发建议安装 **GitHub Desktop**，登录自己的 GitHub 账号后，用 **File → Clone repository → URL** 克隆本仓库。大家已有 collaborator 权限，不需要各自复制一个新仓库。
+Downloading the ZIP is a convenient way to try the app. For ongoing development, install **GitHub Desktop**, sign in to your GitHub account, and use **File → Clone repository → URL** to clone this repository. Everyone already has collaborator access, so there is no need to create a separate repository or fork.
 
-每次修改按这个顺序：
+Follow these steps whenever you make changes:
 
-1. 切到 `main`，点 **Fetch origin / Pull origin**，获取团队最新代码。
-2. 从 `main` 创建自己的分支，例如 `person1-ui`、`person2-data` 或 `person3-ai`。
-3. 修改文件，在自己的电脑运行和检查，再 **Commit → Publish branch / Push origin**。
-4. 点 **Create Pull Request**，目标选择 `main`，说明改了什么、如何检查。
-5. 请另一位组员检查后合并；其他人再更新自己的 `main`。
+1. Switch to `main` and choose **Fetch origin / Pull origin** to get the team's latest code.
+2. Create your own branch from `main`, such as `person1-ui`, `person2-data`, or `person3-ai`.
+3. Edit the files, run and check the app on your computer, then **Commit → Publish branch / Push origin**.
+4. Choose **Create Pull Request**, select `main` as the target branch, and describe what changed and how you checked it.
+5. Ask another teammate to review the pull request before merging. Everyone else can then update their local `main`.
 
-不要把 `.venv`、模型缓存、账号密码或未经确认的原始评论文件上传到 GitHub。修改推荐导出时，CSV、NPY 和 manifest 三个文件要保持同一版本。
+Keep `.venv`, model caches, passwords, and raw review files that have not been approved for sharing out of GitHub. When updating the recommendation exports, keep the CSV, NPY, and manifest files from the same build together.
 
-## 我们的分工
+## Team Responsibilities
 
-| 成员 | 负责内容 | 主要交接 |
+| Team member | Responsibility | Main handoff |
 |---|---|---|
-| Person 1 | UI Design + User Flow | `index.html`，与 Person 4 对齐接口 |
-| Person 2 | Data Processing | 按 `data/README.md` 提供清洗后的评论与餐厅数据 |
-| Person 3（你） | AI Model + Recommendation | 识别、推荐、数据导出及模型局限 |
-| Person 4 | App Integration + Deployment | Flask 与界面连接、本地运行支持；需要时再安排云端部署 |
-| Person 5 | Evaluation + Testing | 新图片测试、人工评价推荐、完整操作流程检查 |
+| Person 1 | UI Design + User Flow | Maintain `index.html` and coordinate API interfaces with Person 4 |
+| Person 2 | Data Processing | Provide cleaned review and restaurant data using the contract in `data/README.md` |
+| Person 3 | AI Model + Recommendation | Maintain recognition, recommendations, data exports, and documentation of model limitations |
+| Person 4 | App Integration + Deployment | Connect Flask to the UI, support local setup, and arrange cloud deployment if needed |
+| Person 5 | Evaluation + Testing | Test new images, evaluate recommendations manually, and check complete user flows |
 
-## 哪些东西是共享的？
+## What Is Shared?
 
-- **GitHub 共享代码与版本。** 组员提交并合并后，其他人更新代码才能看到变化。
-- **App 各自在自己的电脑运行。** `localhost` 指打开页面的这台电脑；把这个地址发给别人不会打开你的 App。
-- **Collect 收藏只存在当前浏览器。** 换电脑或换浏览器不会自动同步，目前没有团队共享账号或数据库。
-- 若以后希望所有人点击同一个网址就能直接使用完整 AI App，再安排托管部署。GitHub 的代码页面可以直接查看代码；GitHub Pages 不能运行本项目的 Flask 和 Python 模型。
+- **GitHub shares code and version history.** After a teammate's changes are committed and merged, others must update their local code to see them.
+- **Each teammate runs the app on their own computer.** `localhost` refers to the computer opening the page. Sending someone your localhost URL will not give them access to your app.
+- **Collect saves items only in the current browser.** Saved items do not automatically sync across computers or browsers. There is currently no shared team account or database.
+- If everyone later needs to use the full AI app through one shared URL, we can arrange hosting. GitHub repository pages let teammates view the code directly, but GitHub Pages cannot run this project's Flask server and Python models.
