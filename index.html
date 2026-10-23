@@ -66,7 +66,7 @@
       <div class="result-grid">
         <div class="result-field"><small>CUISINE</small><b id="identifiedCuisine">—</b></div>
         <div class="result-field"><small>CHOOB CATEGORY</small><b id="identifiedCategory">—</b></div>
-        <div class="result-field"><small>TOP ALTERNATIVE</small><b id="identifiedAlternative">—</b></div>
+        <div class="result-field"><small id="identifiedAlternativeLabel">TOP ALTERNATIVE</small><b id="identifiedAlternative">—</b></div>
         <div class="result-field"><small>CONFIRMATION</small><b>Required</b></div>
       </div>
       <p id="recognitionNote" class="confidence-note">CLIP scores compare only the supplied candidate dish labels. Confirm or correct the result before collecting.</p>
@@ -161,8 +161,9 @@
   // User collections are a local prototype, not a shared account or database.
   const COLLECTION_KEY = 'choob.saved.v1';
   function getSaved(){try{const x=JSON.parse(localStorage.getItem(COLLECTION_KEY)||'[]');return Array.isArray(x)?x:[]}catch{return []}}
+  function isValidDishName(name){return typeof name==='string' && !!name.trim() && !/^(unknown|uncertain|unsupported(?: dish)?|uncertain\s*\/\s*unsupported dish)$/i.test(name.trim())}
   function addSaved(item){
-    if(!item || !item.dish_name || !item.dish_name.trim())return false;
+    if(!item || !isValidDishName(item.dish_name))return false;
     const list=getSaved();
     const duplicate=list.some(x=>x.dish_name.toLowerCase()===item.dish_name.trim().toLowerCase() && (x.restaurant_name||'')===(item.restaurant_name||''));
     if(!duplicate){list.push({...item,dish_name:item.dish_name.trim(),saved_at:new Date().toISOString()});localStorage.setItem(COLLECTION_KEY,JSON.stringify(list));}
@@ -181,11 +182,21 @@
   }
   renderSaved();
   document.getElementById('collectBtn').addEventListener('click',e=>{addSaved({dish_name:'Blaze Ramen',restaurant_name:'Sample restaurant (illustrative)'});e.target.textContent='✓ Collected';e.target.classList.add('done')});
-  let selectedImage=null;
+  let selectedImage=null,recognitionVersion=0,currentPrediction=null;
+  function clearRecognition(){
+    currentPrediction=null;
+    document.getElementById('scanResult').classList.remove('show');
+    document.getElementById('correctedDish').value='';
+    document.getElementById('identifiedDish').textContent='Waiting for analysis';
+    document.getElementById('identifiedCuisine').textContent='Unknown';
+    document.getElementById('identifiedCategory').textContent='Unknown';
+    document.getElementById('identifiedAlternative').textContent='—';
+    document.getElementById('recognitionNote').textContent='';
+  }
   document.getElementById('photoUpload').addEventListener('change',e=>{
     const file=e.target.files[0];selectedImage=file||null;
-    document.getElementById('scanResult').classList.remove('show');
-    if(!file)return;
+    recognitionVersion++;clearRecognition();document.getElementById('camera').classList.remove('scanning');
+    if(!file){document.getElementById('cameraHint').textContent='Choose a photo to analyze.';return;}
     if(!['image/jpeg','image/png','image/webp'].includes(file.type)){document.getElementById('cameraHint').textContent='Please choose a JPG, PNG or WebP photo.';selectedImage=null;return;}
     const img=document.querySelector('.camera-photo');if(img.dataset.blobUrl)URL.revokeObjectURL(img.dataset.blobUrl);
     img.src=URL.createObjectURL(file);img.dataset.blobUrl=img.src;
@@ -194,25 +205,34 @@
   document.getElementById('shutter').addEventListener('click',async()=>{
     const hint=document.getElementById('cameraHint'),camera=document.getElementById('camera');
     if(!selectedImage){hint.textContent='Choose your own photo using the upload field below first.';return;}
+    const version=++recognitionVersion;clearRecognition();
     camera.classList.add('scanning');hint.textContent='Running the CLIP model; first request may take a minute while loading...';
     const body=new FormData();body.append('image',selectedImage);
     try{
       const r=await fetch('/api/recognize',{method:'POST',body});const result=await r.json();
+      if(version!==recognitionVersion)return;
       if(!r.ok)throw new Error(result.error||'Recognition is unavailable');
-      document.getElementById('identifiedDish').textContent=result.dish_name||'Uncertain';
-      document.getElementById('identifiedCuisine').textContent=result.cuisine||'Unknown';
-      document.getElementById('identifiedCategory').textContent=result.category||'Other';
-      document.getElementById('identifiedAlternative').textContent=result.alternatives?.[0]?.dish_name||'—';
-      document.getElementById('correctedDish').value=result.dish_name||'';
-      document.getElementById('recognitionNote').textContent=`${result.model||'CLIP'} · ${(100*(result.relative_score||0)).toFixed(1)}% relative score among 10 candidate labels; NOT a calibrated confidence. Confirm the prediction.`;
+      const uncertain=result.status==='uncertain' || result.accepted===false || !isValidDishName(result.dish_name);
+      const suggested=typeof result.suggested_dish==='string'?result.suggested_dish:result.suggested_dish?.dish_name;
+      currentPrediction={...result,accepted:!uncertain};
+      document.getElementById('identifiedDish').textContent=uncertain?'Uncertain / unsupported dish':result.dish_name;
+      document.getElementById('identifiedCuisine').textContent=uncertain?'Unknown':result.cuisine||'Unknown';
+      document.getElementById('identifiedCategory').textContent=uncertain?'Unknown':result.category||'Unknown';
+      document.getElementById('identifiedAlternativeLabel').textContent=uncertain?'SUGGESTED CANDIDATE':'TOP ALTERNATIVE';
+      document.getElementById('identifiedAlternative').textContent=(uncertain?suggested:result.alternatives?.[0]?.dish_name)||'—';
+      document.getElementById('correctedDish').value=uncertain?'':result.dish_name;
+      const scoreNote=result.score_note||'Relative scores compare supplied candidates and are not calibrated confidence.';
+      document.getElementById('recognitionNote').textContent=[result.message,scoreNote,`${result.model||'CLIP'} · ${(100*(result.relative_score||0)).toFixed(1)}% relative score`].filter(Boolean).join(' ');
       document.getElementById('scanResult').classList.add('show');
-      hint.textContent='Recognition complete. Please confirm or edit the dish name.';
-    }catch(err){hint.textContent=`Recognition unavailable: ${err.message}`;}
-    finally{camera.classList.remove('scanning')}
+      hint.textContent=uncertain?'Please enter the dish name manually before collecting.':'Recognition complete. Please confirm or edit the dish name.';
+    }catch(err){if(version===recognitionVersion){clearRecognition();hint.textContent=`Recognition unavailable: ${err.message}`;}}
+    finally{if(version===recognitionVersion)camera.classList.remove('scanning')}
   });
   document.getElementById('saveRecognizedDish').addEventListener('click',()=>{
-    const dish=document.getElementById('correctedDish').value.trim();if(!dish){document.getElementById('cameraHint').textContent='Enter the dish name first.';return}
-    addSaved({dish_name:dish,cuisine:document.getElementById('identifiedCuisine').textContent,category:document.getElementById('identifiedCategory').textContent});show('collectionScreen');
+    if(!currentPrediction){document.getElementById('cameraHint').textContent='Analyze the current photo before collecting.';return;}
+    const dish=document.getElementById('correctedDish').value.trim();if(!isValidDishName(dish)){document.getElementById('cameraHint').textContent='Enter a dish name instead of Unknown or Uncertain.';return}
+    const unchanged=currentPrediction.accepted && dish.toLowerCase()===currentPrediction.dish_name.trim().toLowerCase();
+    addSaved({dish_name:dish,cuisine:unchanged?currentPrediction.cuisine||'Unknown':'Unknown',category:unchanged?currentPrediction.category||'Unknown':'Unknown'});show('collectionScreen');
   });
   document.getElementById('findDishes').addEventListener('click',async()=>{
     const input=document.getElementById('preferenceInput').value.trim();const hint=document.getElementById('recommendHint');const wrap=document.getElementById('liveRecommendations');
@@ -232,7 +252,7 @@
       }
     }catch(err){hint.textContent='Unable to load recommendations.';const p=document.createElement('p');p.className='error-note';p.textContent=err.message;wrap.append(p)}
   });
-  document.getElementById('replayDemo').addEventListener('click',()=>{document.getElementById('scanResult').classList.remove('show');document.getElementById('cameraHint').textContent='Upload a photo, then tap the round button to analyze it.';show('snapScreen')});
+  document.getElementById('replayDemo').addEventListener('click',()=>{recognitionVersion++;clearRecognition();document.getElementById('camera').classList.remove('scanning');document.getElementById('cameraHint').textContent='Upload a photo, then tap the round button to analyze it.';show('snapScreen')});
   document.querySelectorAll('.follow').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('on');b.textContent=b.classList.contains('on')?'Following':'Follow'}));
 </script>
 </body>
