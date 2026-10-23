@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "source_sha256": "0a642e46ac977fafd55d6aa893cc4a592940b9604c62fb3662c2bbbd846c1190",
+  "restaurants_sha256": "d311f700ec850266124ad29c27d0363a90504298511cab776605a08bc1d53507",
+  "extraction_model": "Codex assistant annotation (exact runtime version not recorded)",
+  "extraction_route": "supplied_codex_annotations",
+  "annotation_sha256": "3c99f90f018ab0f8ed3d33f1af9f173a81c8a2f2eba477059832ddd48c8cc165",
+  "prompt_sha256": null,
+  "builder_sha256": "4f8abb8a7d1b0826a94e4e2a388ff884ef27b9becc5c29837c7a5033ba8aa654",
+  "max_new_tokens": 768,
+  "retries": 2,
+  "limit": null,
+  "input_reviews": 484,
+  "input_restaurants": 50,
+  "restaurant_catalog_size": 5855,
+  "join_validated": true,
+  "duplicate_review_ids": 0,
+  "empty_required_fields": 0,
+  "created_utc": "2026-10-23T21:07:09.258391+00:00",
+  "config_sha256": "1bc4561a4e0cd8b33e562481546b6b6ed8561087e1c45622db74ff5a86a048a0",
+  "selected_reviews": 484,
+  "selected_restaurants": 50,
+  "review_status_counts": {
+    "processed": 380,
+    "zero_dishes": 104
+  },
+  "failed_reviews": 0,
+  "filtered_item_counts": {},
+  "extracted_review_dish_records": 835,
+  "restaurants_with_recommendations": 50,
+  "extraction_model_revision": null,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "ranking": {
+    "semantic_weight": 0.85,
+    "sentiment_weight": 0.15,
+    "sentiment_formula": "(positive + 0.5*mixed + 0.5*neutral + 1)/(positive+negative+mixed+neutral+2)",
+    "scores_are_probabilities": false
+  },
+  "evidence_validation": "exact source substrings; model semantic attribution still needs human evaluation",
+  "evidence_character_limits": {
+    "dish_and_taste": 300,
+    "sentiment_context": 1600
+  },
+  "human_evaluation_completed": false,
+  "failure_policy": "Failed reviews remain explicitly recorded and are excluded from recommendations",
+  "runtime_versions": {
+    "python": "3.12.14",
+    "torch": "2.14.1",
+    "transformers": "4.57.6",
+    "sentence-transformers": "5.7.0",
+    "numpy": "2.3.5"
+  },
+  "embedding_model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "recommendation_rows": 711,
+  "embedding_shape": [
+    711,
+    384
+  ],
+  "output_sha256": {
+    "choob_recommendation_data.csv": "64e3fdcc478cfb1cd3daf5302d96d5b2e25a53d955734213f7710ae4a86fa23c",
+    "choob_dish_embeddings.npy": "e8993499a55d3d7918537be17e93134ce9eb4a1a9d1bba497cfcb076ba59ad8e"
+  },
+  "row_order_sha256": "0a94eafed56c7af8d4f9706c0ec9edfbcbf89cd4659dca093b34bb7e1c2829ea"
+}

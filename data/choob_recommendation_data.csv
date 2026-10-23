@@ -1,0 +1,712 @@
+business_id,restaurant_name,dish_name_normalized,mixed_count,negative_count,neutral_count,positive_count,row_index,review_count,mention_count,taste_tags_clean,dish_description
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,bbq seitan sandwich,0,1,0,0,0,1,1,[],bbq seitan sandwich. Taste: not specified
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,breakfast burritos,0,0,1,0,1,1,1,[],breakfast burritos. Taste: not specified
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,buffalo wrap,1,0,0,0,2,1,1,[],buffalo wrap. Taste: not specified
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,chicken and waffles,0,0,0,1,3,1,1,[],chicken and waffles. Taste: not specified
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,coffee,0,1,1,3,4,5,5,[],coffee. Taste: not specified
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,coffees,0,1,0,0,5,1,1,[],coffees. Taste: not specified
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,hot chocolate,0,0,1,0,6,1,1,[],hot chocolate. Taste: not specified
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,hummus,1,0,0,0,7,1,1,[],hummus. Taste: not specified
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,lemon pepper seitan,0,1,0,0,8,1,1,[],lemon pepper seitan. Taste: not specified
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,milkshake,0,1,0,0,9,1,1,[],milkshake. Taste: not specified
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,mocha,0,1,0,0,10,1,1,[],mocha. Taste: not specified
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,sandwich,1,0,0,0,11,1,1,"[""chewy""]",sandwich. Taste: chewy
+-k1iNvlyQZkZ14Hcqzlk4Q,The Pharmacy,sandwiches,0,1,0,0,12,1,1,[],sandwiches. Taste: not specified
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,arroz con gandules,0,0,0,2,13,2,2,[],arroz con gandules. Taste: not specified
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,black bean rice,0,0,0,1,14,1,1,[],black bean rice. Taste: not specified
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,chicharrinez,0,0,0,1,15,1,1,[],chicharrinez. Taste: not specified
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,chicharron,0,0,0,1,16,1,1,"[""crunchy"", ""juicy"", ""perfectly seasoned""]","chicharron. Taste: crunchy, juicy, perfectly seasoned"
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,chicken,0,1,0,0,17,1,1,"[""dry""]",chicken. Taste: dry
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,chicken stew con yellow rice,0,0,0,1,18,1,1,[],chicken stew con yellow rice. Taste: not specified
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,chicken stew platters,0,0,0,1,19,1,1,[],chicken stew platters. Taste: not specified
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,lechon/pernil,0,0,1,0,20,1,1,[],lechon/pernil. Taste: not specified
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,parcha,0,0,0,1,21,1,1,[],parcha. Taste: not specified
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,pernil,0,0,0,1,22,1,1,[],pernil. Taste: not specified
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,pork skin with banana,0,0,0,1,23,1,1,[],pork skin with banana. Taste: not specified
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,stew chicken,0,0,0,1,24,1,1,"[""not dry"", ""seasoned well""]","stew chicken. Taste: not dry, seasoned well"
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,sudao de pollo,0,0,0,1,25,1,1,[],sudao de pollo. Taste: not specified
+0De2juaQqHNUYs-vNEj9RA,CYM Island Kitchen,yellow rice,1,0,0,0,26,1,1,"[""bland""]",yellow rice. Taste: bland
+1KYspvONE-f1RBIQlpunXw,Benny's Place,breakfast sandwiches,0,1,0,0,27,1,1,[],breakfast sandwiches. Taste: not specified
+1KYspvONE-f1RBIQlpunXw,Benny's Place,egg sandwich,0,0,1,0,28,1,1,[],egg sandwich. Taste: not specified
+1KYspvONE-f1RBIQlpunXw,Benny's Place,french toast,0,0,1,0,29,1,1,[],french toast. Taste: not specified
+1KYspvONE-f1RBIQlpunXw,Benny's Place,spinach and feta omlet,0,0,0,1,30,1,1,[],spinach and feta omlet. Taste: not specified
+2mbH5r0clGty4w7dchJ-Gw,Santucci's Original Square Pizza,cheese pie,0,0,0,1,31,1,1,[],cheese pie. Taste: not specified
+2mbH5r0clGty4w7dchJ-Gw,Santucci's Original Square Pizza,pizza,0,0,1,1,32,2,2,[],pizza. Taste: not specified
+2mbH5r0clGty4w7dchJ-Gw,Santucci's Original Square Pizza,upside down pizza,0,0,0,1,33,1,1,[],upside down pizza. Taste: not specified
+2mbH5r0clGty4w7dchJ-Gw,Santucci's Original Square Pizza,white pizza,0,0,0,1,34,1,1,[],white pizza. Taste: not specified
+2yuwjVRHUCs9tCAYjISaag,The Barn,bbq burger,0,0,0,1,35,1,1,[],bbq burger. Taste: not specified
+2yuwjVRHUCs9tCAYjISaag,The Barn,bbq wings,0,0,0,1,36,1,1,[],bbq wings. Taste: not specified
+2yuwjVRHUCs9tCAYjISaag,The Barn,french fries,0,0,0,1,37,1,1,"[""well seasoned""]",french fries. Taste: well seasoned
+2yuwjVRHUCs9tCAYjISaag,The Barn,fried brussel sprouts app,0,0,0,1,38,1,1,[],fried brussel sprouts app. Taste: not specified
+2yuwjVRHUCs9tCAYjISaag,The Barn,house wings,0,1,0,0,39,1,1,"[""undercooked""]",house wings. Taste: undercooked
+2yuwjVRHUCs9tCAYjISaag,The Barn,smash burger,0,0,0,1,40,1,1,[],smash burger. Taste: not specified
+2yuwjVRHUCs9tCAYjISaag,The Barn,southern tier pumking,0,1,0,0,41,1,1,[],southern tier pumking. Taste: not specified
+2yuwjVRHUCs9tCAYjISaag,The Barn,strips,0,1,0,0,42,1,1,"[""undercooked""]",strips. Taste: undercooked
+2yuwjVRHUCs9tCAYjISaag,The Barn,vegan nachos,0,0,0,1,43,1,1,[],vegan nachos. Taste: not specified
+2yuwjVRHUCs9tCAYjISaag,The Barn,wings,0,0,0,3,44,3,3,"[""crispy""]",wings. Taste: crispy
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,chorizo,0,0,0,1,45,1,1,[],chorizo. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,chourico assado,0,0,1,0,46,1,1,"[""crispy""]",chourico assado. Taste: crispy
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,flaming sausage,0,0,0,1,47,1,1,[],flaming sausage. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,grilled bronzini,0,0,0,1,48,1,1,[],grilled bronzini. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,homemade chip fries,0,0,0,1,49,1,1,[],homemade chip fries. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,lobster stuff with shrimp,0,0,0,1,50,1,1,[],lobster stuff with shrimp. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,paelha,0,0,0,1,51,1,1,[],paelha. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,paella,0,0,0,1,52,1,1,[],paella. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,picadinho,0,0,0,1,53,1,1,[],picadinho. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,portuguese flaming sausage,0,0,0,1,54,1,1,[],portuguese flaming sausage. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,portuguese rolls,0,0,1,0,55,1,1,[],portuguese rolls. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,portuguese steak,0,0,0,1,56,1,1,"[""fresh""]",portuguese steak. Taste: fresh
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,portuguese style steak,0,0,0,1,57,1,1,[],portuguese style steak. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,rice with peas,0,0,1,0,58,1,1,[],rice with peas. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,sangria,0,0,0,3,59,3,3,[],sangria. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,shrimp and rice casserole,0,0,0,1,60,1,1,[],shrimp and rice casserole. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,shrimp and scallions in garlic sauce,0,0,0,1,61,1,1,"[""well seasoned""]",shrimp and scallions in garlic sauce. Taste: well seasoned
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,soup,0,0,0,1,62,1,1,"[""creamy""]",soup. Taste: creamy
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,steak cutlet in wine sauce,0,0,0,1,63,1,1,"[""well seasoned""]",steak cutlet in wine sauce. Taste: well seasoned
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,steak with jumbo shrimp and rice,0,0,0,1,64,1,1,"[""fresh""]",steak with jumbo shrimp and rice. Taste: fresh
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,steaks,0,0,0,1,65,1,1,"[""tender""]",steaks. Taste: tender
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,steamed cod,0,0,0,1,66,1,1,[],steamed cod. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,stuffed mushrooms,0,0,0,1,67,1,1,[],stuffed mushrooms. Taste: not specified
+3AXMyEZKczm5rliRDBJiBA,Mediterranean 2000,tiramisu,0,0,0,1,68,1,1,[],tiramisu. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,al pastor,0,0,0,1,69,1,1,[],al pastor. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,al pastor pizza,0,0,0,1,70,1,1,[],al pastor pizza. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,al pastor stromboli,0,0,0,1,71,1,1,"[""fresh"", ""juicy""]","al pastor stromboli. Taste: fresh, juicy"
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,birria tacos,0,1,0,0,72,1,1,[],birria tacos. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,burrito,0,1,0,0,73,1,1,[],burrito. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,carnitas pizzas,0,0,0,1,74,1,1,[],carnitas pizzas. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,consume,0,0,1,0,75,1,1,"[""oniony""]",consume. Taste: oniony
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,grilled honey sriracha wings,0,0,0,1,76,1,1,[],grilled honey sriracha wings. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,guacamole,0,0,0,1,77,1,1,[],guacamole. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,homemade tortilla chips,0,0,0,1,78,1,1,[],homemade tortilla chips. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,italian hoagie,0,0,0,1,79,1,1,[],italian hoagie. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,la guera pizza with chorizo,0,0,0,1,80,1,1,"[""garlicky""]",la guera pizza with chorizo. Taste: garlicky
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,nachos,0,0,1,0,81,1,1,[],nachos. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,pizza,0,0,0,2,82,2,2,[],pizza. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,plantains,0,0,0,1,83,1,1,[],plantains. Taste: not specified
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,spiced plátanos maduros,0,0,0,1,84,1,1,"[""spiced""]",spiced plátanos maduros. Taste: spiced
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,tacos al pastor,1,0,0,0,85,1,1,"[""overcooked"", ""spiced""]","tacos al pastor. Taste: overcooked, spiced"
+6085NRg7QH3vXpc50F4UHQ,Chiquita's Pizzeria & Mexican Grill,white girl pizza,0,0,0,1,86,1,1,[],white girl pizza. Taste: not specified
+7pwZZVVlYCxQvVdd8Q03wg,La Rosa Pizzeria,broccoli pizza,0,0,0,1,87,1,1,[],broccoli pizza. Taste: not specified
+7pwZZVVlYCxQvVdd8Q03wg,La Rosa Pizzeria,cheese pizza,0,0,0,1,88,1,1,[],cheese pizza. Taste: not specified
+7pwZZVVlYCxQvVdd8Q03wg,La Rosa Pizzeria,pepperoni and sausage slice,0,0,0,1,89,1,1,"[""crunchy"", ""not too dense"", ""soft""]","pepperoni and sausage slice. Taste: crunchy, not too dense, soft"
+7pwZZVVlYCxQvVdd8Q03wg,La Rosa Pizzeria,pie,0,0,0,1,90,1,1,[],pie. Taste: not specified
+7pwZZVVlYCxQvVdd8Q03wg,La Rosa Pizzeria,pizza,0,2,0,2,91,4,4,"[""burnt"", ""buttery"", ""thick""]","pizza. Taste: burnt, buttery, thick"
+7pwZZVVlYCxQvVdd8Q03wg,La Rosa Pizzeria,potato pizza,0,0,0,1,92,1,1,[],potato pizza. Taste: not specified
+7pwZZVVlYCxQvVdd8Q03wg,La Rosa Pizzeria,sicilian pie,0,0,0,1,93,1,1,"[""buttery"", ""crisp"", ""firm"", ""soft""]","sicilian pie. Taste: buttery, crisp, firm, soft"
+7pwZZVVlYCxQvVdd8Q03wg,La Rosa Pizzeria,square pizza,0,0,0,1,94,1,1,[],square pizza. Taste: not specified
+7pwZZVVlYCxQvVdd8Q03wg,La Rosa Pizzeria,tomato pie,0,0,0,1,95,1,1,[],tomato pie. Taste: not specified
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,burrito,0,0,0,1,96,1,1,[],burrito. Taste: not specified
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,burrito bowl,0,0,1,0,97,1,1,[],burrito bowl. Taste: not specified
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,burritos,0,0,0,1,98,1,1,[],burritos. Taste: not specified
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,"chicken, steak and vegan carnitas tacos",0,1,0,0,99,1,1,[],"chicken, steak and vegan carnitas tacos. Taste: not specified"
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,chips & queso,0,0,1,0,100,1,1,[],chips & queso. Taste: not specified
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,chips and queso,0,0,1,0,101,1,1,[],chips and queso. Taste: not specified
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,churro,0,1,0,0,102,1,1,"[""chewy""]",churro. Taste: chewy
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,nachos,0,0,0,1,103,1,1,[],nachos. Taste: not specified
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,queso and chips,0,0,0,1,104,1,1,"[""spicy""]",queso and chips. Taste: spicy
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,"steak ""street"" tacos",0,1,0,0,105,1,1,"[""dry""]","steak ""street"" tacos. Taste: dry"
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,steak tacos,0,0,0,2,106,2,2,"[""fresh"", ""spicy""]","steak tacos. Taste: fresh, spicy"
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,strawberry guac,0,0,0,1,107,1,1,[],strawberry guac. Taste: not specified
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,street tacos,0,0,0,1,108,1,1,[],street tacos. Taste: not specified
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,taco/burrito,0,1,0,0,109,1,1,[],taco/burrito. Taste: not specified
+8QtgPszOI5-4qwizvWi5lA,Unity Taqueria,tacos,0,1,1,0,110,2,2,[],tacos. Taste: not specified
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,carbage soup,0,0,1,0,111,1,1,[],carbage soup. Taste: not specified
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,chicken salad sandwich,0,0,1,0,112,1,1,[],chicken salad sandwich. Taste: not specified
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,coffee,0,0,1,0,113,1,1,[],coffee. Taste: not specified
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,creamed chipped beef,1,0,0,0,114,1,1,"[""milky""]",creamed chipped beef. Taste: milky
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,french toast,0,1,0,0,115,1,1,"[""raw""]",french toast. Taste: raw
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,kielbasa,1,0,0,0,116,1,1,"[""tough""]",kielbasa. Taste: tough
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,kielbasa sandwich,0,1,0,0,117,1,1,[],kielbasa sandwich. Taste: not specified
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,perogies,0,1,0,0,118,1,1,[],perogies. Taste: not specified
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,pierogi,0,0,0,1,119,1,1,[],pierogi. Taste: not specified
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,potato pancake,0,1,0,0,120,1,1,[],potato pancake. Taste: not specified
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,potato pancakes,0,1,0,0,121,1,1,[],potato pancakes. Taste: not specified
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,scrapple,0,0,0,2,122,2,2,[],scrapple. Taste: not specified
+CYEX-wXbW2bZDxk7nH60Vg,M & M Restaurant,sos,0,0,0,1,123,1,1,[],sos. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,beef tacos,0,0,0,1,124,1,1,[],beef tacos. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,burrito,0,1,0,1,125,2,2,[],burrito. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,chalupa,0,0,0,1,126,1,1,[],chalupa. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,chicken burrito,0,0,0,1,127,1,1,[],chicken burrito. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,enchilada,0,1,0,0,128,1,1,[],enchilada. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,enchiladas,0,1,0,0,129,1,1,"[""mushy""]",enchiladas. Taste: mushy
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,fish burrito,0,0,0,1,130,1,1,[],fish burrito. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,fish tacos,0,0,0,2,131,2,2,[],fish tacos. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,fried plantains,0,0,0,1,132,1,1,[],fried plantains. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,guacamole,0,0,0,1,133,1,1,[],guacamole. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,mexican soda,0,0,1,0,134,1,1,[],mexican soda. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,nachos,0,1,0,0,135,1,1,"[""hard"", ""stale""]","nachos. Taste: hard, stale"
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,nachos con guacamole,0,0,1,0,136,1,1,[],nachos con guacamole. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,nachos supremo,0,0,0,1,137,1,1,[],nachos supremo. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,nachos supremos,0,0,1,0,138,1,1,[],nachos supremos. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,shrimp tostadas,0,0,0,1,139,1,1,"[""fresh""]",shrimp tostadas. Taste: fresh
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,tacos,0,0,1,0,140,1,1,[],tacos. Taste: not specified
+DIGW-yEmaQeEq_SJKvbZyg,Fiesta Acapulco,tamales,0,0,0,1,141,1,1,[],tamales. Taste: not specified
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,chicken burrito,0,0,1,0,142,1,1,[],chicken burrito. Taste: not specified
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,chicken flautas,0,0,1,0,143,1,1,[],chicken flautas. Taste: not specified
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,chicken tortilla soup,0,0,1,0,144,1,1,[],chicken tortilla soup. Taste: not specified
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,"chorizo, egg, and avocado breakfast burrito",1,0,0,0,145,1,1,"[""spicy""]","chorizo, egg, and avocado breakfast burrito. Taste: spicy"
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,fish tacos,0,0,0,2,146,2,2,[],fish tacos. Taste: not specified
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,fries,0,0,0,1,147,1,1,"[""crispy"", ""moist""]","fries. Taste: crispy, moist"
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,mahi mahi fish taco,0,1,0,0,148,1,1,[],mahi mahi fish taco. Taste: not specified
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,mahi mahi grilled taco,0,0,0,1,149,1,1,[],mahi mahi grilled taco. Taste: not specified
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,pork burrito,0,1,0,0,150,1,1,[],pork burrito. Taste: not specified
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,shrimp taco bowl,0,0,0,1,151,1,1,[],shrimp taco bowl. Taste: not specified
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,steak taco,1,0,0,0,152,1,1,"[""overcooked"", ""well seasoned""]","steak taco. Taste: overcooked, well seasoned"
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,tilapia tacos,0,0,0,1,153,1,1,"[""heavy""]",tilapia tacos. Taste: heavy
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,tortilla chips,0,1,0,1,154,2,2,"[""crunchy"", ""greasy"", ""thick""]","tortilla chips. Taste: crunchy, greasy, thick"
+DvyG9Fx1EeNJfr_UNL7NYA,Fresco Tortilla,tortilla soup,0,1,0,0,155,1,1,"[""watery""]",tortilla soup. Taste: watery
+Dw0nQsVS_2-vlhLUG87Gpw,Maker artisan pizza,"arugula, asparagus salad",0,0,0,1,156,1,1,[],"arugula, asparagus salad. Taste: not specified"
+Dw0nQsVS_2-vlhLUG87Gpw,Maker artisan pizza,cheese pizza,0,1,0,1,157,2,2,"[""bland""]",cheese pizza. Taste: bland
+Dw0nQsVS_2-vlhLUG87Gpw,Maker artisan pizza,founded chicken salad,0,0,0,1,158,1,1,[],founded chicken salad. Taste: not specified
+Dw0nQsVS_2-vlhLUG87Gpw,Maker artisan pizza,garlic knot,0,0,0,1,159,1,1,[],garlic knot. Taste: not specified
+Dw0nQsVS_2-vlhLUG87Gpw,Maker artisan pizza,garlic knots,0,0,0,1,160,1,1,[],garlic knots. Taste: not specified
+Dw0nQsVS_2-vlhLUG87Gpw,Maker artisan pizza,meatlovers cheesesteak,0,0,0,1,161,1,1,[],meatlovers cheesesteak. Taste: not specified
+Dw0nQsVS_2-vlhLUG87Gpw,Maker artisan pizza,pie,0,0,0,1,162,1,1,[],pie. Taste: not specified
+Dw0nQsVS_2-vlhLUG87Gpw,Maker artisan pizza,pizza,0,0,0,4,163,4,4,"[""greasy"", ""thin crust""]","pizza. Taste: greasy, thin crust"
+Dw0nQsVS_2-vlhLUG87Gpw,Maker artisan pizza,salads,1,0,0,1,164,2,2,"[""fresh""]",salads. Taste: fresh
+Dw0nQsVS_2-vlhLUG87Gpw,Maker artisan pizza,thin crust pizza,0,0,0,1,165,1,1,"[""thin crust""]",thin crust pizza. Taste: thin crust
+Dw0nQsVS_2-vlhLUG87Gpw,Maker artisan pizza,wings,0,0,0,1,166,1,1,[],wings. Taste: not specified
+FsRAHiYUERqUIeGVt49svA,Qdoba Mexican Grill,brown rice,0,1,0,0,167,1,1,"[""spicy""]",brown rice. Taste: spicy
+FsRAHiYUERqUIeGVt49svA,Qdoba Mexican Grill,brownies,0,0,0,1,168,1,1,[],brownies. Taste: not specified
+FsRAHiYUERqUIeGVt49svA,Qdoba Mexican Grill,burrito,0,0,0,1,169,1,1,[],burrito. Taste: not specified
+FsRAHiYUERqUIeGVt49svA,Qdoba Mexican Grill,burritos,0,0,0,2,170,2,2,[],burritos. Taste: not specified
+FsRAHiYUERqUIeGVt49svA,Qdoba Mexican Grill,chips,0,1,0,0,171,1,1,[],chips. Taste: not specified
+FsRAHiYUERqUIeGVt49svA,Qdoba Mexican Grill,nachos,0,0,0,1,172,1,1,[],nachos. Taste: not specified
+FsRAHiYUERqUIeGVt49svA,Qdoba Mexican Grill,quesadilla,0,0,0,1,173,1,1,[],quesadilla. Taste: not specified
+FsRAHiYUERqUIeGVt49svA,Qdoba Mexican Grill,queso burrito,0,0,0,1,174,1,1,"[""melted""]",queso burrito. Taste: melted
+FsRAHiYUERqUIeGVt49svA,Qdoba Mexican Grill,salad,0,0,0,1,175,1,1,[],salad. Taste: not specified
+FsRAHiYUERqUIeGVt49svA,Qdoba Mexican Grill,tacos,0,1,0,0,176,1,1,[],tacos. Taste: not specified
+FsRAHiYUERqUIeGVt49svA,Qdoba Mexican Grill,white rice,0,0,1,0,177,1,1,[],white rice. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,apple cake,0,0,0,2,178,2,2,[],apple cake. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,assorted cookies,0,0,0,1,179,1,1,[],assorted cookies. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,birthday cake,0,0,0,1,180,1,1,"[""fluffy"", ""moist""]","birthday cake. Taste: fluffy, moist"
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,boston cream doughnuts,0,0,0,1,181,1,1,[],boston cream doughnuts. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,cake,0,1,0,0,182,1,1,"[""dry""]",cake. Taste: dry
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,cakes,0,0,0,1,183,1,1,[],cakes. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,challah bread,0,0,0,1,184,1,1,[],challah bread. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,challahs,0,0,0,2,185,2,2,[],challahs. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,chocolate cigars,0,0,0,1,186,1,1,[],chocolate cigars. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,chocolate thumb print cookies,0,0,0,1,187,1,1,[],chocolate thumb print cookies. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,cookies,0,0,0,1,188,1,1,[],cookies. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,"half chocolate, half vanilla cake",0,1,0,0,189,1,1,"[""brittle"", ""dry""]","half chocolate, half vanilla cake. Taste: brittle, dry"
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,homemade rye bread,0,0,1,0,190,1,1,[],homemade rye bread. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,lattice top cherry pie,0,0,0,1,191,1,1,[],lattice top cherry pie. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,mini sticky buns,0,0,0,1,192,1,1,[],mini sticky buns. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,pastries,0,0,0,1,193,1,1,[],pastries. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,pumpernickels,0,0,0,1,194,1,1,[],pumpernickels. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,raisin babka,0,0,0,1,195,1,1,[],raisin babka. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,rugelach,0,0,0,1,196,1,1,[],rugelach. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,rye,0,0,0,1,197,1,1,[],rye. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,sugar free cookies,0,0,1,0,198,1,1,[],sugar free cookies. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,sugar free rogulah,0,0,1,0,199,1,1,[],sugar free rogulah. Taste: not specified
+GAhzoZq315gjxCUeVNQTGA,Best Cake Kosher Bakery,walnut brownies,0,0,0,1,200,1,1,[],walnut brownies. Taste: not specified
+HdbG53Bt29qyqYhjl5NDOw,Station Pizza,calzone,0,1,0,0,201,1,1,[],calzone. Taste: not specified
+HdbG53Bt29qyqYhjl5NDOw,Station Pizza,calzones,0,0,1,0,202,1,1,[],calzones. Taste: not specified
+HdbG53Bt29qyqYhjl5NDOw,Station Pizza,cheese pizza,1,0,0,0,203,1,1,[],cheese pizza. Taste: not specified
+HdbG53Bt29qyqYhjl5NDOw,Station Pizza,cheesesteaks,0,0,0,2,204,2,2,[],cheesesteaks. Taste: not specified
+HdbG53Bt29qyqYhjl5NDOw,Station Pizza,honey bbq wings,0,0,0,1,205,1,1,"[""sour"", ""sweet""]","honey bbq wings. Taste: sour, sweet"
+HdbG53Bt29qyqYhjl5NDOw,Station Pizza,pizza,1,1,1,2,206,5,5,"[""burnt"", ""chew"", ""crunch""]","pizza. Taste: burnt, chew, crunch"
+HdbG53Bt29qyqYhjl5NDOw,Station Pizza,schweppes,0,1,0,0,207,1,1,[],schweppes. Taste: not specified
+HdbG53Bt29qyqYhjl5NDOw,Station Pizza,steak fries,1,0,0,0,208,1,1,"[""oily""]",steak fries. Taste: oily
+HdbG53Bt29qyqYhjl5NDOw,Station Pizza,strombolis,0,0,1,0,209,1,1,[],strombolis. Taste: not specified
+HdbG53Bt29qyqYhjl5NDOw,Station Pizza,wings,0,0,1,0,210,1,1,[],wings. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,6 month aged ham special with snap peas,0,0,0,1,211,1,1,"[""crisp""]",6 month aged ham special with snap peas. Taste: crisp
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,baked brie,0,0,0,1,212,1,1,"[""gooey""]",baked brie. Taste: gooey
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,beet salad,0,0,0,1,213,1,1,"[""bright"", ""refreshing""]","beet salad. Taste: bright, refreshing"
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,burger,0,0,0,1,214,1,1,[],burger. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,burgers,0,0,0,1,215,1,1,[],burgers. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,grill plate,0,0,0,1,216,1,1,[],grill plate. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,kouign aman,0,0,0,1,217,1,1,"[""flaky""]",kouign aman. Taste: flaky
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,lamb bolognese fettucini,0,0,0,1,218,1,1,[],lamb bolognese fettucini. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,lamb ravioli,0,0,0,1,219,1,1,[],lamb ravioli. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,maitake mushroom,0,0,0,1,220,1,1,"[""airy"", ""light""]","maitake mushroom. Taste: airy, light"
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,meat plate for four,0,1,0,0,221,1,1,[],meat plate for four. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,mushroom lasagna,1,0,0,0,222,1,1,[],mushroom lasagna. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,pimm's cup,0,1,0,0,223,1,1,[],pimm's cup. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,poached eggs,0,1,0,0,224,1,1,[],poached eggs. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,pork shoulder,0,0,0,1,225,1,1,[],pork shoulder. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,pork shoulder with potato cakes,0,0,0,1,226,1,1,"[""tender""]",pork shoulder with potato cakes. Taste: tender
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,rare beef,0,0,1,0,227,1,1,[],rare beef. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,red wine,0,0,0,1,228,1,1,[],red wine. Taste: not specified
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,swordfish,0,0,0,2,229,2,2,"[""smooth"", ""velvety""]","swordfish. Taste: smooth, velvety"
+ILvJAuSP0sYWJKAQ-Goh4Q,Kensington Quarters,wild boar pasta,0,0,0,1,230,1,1,[],wild boar pasta. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,black bean enchiladas,0,0,1,0,231,1,1,[],black bean enchiladas. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,chicken and steak fajitas,0,0,0,1,232,1,1,[],chicken and steak fajitas. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,chicken quesadilla,0,0,0,1,233,1,1,[],chicken quesadilla. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,chips and salsa,0,0,0,2,234,2,2,[],chips and salsa. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,coconut shrimp,0,0,0,1,235,1,1,[],coconut shrimp. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,enchiladas,0,1,0,0,236,1,1,[],enchiladas. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,jalapeño margarita,0,0,0,1,237,1,1,[],jalapeño margarita. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,margarita,0,0,1,0,238,1,1,[],margarita. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,margaritas,0,0,0,1,239,1,1,[],margaritas. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,nachos,0,1,0,0,240,1,1,[],nachos. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,quesadilla,0,0,0,1,241,1,1,[],quesadilla. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,seitan wings,0,0,0,1,242,1,1,[],seitan wings. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,strawberry margarita,0,0,0,1,243,1,1,[],strawberry margarita. Taste: not specified
+KUYLBfW9vRNmhBn5mmRSQg,Adobe Cafe,tacos,0,1,0,2,244,3,3,[],tacos. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,birthday cake,0,0,0,1,245,1,1,[],birthday cake. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,biscotti,0,0,0,1,246,1,1,[],biscotti. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,breakfast sandwiches,0,0,0,1,247,1,1,[],breakfast sandwiches. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,broccoli rabe,0,0,0,1,248,1,1,[],broccoli rabe. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,cake,0,0,0,2,249,2,2,[],cake. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,chicken cutlets,0,0,0,1,250,1,1,[],chicken cutlets. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,chocolate cake,0,0,0,1,251,1,1,"[""moist""]",chocolate cake. Taste: moist
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,chocolate croissants,0,0,0,1,252,1,1,[],chocolate croissants. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,chocolate cupcake,0,0,0,1,253,1,1,[],chocolate cupcake. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,coffee,0,0,2,2,254,4,4,[],coffee. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,cookies,0,0,0,1,255,1,1,[],cookies. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,crab gravy,0,0,0,1,256,1,1,[],crab gravy. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,creme brulee,0,0,0,1,257,1,1,[],creme brulee. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,croissants,0,0,0,1,258,1,1,"[""fresh""]",croissants. Taste: fresh
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,cupcakes,0,0,0,1,259,1,1,"[""flavorful"", ""moist""]","cupcakes. Taste: flavorful, moist"
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,danish,0,0,1,0,260,1,1,[],danish. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,donut-like thing stuffed with nutella,0,0,0,1,261,1,1,[],donut-like thing stuffed with nutella. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,espresso/tea drink,0,0,0,1,262,1,1,[],espresso/tea drink. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,ice box cupcakes,0,0,0,1,263,1,1,[],ice box cupcakes. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,italian peaches,0,0,0,1,264,1,1,[],italian peaches. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,macarons,0,0,1,0,265,1,1,[],macarons. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,muffins,0,0,0,1,266,1,1,[],muffins. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,pastries,0,0,0,1,267,1,1,[],pastries. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,peach,0,0,0,1,268,1,1,[],peach. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,pumpkin latte,0,1,0,0,269,1,1,[],pumpkin latte. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,red velvet cupcake,0,0,0,1,270,1,1,[],red velvet cupcake. Taste: not specified
+NAfITNb2HzObDVktNs3DmA,Kay Kay's,rice pudding,0,0,0,1,271,1,1,[],rice pudding. Taste: not specified
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,breakfast cubano,0,0,0,1,272,1,1,[],breakfast cubano. Taste: not specified
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,cappuccino,0,0,1,0,273,1,1,[],cappuccino. Taste: not specified
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,chipotle aioli,0,0,0,1,274,1,1,[],chipotle aioli. Taste: not specified
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,coffee,0,0,1,2,275,3,3,[],coffee. Taste: not specified
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,cuban,0,0,0,1,276,1,1,"[""tender""]",cuban. Taste: tender
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,cuban breakfast burrito,0,0,1,0,277,1,1,[],cuban breakfast burrito. Taste: not specified
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,cubano,0,1,0,0,278,1,1,"[""overpowering""]",cubano. Taste: overpowering
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,cubano breakfast sandwich,0,0,0,1,279,1,1,[],cubano breakfast sandwich. Taste: not specified
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,fresh smoothie,0,0,1,0,280,1,1,"[""fresh""]",fresh smoothie. Taste: fresh
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,grilled cheese,0,0,0,1,281,1,1,[],grilled cheese. Taste: not specified
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,homefries,0,0,0,1,282,1,1,[],homefries. Taste: not specified
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,mexicano,0,0,0,1,283,1,1,"[""hot"", ""spicy""]","mexicano. Taste: hot, spicy"
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,sandwich,0,0,0,1,284,1,1,[],sandwich. Taste: not specified
+O3S4jdMvdf1VCPDoLYtqaA,El Cafeito,sausage egg and cheese bagel,0,0,0,1,285,1,1,[],sausage egg and cheese bagel. Taste: not specified
+OeO23GTZxF5tRnOXsYxCNA,Starbucks,cascara cold brue,0,0,0,1,286,1,1,[],cascara cold brue. Taste: not specified
+OeO23GTZxF5tRnOXsYxCNA,Starbucks,dark chocolate-covered graham crackers,0,0,1,0,287,1,1,[],dark chocolate-covered graham crackers. Taste: not specified
+OeO23GTZxF5tRnOXsYxCNA,Starbucks,everything bagel with cream cheese,0,0,0,1,288,1,1,[],everything bagel with cream cheese. Taste: not specified
+OeO23GTZxF5tRnOXsYxCNA,Starbucks,passion tea lemonade,0,0,1,0,289,1,1,[],passion tea lemonade. Taste: not specified
+OeO23GTZxF5tRnOXsYxCNA,Starbucks,savory squares,0,0,0,1,290,1,1,[],savory squares. Taste: not specified
+OeO23GTZxF5tRnOXsYxCNA,Starbucks,skinny caramel vanilla,0,0,0,1,291,1,1,[],skinny caramel vanilla. Taste: not specified
+OeO23GTZxF5tRnOXsYxCNA,Starbucks,veggie breakfast sandwich,0,0,0,1,292,1,1,[],veggie breakfast sandwich. Taste: not specified
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,asparagus,0,1,0,0,293,1,1,"[""overcooked""]",asparagus. Taste: overcooked
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,beer batter shrimp,0,1,0,0,294,1,1,[],beer batter shrimp. Taste: not specified
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,burger,1,1,1,0,295,3,3,"[""bone dry"", ""burnt""]","burger. Taste: bone dry, burnt"
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,carrot cake,0,1,0,0,296,1,1,"[""crumbled""]",carrot cake. Taste: crumbled
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,cheesesteak,0,1,0,0,297,1,1,"[""dry"", ""flavorless""]","cheesesteak. Taste: dry, flavorless"
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,chicken sandwich,0,1,0,0,298,1,1,"[""dry"", ""tasteless""]","chicken sandwich. Taste: dry, tasteless"
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,chips,0,1,0,0,299,1,1,"[""stale""]",chips. Taste: stale
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,edamame,0,1,0,0,300,1,1,[],edamame. Taste: not specified
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,fries,0,0,1,0,301,1,1,[],fries. Taste: not specified
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,guacamole,0,0,1,0,302,1,1,[],guacamole. Taste: not specified
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,lobster ravioli,0,2,0,0,303,2,2,"[""hard"", ""stale""]","lobster ravioli. Taste: hard, stale"
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,philly steak,0,1,0,0,304,1,1,"[""unevenly cooked""]",philly steak. Taste: unevenly cooked
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,portabello mushroom burger,0,0,1,0,305,1,1,[],portabello mushroom burger. Taste: not specified
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,pulled pork quesdilla,0,1,0,0,306,1,1,[],pulled pork quesdilla. Taste: not specified
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,salad,0,0,1,0,307,1,1,[],salad. Taste: not specified
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,sangria,0,1,0,0,308,1,1,"[""bitter"", ""not sweet""]","sangria. Taste: bitter, not sweet"
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,scallops,0,1,0,0,309,1,1,[],scallops. Taste: not specified
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,sliders,0,0,1,0,310,1,1,[],sliders. Taste: not specified
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,soda,0,1,0,0,311,1,1,"[""flat""]",soda. Taste: flat
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,tomato mozzarella salad,0,1,0,0,312,1,1,"[""bland""]",tomato mozzarella salad. Taste: bland
+Pb2Gda3L6H3SRefymTtzAw,GiGi Restaurant & Lounge,turkey blt wrap,0,1,0,0,313,1,1,[],turkey blt wrap. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,apple sauce,0,0,0,1,314,1,1,[],apple sauce. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,applesauce,0,0,0,1,315,1,1,[],applesauce. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,cheddar and potato pierogies,0,0,0,1,316,1,1,[],cheddar and potato pierogies. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,cheese and potato pierogis,0,0,0,1,317,1,1,[],cheese and potato pierogis. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,cheesesteaks pierogi's,0,0,0,1,318,1,1,[],cheesesteaks pierogi's. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,dark rye,0,0,0,1,319,1,1,[],dark rye. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,galubki,0,0,0,1,320,1,1,"[""spicy""]",galubki. Taste: spicy
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,galumpkis,0,0,0,1,321,1,1,[],galumpkis. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,golabki,0,0,0,1,322,1,1,[],golabki. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,gołąbki,0,0,0,1,323,1,1,[],gołąbki. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,kielbasa,0,0,0,1,324,1,1,[],kielbasa. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,kielbasy,0,0,0,1,325,1,1,[],kielbasy. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,long rolls,0,0,0,1,326,1,1,[],long rolls. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,perogies,0,0,0,1,327,1,1,[],perogies. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,pickle soup,0,0,0,1,328,1,1,[],pickle soup. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,pierogi,0,0,0,1,329,1,1,"[""light"", ""soft""]","pierogi. Taste: light, soft"
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,pierogies,0,0,1,1,330,2,2,[],pierogies. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,pirogies,0,0,0,1,331,1,1,"[""delicate"", ""flavorful"", ""plump""]","pirogies. Taste: delicate, flavorful, plump"
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,"stew with kielbasa, lima beans, potatoes, shredded beef and cabbage",0,0,0,1,332,1,1,[],"stew with kielbasa, lima beans, potatoes, shredded beef and cabbage. Taste: not specified"
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,stuffed cabbage,0,0,0,1,333,1,1,[],stuffed cabbage. Taste: not specified
+RVLF2RaStLkJiQCqBHknDw,Mom Mom's Kitchen and Polish Food Cart,vanilla-bourbon apple sauce,0,0,0,1,334,1,1,[],vanilla-bourbon apple sauce. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,beer,0,0,0,1,335,1,1,[],beer. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,bloody mary,0,0,0,1,336,1,1,[],bloody mary. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,brisket chili,1,0,0,0,337,1,1,[],brisket chili. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,burg'r,0,0,0,1,338,1,1,[],burg'r. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,burger,0,0,0,4,339,4,4,[],burger. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,burgers,0,0,0,1,340,1,1,[],burgers. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,calamari,0,0,0,1,341,1,1,[],calamari. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,charcuterie board,0,0,1,0,342,1,1,[],charcuterie board. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,fries,0,0,0,3,343,3,3,[],fries. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,kimchi dumplings,0,0,0,1,344,1,1,[],kimchi dumplings. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,mimosas,0,0,0,1,345,1,1,[],mimosas. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,salmon dip,0,0,0,1,346,1,1,[],salmon dip. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,singapore sling,0,0,0,1,347,1,1,[],singapore sling. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,vegetable spring rolls,0,0,0,1,348,1,1,[],vegetable spring rolls. Taste: not specified
+UIyDw8OqB17EkI2p3m7-EQ,Burg's Hideaway Lounge,wings,0,0,0,4,349,4,4,[],wings. Taste: not specified
+UJw-KnIdnzwbvxzNvIUhgw,Currito Burritos Without Borders,bangkok burrito,1,0,0,0,350,1,1,"[""greasy""]",bangkok burrito. Taste: greasy
+UJw-KnIdnzwbvxzNvIUhgw,Currito Burritos Without Borders,build your own bowl,0,0,0,1,351,1,1,[],build your own bowl. Taste: not specified
+UJw-KnIdnzwbvxzNvIUhgw,Currito Burritos Without Borders,build your own salad,0,0,1,0,352,1,1,[],build your own salad. Taste: not specified
+UJw-KnIdnzwbvxzNvIUhgw,Currito Burritos Without Borders,burrito,0,0,0,1,353,1,1,[],burrito. Taste: not specified
+UJw-KnIdnzwbvxzNvIUhgw,Currito Burritos Without Borders,classic burrito,0,1,0,0,354,1,1,"[""lemony"", ""tasteless""]","classic burrito. Taste: lemony, tasteless"
+UJw-KnIdnzwbvxzNvIUhgw,Currito Burritos Without Borders,jimmy carter smoothie,0,0,0,1,355,1,1,[],jimmy carter smoothie. Taste: not specified
+UJw-KnIdnzwbvxzNvIUhgw,Currito Burritos Without Borders,make your own bowl,0,0,0,1,356,1,1,[],make your own bowl. Taste: not specified
+UJw-KnIdnzwbvxzNvIUhgw,Currito Burritos Without Borders,mango smoothie,0,0,0,1,357,1,1,[],mango smoothie. Taste: not specified
+UJw-KnIdnzwbvxzNvIUhgw,Currito Burritos Without Borders,quesadillas,0,0,0,1,358,1,1,[],quesadillas. Taste: not specified
+UJw-KnIdnzwbvxzNvIUhgw,Currito Burritos Without Borders,teriyaki burrito,0,0,0,1,359,1,1,[],teriyaki burrito. Taste: not specified
+USleU89txaknVADlMhUtnQ,SquareBurger,black & white shake,0,0,0,1,360,1,1,[],black & white shake. Taste: not specified
+USleU89txaknVADlMhUtnQ,SquareBurger,burger,0,1,1,1,361,3,3,"[""under seasoned"", ""undercooked"", ""watery""]","burger. Taste: under seasoned, undercooked, watery"
+USleU89txaknVADlMhUtnQ,SquareBurger,burgers,0,1,0,2,362,3,3,"[""funny tasting""]",burgers. Taste: funny tasting
+USleU89txaknVADlMhUtnQ,SquareBurger,cake shake,0,0,0,1,363,1,1,"[""dulce de leche"", ""grainy""]","cake shake. Taste: dulce de leche, grainy"
+USleU89txaknVADlMhUtnQ,SquareBurger,cake shakes,0,0,0,1,364,1,1,[],cake shakes. Taste: not specified
+USleU89txaknVADlMhUtnQ,SquareBurger,crinkled fries,0,0,0,1,365,1,1,"[""crispy""]",crinkled fries. Taste: crispy
+USleU89txaknVADlMhUtnQ,SquareBurger,fries,0,1,0,1,366,2,2,"[""limp"", ""soggy""]","fries. Taste: limp, soggy"
+USleU89txaknVADlMhUtnQ,SquareBurger,lemonade,0,1,0,0,367,1,1,"[""watery""]",lemonade. Taste: watery
+USleU89txaknVADlMhUtnQ,SquareBurger,root beer float,1,0,0,0,368,1,1,[],root beer float. Taste: not specified
+USleU89txaknVADlMhUtnQ,SquareBurger,shakes,0,0,0,1,369,1,1,[],shakes. Taste: not specified
+USleU89txaknVADlMhUtnQ,SquareBurger,single square burger,0,0,0,1,370,1,1,[],single square burger. Taste: not specified
+USleU89txaknVADlMhUtnQ,SquareBurger,sweet potato fries,0,1,0,0,371,1,1,"[""bland""]",sweet potato fries. Taste: bland
+USleU89txaknVADlMhUtnQ,SquareBurger,tasty kake cake shake,0,0,0,1,372,1,1,[],tasty kake cake shake. Taste: not specified
+USleU89txaknVADlMhUtnQ,SquareBurger,thin cut fries,0,0,0,1,373,1,1,[],thin cut fries. Taste: not specified
+VBONwHcqkxYTHfxmdKGhkw,Keating's Rope & Anchor,aui tuna,0,0,0,1,374,1,1,"[""light""]",aui tuna. Taste: light
+VBONwHcqkxYTHfxmdKGhkw,Keating's Rope & Anchor,bloody mary,0,1,0,0,375,1,1,"[""too sweet""]",bloody mary. Taste: too sweet
+VBONwHcqkxYTHfxmdKGhkw,Keating's Rope & Anchor,calamari,0,0,0,1,376,1,1,"[""seasoned well""]",calamari. Taste: seasoned well
+VBONwHcqkxYTHfxmdKGhkw,Keating's Rope & Anchor,cheesesteak landing eggrolls,0,0,1,0,377,1,1,"[""flaky""]",cheesesteak landing eggrolls. Taste: flaky
+VBONwHcqkxYTHfxmdKGhkw,Keating's Rope & Anchor,crab cakes,0,0,0,1,378,1,1,[],crab cakes. Taste: not specified
+VBONwHcqkxYTHfxmdKGhkw,Keating's Rope & Anchor,fisherman's clam chowder,0,1,0,0,379,1,1,[],fisherman's clam chowder. Taste: not specified
+VBONwHcqkxYTHfxmdKGhkw,Keating's Rope & Anchor,flat bread,0,1,0,0,380,1,1,"[""dry""]",flat bread. Taste: dry
+VBONwHcqkxYTHfxmdKGhkw,Keating's Rope & Anchor,fork and knife burger,0,0,1,0,381,1,1,[],fork and knife burger. Taste: not specified
+VBONwHcqkxYTHfxmdKGhkw,Keating's Rope & Anchor,salmon,0,1,0,0,382,1,1,"[""dry""]",salmon. Taste: dry
+VBONwHcqkxYTHfxmdKGhkw,Keating's Rope & Anchor,the smokestack,0,0,1,0,383,1,1,[],the smokestack. Taste: not specified
+VBONwHcqkxYTHfxmdKGhkw,Keating's Rope & Anchor,wine,0,0,1,0,384,1,1,[],wine. Taste: not specified
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,alla vodka penne,0,1,0,0,385,1,1,"[""overcooked""]",alla vodka penne. Taste: overcooked
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,burger,0,1,0,0,386,1,1,"[""over cooked""]",burger. Taste: over cooked
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,cheeseburger,0,1,0,0,387,1,1,[],cheeseburger. Taste: not specified
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,chicken marsala,0,1,0,0,388,1,1,"[""freezer burned""]",chicken marsala. Taste: freezer burned
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,french fries,0,0,0,1,389,1,1,[],french fries. Taste: not specified
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,fried shrimp,0,0,0,1,390,1,1,"[""crispy""]",fried shrimp. Taste: crispy
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,iced tea,0,0,1,0,391,1,1,[],iced tea. Taste: not specified
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,lemonade,0,0,1,0,392,1,1,[],lemonade. Taste: not specified
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,macaroni and cheese pizza,0,1,0,0,393,1,1,[],macaroni and cheese pizza. Taste: not specified
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,pancakes,0,2,0,0,394,2,2,"[""burnt""]",pancakes. Taste: burnt
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,panini,0,1,1,0,395,2,2,[],panini. Taste: not specified
+XIP56Dnfod92fYrrNDOACw,Revolution Diner,philly cheesesteak,0,1,0,0,396,1,1,"[""dry""]",philly cheesesteak. Taste: dry
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,beef with rice,0,1,0,0,397,1,1,"[""not tender"", ""salty""]","beef with rice. Taste: not tender, salty"
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,brown rice,0,1,0,0,398,1,1,"[""mushy""]",brown rice. Taste: mushy
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,chicken n broccoli,1,0,0,0,399,1,1,"[""bland""]",chicken n broccoli. Taste: bland
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,chicken wings,0,0,1,0,400,1,1,[],chicken wings. Taste: not specified
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,eggplant chicken,0,1,0,0,401,1,1,[],eggplant chicken. Taste: not specified
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,eggplant chicken with black bean sauce,1,0,0,0,402,1,1,"[""greasy""]",eggplant chicken with black bean sauce. Taste: greasy
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,eggplant with chicken in black bean sauce,0,0,0,1,403,1,1,[],eggplant with chicken in black bean sauce. Taste: not specified
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,fried rice,0,1,0,0,404,1,1,"[""hard""]",fried rice. Taste: hard
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,garlic tofu,0,1,0,0,405,1,1,"[""bland""]",garlic tofu. Taste: bland
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,general tso's chicken,0,1,0,0,406,1,1,"[""greasy"", ""soggy""]","general tso's chicken. Taste: greasy, soggy"
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,pad thai,2,0,0,0,407,2,2,[],pad thai. Taste: not specified
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,roasted pork with rice,0,0,1,0,408,1,1,[],roasted pork with rice. Taste: not specified
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,sesame chicken,0,1,0,0,409,1,1,[],sesame chicken. Taste: not specified
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,tea eggs,0,0,0,1,410,1,1,[],tea eggs. Taste: not specified
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,tofu vegetable lemongrass soup,1,0,0,0,411,1,1,"[""bland"", ""spicy""]","tofu vegetable lemongrass soup. Taste: bland, spicy"
+YsM1qDjivZvf-T7BUxS35A,The Real Lee Ahn,vegetarian stir-fry singapore noodle,0,1,0,0,412,1,1,"[""lightly curried"", ""mushy"", ""salty""]","vegetarian stir-fry singapore noodle. Taste: lightly curried, mushy, salty"
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,beef gim bap,0,0,0,1,413,1,1,[],beef gim bap. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,bibimbap,0,0,0,1,414,1,1,[],bibimbap. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,bubble tea,0,1,0,0,415,1,1,[],bubble tea. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,bulgogi dupbap,0,0,1,0,416,1,1,[],bulgogi dupbap. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,ddukbbokki,0,0,0,1,417,1,1,[],ddukbbokki. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,ddunbboki,1,0,0,0,418,1,1,"[""not enough chewy and bouncy"", ""spicy""]","ddunbboki. Taste: not enough chewy and bouncy, spicy"
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,donkatsu,0,0,0,2,419,2,2,[],donkatsu. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,dumpling ramen,0,0,1,0,420,1,1,[],dumpling ramen. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,fish broth,0,0,0,1,421,1,1,[],fish broth. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,fried dumplings,0,0,0,1,422,1,1,[],fried dumplings. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,gimbap,0,0,0,2,423,2,2,[],gimbap. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,jjol myun,0,0,0,1,424,1,1,[],jjol myun. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,kimbap,0,0,0,2,425,2,2,[],kimbap. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,kimchee,0,0,1,0,426,1,1,[],kimchee. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,kimchi kimbap,0,0,1,0,427,1,1,[],kimchi kimbap. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,korean sausage,0,0,0,1,428,1,1,[],korean sausage. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,miso-style soup,0,0,0,1,429,1,1,[],miso-style soup. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,naeng myun,0,0,0,1,430,1,1,[],naeng myun. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,pickled daikon,0,0,1,0,431,1,1,[],pickled daikon. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,pork cutlet,0,0,0,1,432,1,1,[],pork cutlet. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,rabboki,0,0,0,1,433,1,1,[],rabboki. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,rabokki,0,0,0,3,434,3,3,[],rabokki. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,tonkatsu,0,0,0,1,435,1,1,[],tonkatsu. Taste: not specified
+Zxi0AGG2Dh-SeqHEMtuUYg,Myung Ga Gimbap,udon,0,0,1,0,436,1,1,[],udon. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,burgers,0,1,0,0,437,1,1,[],burgers. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,chicken cutlet sandwiches,0,0,0,2,438,2,2,[],chicken cutlet sandwiches. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,chips,0,0,1,0,439,1,1,[],chips. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,fries,0,1,0,0,440,1,1,[],fries. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,hoagie,0,0,0,2,441,2,2,[],hoagie. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,hogies,0,0,1,0,442,1,1,[],hogies. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,italian with long hots,0,0,0,1,443,1,1,[],italian with long hots. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,italian with prosciutto,0,0,0,1,444,1,1,[],italian with prosciutto. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,mi pals chicken steak,0,0,0,1,445,1,1,[],mi pals chicken steak. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,prosciutto and sharp provolone sandwich,0,0,0,1,446,1,1,[],prosciutto and sharp provolone sandwich. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,rolls,0,0,0,1,447,1,1,[],rolls. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,seafood salad,0,0,0,1,448,1,1,[],seafood salad. Taste: not specified
+ab5hOCoFF0Jm4UvP6F5QwQ,Mipals Deli,soda,0,0,1,0,449,1,1,[],soda. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,buffalo fries,0,0,0,1,450,1,1,[],buffalo fries. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,cheesecake,0,0,0,2,451,2,2,[],cheesecake. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,club sandwich,0,0,1,0,452,1,1,[],club sandwich. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,fries,0,1,0,0,453,1,1,[],fries. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,grilled salmon,0,0,0,1,454,1,1,[],grilled salmon. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,loaded fries,0,0,0,1,455,1,1,[],loaded fries. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,mussels,0,0,0,1,456,1,1,[],mussels. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,onion rings,0,0,0,1,457,1,1,[],onion rings. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,pasta,0,0,0,1,458,1,1,[],pasta. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,pizza,0,1,0,3,459,4,4,"[""thick""]",pizza. Taste: thick
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,rancho pizza,0,0,0,1,460,1,1,[],rancho pizza. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,regular pizza,0,0,1,0,461,1,1,[],regular pizza. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,steaks,0,0,1,0,462,1,1,[],steaks. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,white pizza with spinach,0,0,1,0,463,1,1,[],white pizza with spinach. Taste: not specified
+eM5CowLA4lGmATovJrLRXQ,Al's Italiano Pizzeria & Ristorante,wings,0,0,0,2,464,2,2,[],wings. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,biscotti,0,0,0,1,465,1,1,[],biscotti. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,breakfast sandwiches,0,0,0,2,466,2,2,[],breakfast sandwiches. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,cake,0,0,0,1,467,1,1,[],cake. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,cheesecake,0,0,0,3,468,3,3,"[""light"", ""not overly rich"", ""not overly thick""]","cheesecake. Taste: light, not overly rich, not overly thick"
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,cheesecakes,0,0,0,2,469,2,2,[],cheesecakes. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,coffee,0,0,0,2,470,2,2,[],coffee. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,coffee cake,0,0,0,1,471,1,1,[],coffee cake. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,croissant breakfast sandwiches,0,0,0,1,472,1,1,[],croissant breakfast sandwiches. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,croissants,1,0,0,0,473,1,1,"[""soggy""]",croissants. Taste: soggy
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,egg bagel sandwiches,0,0,0,1,474,1,1,[],egg bagel sandwiches. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,flavored coffee,0,0,0,1,475,1,1,"[""french vanilla"", ""hazelnut""]","flavored coffee. Taste: french vanilla, hazelnut"
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,hot chocolate,0,0,1,0,476,1,1,"[""rich"", ""sweet""]","hot chocolate. Taste: rich, sweet"
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,kraut-and-kielbasa polska sandwich,0,0,0,1,477,1,1,[],kraut-and-kielbasa polska sandwich. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,la colombe,0,0,0,1,478,1,1,[],la colombe. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,la colombe coffee,0,2,0,0,479,2,2,"[""watered-down""]",la colombe coffee. Taste: watered-down
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,lox & bagels,0,0,0,1,480,1,1,[],lox & bagels. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,monte cristo,0,0,0,1,481,1,1,[],monte cristo. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,peanut butter silk,0,0,0,1,482,1,1,"[""flavorful"", ""fluffy"", ""fresh"", ""light""]","peanut butter silk. Taste: flavorful, fluffy, fresh, light"
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,sandwich,0,1,0,0,483,1,1,[],sandwich. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,sandwiches,0,1,0,0,484,1,1,[],sandwiches. Taste: not specified
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,soup of the day,0,1,0,0,485,1,1,"[""undercooked""]",soup of the day. Taste: undercooked
+etK5pTCprPuKJCtiU-iLKw,Darling's Coffeehouse & Cheesecake,"tomato, basil and mozzarella sandwich",0,0,0,1,486,1,1,[],"tomato, basil and mozzarella sandwich. Taste: not specified"
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,beer,0,0,1,1,487,2,2,[],beer. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,buffalo wings,0,0,0,1,488,1,1,[],buffalo wings. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,burger,0,0,1,0,489,1,1,[],burger. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,burgers,0,0,0,1,490,1,1,[],burgers. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,calamari wrap,0,0,0,1,491,1,1,[],calamari wrap. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,chicken quesadilla,0,0,0,1,492,1,1,[],chicken quesadilla. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,crab mac in cheese,1,0,0,0,493,1,1,[],crab mac in cheese. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,french onion soup,0,0,0,1,494,1,1,[],french onion soup. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,fries,0,0,0,4,495,4,4,[],fries. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,hell fire burger,0,0,0,1,496,1,1,[],hell fire burger. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,house-made chips,0,0,0,1,497,1,1,[],house-made chips. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,sandwiches,0,0,0,1,498,1,1,[],sandwiches. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,union tap shrimp,0,1,0,0,499,1,1,[],union tap shrimp. Taste: not specified
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,union wings,0,1,0,0,500,1,1,"[""spicy""]",union wings. Taste: spicy
+f1oDIZxQ7V44PvzPCQ-tEQ,The Union Tap,wings,0,0,0,1,501,1,1,[],wings. Taste: not specified
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,calamari basket,0,0,1,0,502,1,1,[],calamari basket. Taste: not specified
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,clams,0,0,0,1,503,1,1,[],clams. Taste: not specified
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,crawfish,1,1,1,0,504,3,3,"[""not fresh""]",crawfish. Taste: not fresh
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,fresh crawfish,0,0,0,1,505,1,1,"[""fresh""]",fresh crawfish. Taste: fresh
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,fries,0,0,0,1,506,1,1,[],fries. Taste: not specified
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,muscles marinara,0,0,0,1,507,1,1,[],muscles marinara. Taste: not specified
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,pho,0,2,0,0,508,2,2,[],pho. Taste: not specified
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,poboy,0,1,0,0,509,1,1,"[""dry""]",poboy. Taste: dry
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,raw oysters,0,0,1,0,510,1,1,[],raw oysters. Taste: not specified
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,sausages,0,0,0,1,511,1,1,[],sausages. Taste: not specified
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,seafood combo,0,0,1,0,512,1,1,[],seafood combo. Taste: not specified
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,snow crab legs,0,0,0,2,513,2,2,"[""fresh""]",snow crab legs. Taste: fresh
+fBxjd0SqSJezssqC9zJCOQ,Crabby Cafe - Chinatown BYOB,wings,0,0,0,1,514,1,1,[],wings. Taste: not specified
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,chicken 65,0,0,0,2,515,2,2,"[""tender""]",chicken 65. Taste: tender
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,chicken madras,0,0,0,1,516,1,1,"[""spicy""]",chicken madras. Taste: spicy
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,curry,0,0,0,1,517,1,1,[],curry. Taste: not specified
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,dal tadka,0,0,0,1,518,1,1,"[""spicy""]",dal tadka. Taste: spicy
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,garlic naan,0,0,0,1,519,1,1,[],garlic naan. Taste: not specified
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,hakka noodles,0,0,0,1,520,1,1,[],hakka noodles. Taste: not specified
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,masala tea,0,0,1,0,521,1,1,[],masala tea. Taste: not specified
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,naan,0,1,0,0,522,1,1,[],naan. Taste: not specified
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,rasmalai,0,0,0,1,523,1,1,"[""sweet""]",rasmalai. Taste: sweet
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,rice,0,0,1,1,524,2,2,[],rice. Taste: not specified
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,rogan josh,0,0,0,1,525,1,1,[],rogan josh. Taste: not specified
+fYXCk6Usfd2wzyaBBIM4dw,Rasavat,samosa chat,0,0,0,1,526,1,1,"[""sweeter""]",samosa chat. Taste: sweeter
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,arugula salad,0,0,0,1,527,1,1,[],arugula salad. Taste: not specified
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,bacon wrapped filet,0,1,0,0,528,1,1,[],bacon wrapped filet. Taste: not specified
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,cheese puffs,0,0,0,1,529,1,1,[],cheese puffs. Taste: not specified
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,coffee,0,1,0,0,530,1,1,[],coffee. Taste: not specified
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,filet,0,1,0,0,531,1,1,"[""salty""]",filet. Taste: salty
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,fried bananas,0,0,0,1,532,1,1,[],fried bananas. Taste: not specified
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,house pinot noir,0,1,0,0,533,1,1,[],house pinot noir. Taste: not specified
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,lamb,0,1,0,0,534,1,1,"[""funky""]",lamb. Taste: funky
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,leg of lamb,0,0,0,1,535,1,1,[],leg of lamb. Taste: not specified
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,parmesan pork,0,0,0,1,536,1,1,[],parmesan pork. Taste: not specified
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,potato puree,0,0,0,1,537,1,1,[],potato puree. Taste: not specified
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,top sirloin,0,0,0,1,538,1,1,[],top sirloin. Taste: not specified
+gjFUrbSMo1rA1jgG5IhA2A,Chima Steakhouse,whipped potatoes,0,0,0,1,539,1,1,[],whipped potatoes. Taste: not specified
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,cheese sticks,0,1,0,0,540,1,1,[],cheese sticks. Taste: not specified
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,fries,0,1,0,1,541,2,2,[],fries. Taste: not specified
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,hawaiian pizzas,0,0,0,1,542,1,1,[],hawaiian pizzas. Taste: not specified
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,jumbo wings,0,0,1,0,543,1,1,[],jumbo wings. Taste: not specified
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,pasta platters,0,1,0,0,544,1,1,[],pasta platters. Taste: not specified
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,pizza,0,2,0,2,545,4,4,"[""not greasy"", ""tasteless"", ""thin""]","pizza. Taste: not greasy, tasteless, thin"
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,steak stromboli,0,0,0,1,546,1,1,"[""thin""]",steak stromboli. Taste: thin
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,steak stromboli with onions,0,0,0,1,547,1,1,[],steak stromboli with onions. Taste: not specified
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,stromboli,0,0,0,3,548,3,3,[],stromboli. Taste: not specified
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,strombolis,0,0,1,0,549,1,1,"[""thinner crust""]",strombolis. Taste: thinner crust
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,veggie,0,0,0,1,550,1,1,[],veggie. Taste: not specified
+i1SP5YzRjIc8s1O1tQZ6fA,Stromboli House Pizza,wings,0,0,0,1,551,1,1,[],wings. Taste: not specified
+jGQnyhGmA6F-uL7TZR4S6A,E-Z Brunch,bacon egg and cheese on toast,0,0,1,0,552,1,1,[],bacon egg and cheese on toast. Taste: not specified
+jGQnyhGmA6F-uL7TZR4S6A,E-Z Brunch,fish,0,1,0,0,553,1,1,[],fish. Taste: not specified
+jGQnyhGmA6F-uL7TZR4S6A,E-Z Brunch,french fries,0,0,1,0,554,1,1,[],french fries. Taste: not specified
+jGQnyhGmA6F-uL7TZR4S6A,E-Z Brunch,french toast,0,0,0,1,555,1,1,[],french toast. Taste: not specified
+jGQnyhGmA6F-uL7TZR4S6A,E-Z Brunch,fried fish,0,0,0,1,556,1,1,[],fried fish. Taste: not specified
+jGQnyhGmA6F-uL7TZR4S6A,E-Z Brunch,grits,0,0,1,1,557,2,2,"[""creamy""]",grits. Taste: creamy
+jGQnyhGmA6F-uL7TZR4S6A,E-Z Brunch,home fries,0,1,0,0,558,1,1,"[""bland""]",home fries. Taste: bland
+jGQnyhGmA6F-uL7TZR4S6A,E-Z Brunch,spinach/kiwi/pineapple smoothies,0,0,0,1,559,1,1,[],spinach/kiwi/pineapple smoothies. Taste: not specified
+jGQnyhGmA6F-uL7TZR4S6A,E-Z Brunch,swamp water,0,0,0,1,560,1,1,[],swamp water. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,asian red head,0,0,0,1,561,1,1,[],asian red head. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,asparagus,0,0,0,1,562,1,1,[],asparagus. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,braised beef short rib,0,0,0,1,563,1,1,[],braised beef short rib. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,calamari,1,0,0,0,564,1,1,[],calamari. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,chicken dumplings,0,0,0,1,565,1,1,[],chicken dumplings. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,chicken noodle salad,0,0,0,1,566,1,1,[],chicken noodle salad. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,chocolate cake,0,0,0,1,567,1,1,[],chocolate cake. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,crab cake,0,0,0,1,568,1,1,[],crab cake. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,crab kamikaze appetizer,0,1,0,0,569,1,1,"[""bland""]",crab kamikaze appetizer. Taste: bland
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,general ho's from the wok lobster,0,1,0,0,570,1,1,[],general ho's from the wok lobster. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,gin and tonic,0,1,0,0,571,1,1,"[""watered down""]",gin and tonic. Taste: watered down
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,green tea with puffed rice,0,0,0,1,572,1,1,[],green tea with puffed rice. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,lobster & oyster stir fry,0,1,0,0,573,1,1,[],lobster & oyster stir fry. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,miso grilled salmon entree,0,0,0,1,574,1,1,[],miso grilled salmon entree. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,miso soup,0,1,0,0,575,1,1,"[""salty""]",miso soup. Taste: salty
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,mojito,0,0,0,1,576,1,1,[],mojito. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,mussels in white wine and garlic,1,0,0,0,577,1,1,[],mussels in white wine and garlic. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,pork ribs,0,0,0,1,578,1,1,[],pork ribs. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,poundcake,0,0,1,0,579,1,1,[],poundcake. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,red shiraz,0,1,0,0,580,1,1,"[""chilled""]",red shiraz. Taste: chilled
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,salmon nori roll,0,0,0,1,581,1,1,[],salmon nori roll. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,salmon nori rolls,0,1,0,0,582,1,1,"[""bland""]",salmon nori rolls. Taste: bland
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,scallop and asparagus appetizers,0,1,0,0,583,1,1,"[""salty""]",scallop and asparagus appetizers. Taste: salty
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,steamed dumplings,0,0,0,1,584,1,1,[],steamed dumplings. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,summer crab kamikaze salad,0,0,0,1,585,1,1,[],summer crab kamikaze salad. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,sushi roll,0,1,0,0,586,1,1,[],sushi roll. Taste: not specified
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,vegetarian noodle entree,0,1,0,0,587,1,1,"[""over-cooked""]",vegetarian noodle entree. Taste: over-cooked
+k2w1Zf6F6bRQoOzXAi3Atw,Mantra,wasabi filet mignon,0,0,0,1,588,1,1,[],wasabi filet mignon. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,allagash whites,0,0,1,0,589,1,1,[],allagash whites. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,bloody mary,0,0,0,1,590,1,1,[],bloody mary. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,crab crème brulée,0,0,0,1,591,1,1,[],crab crème brulée. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,eggplant risotto,0,0,0,1,592,1,1,[],eggplant risotto. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,fish and chips,0,1,0,0,593,1,1,"[""dry"", ""greasy""]","fish and chips. Taste: dry, greasy"
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,fries,0,0,1,0,594,1,1,[],fries. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,grilled octopus salad,0,0,0,1,595,1,1,"[""tender""]",grilled octopus salad. Taste: tender
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,grilled oysters,0,0,0,1,596,1,1,[],grilled oysters. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,lobster roll,0,0,0,3,597,3,3,"[""buttery"", ""crunchy"", ""meaty"", ""spiced""]","lobster roll. Taste: buttery, crunchy, meaty, spiced"
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,maria,0,0,1,0,598,1,1,[],maria. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,middle neck clams,0,0,0,1,599,1,1,"[""clean"", ""fresh""]","middle neck clams. Taste: clean, fresh"
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,mussels,0,1,0,1,600,2,2,[],mussels. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,mussels marinara,1,0,0,0,601,1,1,[],mussels marinara. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,oysters,0,0,0,2,602,2,2,"[""clean"", ""fresh""]","oysters. Taste: clean, fresh"
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,oysters from virginia,0,0,0,1,603,1,1,"[""juicy"", ""plump""]","oysters from virginia. Taste: juicy, plump"
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,pescatore,0,1,0,0,604,1,1,"[""overcooked"", ""stuck together""]","pescatore. Taste: overcooked, stuck together"
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,pickle shot,0,0,1,0,605,1,1,[],pickle shot. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,pudding,0,0,0,1,606,1,1,[],pudding. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,risotto,0,0,0,1,607,1,1,"[""bite""]",risotto. Taste: bite
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,salad,0,0,1,0,608,1,1,[],salad. Taste: not specified
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,scallops,0,0,0,2,609,2,2,"[""tender""]",scallops. Taste: tender
+n9YO7U3bbudSwIpkCtQZiA,Anastasi Raw Bar,squid ink risotto,1,0,0,1,610,2,2,[],squid ink risotto. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,angus beef,0,0,0,1,611,1,1,[],angus beef. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,beef bulgogi,0,0,0,1,612,1,1,[],beef bulgogi. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,brisket,0,0,0,1,613,1,1,[],brisket. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,bulgogi,0,0,0,1,614,1,1,[],bulgogi. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,fish roe balls,0,0,0,1,615,1,1,[],fish roe balls. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,fried tofu skins,0,0,0,1,616,1,1,[],fried tofu skins. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,hot pot,0,0,0,2,617,2,2,[],hot pot. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,hotpot,0,0,0,1,618,1,1,[],hotpot. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,jumbo shrimp,0,0,0,1,619,1,1,[],jumbo shrimp. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,korean short rib,0,0,0,1,620,1,1,[],korean short rib. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,kpot pork belly,0,0,0,1,621,1,1,[],kpot pork belly. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,normal pork belly,0,0,1,0,622,1,1,[],normal pork belly. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,pork belly,0,1,0,1,623,2,2,"[""fatty""]",pork belly. Taste: fatty
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,raspberry hennessey island,0,0,0,1,624,1,1,[],raspberry hennessey island. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,short ribs,0,0,0,2,625,2,2,[],short ribs. Taste: not specified
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,szcheuan spicy,0,0,0,1,626,1,1,"[""not too oily"", ""not too spicy""]","szcheuan spicy. Taste: not too oily, not too spicy"
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,tom yum,0,0,0,1,627,1,1,"[""not too oily"", ""not too spicy""]","tom yum. Taste: not too oily, not too spicy"
+oTTx4ObLjOWVCtGXU_8AUw,K Pot South Philly,watermelon marg,0,1,0,0,628,1,1,"[""syrupy""]",watermelon marg. Taste: syrupy
+teGUSCn6Vlrs07qIgilFHA,Oriental Kitchen,chicken with garlic sauce,0,0,0,1,629,1,1,"[""spicy""]",chicken with garlic sauce. Taste: spicy
+teGUSCn6Vlrs07qIgilFHA,Oriental Kitchen,dumpling soup,0,0,0,1,630,1,1,[],dumpling soup. Taste: not specified
+teGUSCn6Vlrs07qIgilFHA,Oriental Kitchen,egg roll,0,0,0,1,631,1,1,[],egg roll. Taste: not specified
+teGUSCn6Vlrs07qIgilFHA,Oriental Kitchen,egg rolls,0,0,0,1,632,1,1,[],egg rolls. Taste: not specified
+teGUSCn6Vlrs07qIgilFHA,Oriental Kitchen,fried rice,1,0,0,0,633,1,1,[],fried rice. Taste: not specified
+teGUSCn6Vlrs07qIgilFHA,Oriental Kitchen,general tso chicken,0,0,0,1,634,1,1,"[""spicy""]",general tso chicken. Taste: spicy
+teGUSCn6Vlrs07qIgilFHA,Oriental Kitchen,lo mein,0,1,0,0,635,1,1,[],lo mein. Taste: not specified
+teGUSCn6Vlrs07qIgilFHA,Oriental Kitchen,rice,0,1,0,0,636,1,1,[],rice. Taste: not specified
+teGUSCn6Vlrs07qIgilFHA,Oriental Kitchen,sesame chicken,0,0,0,2,637,2,2,[],sesame chicken. Taste: not specified
+v7KzbLoHo9zC2xRpWEEp0A,A Mandarin Restaurant,beef and broccoli,0,1,0,0,638,1,1,[],beef and broccoli. Taste: not specified
+v7KzbLoHo9zC2xRpWEEp0A,A Mandarin Restaurant,chicken and broccoli,0,1,0,0,639,1,1,[],chicken and broccoli. Taste: not specified
+v7KzbLoHo9zC2xRpWEEp0A,A Mandarin Restaurant,chicken with eggplant,0,0,0,1,640,1,1,[],chicken with eggplant. Taste: not specified
+v7KzbLoHo9zC2xRpWEEp0A,A Mandarin Restaurant,dumplings,0,1,0,1,641,2,2,"[""bland"", ""burned"", ""soggy""]","dumplings. Taste: bland, burned, soggy"
+v7KzbLoHo9zC2xRpWEEp0A,A Mandarin Restaurant,general tso chicken,0,1,0,0,642,1,1,[],general tso chicken. Taste: not specified
+v7KzbLoHo9zC2xRpWEEp0A,A Mandarin Restaurant,hot and sour soup,0,1,0,1,643,2,2,[],hot and sour soup. Taste: not specified
+v7KzbLoHo9zC2xRpWEEp0A,A Mandarin Restaurant,kung pao chicken,1,0,0,0,644,1,1,"[""undercooked""]",kung pao chicken. Taste: undercooked
+v7KzbLoHo9zC2xRpWEEp0A,A Mandarin Restaurant,lo mein,0,0,0,1,645,1,1,[],lo mein. Taste: not specified
+v7KzbLoHo9zC2xRpWEEp0A,A Mandarin Restaurant,red bean ice cream,0,0,0,1,646,1,1,[],red bean ice cream. Taste: not specified
+v7KzbLoHo9zC2xRpWEEp0A,A Mandarin Restaurant,rice,0,1,0,0,647,1,1,"[""mushy""]",rice. Taste: mushy
+v7KzbLoHo9zC2xRpWEEp0A,A Mandarin Restaurant,roast pork with snow peas,0,0,0,1,648,1,1,[],roast pork with snow peas. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,apple pie french toast,0,0,0,2,649,2,2,[],apple pie french toast. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,chicken and waffles,0,0,0,1,650,1,1,[],chicken and waffles. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,chocolate chip cookie dough french toast,0,0,0,1,651,1,1,[],chocolate chip cookie dough french toast. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,churro french toast sticks,0,0,1,0,652,1,1,[],churro french toast sticks. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,creme brûlée french toast,0,0,0,1,653,1,1,[],creme brûlée french toast. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,duck pastrami sandwich,0,0,0,1,654,1,1,"[""soft""]",duck pastrami sandwich. Taste: soft
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,eggs benedict,0,1,0,0,655,1,1,"[""undercooked""]",eggs benedict. Taste: undercooked
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,eggs benedict short braised ribs,0,0,0,1,656,1,1,"[""succulent""]",eggs benedict short braised ribs. Taste: succulent
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,grits,0,0,0,1,657,1,1,[],grits. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,home made sausage,0,1,0,0,658,1,1,[],home made sausage. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,la colombe coffee,0,0,1,0,659,1,1,"[""fresh"", ""hot""]","la colombe coffee. Taste: fresh, hot"
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,lunch salads,0,0,1,0,660,1,1,[],lunch salads. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,peaches and cream steel cut oatmeal,0,0,1,0,661,1,1,[],peaches and cream steel cut oatmeal. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,peanut butter latte,0,0,1,0,662,1,1,"[""peanut butter""]",peanut butter latte. Taste: peanut butter
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,pecan pie french toast,0,0,0,1,663,1,1,[],pecan pie french toast. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,quiche,0,1,0,0,664,1,1,"[""watery""]",quiche. Taste: watery
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,red velvet pancakes,0,0,0,4,665,4,4,[],red velvet pancakes. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,ricky smoothie,0,0,0,1,666,1,1,"[""berry"", ""lemon"", ""refreshing""]","ricky smoothie. Taste: berry, lemon, refreshing"
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,scrapple and eggs,0,0,0,1,667,1,1,[],scrapple and eggs. Taste: not specified
+vXb4OWsjPoiBtmarfexj-g,Green Eggs Café,short ribs benedict,0,0,0,1,668,1,1,[],short ribs benedict. Taste: not specified
+w4eReKam-skGORjv41A7KQ,Shalom Pizzeria,bourekas platter,0,1,0,0,669,1,1,[],bourekas platter. Taste: not specified
+w4eReKam-skGORjv41A7KQ,Shalom Pizzeria,cheese and spinach bureka,0,0,0,1,670,1,1,[],cheese and spinach bureka. Taste: not specified
+w4eReKam-skGORjv41A7KQ,Shalom Pizzeria,falafel,0,0,1,0,671,1,1,[],falafel. Taste: not specified
+w4eReKam-skGORjv41A7KQ,Shalom Pizzeria,french fries,0,0,0,1,672,1,1,[],french fries. Taste: not specified
+w4eReKam-skGORjv41A7KQ,Shalom Pizzeria,israeli salad,0,1,0,0,673,1,1,[],israeli salad. Taste: not specified
+w4eReKam-skGORjv41A7KQ,Shalom Pizzeria,kosher pizza,0,0,0,1,674,1,1,[],kosher pizza. Taste: not specified
+w4eReKam-skGORjv41A7KQ,Shalom Pizzeria,personalized/specialized pizza pie,0,0,0,1,675,1,1,[],personalized/specialized pizza pie. Taste: not specified
+w4eReKam-skGORjv41A7KQ,Shalom Pizzeria,pizza,1,1,2,1,676,5,5,"[""oily"", ""seasoned very well""]","pizza. Taste: oily, seasoned very well"
+w4eReKam-skGORjv41A7KQ,Shalom Pizzeria,salads,0,0,0,1,677,1,1,[],salads. Taste: not specified
+w54Lw6fQqJ-WKmTkizL2FQ,Turkish Kabob House,baklava,0,0,0,1,678,1,1,[],baklava. Taste: not specified
+w54Lw6fQqJ-WKmTkizL2FQ,Turkish Kabob House,chicken gyro,0,0,0,1,679,1,1,[],chicken gyro. Taste: not specified
+w54Lw6fQqJ-WKmTkizL2FQ,Turkish Kabob House,chicken kabobs,0,1,0,0,680,1,1,[],chicken kabobs. Taste: not specified
+w54Lw6fQqJ-WKmTkizL2FQ,Turkish Kabob House,chicken kebab platters,0,0,0,1,681,1,1,"[""charred""]",chicken kebab platters. Taste: charred
+w54Lw6fQqJ-WKmTkizL2FQ,Turkish Kabob House,gyro platter,0,1,0,0,682,1,1,[],gyro platter. Taste: not specified
+w54Lw6fQqJ-WKmTkizL2FQ,Turkish Kabob House,hummus and pita,0,0,0,1,683,1,1,[],hummus and pita. Taste: not specified
+w54Lw6fQqJ-WKmTkizL2FQ,Turkish Kabob House,pudding,0,0,0,1,684,1,1,[],pudding. Taste: not specified
+w54Lw6fQqJ-WKmTkizL2FQ,Turkish Kabob House,rice,0,0,1,0,685,1,1,[],rice. Taste: not specified
+w54Lw6fQqJ-WKmTkizL2FQ,Turkish Kabob House,spinach rolls,0,0,0,1,686,1,1,[],spinach rolls. Taste: not specified
+y44MbCvvtmg1FpkNGSWisw,Tony's Luke,cheese fries,0,0,0,1,687,1,1,[],cheese fries. Taste: not specified
+y44MbCvvtmg1FpkNGSWisw,Tony's Luke,cheese steak,0,1,0,0,688,1,1,[],cheese steak. Taste: not specified
+y44MbCvvtmg1FpkNGSWisw,Tony's Luke,cheesesteak,0,0,0,2,689,2,2,[],cheesesteak. Taste: not specified
+y44MbCvvtmg1FpkNGSWisw,Tony's Luke,cheesesteaks,1,0,0,0,690,1,1,[],cheesesteaks. Taste: not specified
+y44MbCvvtmg1FpkNGSWisw,Tony's Luke,hogie,0,0,0,1,691,1,1,[],hogie. Taste: not specified
+y44MbCvvtmg1FpkNGSWisw,Tony's Luke,junior philly,0,0,0,1,692,1,1,[],junior philly. Taste: not specified
+y44MbCvvtmg1FpkNGSWisw,Tony's Luke,philly cheese steak,0,1,0,0,693,1,1,[],philly cheese steak. Taste: not specified
+y44MbCvvtmg1FpkNGSWisw,Tony's Luke,philly cheesesteaks,0,1,0,0,694,1,1,"[""dry""]",philly cheesesteaks. Taste: dry
+y44MbCvvtmg1FpkNGSWisw,Tony's Luke,roast pork sandwich,0,1,0,0,695,1,1,"[""soggy"", ""wet""]","roast pork sandwich. Taste: soggy, wet"
+z1d3dFsEJ8wXB2v0W97LFQ,Wawa,custom garden salad,0,0,0,1,696,1,1,[],custom garden salad. Taste: not specified
+z1d3dFsEJ8wXB2v0W97LFQ,Wawa,custom salad,0,1,0,0,697,1,1,[],custom salad. Taste: not specified
+z1d3dFsEJ8wXB2v0W97LFQ,Wawa,sandwich,0,1,1,0,698,2,2,[],sandwich. Taste: not specified
+z1d3dFsEJ8wXB2v0W97LFQ,Wawa,sausage and scrambled egg breakfast hoagie,0,1,0,0,699,1,1,[],sausage and scrambled egg breakfast hoagie. Taste: not specified
+z1d3dFsEJ8wXB2v0W97LFQ,Wawa,sub,0,1,0,0,700,1,1,"[""hard""]",sub. Taste: hard
+zyMkbavgHASQtqVwaock9A,3 J's Cafe,club panini with corned beef,0,0,0,1,701,1,1,[],club panini with corned beef. Taste: not specified
+zyMkbavgHASQtqVwaock9A,3 J's Cafe,flame panini,0,1,0,1,702,2,2,[],flame panini. Taste: not specified
+zyMkbavgHASQtqVwaock9A,3 J's Cafe,flame sandwich,0,0,0,1,703,1,1,[],flame sandwich. Taste: not specified
+zyMkbavgHASQtqVwaock9A,3 J's Cafe,great turkey,0,0,0,1,704,1,1,[],great turkey. Taste: not specified
+zyMkbavgHASQtqVwaock9A,3 J's Cafe,italian hoagie,0,1,0,0,705,1,1,[],italian hoagie. Taste: not specified
+zyMkbavgHASQtqVwaock9A,3 J's Cafe,salad,0,0,0,1,706,1,1,[],salad. Taste: not specified
+zyMkbavgHASQtqVwaock9A,3 J's Cafe,sandwich,0,0,0,1,707,1,1,[],sandwich. Taste: not specified
+zyMkbavgHASQtqVwaock9A,3 J's Cafe,sandwiches,0,0,0,2,708,2,2,[],sandwiches. Taste: not specified
+zyMkbavgHASQtqVwaock9A,3 J's Cafe,spicy chicken salad sandwich,0,0,0,2,709,2,2,"[""creamy"", ""crunchy"", ""spicy"", ""sweet""]","spicy chicken salad sandwich. Taste: creamy, crunchy, spicy, sweet"
+zyMkbavgHASQtqVwaock9A,3 J's Cafe,wraps,0,0,0,1,710,1,1,[],wraps. Taste: not specified
