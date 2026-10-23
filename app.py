@@ -1,6 +1,6 @@
 """Serve the original Choob HTML and connect it to real pretrained-model inference.
 
-CLIP recognition: reproduces the notebook's 10-candidate baseline, not open-ended VLM.
+CLIP recognition: cached prompt ensembles plus calibrated scope checking.
 Recommendation: reproduces notebook cell 42, requiring its exported CSV and .npy.
 Models are lazily loaded to avoid downloading weights during application startup.
 """
@@ -13,28 +13,12 @@ from functools import lru_cache
 from pathlib import Path
 
 from flask import Flask, jsonify, request, send_from_directory
+from recognition import CATEGORY_MAP, DishRecognizer, load_threshold
 
 BASE = Path(__file__).resolve().parent
 DATA = BASE / "data"
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
-
-CANDIDATES = [
-    "tonkotsu ramen", "shoyu ramen", "sushi", "dumplings", "fried rice",
-    "pad thai", "pizza", "pasta", "hamburger", "tacos",
-]
-CATEGORY_MAP = {
-    "tonkotsu ramen": ("Japanese", "Noodles"),
-    "shoyu ramen": ("Japanese", "Noodles"),
-    "sushi": ("Japanese", "Seafood"),
-    "dumplings": ("Chinese / Asian", "Dumplings"),
-    "fried rice": ("Asian", "Rice Dishes"),
-    "pad thai": ("Thai", "Noodles"),
-    "pizza": ("Italian", "Pizza"),
-    "pasta": ("Italian", "Pasta"),
-    "hamburger": ("American", "Sandwiches & Burgers"),
-    "tacos": ("Mexican", "Other"),
-}
 
 
 @app.get("/")
@@ -46,7 +30,8 @@ def home():
 def status():
     return jsonify({
         "api": "running",
-        "recognition": "CLIP baseline available on first use (weights download required)",
+        "recognition": "CLIP prompt ensemble + scope check (weights download on first use)",
+        "recognition_config_present": (BASE / "recognition_config.json").is_file(),
         "recommendation_data_present": (DATA / "choob_recommendation_data.csv").is_file(),
         "recommendation_embeddings_present": (DATA / "choob_dish_embeddings.npy").is_file(),
     })
@@ -62,10 +47,16 @@ def get_clip():
     return model, processor
 
 
+@lru_cache(maxsize=1)
+def get_recognizer():
+    threshold = load_threshold()
+    model, processor = get_clip()
+    return DishRecognizer(model, processor, threshold=threshold)
+
+
 @app.post("/api/recognize")
 def recognize():
-    import torch
-    from PIL import Image, UnidentifiedImageError
+    from PIL import Image, ImageOps, UnidentifiedImageError
 
     upload = request.files.get("image")
     if upload is None or not upload.filename:
@@ -76,37 +67,18 @@ def recognize():
             return jsonify(error="The uploaded file is empty."), 400
         image = Image.open(io.BytesIO(raw))
         image.verify()
-        image = Image.open(io.BytesIO(raw)).convert("RGB")
+        image = Image.open(io.BytesIO(raw))
         if image.width * image.height > 16_000_000:
             return jsonify(error="Please use an image smaller than 16 megapixels."), 400
-    except (UnidentifiedImageError, OSError, ValueError):
+        image = ImageOps.exif_transpose(image).convert("RGB")
+    except (UnidentifiedImageError, OSError, ValueError, Image.DecompressionBombError):
         return jsonify(error="The file is not a valid image."), 400
 
     try:
-        model, processor = get_clip()
-        data = processor(
-            text=[f"a photo of {x}" for x in CANDIDATES],
-            images=image,
-            return_tensors="pt",
-            padding=True,
-        )
-        with torch.inference_mode():
-            scores = model(**data).logits_per_image.softmax(dim=1)[0]
-        ranked = sorted(zip(CANDIDATES, scores.tolist()), key=lambda x: x[1], reverse=True)
-        best, score = ranked[0]
-        cuisine, category = CATEGORY_MAP[best]
-        return jsonify({
-            "dish_name": best.title(),
-            "cuisine": cuisine,
-            "category": category,
-            "relative_score": round(float(score), 5),
-            "alternatives": [{"dish_name": n.title(), "relative_score": round(float(sc), 5)} for n, sc in ranked[1:3]],
-            "needs_user_confirmation": True,
-            "model": "CLIP ViT-B/32 (10 candidate labels)",
-        })
+        return jsonify(get_recognizer().predict(image))
     except Exception as exc:
         app.logger.exception("CLIP recognition error")
-        return jsonify(error="CLIP model could not run. Confirm the server can download Hugging Face weights and has enough memory."), 503
+        return jsonify(error="Recognition backend unavailable. Check model downloads, server memory, and recognition_config.json."), 503
 
 
 @lru_cache(maxsize=1)

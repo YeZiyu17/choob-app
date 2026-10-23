@@ -6,3 +6,4 @@ pillow>=10,<13
 torch>=2.3
 transformers>=4.45,<5
 sentence-transformers>=3,<6
+requests>=2.31,<3

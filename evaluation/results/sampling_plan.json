@@ -1,0 +1,386 @@
+{
+  "created_utc": "2026-10-23T18:42:01.186605+00:00",
+  "dataset": "ethz/food101",
+  "split": "validation",
+  "minimum_calibration_recall": 0.9,
+  "groups": [
+    {
+      "partition": "calibration",
+      "dataset_label": "dumplings",
+      "expected_label": "dumplings",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 20,
+      "count": 20
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "fried_rice",
+      "expected_label": "fried rice",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 20,
+      "count": 20
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "hamburger",
+      "expected_label": "hamburger",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 20,
+      "count": 20
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "pad_thai",
+      "expected_label": "pad thai",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 20,
+      "count": 20
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "pizza",
+      "expected_label": "pizza",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 20,
+      "count": 20
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "spaghetti_bolognese",
+      "expected_label": "pasta",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 20,
+      "count": 20
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "sushi",
+      "expected_label": "sushi",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 20,
+      "count": 20
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "tacos",
+      "expected_label": "tacos",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 20,
+      "count": 20
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "ramen",
+      "expected_label": "ramen",
+      "case_type": "ramen_family_only",
+      "ood_group": null,
+      "class_offset": 20,
+      "count": 20
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "apple_pie",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 20,
+      "count": 10
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "chocolate_cake",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 20,
+      "count": 10
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "caesar_salad",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 20,
+      "count": 10
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "french_fries",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 20,
+      "count": 10
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "ice_cream",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 20,
+      "count": 10
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "steak",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 20,
+      "count": 10
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "pancakes",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 20,
+      "count": 10
+    },
+    {
+      "partition": "calibration",
+      "dataset_label": "hot_dog",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 20,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "dumplings",
+      "expected_label": "dumplings",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 100,
+      "count": 20
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "fried_rice",
+      "expected_label": "fried rice",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 100,
+      "count": 20
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "hamburger",
+      "expected_label": "hamburger",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 100,
+      "count": 20
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "pad_thai",
+      "expected_label": "pad thai",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 100,
+      "count": 20
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "pizza",
+      "expected_label": "pizza",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 100,
+      "count": 20
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "spaghetti_bolognese",
+      "expected_label": "pasta",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 100,
+      "count": 20
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "sushi",
+      "expected_label": "sushi",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 100,
+      "count": 20
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "tacos",
+      "expected_label": "tacos",
+      "case_type": "in_scope",
+      "ood_group": null,
+      "class_offset": 100,
+      "count": 20
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "ramen",
+      "expected_label": "ramen",
+      "case_type": "ramen_family_only",
+      "ood_group": null,
+      "class_offset": 100,
+      "count": 20
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "apple_pie",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "chocolate_cake",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "caesar_salad",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "french_fries",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "ice_cream",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "steak",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "pancakes",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "hot_dog",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "calibration_seen_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "baklava",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "additional_holdout_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "cheesecake",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "additional_holdout_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "chicken_wings",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "additional_holdout_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "club_sandwich",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "additional_holdout_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "cup_cakes",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "additional_holdout_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "falafel",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "additional_holdout_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "nachos",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "additional_holdout_classes",
+      "class_offset": 100,
+      "count": 10
+    },
+    {
+      "partition": "holdout",
+      "dataset_label": "waffles",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "ood_group": "additional_holdout_classes",
+      "class_offset": 100,
+      "count": 10
+    }
+  ]
+}

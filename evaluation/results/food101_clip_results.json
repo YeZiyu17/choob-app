@@ -1,0 +1,1482 @@
+{
+  "summary": {
+    "created_utc": "2026-10-23T04:48:24.395051+00:00",
+    "source_url": "https://huggingface.co/datasets/ethz/food101",
+    "model": "openai/clip-vit-base-patch32",
+    "device": "cpu",
+    "candidate_labels": [
+      "tonkotsu ramen",
+      "shoyu ramen",
+      "sushi",
+      "dumplings",
+      "fried rice",
+      "pad thai",
+      "pizza",
+      "pasta",
+      "hamburger",
+      "tacos"
+    ],
+    "sampling": "First 5 rows of each predeclared validation class block, discovered at fixed 250-row intervals; labels verified before inference; no selection based on predictions.",
+    "total_images": 50,
+    "in_scope_images": 40,
+    "top1_correct": 39,
+    "top3_correct": 40,
+    "top1_accuracy": 0.975,
+    "top3_accuracy": 1,
+    "mean_processing_seconds": 0.26787244,
+    "median_processing_seconds": 0.2654395,
+    "warmup_seconds": 0.6897350560002451,
+    "per_category": {
+      "dumplings": {
+        "n": 5,
+        "top1_correct": 5,
+        "top3_correct": 5
+      },
+      "fried_rice": {
+        "n": 5,
+        "top1_correct": 4,
+        "top3_correct": 5
+      },
+      "hamburger": {
+        "n": 5,
+        "top1_correct": 5,
+        "top3_correct": 5
+      },
+      "pad_thai": {
+        "n": 5,
+        "top1_correct": 5,
+        "top3_correct": 5
+      },
+      "pizza": {
+        "n": 5,
+        "top1_correct": 5,
+        "top3_correct": 5
+      },
+      "spaghetti_bolognese": {
+        "n": 5,
+        "top1_correct": 5,
+        "top3_correct": 5
+      },
+      "sushi": {
+        "n": 5,
+        "top1_correct": 5,
+        "top3_correct": 5
+      },
+      "tacos": {
+        "n": 5,
+        "top1_correct": 5,
+        "top3_correct": 5
+      }
+    },
+    "limitations": [
+      "Small fixed subset, not a representative benchmark of all categories.",
+      "Eight mapped categories only; generic ramen cannot establish subtype accuracy.",
+      "Candidate list forces a known label for out-of-scope foods; no rejection mechanism.",
+      "Relative softmax scores are not calibrated confidence.",
+      "Measures model processing after download and warm-up, not Flask or browser latency.",
+      "Food-101 validation is held out from its train split; CLIP pretraining overlap is unknown."
+    ]
+  },
+  "records": [
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 11750,
+      "dataset_label": "dumplings",
+      "expected_label": "dumplings",
+      "case_type": "in_scope",
+      "image_file": "images/dumplings_11750.jpg",
+      "image_sha256": "c459ff22d4a61114f1e97dce64dacf538cfc60f19bf3d23e6a743d8cb22c3ff8",
+      "processing_seconds": 0.260386,
+      "top_3": [
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.9998922
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.0000711
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.0000136
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 11751,
+      "dataset_label": "dumplings",
+      "expected_label": "dumplings",
+      "case_type": "in_scope",
+      "image_file": "images/dumplings_11751.jpg",
+      "image_sha256": "e6ea24153b2e2e9875547a928f16ab38b2f4107260fc734b3a6b2380db4e6503",
+      "processing_seconds": 0.260631,
+      "top_3": [
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.8693623
+        },
+        {
+          "dish_name": "hamburger",
+          "relative_score": 0.0598397
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0338576
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 11752,
+      "dataset_label": "dumplings",
+      "expected_label": "dumplings",
+      "case_type": "in_scope",
+      "image_file": "images/dumplings_11752.jpg",
+      "image_sha256": "9ab1f4e0fc250e365a33a5d51b5d68a227d63f025f3f634c35cc39b91b59af9e",
+      "processing_seconds": 0.25764,
+      "top_3": [
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.9999319
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.0000432
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.0000092
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 11753,
+      "dataset_label": "dumplings",
+      "expected_label": "dumplings",
+      "case_type": "in_scope",
+      "image_file": "images/dumplings_11753.jpg",
+      "image_sha256": "bed56a7870376ec3d71730e10195c5d91821611b7cdd8a79a9a69133fa8464b3",
+      "processing_seconds": 0.280137,
+      "top_3": [
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.9997918
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.0000869
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.0000436
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 11754,
+      "dataset_label": "dumplings",
+      "expected_label": "dumplings",
+      "case_type": "in_scope",
+      "image_file": "images/dumplings_11754.jpg",
+      "image_sha256": "097e9116a3d9ebe2348638966301aa011b4fa7e32d6e97d1aa6d76faa3839a74",
+      "processing_seconds": 0.258609,
+      "top_3": [
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.9997389
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.0001004
+        },
+        {
+          "dish_name": "shoyu ramen",
+          "relative_score": 0.0000605
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 4250,
+      "dataset_label": "fried_rice",
+      "expected_label": "fried rice",
+      "case_type": "in_scope",
+      "image_file": "images/fried_rice_4250.jpg",
+      "image_sha256": "4997c9ca46f0489fc433d57685c54bb97046d9df01b4dd161056b0a817640741",
+      "processing_seconds": 0.25666,
+      "top_3": [
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.5644813
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.134899
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0810962
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 4251,
+      "dataset_label": "fried_rice",
+      "expected_label": "fried rice",
+      "case_type": "in_scope",
+      "image_file": "images/fried_rice_4251.jpg",
+      "image_sha256": "802e2659eff2982f527c33dccade688b7d524bba90c9384bdb65f14dde010b60",
+      "processing_seconds": 0.273628,
+      "top_3": [
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.9054835
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0944525
+        },
+        {
+          "dish_name": "shoyu ramen",
+          "relative_score": 0.0000188
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 4252,
+      "dataset_label": "fried_rice",
+      "expected_label": "fried rice",
+      "case_type": "in_scope",
+      "image_file": "images/fried_rice_4252.jpg",
+      "image_sha256": "f269f5b6636216d163a679f98a739c2e104fb582c3f252ce9fae624764e15601",
+      "processing_seconds": 0.273134,
+      "top_3": [
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.9681876
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0214518
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0078644
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 4253,
+      "dataset_label": "fried_rice",
+      "expected_label": "fried rice",
+      "case_type": "in_scope",
+      "image_file": "images/fried_rice_4253.jpg",
+      "image_sha256": "41217db592273c3763d0cd930d3dcc113fd5621f40353546b6164f691279bd77",
+      "processing_seconds": 0.265599,
+      "top_3": [
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.9229444
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.073508
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.002931
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 4254,
+      "dataset_label": "fried_rice",
+      "expected_label": "fried rice",
+      "case_type": "in_scope",
+      "image_file": "images/fried_rice_4254.jpg",
+      "image_sha256": "f63208a85e6b4a7e79c3fb94961b3c798478048ef1192fd6a731d278791550c3",
+      "processing_seconds": 0.269361,
+      "top_3": [
+        {
+          "dish_name": "shoyu ramen",
+          "relative_score": 0.6816415
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.1305536
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0854128
+        }
+      ],
+      "top1_correct": false,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 750,
+      "dataset_label": "hamburger",
+      "expected_label": "hamburger",
+      "case_type": "in_scope",
+      "image_file": "images/hamburger_750.jpg",
+      "image_sha256": "a5ee18feb12dd45f9c6eb32ad535a3b7031ac86e14ec6dda963415cd6041af9e",
+      "processing_seconds": 0.29379,
+      "top_3": [
+        {
+          "dish_name": "hamburger",
+          "relative_score": 0.9934381
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0062581
+        },
+        {
+          "dish_name": "pizza",
+          "relative_score": 0.0001151
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 751,
+      "dataset_label": "hamburger",
+      "expected_label": "hamburger",
+      "case_type": "in_scope",
+      "image_file": "images/hamburger_751.jpg",
+      "image_sha256": "ea42039200766dd9857e2559ac710d14d20f5f505d6a3a48012617858443ab25",
+      "processing_seconds": 0.260994,
+      "top_3": [
+        {
+          "dish_name": "hamburger",
+          "relative_score": 0.9972177
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0025622
+        },
+        {
+          "dish_name": "pizza",
+          "relative_score": 0.0000909
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 752,
+      "dataset_label": "hamburger",
+      "expected_label": "hamburger",
+      "case_type": "in_scope",
+      "image_file": "images/hamburger_752.jpg",
+      "image_sha256": "ce388dd6213ea75189752fdbdb7d44db72c4ecd733151f552b8f2404a68906a8",
+      "processing_seconds": 0.273756,
+      "top_3": [
+        {
+          "dish_name": "hamburger",
+          "relative_score": 0.9922532
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.0026461
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.0018945
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 753,
+      "dataset_label": "hamburger",
+      "expected_label": "hamburger",
+      "case_type": "in_scope",
+      "image_file": "images/hamburger_753.jpg",
+      "image_sha256": "b20c1c85a70b986622c145a7805232edd04ec6d7e1b78e2bf3fe09e0dafdefdb",
+      "processing_seconds": 0.263279,
+      "top_3": [
+        {
+          "dish_name": "hamburger",
+          "relative_score": 0.9939062
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0031023
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.0019012
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 754,
+      "dataset_label": "hamburger",
+      "expected_label": "hamburger",
+      "case_type": "in_scope",
+      "image_file": "images/hamburger_754.jpg",
+      "image_sha256": "1f99aed54545a071cfae0c60c562f71c8c68bfb44b597dca00791bb17a1dc465",
+      "processing_seconds": 0.276233,
+      "top_3": [
+        {
+          "dish_name": "hamburger",
+          "relative_score": 0.9997371
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0001782
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.0000424
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 8000,
+      "dataset_label": "pad_thai",
+      "expected_label": "pad thai",
+      "case_type": "in_scope",
+      "image_file": "images/pad_thai_8000.jpg",
+      "image_sha256": "b20140503b17f881aa9c0bfec4bd10ac439a1ad43a9c7d29424f059f7a6c77f3",
+      "processing_seconds": 0.262188,
+      "top_3": [
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.999476
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.0003927
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.0001059
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 8001,
+      "dataset_label": "pad_thai",
+      "expected_label": "pad thai",
+      "case_type": "in_scope",
+      "image_file": "images/pad_thai_8001.jpg",
+      "image_sha256": "ad802517e224ba700fc1b34943f8b55b097356042bc781b81b9d2f62f79dab03",
+      "processing_seconds": 0.270313,
+      "top_3": [
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.9968376
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.0025342
+        },
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.0003909
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 8002,
+      "dataset_label": "pad_thai",
+      "expected_label": "pad thai",
+      "case_type": "in_scope",
+      "image_file": "images/pad_thai_8002.jpg",
+      "image_sha256": "6bbc39f061ec5b6d2bdf55a303612e44e65a696df3e85fa364e53f983bc04d41",
+      "processing_seconds": 0.298782,
+      "top_3": [
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.9992029
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.0006369
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.0000882
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 8003,
+      "dataset_label": "pad_thai",
+      "expected_label": "pad thai",
+      "case_type": "in_scope",
+      "image_file": "images/pad_thai_8003.jpg",
+      "image_sha256": "23b2b25ef7eee04e450b0a514b5a32cc847237f92a24549a38b5c01edd8a953a",
+      "processing_seconds": 0.294268,
+      "top_3": [
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.9695137
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.0280849
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.0010391
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 8004,
+      "dataset_label": "pad_thai",
+      "expected_label": "pad thai",
+      "case_type": "in_scope",
+      "image_file": "images/pad_thai_8004.jpg",
+      "image_sha256": "c40ccb582e73d55a0e683e2fdd5487f1603a41d611d686f01ef44e8e29c68a8a",
+      "processing_seconds": 0.260197,
+      "top_3": [
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.9746066
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.0225052
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.0014218
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 2500,
+      "dataset_label": "pizza",
+      "expected_label": "pizza",
+      "case_type": "in_scope",
+      "image_file": "images/pizza_2500.jpg",
+      "image_sha256": "734646d121019d3336c4f4164585bcd5f90633aa39a624c455a907864026982c",
+      "processing_seconds": 0.257442,
+      "top_3": [
+        {
+          "dish_name": "pizza",
+          "relative_score": 0.9810564
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.0137489
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0020129
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 2501,
+      "dataset_label": "pizza",
+      "expected_label": "pizza",
+      "case_type": "in_scope",
+      "image_file": "images/pizza_2501.jpg",
+      "image_sha256": "9a57bfb36b5ef7d7a502082777d5eb8b5ad1551e2336c36f7429763b724ed460",
+      "processing_seconds": 0.265413,
+      "top_3": [
+        {
+          "dish_name": "pizza",
+          "relative_score": 0.9956133
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.0020017
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0012759
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 2502,
+      "dataset_label": "pizza",
+      "expected_label": "pizza",
+      "case_type": "in_scope",
+      "image_file": "images/pizza_2502.jpg",
+      "image_sha256": "7775fcc9d4d64983ecab080896878776d04600d7a0a8620d0650f7a57b808d3e",
+      "processing_seconds": 0.276958,
+      "top_3": [
+        {
+          "dish_name": "pizza",
+          "relative_score": 0.9940292
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.0029959
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0015563
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 2503,
+      "dataset_label": "pizza",
+      "expected_label": "pizza",
+      "case_type": "in_scope",
+      "image_file": "images/pizza_2503.jpg",
+      "image_sha256": "232cff6c7208b4279ac2c51cbeaf67bcefe413c874ff30348765cc7accc9942d",
+      "processing_seconds": 0.274066,
+      "top_3": [
+        {
+          "dish_name": "pizza",
+          "relative_score": 0.9942648
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.0052018
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0003393
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 2504,
+      "dataset_label": "pizza",
+      "expected_label": "pizza",
+      "case_type": "in_scope",
+      "image_file": "images/pizza_2504.jpg",
+      "image_sha256": "641085e744e6b3d26e427f9d4d98a6f424f3cc5ea0f75075aba14af00cc70682",
+      "processing_seconds": 0.264137,
+      "top_3": [
+        {
+          "dish_name": "pizza",
+          "relative_score": 0.9978618
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.0009593
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0006628
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 25000,
+      "dataset_label": "spaghetti_bolognese",
+      "expected_label": "pasta",
+      "case_type": "in_scope",
+      "image_file": "images/spaghetti_bolognese_25000.jpg",
+      "image_sha256": "881f27eb1bd8511c9c836f2662a9998cdab1a04a01edace9b01ee40c8c296866",
+      "processing_seconds": 0.262931,
+      "top_3": [
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.7631144
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.2272435
+        },
+        {
+          "dish_name": "shoyu ramen",
+          "relative_score": 0.0043665
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 25001,
+      "dataset_label": "spaghetti_bolognese",
+      "expected_label": "pasta",
+      "case_type": "in_scope",
+      "image_file": "images/spaghetti_bolognese_25001.jpg",
+      "image_sha256": "0dda78cf9e6d6eb300443f4ea050b8dcf113893b7bdd41ee7f686a12dbaab771",
+      "processing_seconds": 0.273722,
+      "top_3": [
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.5103942
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.4814073
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.0032166
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 25002,
+      "dataset_label": "spaghetti_bolognese",
+      "expected_label": "pasta",
+      "case_type": "in_scope",
+      "image_file": "images/spaghetti_bolognese_25002.jpg",
+      "image_sha256": "f81c412f09a46d71a92da6d47fd3b504b1f5b93c622871d6e409d8a2bcdead64",
+      "processing_seconds": 0.281436,
+      "top_3": [
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.9859852
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0091212
+        },
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.0018227
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 25003,
+      "dataset_label": "spaghetti_bolognese",
+      "expected_label": "pasta",
+      "case_type": "in_scope",
+      "image_file": "images/spaghetti_bolognese_25003.jpg",
+      "image_sha256": "c1e4c61a41639e94573f32a8976e73d57c4c771cd0ea03c04113cd5116507a19",
+      "processing_seconds": 0.261649,
+      "top_3": [
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.6624786
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.2088278
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0670998
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 25004,
+      "dataset_label": "spaghetti_bolognese",
+      "expected_label": "pasta",
+      "case_type": "in_scope",
+      "image_file": "images/spaghetti_bolognese_25004.jpg",
+      "image_sha256": "14f967ac76819be03c8c4a3b9e01159622d6f98c74795f3bbc5a916fd85609bd",
+      "processing_seconds": 0.259488,
+      "top_3": [
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.9962184
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0016114
+        },
+        {
+          "dish_name": "pizza",
+          "relative_score": 0.0014293
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 22500,
+      "dataset_label": "sushi",
+      "expected_label": "sushi",
+      "case_type": "in_scope",
+      "image_file": "images/sushi_22500.jpg",
+      "image_sha256": "e5e36beb08cdf83ad1a70cb12b9c50417f752a2eb12e03bb40bf427aaf548eed",
+      "processing_seconds": 0.273984,
+      "top_3": [
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.9970211
+        },
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.0018618
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.0007504
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 22501,
+      "dataset_label": "sushi",
+      "expected_label": "sushi",
+      "case_type": "in_scope",
+      "image_file": "images/sushi_22501.jpg",
+      "image_sha256": "1137b307dda6aa01cdbdbd81dfec0f8b4e3e232ce58d25bf22d0ced528b927c2",
+      "processing_seconds": 0.264833,
+      "top_3": [
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.9991376
+        },
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.0006412
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.000076
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 22502,
+      "dataset_label": "sushi",
+      "expected_label": "sushi",
+      "case_type": "in_scope",
+      "image_file": "images/sushi_22502.jpg",
+      "image_sha256": "c1aa8429e7897d6ade014599ad5c22e3865a5b0e8b55a788a289f3179af78627",
+      "processing_seconds": 0.255677,
+      "top_3": [
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.9970393
+        },
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.0020533
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.0005214
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 22503,
+      "dataset_label": "sushi",
+      "expected_label": "sushi",
+      "case_type": "in_scope",
+      "image_file": "images/sushi_22503.jpg",
+      "image_sha256": "b249fae86325f786394f2b1a43b9f6e9ae9daa7f7babd9b6a8f518ccae3b75b8",
+      "processing_seconds": 0.265899,
+      "top_3": [
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.998502
+        },
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.000545
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0003997
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 22504,
+      "dataset_label": "sushi",
+      "expected_label": "sushi",
+      "case_type": "in_scope",
+      "image_file": "images/sushi_22504.jpg",
+      "image_sha256": "1e80673907e47126f8ada7a7b6017fac51900370f449e9c13f3ccc87b452c9cb",
+      "processing_seconds": 0.269878,
+      "top_3": [
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.9986859
+        },
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.0007578
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.0001386
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 9250,
+      "dataset_label": "tacos",
+      "expected_label": "tacos",
+      "case_type": "in_scope",
+      "image_file": "images/tacos_9250.jpg",
+      "image_sha256": "4b833f6d4d0f11a9ee5c5a8abc06f15fcea2242771cac8b2ce25370261b5e506",
+      "processing_seconds": 0.260408,
+      "top_3": [
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.9896035
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0088069
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.0005156
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 9251,
+      "dataset_label": "tacos",
+      "expected_label": "tacos",
+      "case_type": "in_scope",
+      "image_file": "images/tacos_9251.jpg",
+      "image_sha256": "9cd47a3fb0eb34cff01904804c27eed525e082e3efa3a07781205830b900f8b2",
+      "processing_seconds": 0.255321,
+      "top_3": [
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.9721785
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.018012
+        },
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.0053611
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 9252,
+      "dataset_label": "tacos",
+      "expected_label": "tacos",
+      "case_type": "in_scope",
+      "image_file": "images/tacos_9252.jpg",
+      "image_sha256": "ca9057ee37fb549f73ec4c73516117980ee04e0b08227f0df3b7009206214bb0",
+      "processing_seconds": 0.266715,
+      "top_3": [
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.9933898
+        },
+        {
+          "dish_name": "hamburger",
+          "relative_score": 0.0034564
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0012259
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 9253,
+      "dataset_label": "tacos",
+      "expected_label": "tacos",
+      "case_type": "in_scope",
+      "image_file": "images/tacos_9253.jpg",
+      "image_sha256": "6e3a3d73a3d8e8a423fc52df69fc8c2b100aeeaaa10be600dacecf305cfa5566",
+      "processing_seconds": 0.270906,
+      "top_3": [
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.9993597
+        },
+        {
+          "dish_name": "pizza",
+          "relative_score": 0.0002803
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0001417
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 9254,
+      "dataset_label": "tacos",
+      "expected_label": "tacos",
+      "case_type": "in_scope",
+      "image_file": "images/tacos_9254.jpg",
+      "image_sha256": "0fcb9d6086213f514dc8d89f37807f50a1438947f5b7d3a13301287135de31ff",
+      "processing_seconds": 0.255163,
+      "top_3": [
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.9940837
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0051168
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.000394
+        }
+      ],
+      "top1_correct": true,
+      "top3_correct": true,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 500,
+      "dataset_label": "ramen",
+      "expected_label": "ramen",
+      "case_type": "ramen_family_only",
+      "image_file": "images/ramen_500.jpg",
+      "image_sha256": "e91de9a3d65638226398b2b4e626f1a48eb1f585e2a3d440428ecaf640c7b58e",
+      "processing_seconds": 0.259127,
+      "top_3": [
+        {
+          "dish_name": "tonkotsu ramen",
+          "relative_score": 0.5011411
+        },
+        {
+          "dish_name": "shoyu ramen",
+          "relative_score": 0.4973246
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.0009107
+        }
+      ],
+      "top1_correct": null,
+      "top3_correct": null,
+      "ramen_family_top1": true
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 501,
+      "dataset_label": "ramen",
+      "expected_label": "ramen",
+      "case_type": "ramen_family_only",
+      "image_file": "images/ramen_501.jpg",
+      "image_sha256": "02440a0581cc67c97574d0dd8a63b37c217825d59492104e8b37873ef5929c29",
+      "processing_seconds": 0.25986,
+      "top_3": [
+        {
+          "dish_name": "tonkotsu ramen",
+          "relative_score": 0.9023223
+        },
+        {
+          "dish_name": "shoyu ramen",
+          "relative_score": 0.0961384
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.001469
+        }
+      ],
+      "top1_correct": null,
+      "top3_correct": null,
+      "ramen_family_top1": true
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 502,
+      "dataset_label": "ramen",
+      "expected_label": "ramen",
+      "case_type": "ramen_family_only",
+      "image_file": "images/ramen_502.jpg",
+      "image_sha256": "68f26b8563a1f7a7fb6c4a2d66ba2bcf636992f3f25440cc4d1a6840539c6ffb",
+      "processing_seconds": 0.265466,
+      "top_3": [
+        {
+          "dish_name": "tonkotsu ramen",
+          "relative_score": 0.7183142
+        },
+        {
+          "dish_name": "shoyu ramen",
+          "relative_score": 0.2772746
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.0034201
+        }
+      ],
+      "top1_correct": null,
+      "top3_correct": null,
+      "ramen_family_top1": true
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 503,
+      "dataset_label": "ramen",
+      "expected_label": "ramen",
+      "case_type": "ramen_family_only",
+      "image_file": "images/ramen_503.jpg",
+      "image_sha256": "98ed87dc223660d2d7e8c7400e0be68ac482c79ffba556e8884390edb2b0e085",
+      "processing_seconds": 0.260928,
+      "top_3": [
+        {
+          "dish_name": "tonkotsu ramen",
+          "relative_score": 0.537935
+        },
+        {
+          "dish_name": "shoyu ramen",
+          "relative_score": 0.4602519
+        },
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.0005747
+        }
+      ],
+      "top1_correct": null,
+      "top3_correct": null,
+      "ramen_family_top1": true
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 504,
+      "dataset_label": "ramen",
+      "expected_label": "ramen",
+      "case_type": "ramen_family_only",
+      "image_file": "images/ramen_504.jpg",
+      "image_sha256": "73838bce6b81780e32744afc6f971c1464bc0768b2a22d864177bbaccee1a6f5",
+      "processing_seconds": 0.277676,
+      "top_3": [
+        {
+          "dish_name": "tonkotsu ramen",
+          "relative_score": 0.5337328
+        },
+        {
+          "dish_name": "shoyu ramen",
+          "relative_score": 0.4662392
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.0000136
+        }
+      ],
+      "top1_correct": null,
+      "top3_correct": null,
+      "ramen_family_top1": true
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 3750,
+      "dataset_label": "apple_pie",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "image_file": "images/apple_pie_3750.jpg",
+      "image_sha256": "0300b07e955c0f4a002c63694b19b9270fbb2a2939c21d658ba3cab7e3613b11",
+      "processing_seconds": 0.275988,
+      "top_3": [
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.3962633
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.1881081
+        },
+        {
+          "dish_name": "hamburger",
+          "relative_score": 0.1549518
+        }
+      ],
+      "top1_correct": null,
+      "top3_correct": null,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 3751,
+      "dataset_label": "apple_pie",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "image_file": "images/apple_pie_3751.jpg",
+      "image_sha256": "ba048b6858864e474eba04b416e621fe718ddcfbe628b71b23fb23b7a85f9f26",
+      "processing_seconds": 0.260232,
+      "top_3": [
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.3451251
+        },
+        {
+          "dish_name": "sushi",
+          "relative_score": 0.1621374
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.1498174
+        }
+      ],
+      "top1_correct": null,
+      "top3_correct": null,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 3752,
+      "dataset_label": "apple_pie",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "image_file": "images/apple_pie_3752.jpg",
+      "image_sha256": "b5c66baaa58081c45a5c464fa7c67153dabc48443121649e633be4ccbf82e8cb",
+      "processing_seconds": 0.257599,
+      "top_3": [
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.6936087
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.1114673
+        },
+        {
+          "dish_name": "pad thai",
+          "relative_score": 0.0612113
+        }
+      ],
+      "top1_correct": null,
+      "top3_correct": null,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 3753,
+      "dataset_label": "apple_pie",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "image_file": "images/apple_pie_3753.jpg",
+      "image_sha256": "31c1841627973ba8e524532d2674e6d3dd6929a684c41f2d5c8df5d8bc9d9068",
+      "processing_seconds": 0.266464,
+      "top_3": [
+        {
+          "dish_name": "hamburger",
+          "relative_score": 0.7827903
+        },
+        {
+          "dish_name": "tacos",
+          "relative_score": 0.1022201
+        },
+        {
+          "dish_name": "dumplings",
+          "relative_score": 0.0499228
+        }
+      ],
+      "top1_correct": null,
+      "top3_correct": null,
+      "ramen_family_top1": null
+    },
+    {
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "row_idx": 3754,
+      "dataset_label": "apple_pie",
+      "expected_label": null,
+      "case_type": "out_of_scope",
+      "image_file": "images/apple_pie_3754.jpg",
+      "image_sha256": "701c419037665a2439adffb31303b85760f752906f7e89b878074d67a1975d1e",
+      "processing_seconds": 0.284671,
+      "top_3": [
+        {
+          "dish_name": "pizza",
+          "relative_score": 0.3690602
+        },
+        {
+          "dish_name": "pasta",
+          "relative_score": 0.1672055
+        },
+        {
+          "dish_name": "fried rice",
+          "relative_score": 0.1642008
+        }
+      ],
+      "top1_correct": null,
+      "top3_correct": null,
+      "ramen_family_top1": null
+    }
+  ]
+}

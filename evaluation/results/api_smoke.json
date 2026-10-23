@@ -1,0 +1,113 @@
+{
+  "checks": [
+    {
+      "type": "accepted",
+      "row_idx": 11850,
+      "http_status": 200,
+      "response": {
+        "accepted": true,
+        "alternatives": [
+          {
+            "dish_name": "Fried Rice",
+            "relative_score": 0.00005
+          },
+          {
+            "dish_name": "Sushi",
+            "relative_score": 0.00003
+          }
+        ],
+        "category": "Dumplings",
+        "cuisine": "Chinese / Asian",
+        "dish_name": "Dumplings",
+        "message": "Confirm or correct this suggested dish before collecting.",
+        "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
+        "needs_user_confirmation": true,
+        "relative_score": 0.99991,
+        "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+        "status": "supported",
+        "suggested_dish": "Dumplings",
+        "supported_labels": [
+          "ramen",
+          "sushi",
+          "dumplings",
+          "fried rice",
+          "pad thai",
+          "pizza",
+          "pasta",
+          "hamburger",
+          "tacos"
+        ]
+      }
+    },
+    {
+      "type": "rejected",
+      "row_idx": 3850,
+      "http_status": 200,
+      "response": {
+        "accepted": false,
+        "alternatives": [
+          {
+            "dish_name": "Pizza",
+            "relative_score": 0.45948
+          },
+          {
+            "dish_name": "Hamburger",
+            "relative_score": 0.02416
+          }
+        ],
+        "category": "Unknown",
+        "cuisine": "Unknown",
+        "dish_name": "Unknown",
+        "message": "This photo may show an unsupported dish or an unclear image. Enter the dish name manually or try another photo.",
+        "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
+        "needs_user_confirmation": true,
+        "relative_score": 0.50728,
+        "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+        "status": "uncertain",
+        "suggested_dish": "Pasta",
+        "supported_labels": [
+          "ramen",
+          "sushi",
+          "dumplings",
+          "fried rice",
+          "pad thai",
+          "pizza",
+          "pasta",
+          "hamburger",
+          "tacos"
+        ]
+      }
+    },
+    {
+      "type": "missing_image",
+      "http_status": 400
+    },
+    {
+      "type": "corrupt_image",
+      "http_status": 400
+    }
+  ],
+  "torch_version": "2.11.0+cpu",
+  "transformers_version": "4.57.6",
+  "baseline_cached_max_difference": 2.1464074961841106e-10,
+  "single_image_timing": {
+    "n": 5,
+    "baseline_seconds": [
+      0.35591967399989244,
+      0.3395388980000007,
+      0.3531942509999908,
+      0.34487327199997253,
+      0.3472029490000068
+    ],
+    "optimized_seconds": [
+      0.20501922599999034,
+      0.2009342880000986,
+      0.20122813400007544,
+      0.2100488570000607,
+      0.20516239299990957
+    ],
+    "baseline_mean": 0.34814580879997264,
+    "optimized_mean": 0.20447857960002694,
+    "note": "Same CPU, fixed first five holdout photos, warm models, sequential baseline then optimized per photo; excludes startup, network and Flask."
+  }
+}
