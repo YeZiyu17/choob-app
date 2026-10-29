@@ -76,7 +76,7 @@ def main():
         "limitations": [
             "This checks real inference, API integration and row alignment; it is not a recommendation relevance benchmark.",
             "Sampled historical reviews do not establish current menu availability, dietary safety or restaurant status.",
-            "Dish extraction was Codex-assistant annotation, not a run of Qwen; no model weights were fine-tuned.",
+            "The manifest identifies the actual extraction route and any reused annotations; no model weights were fine-tuned.",
             "The semantic spot audit was performed by AI, not a human reviewer.",
             "Warm request timings exclude process startup, model loading, network and browser rendering.",
         ],
