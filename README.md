@@ -16,9 +16,9 @@ This project preserves the group's **original Choob HTML UI**, adds real food-ph
 ## What is actually live?
 
 - **Snap**: Upload a new food image. The original pretrained **CLIP ViT-B/32** weights now use four prompt templates, dish synonyms, cached text features and competing background categories. Nine supported dish families include generic **ramen**; tonkotsu/shoyu subtypes are not asserted. A calibrated scope check can return **Unknown**. The UI requires confirmation or a manually entered dish name and makes clear that relative scores are **not calibrated probabilities**.
-- **Discover**: Enter an English dish or taste preference. The server uses **Sentence-Transformers all-MiniLM-L6-v2**, the bundled Yelp-derived records and embeddings, and an 85% similarity + 15% smoothed dish-sentiment formula. The current export contains **711 restaurant–dish pairs from 484 sampled reviews across 50 Philadelphia restaurants**. Common explicit dietary/allergy requests return a clear unsupported-request message; review text cannot verify ingredients or dietary suitability.
+- **Discover**: Enter an English dish or taste preference. The server uses **Sentence-Transformers all-MiniLM-L6-v2**, the bundled Yelp-derived records and embeddings, and an 85% similarity + 15% smoothed dish-sentiment formula. The current export contains **5,993 restaurant–dish pairs from 3,526 sampled reviews across 123 Philadelphia restaurants**. Common explicit dietary/allergy requests return a clear unsupported-request message; review text cannot verify ingredients or dietary suitability.
 - **Collect**: Saved dishes persist locally in the same browser via `localStorage`. There is **no multi-user account storage** yet.
-- **Connect**, sample restaurant, sample challenges and results screen: illustrative UI, **not live community data**. The evaluation screen shows previously recorded Colab results, not live test metrics.
+- **Connect**, sample restaurant and sample challenges: illustrative UI, **not live community data**. Results combines recorded recognition/test evidence with current recommendation-build metadata read from Flask. Open it directly from Snap using **View evaluation results**; no photo inference is needed first.
 - The notebook's GPU-intensive **Qwen2.5-VL-3B** is **not integrated**. Snap uses CLIP with application inference improvements; its weights have not been fine-tuned. Scope checking is a best-effort comparison against a fixed background vocabulary, not reliable identification of every food or non-food object.
 
 ## Quick start (local development)
@@ -53,7 +53,7 @@ summary, records = run_comparison(model, processor)
 
 Use a fresh output directory for an intentional new experiment. A completed comparison is protected against accidental overwrite. Source photos are downloaded to that runtime and are not bundled with this project.
 
-Regression checks use synthetic fixtures and do not download weights (27 checks currently pass):
+Regression checks use synthetic fixtures and do not download weights (54 checks currently pass):
 
 ```bash
 python -m unittest discover -s tests -v
@@ -63,9 +63,9 @@ python -m unittest discover -s tests -v
 
 The current data is already included in `data/`. Keep the CSV, NPY and JSON manifest together; the backend checks hashes and matrix shape, and loads the embedding model revision recorded in the manifest. See `data/README.md` for the input contract and rebuild commands.
 
-The completed extraction used **Codex-assisted annotations with exact source quotations**, followed by validation and a small AI semantic audit. It did **not** execute Qwen or fine-tune model weights. MiniLM embedding and preference inference were actually executed locally. The new `Choob_Recommendation_Pipeline.ipynb` and `build_recommendations.py` support either supplied annotations or a future Qwen2.5-1.5B-Instruct run. Original review text and annotation checkpoints are excluded from this application package.
+The bundled dish records use **Codex-assisted annotations with exact source quotations**, followed by validation and a separate AI spot check. Qwen experiment outputs are not used in the bundled export. MiniLM embedding and preference inference are actually executed locally; no model weights are fine-tuned. The notebook and `build_recommendations.py` validate a complete supplied annotation file and source-hashed provenance. Original review text, user IDs and annotation checkpoints stay outside the public application package. See `data/DATA_NOTES.md` for the source, sampling and cleaning details.
 
-`evaluation/results/recommendation_smoke.json` records actual MiniLM + Flask test-client inference for five different preferences, an embedding alignment spot check, and malformed/unsupported-request checks. It measures integration, not recommendation accuracy. The local browser was also checked for dessert recommendations and a dietary-request error. See `evaluation/results/recommendation_report.md` for details and remaining evaluation work.
+`evaluation/results/recommendation_smoke.json` records actual MiniLM + Flask test-client inference for five different preferences, an embedding alignment spot check, and malformed/unsupported-request checks. It measures integration, not recommendation accuracy. The separate comparison uses 15 fixed preferences against the saved v1 baseline, and exports a blank human review sheet for Person 5. See `evaluation/results/recommendation_report.md` for details and remaining evaluation work.
 
 ## Collaboration
 

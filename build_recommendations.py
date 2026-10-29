@@ -1,7 +1,8 @@
 """Build Choob's recommendation artifacts from real Yelp reviews.
 
 Requires Python 3.10+, torch, transformers>=4.45,<5,
-sentence-transformers>=3,<6 and numpy>=1.26,<3. A CUDA GPU is recommended.
+sentence-transformers>=3,<6 and numpy>=1.26,<3. Supplied-annotation export runs
+on CPU; CUDA is recommended only for optional fresh Qwen generation.
 Dish records come from Qwen inference or explicitly supplied AI annotations.
 This script has no fabricated fallback; the manifest identifies the actual route.
 Checkpoints contain review IDs and short evidence excerpts, so keep work-dir private.
@@ -160,6 +161,8 @@ def read_annotations(path, reviews):
             if (not isinstance(record, dict) or not isinstance(record.get("review_id"), str)
                     or not isinstance(record.get("dishes"), list)):
                 raise ValueError(f"Annotation line {number} requires review_id and dishes list")
+            if record.get("status") == "failed":
+                raise ValueError(f"Unresolved extraction failure at annotation line {number}; retry before export")
             key = record["review_id"]
             if key in annotations:
                 raise ValueError(f"Duplicate annotation review_id at line {number}")
@@ -371,12 +374,59 @@ def aggregate(reviews, records):
     return result
 
 
+def enrich_restaurant_metadata(rows, restaurants_path):
+    """Use supplied cuisine metadata in semantic matching, never infer dietary safety."""
+    if not restaurants_path:
+        return {}
+    _, restaurants = read_csv(restaurants_path)
+    lookup = {r["business_id"].strip(): r for r in restaurants}
+    coverage = collections.Counter()
+    sampled = set()
+    for row in rows:
+        restaurant = lookup[row["business_id"]]
+        cuisine = (restaurant.get("cuisine_group") or "").strip()
+        city = (restaurant.get("city") or "").strip()
+        row["cuisine_group"] = cuisine
+        row["city"] = city
+        row["historical_is_open"] = (restaurant.get("is_open") or "").strip()
+        if cuisine:
+            # Compound catalog groups name menu concepts as well as cuisines.
+            # Do not turn every Japanese dish into a sushi/ramen description.
+            cuisine_signal = {"Japanese/Sushi/Ramen": "Japanese",
+                              "Italian/Pizza": "Italian",
+                              "American/Burgers/Bars": "American"}.get(cuisine, cuisine)
+            row["dish_description"] += ". Cuisine: " + cuisine_signal
+        if row["business_id"] not in sampled:
+            coverage[cuisine or "Unspecified"] += 1
+            sampled.add(row["business_id"])
+    return dict(sorted(coverage.items()))
+
+
+def read_annotation_provenance(path, reviews_path, review_count):
+    """Validate explicit build provenance for externally prepared local annotations."""
+    metadata = json.loads(Path(path).read_text(encoding="utf-8"))
+    allowed = {"supplied_codex_annotations", "local_qwen_mlx", "mixed_codex_local_qwen_mlx"}
+    if not isinstance(metadata, dict) or metadata.get("extraction_route") not in allowed:
+        raise ValueError("Unknown annotation extraction route")
+    if not isinstance(metadata.get("extraction_model"), str) or not metadata["extraction_model"].strip():
+        raise ValueError("Annotation provenance must identify its extraction model")
+    if metadata.get("source_sha256") != sha256_file(reviews_path):
+        raise ValueError("Annotation provenance belongs to different review inputs")
+    counts = metadata.get("review_counts")
+    if (not isinstance(counts, dict) or not counts
+            or any(type(n) is not int or n < 0 for n in counts.values())
+            or sum(counts.values()) != review_count):
+        raise ValueError("Annotation provenance review counts must match selected reviews")
+    return metadata
+
+
 def export_artifacts(rows, output_dir, manifest):
     import numpy as np
     from sentence_transformers import SentenceTransformer
     if not rows:
         raise ValueError("No evidence-backed dishes were extracted; no recommendation artifacts written")
-    model = SentenceTransformer(EMBEDDING_MODEL, device="cpu")
+    model = SentenceTransformer(EMBEDDING_MODEL, device="cpu",
+        revision="1110a243fdf4706b3f48f1d95db1a4f5529b4d41")
     manifest["runtime_versions"] = {"python": sys.version.split()[0], **{
         name: importlib.metadata.version(name)
         for name in ("torch", "transformers", "sentence-transformers", "numpy")}}
@@ -418,6 +468,8 @@ def main(argv=None):
     parser.add_argument("--restaurants", type=Path)
     parser.add_argument("--annotations", type=Path,
         help="Complete JSONL AI annotations; validates evidence and skips Qwen loading")
+    parser.add_argument("--annotation-provenance", type=Path,
+        help="Explicit source-hashed provenance for local/mixed supplied annotations")
     parser.add_argument("--output-dir", type=Path, default=Path("data"))
     parser.add_argument("--work-dir", type=Path, default=Path(tempfile.gettempdir()) / "choob-private")
     parser.add_argument("--device", choices=["auto", "cuda", "cpu"], default="auto")
@@ -432,12 +484,20 @@ def main(argv=None):
     if args.limit:
         reviews = reviews[:args.limit]
     annotations = read_annotations(args.annotations, reviews) if args.annotations else None
+    if args.annotation_provenance and not args.annotations:
+        parser.error("--annotation-provenance requires --annotations")
+    provenance = (read_annotation_provenance(args.annotation_provenance, args.reviews, len(reviews))
+                  if args.annotation_provenance else None)
     source_hash = sha256_file(args.reviews)
     config = {"schema_version": SCHEMA_VERSION, "source_sha256": source_hash,
         "restaurants_sha256": sha256_file(args.restaurants) if args.restaurants else None,
-        "extraction_model": ANNOTATION_MODEL if annotations is not None else EXTRACTION_MODEL,
-        "extraction_route": "supplied_codex_annotations" if annotations is not None else "local_qwen_inference",
+        "extraction_model": (provenance["extraction_model"] if provenance else
+                             ANNOTATION_MODEL if annotations is not None else EXTRACTION_MODEL),
+        "extraction_route": (provenance["extraction_route"] if provenance else
+                             "supplied_codex_annotations" if annotations is not None else "local_qwen_inference"),
         "annotation_sha256": sha256_file(args.annotations) if args.annotations else None,
+        "annotation_provenance_sha256": sha256_file(args.annotation_provenance) if provenance else None,
+        "annotation_provenance": provenance,
         "prompt_sha256": fingerprint(PROMPT) if annotations is None else None,
         "builder_sha256": sha256_file(__file__), "max_new_tokens": args.max_new_tokens,
         "retries": args.retries, "limit": args.limit}
@@ -477,6 +537,7 @@ def main(argv=None):
     for review in reviews:
         filtered_items.update(records[review["review_id"]].get("filtered_items", {}))
     rows = aggregate(reviews, records)
+    cuisine_coverage = enrich_restaurant_metadata(rows, args.restaurants)
     manifest = {**config, **coverage, "created_utc": datetime.now(timezone.utc).isoformat(),
         "config_sha256": config_hash, "selected_reviews": len(reviews),
         "selected_restaurants": len({r['business_id'] for r in reviews}),
@@ -484,6 +545,8 @@ def main(argv=None):
         "filtered_item_counts": dict(filtered_items),
         "extracted_review_dish_records": sum(len(records[r["review_id"]]["dishes"]) for r in reviews),
         "restaurants_with_recommendations": len({r["business_id"] for r in rows}),
+        "cuisine_coverage": cuisine_coverage,
+        "description_features": ["dish name", "explicit taste evidence", "supplied restaurant cuisine group"],
         "extraction_model_revision": revision, "embedding_model": EMBEDDING_MODEL,
         "ranking": {"semantic_weight": 0.85, "sentiment_weight": 0.15,
             "sentiment_formula": "(positive + 0.5*mixed + 0.5*neutral + 1)/(positive+negative+mixed+neutral+2)",
