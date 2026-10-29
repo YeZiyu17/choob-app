@@ -1,59 +1,41 @@
 # Recommendation data and handoff
 
-## Current completed export
+## Current export — 29 Oct 2026
 
-The supplied cleaned Yelp review sample has **484 reviews from 50 Philadelphia restaurants**. All restaurant IDs join to the supplied **5,855-row restaurant catalog**. Recommendations cover the 50 restaurants with sampled reviews, not all 5,855 catalog entries.
+The supplied v2 input has **3,526 reviews from 123 Philadelphia restaurants**. All IDs join to the **5,855-row catalog**. Recommendations cover **123 restaurants**, rather than the full catalog.
 
-The completed run produced **835 validated review–dish mentions**, aggregated into **711 restaurant–dish pairs**. Of 484 reviews, 380 contain an extracted dish and 104 have no extracted dish. No reviews failed validation. Named drinks and ordered sides can also appear. Dish spelling/plural variants can remain separate.
+The completed build has **8,667 evidence-backed review–dish mentions** and **5,993 restaurant–dish pairs**. There are **3,165 reviews with extracted dishes**, **361 with no extracted dish**, and **0 unresolved processing failures**. An empty dish result is not a failure or proof that no dish was missed. Named drinks and separately consumed sides can appear. Spelling/plural variants may remain separate.
 
-Keep these three bundled files together from a single build:
-
-| File | Purpose |
+| Keep these files together | Actual contents |
 |---|---|
-| `choob_recommendation_data.csv` | 711 aggregated restaurant–dish rows, taste descriptions and sentiment counts |
-| `choob_dish_embeddings.npy` | 711 × 384 normalized float32 MiniLM vectors in exactly the CSV row order |
-| `choob_recommendation_manifest.json` | Source/build hashes, actual extraction route, coverage, model revision and output hashes |
+| `choob_recommendation_data.csv` | 5,993 dish rows, source cuisine/city metadata, exact-row-order descriptions and sentiment counts |
+| `choob_dish_embeddings.npy` | 5,993 × 384 normalized float32 MiniLM vectors |
+| `choob_recommendation_manifest.json` | Source/build/annotation hashes, actual extraction route, counts, fixed model revision and output hashes |
 
-This run used **Codex-assisted annotations**, validated against exact source quotations, plus a small AI semantic audit and corrections. It did not execute Qwen or fine-tune weights. MiniLM actually generated the vectors locally. The manifest records `supplied_codex_annotations`; its Qwen token/retry settings are unused by this route. Quote matching and AI auditing do not replace human evaluation.
+The build uses **Codex-assisted annotations**: 484 old records were whitespace-migrated and revalidated; 3,042 added reviews were explicitly annotated from their complete source texts. Every retained dish and taste quote is validated as an exact source substring. Dish sentiment is separate from the restaurant's star rating. Qwen experiment outputs are not included. MiniLM embedding inference actually ran locally; **no weights were fine-tuned**. AI annotation and AI spot checks do not replace human evaluation.
 
-## Person 2 → Person 3: review input
+The fixed MiniLM revision is `1110a243fdf4706b3f48f1d95db1a4f5529b4d41`. Descriptions combine dish names, explicit taste evidence and the supplied restaurant cuisine group. Ranking stays 85% cosine similarity and 15% smoothed dish sentiment. Scores are not probabilities, and cuisine metadata is not a verified ingredient/diet filter.
 
-Provide a UTF-8 `choob_reviews_sample.csv`, one complete review per row:
+## Person 2 → Person 3 inputs
 
-| Column | Meaning |
-|---|---|
-| `business_id` | Stable restaurant identifier |
-| `restaurant_name` | Restaurant display name |
-| `review_id` | Unique review identifier |
-| `stars` | Original rating, 1–5 |
-| `text` | Complete, nonempty review text used for extraction |
+Provide UTF-8 `choob_reviews_sample.csv`, one complete review per row, with `business_id`, `restaurant_name`, `review_id`, `stars` (1–5), and nonempty `text`. Extra `user_id`, `date` and `sample_group` metadata are allowed. Use consistent restaurant IDs/names, unique review IDs, and include source, selection and cleaning notes. The optional restaurant CSV has `business_id`, `name`, `city`, `categories`, `stars`, `review_count`; v2 adds `cuisine_group`, historical `is_open`, `in_review_sample` and `sample_review_count`.
 
-Use consistent restaurant IDs/names, no duplicate review IDs and no empty required fields. Include source, sample selection and cleaning notes. Keep review text and private checkpoints outside the public application folder. Review stars are preserved metadata; they are not assigned as the sentiment of every dish.
+Read [DATA_NOTES.md](DATA_NOTES.md) for the supplied sampling notes and independently checked exceptions. The raw reviews, user IDs, annotation JSONL and source quotations remain private, outside the public app folder.
 
-An optional `choob_restaurants.csv` provides `business_id`, `name`, `city`, `categories`, `stars` and `review_count`. The builder validates the join. A catalog alone cannot supply dish-level recommendations; adding review samples is how coverage grows.
+## Rebuild the recorded annotation export
 
-## Rebuild
-
-Install `requirements.txt`, then run from the project directory. `Choob_Recommendation_Pipeline.ipynb` contains the same builder and provides a Colab upload/download workflow.
-
-For a new Qwen extraction (not the route used for the bundled output):
+Install `requirements.txt`. Obtain the same private inputs, complete annotation file and matching provenance JSON from Person 3. Use a fresh private work directory for changed inputs/settings:
 
 ```bash
-python build_recommendations.py --reviews /path/to/choob_reviews_sample.csv --restaurants /path/to/choob_restaurants.csv --work-dir /path/to/private-qwen-work --output-dir data
+python build_recommendations.py --reviews /private/choob_reviews_sample.csv --restaurants /private/choob_restaurants.csv --annotations /private/choob_annotations.jsonl --annotation-provenance /private/annotation_provenance.json --work-dir /private/choob-v2-build --output-dir data
 ```
 
-For a complete supplied annotation file:
-
-```bash
-python build_recommendations.py --reviews /path/to/choob_reviews_sample.csv --restaurants /path/to/choob_restaurants.csv --annotations /path/to/choob_annotations.jsonl --work-dir /path/to/private-annotation-work --output-dir data
-```
-
-The JSONL requires one object for every review, including reviews with no dishes: `{"review_id":"…","dishes":[]}`. Each dish has `dish_name`, exact `evidence`, `taste_tags` with exact evidence, a dish-level `sentiment`, and `sentiment_evidence`. See the builder prompt for the complete schema. Annotations and source reviews are required to reproduce this exact extraction; they are retained in the owner's private workspace rather than bundled here. Use a distinct private work directory for a changed source/configuration. Failed reviews remain explicit; inspect them and use `--retry-failures` where appropriate.
+The notebook embeds the same builder for Colab CPU export. Every review must have exactly one JSONL object `{"review_id":"…","dishes":[]}`, including zero-dish results. Dishes carry an exact name/quote, dish-level sentiment and its evidence, and any explicitly supported taste tags. Missing, duplicate, unexpected or unresolved failed records stop the build. The provenance source hash and review counts must match the CSV. Exact annotation/source files are needed to reproduce this recorded extraction; they are not bundled publicly.
 
 ## Person 3 → Person 4 / Person 5
 
-Person 4 keeps all three exports with the Flask app and installs the dependencies. The manifest prevents loading a mismatched CSV/vector pair and pins the query embedding model revision. No Qwen model is needed to serve the existing recommendations; serving uses MiniLM. The first model download needs internet unless its weights are cached.
+Person 4 keeps all three export files together and **restarts Flask after replacing data**, so an old cached recommender cannot coexist with new statistics. The loader checks hashes and dimensions and pins the embedding-model revision. `.gitattributes` preserves CSV/NPY bytes across operating systems so Git cannot silently change a hash-checked export. Serving and annotation export need CPU; Qwen is not needed to run the app.
 
-Person 5 can run `python -m unittest discover -s tests -v` without weights, and `python evaluation/run_recommendation_smoke.py` with MiniLM available. Recorded results are in `evaluation/results/recommendation_smoke.json` and `recommendation_report.md`. Human relevance and extraction accuracy evaluation remains to be done.
+Person 5 uses `evaluation/results/recommendation_human_review.csv` and the fixed 15-query comparison. The CSV contains actual baseline/current responses and intentionally blank human relevance/reason fields. See `evaluation/PERSON5_TEST_PLAN.md`. Run `python -m unittest discover -s tests -v`, `python evaluation/run_recommendation_smoke.py`, and the comparison command in that plan.
 
-Sampled historical reviews do not verify current menus, ingredient lists, dietary suitability, allergies or restaurant status. The app matches taste and rejects common explicit dietary/allergy requests. Ranking scores are not probabilities. No raw review text or evidence quotations are included in these exports.
+Historical reviews span 2006–2022. Twenty sampled restaurants were closed even in that snapshot. Four original same-user/same-restaurant pairs remain, so review counts mean distinct review IDs rather than entirely independent people. Current menus, operating status, ingredients, allergies and dietary suitability are unverified. Human recommendation relevance and extraction-accuracy evaluation remain pending.
