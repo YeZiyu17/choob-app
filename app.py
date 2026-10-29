@@ -11,6 +11,7 @@ import io
 import json
 import os
 import re
+from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
 
@@ -37,6 +38,78 @@ def status():
         "recommendation_data_present": (DATA / "choob_recommendation_data.csv").is_file(),
         "recommendation_embeddings_present": (DATA / "choob_dish_embeddings.npy").is_file(),
     })
+
+
+def recommendation_summary():
+    """Read public build metadata without loading CSVs, vectors or model weights."""
+    raw = (DATA / "choob_recommendation_manifest.json").read_bytes()
+    manifest = json.loads(raw)
+    if not isinstance(manifest, dict):
+        raise ValueError("Recommendation manifest must be an object")
+
+    def count(key):
+        value = manifest[key]
+        if type(value) is not int or value < 0:
+            raise ValueError("Invalid recommendation manifest count")
+        return value
+
+    fields = (
+        "input_reviews", "selected_reviews", "input_restaurants", "selected_restaurants",
+        "restaurants_with_recommendations",
+        "extracted_review_dish_records", "recommendation_rows", "failed_reviews",
+    )
+    summary = {key: count(key) for key in fields}
+    catalog_size = manifest["restaurant_catalog_size"]
+    if catalog_size is not None and (type(catalog_size) is not int or catalog_size < 0):
+        raise ValueError("Invalid recommendation catalog size")
+    summary["restaurant_catalog_size"] = catalog_size
+    statuses = manifest["review_status_counts"]
+    if (not isinstance(statuses, dict)
+            or not set(statuses).issubset({"processed", "zero_dishes", "no_eligible_dishes", "failed"})
+            or any(type(value) is not int or value < 0 for value in statuses.values())):
+        raise ValueError("Invalid recommendation review statuses")
+    if (sum(statuses.values()) != summary["selected_reviews"]
+            or statuses.get("failed", 0) != summary["failed_reviews"]
+            or summary["selected_reviews"] > summary["input_reviews"]
+            or summary["selected_restaurants"] > summary["input_restaurants"]
+            or (catalog_size is not None and summary["input_restaurants"] > catalog_size)
+            or summary["restaurants_with_recommendations"] > summary["selected_restaurants"]
+            or summary["recommendation_rows"] > summary["extracted_review_dish_records"]):
+        raise ValueError("Recommendation manifest counts are inconsistent")
+    for key in ("source_sha256", "config_sha256"):
+        if not isinstance(manifest[key], str) or not re.fullmatch(r"[a-f0-9]{64}", manifest[key]):
+            raise ValueError("Invalid recommendation build hash")
+    for key in ("extraction_route", "extraction_model", "embedding_model"):
+        value = manifest[key]
+        if (not isinstance(value, str) or not value.strip() or len(value) > 200
+                or "\n" in value or "\r" in value or Path(value).is_absolute()
+                or re.match(r"^[A-Za-z]:[\\/]", value)):
+            raise ValueError("Invalid recommendation model metadata")
+        summary[key] = value
+    if type(manifest["human_evaluation_completed"]) is not bool:
+        raise ValueError("Invalid human evaluation flag")
+    created = manifest["created_utc"]
+    if not isinstance(created, str) or datetime.fromisoformat(created).tzinfo is None:
+        raise ValueError("Missing timezone in recommendation build date")
+    summary.update(
+        manifest_sha256=sha256(raw).hexdigest(),
+        source_version=manifest["source_sha256"][:12],
+        build_version=manifest["config_sha256"][:12],
+        created_utc=created,
+        zero_dish_reviews=statuses.get("zero_dishes", 0) + statuses.get("no_eligible_dishes", 0),
+        human_evaluation_completed=manifest["human_evaluation_completed"],
+    )
+    return summary
+
+
+@app.get("/api/recommendation-summary")
+def recommendation_summary_api():
+    try:
+        response = jsonify(recommendation_summary())
+        response.headers["Cache-Control"] = "no-store"
+        return response
+    except (OSError, ValueError, KeyError, TypeError):
+        return jsonify(error="Current recommendation build metadata is unavailable. Check the saved manifest."), 503
 
 
 @lru_cache(maxsize=1)
@@ -83,27 +156,50 @@ def recognize():
         return jsonify(error="Recognition backend unavailable. Check model downloads, server memory, and recognition_config.json."), 503
 
 
-@lru_cache(maxsize=1)
 def load_recommender():
-    import numpy as np
-    import pandas as pd
-
-    csv = DATA / "choob_recommendation_data.csv"
-    npy = DATA / "choob_dish_embeddings.npy"
+    """Reuse only the currently published export version in this data directory."""
+    directory = Path(DATA).resolve()
+    csv = directory / "choob_recommendation_data.csv"
+    npy = directory / "choob_dish_embeddings.npy"
     if not csv.is_file() or not npy.is_file():
         raise FileNotFoundError(
             "Recommendation data is missing. In the Colab notebook, run the final export cell and copy "
             "choob_recommendation_data.csv and choob_dish_embeddings.npy into the data/ folder."
         )
+    try:
+        manifest_raw = (directory / "choob_recommendation_manifest.json").read_bytes()
+    except FileNotFoundError:
+        manifest_raw = None
+    if manifest_raw is not None:
+        version = ("manifest", sha256(manifest_raw).hexdigest())
+    else:
+        # Older notebook exports have no manifest. Replacement or in-place edits
+        # must still invalidate the cache without hashing both files every query.
+        version = ("legacy", *(
+            (stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns, stat.st_ctime_ns)
+            for stat in (csv.stat(), npy.stat())
+        ))
+    return _load_recommender_version(directory, version, manifest_raw)
+
+
+@lru_cache(maxsize=1)
+def _load_recommender_version(directory, version, manifest_raw):
+    import numpy as np
+    import pandas as pd
+
+    csv = directory / "choob_recommendation_data.csv"
+    npy = directory / "choob_dish_embeddings.npy"
+    # Validate and parse the same byte snapshots, even if a build replaces files
+    # while this request is loading. An incomplete published pair fails closed.
+    csv_raw, npy_raw = csv.read_bytes(), npy.read_bytes()
     manifest = {}
-    manifest_path = DATA / "choob_recommendation_manifest.json"
-    if manifest_path.is_file():
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        for path in (csv, npy):
-            if manifest.get("output_sha256", {}).get(path.name) != sha256(path.read_bytes()).hexdigest():
+    if manifest_raw is not None:
+        manifest = json.loads(manifest_raw)
+        for path, raw in ((csv, csv_raw), (npy, npy_raw)):
+            if manifest.get("output_sha256", {}).get(path.name) != sha256(raw).hexdigest():
                 raise ValueError("Recommendation exports do not match their build manifest. Copy all three files from the same run.")
-    df = pd.read_csv(csv)
-    embeddings = np.load(npy, allow_pickle=False)
+    df = pd.read_csv(io.BytesIO(csv_raw))
+    embeddings = np.load(io.BytesIO(npy_raw), allow_pickle=False)
     if embeddings.ndim != 2 or embeddings.shape != (len(df), 384):
         raise ValueError("Recommendation CSV and embedding rows do not match. Export both together from the same notebook run.")
     required = {"restaurant_name", "dish_name_normalized", "positive_count", "negative_count", "mixed_count", "neutral_count", "review_count"}
@@ -136,6 +232,12 @@ def load_recommender():
         model_options["revision"] = manifest["embedding_model_revision"]
     model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", **model_options)
     return df, embeddings, model
+
+
+# Preserve the public cache controls used by existing callers and tests.
+load_recommender.cache_clear = _load_recommender_version.cache_clear
+load_recommender.cache_info = _load_recommender_version.cache_info
+load_recommender.cache_parameters = _load_recommender_version.cache_parameters
 
 
 @app.post("/api/recommend")

@@ -1,0 +1,3 @@
+# Preserve hash-checked exports across Windows/macOS checkouts.
+*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+*.npy -text

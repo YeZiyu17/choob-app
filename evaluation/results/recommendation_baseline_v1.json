@@ -1,0 +1,1624 @@
+{
+  "created_utc": "2026-10-29T06:27:03.004471+00:00",
+  "query_suite": {
+    "id": "choob-preference-probe-2026-10-28-v1",
+    "frozen_date": "2026-10-28",
+    "queries": [
+      {
+        "query_id": "original_cheesesteak",
+        "preference": "I want a juicy cheesesteak with melted cheese."
+      },
+      {
+        "query_id": "original_sushi",
+        "preference": "I want sushi with fresh fish."
+      },
+      {
+        "query_id": "original_mushroom",
+        "preference": "I want a hearty mushroom dish."
+      },
+      {
+        "query_id": "original_dessert",
+        "preference": "I want a sweet dessert, such as tiramisu or cheesecake."
+      },
+      {
+        "query_id": "original_spicy",
+        "preference": "I love spicy, savory food with rich flavors."
+      },
+      {
+        "query_id": "vietnamese_pho",
+        "preference": "I want Vietnamese pho with a fragrant beef broth and rice noodles."
+      },
+      {
+        "query_id": "thai_curry",
+        "preference": "I want a spicy Thai curry with coconut milk."
+      },
+      {
+        "query_id": "indian_curry",
+        "preference": "I want an Indian chicken curry with rich, aromatic spices."
+      },
+      {
+        "query_id": "ethiopian_injera",
+        "preference": "I want Ethiopian injera with flavorful lentil and meat stews."
+      },
+      {
+        "query_id": "french_crepes",
+        "preference": "I want French crepes with a sweet filling."
+      },
+      {
+        "query_id": "bbq_brisket",
+        "preference": "I want smoky BBQ beef brisket."
+      },
+      {
+        "query_id": "japanese_ramen",
+        "preference": "I want Japanese ramen with a rich broth and noodles."
+      },
+      {
+        "query_id": "chinese_spicy",
+        "preference": "I want a spicy Chinese dish with chili and Sichuan pepper."
+      },
+      {
+        "query_id": "korean_bibimbap",
+        "preference": "I want Korean bibimbap with rice, vegetables, and spicy sauce."
+      },
+      {
+        "query_id": "caribbean_jerk",
+        "preference": "I want Caribbean jerk chicken with bold, spicy seasoning."
+      }
+    ],
+    "sha256": "b1cf71bf2f168e10067a7c0da8ca87f3fcc2625c5a10dd6967b5aaceec8af853"
+  },
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "device": "cpu",
+  "actual_model_inference": true,
+  "same_query_vectors_used_for_both_datasets": false,
+  "query_vectors_sha256": "54b46af1c56e7b9dc69cb9386e7ce9e12f2a492f48f981942335d0eac6b17fb3",
+  "model_loading_seconds": 0.10439104200486327,
+  "shared_query_encoding_seconds": 0.14956433399493108,
+  "evaluator_sha256": "7e1dcae15d8019eff090ca47794c8d5b264a513d5e7634570f4acb4b219df4e4",
+  "isolated_ranking": {
+    "semantic_weight": 0.85,
+    "sentiment_weight": 0.15,
+    "sentiment_formula": "(positive + 0.5*mixed + 0.5*neutral + 1)/(positive+negative+mixed+neutral+2)",
+    "tie_breaking": "stable CSV row order",
+    "top_n": 5
+  },
+  "baseline": {
+    "dataset": {
+      "reviews_processed": 484,
+      "restaurants_in_input": 50,
+      "restaurants_with_recommendations": 50,
+      "restaurant_dish_pairs": 711,
+      "review_dish_mentions": 835,
+      "single_review_pairs": 627,
+      "single_review_pair_fraction": 0.8818565400843882,
+      "pairs_supported_by_at_least_two_reviews": 84,
+      "multiple_review_pair_fraction": 0.11814345991561181,
+      "mean_reviews_per_pair": 1.1744022503516174,
+      "median_reviews_per_pair": 1.0,
+      "max_reviews_per_pair": 5,
+      "review_support_histogram": {
+        "1": 627,
+        "2": 59,
+        "3": 13,
+        "4": 9,
+        "5": 3
+      },
+      "cuisine_groups_of_recommendable_restaurants": null,
+      "embedding_shape": [
+        711,
+        384
+      ],
+      "manifest_sha256": "f3ea45305bf7e2f223daa47357094b3d9d1c48b3f74be55148890273fb5a6f4c",
+      "export_sha256": {
+        "choob_recommendation_data.csv": "64e3fdcc478cfb1cd3daf5302d96d5b2e25a53d955734213f7710ae4a86fa23c",
+        "choob_dish_embeddings.npy": "e8993499a55d3d7918537be17e93134ce9eb4a1a9d1bba497cfcb076ba59ad8e"
+      },
+      "extraction_route": "supplied_codex_annotations",
+      "extraction_model": "Codex assistant annotation (exact runtime version not recorded)",
+      "failed_reviews": 0,
+      "review_status_counts": {
+        "processed": 380,
+        "zero_dishes": 104
+      }
+    },
+    "alignment_spot_rows": [
+      0,
+      355,
+      710
+    ],
+    "regenerated_embedding_max_difference": 1.2665987014770508e-07,
+    "isolated_same_formula_checks": [
+      {
+        "query_id": "original_cheesesteak",
+        "preference": "I want a juicy cheesesteak with melted cheese.",
+        "ranking_only_seconds": 0.000817917003587354,
+        "results": [
+          {
+            "business_id": "y44MbCvvtmg1FpkNGSWisw",
+            "restaurant_name": "Tony's Luke",
+            "dish_name": "Cheesesteak",
+            "review_count": 2,
+            "score": 0.69,
+            "similarity": 0.6794
+          },
+          {
+            "business_id": "Pb2Gda3L6H3SRefymTtzAw",
+            "restaurant_name": "GiGi Restaurant & Lounge",
+            "dish_name": "Cheesesteak",
+            "review_count": 1,
+            "score": 0.6628,
+            "similarity": 0.721
+          },
+          {
+            "business_id": "HdbG53Bt29qyqYhjl5NDOw",
+            "restaurant_name": "Station Pizza",
+            "dish_name": "Cheesesteaks",
+            "review_count": 2,
+            "score": 0.6499,
+            "similarity": 0.6323
+          },
+          {
+            "business_id": "Dw0nQsVS_2-vlhLUG87Gpw",
+            "restaurant_name": "Maker artisan pizza",
+            "dish_name": "Meatlovers Cheesesteak",
+            "review_count": 1,
+            "score": 0.6235,
+            "similarity": 0.6159
+          },
+          {
+            "business_id": "y44MbCvvtmg1FpkNGSWisw",
+            "restaurant_name": "Tony's Luke",
+            "dish_name": "Cheesesteaks",
+            "review_count": 1,
+            "score": 0.6124,
+            "similarity": 0.6323
+          }
+        ]
+      },
+      {
+        "query_id": "original_sushi",
+        "preference": "I want sushi with fresh fish.",
+        "ranking_only_seconds": 5.6166005379054695e-05,
+        "results": [
+          {
+            "business_id": "k2w1Zf6F6bRQoOzXAi3Atw",
+            "restaurant_name": "Mantra",
+            "dish_name": "Sushi Roll",
+            "review_count": 1,
+            "score": 0.6145,
+            "similarity": 0.6641
+          },
+          {
+            "business_id": "fBxjd0SqSJezssqC9zJCOQ",
+            "restaurant_name": "Crabby Cafe - Chinatown BYOB",
+            "dish_name": "Fresh Crawfish",
+            "review_count": 1,
+            "score": 0.5807,
+            "similarity": 0.5655
+          },
+          {
+            "business_id": "jGQnyhGmA6F-uL7TZR4S6A",
+            "restaurant_name": "E-Z Brunch",
+            "dish_name": "Fried Fish",
+            "review_count": 1,
+            "score": 0.532,
+            "similarity": 0.5082
+          },
+          {
+            "business_id": "fBxjd0SqSJezssqC9zJCOQ",
+            "restaurant_name": "Crabby Cafe - Chinatown BYOB",
+            "dish_name": "Crawfish",
+            "review_count": 3,
+            "score": 0.532,
+            "similarity": 0.5553
+          },
+          {
+            "business_id": "ab5hOCoFF0Jm4UvP6F5QwQ",
+            "restaurant_name": "Mipals Deli",
+            "dish_name": "Seafood Salad",
+            "review_count": 1,
+            "score": 0.5297,
+            "similarity": 0.5055
+          }
+        ]
+      },
+      {
+        "query_id": "original_mushroom",
+        "preference": "I want a hearty mushroom dish.",
+        "ranking_only_seconds": 5.091699858894572e-05,
+        "results": [
+          {
+            "business_id": "3AXMyEZKczm5rliRDBJiBA",
+            "restaurant_name": "Mediterranean 2000",
+            "dish_name": "Stuffed Mushrooms",
+            "review_count": 1,
+            "score": 0.6656,
+            "similarity": 0.6654
+          },
+          {
+            "business_id": "ILvJAuSP0sYWJKAQ-Goh4Q",
+            "restaurant_name": "Kensington Quarters",
+            "dish_name": "Mushroom Lasagna",
+            "review_count": 1,
+            "score": 0.5938,
+            "similarity": 0.6103
+          },
+          {
+            "business_id": "ILvJAuSP0sYWJKAQ-Goh4Q",
+            "restaurant_name": "Kensington Quarters",
+            "dish_name": "Maitake Mushroom",
+            "review_count": 1,
+            "score": 0.5932,
+            "similarity": 0.5803
+          },
+          {
+            "business_id": "Pb2Gda3L6H3SRefymTtzAw",
+            "restaurant_name": "GiGi Restaurant & Lounge",
+            "dish_name": "Portabello Mushroom Burger",
+            "review_count": 1,
+            "score": 0.5665,
+            "similarity": 0.5783
+          },
+          {
+            "business_id": "OeO23GTZxF5tRnOXsYxCNA",
+            "restaurant_name": "Starbucks",
+            "dish_name": "Savory Squares",
+            "review_count": 1,
+            "score": 0.5214,
+            "similarity": 0.4958
+          }
+        ]
+      },
+      {
+        "query_id": "original_dessert",
+        "preference": "I want a sweet dessert, such as tiramisu or cheesecake.",
+        "ranking_only_seconds": 4.679199628299102e-05,
+        "results": [
+          {
+            "business_id": "etK5pTCprPuKJCtiU-iLKw",
+            "restaurant_name": "Darling's Coffeehouse & Cheesecake",
+            "dish_name": "Cheesecake",
+            "review_count": 3,
+            "score": 0.6135,
+            "similarity": 0.5806
+          },
+          {
+            "business_id": "3AXMyEZKczm5rliRDBJiBA",
+            "restaurant_name": "Mediterranean 2000",
+            "dish_name": "Tiramisu",
+            "review_count": 1,
+            "score": 0.5936,
+            "similarity": 0.5808
+          },
+          {
+            "business_id": "etK5pTCprPuKJCtiU-iLKw",
+            "restaurant_name": "Darling's Coffeehouse & Cheesecake",
+            "dish_name": "Cheesecakes",
+            "review_count": 2,
+            "score": 0.5842,
+            "similarity": 0.5549
+          },
+          {
+            "business_id": "eM5CowLA4lGmATovJrLRXQ",
+            "restaurant_name": "Al's Italiano Pizzeria & Ristorante",
+            "dish_name": "Cheesecake",
+            "review_count": 2,
+            "score": 0.5783,
+            "similarity": 0.548
+          },
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Rasmalai",
+            "review_count": 1,
+            "score": 0.5249,
+            "similarity": 0.4999
+          }
+        ]
+      },
+      {
+        "query_id": "original_spicy",
+        "preference": "I love spicy, savory food with rich flavors.",
+        "ranking_only_seconds": 4.545800038613379e-05,
+        "results": [
+          {
+            "business_id": "8QtgPszOI5-4qwizvWi5lA",
+            "restaurant_name": "Unity Taqueria",
+            "dish_name": "Steak Tacos",
+            "review_count": 2,
+            "score": 0.6473,
+            "similarity": 0.6292
+          },
+          {
+            "business_id": "8QtgPszOI5-4qwizvWi5lA",
+            "restaurant_name": "Unity Taqueria",
+            "dish_name": "Queso And Chips",
+            "review_count": 1,
+            "score": 0.6264,
+            "similarity": 0.6194
+          },
+          {
+            "business_id": "O3S4jdMvdf1VCPDoLYtqaA",
+            "restaurant_name": "El Cafeito",
+            "dish_name": "Mexicano",
+            "review_count": 1,
+            "score": 0.6179,
+            "similarity": 0.6093
+          },
+          {
+            "business_id": "oTTx4ObLjOWVCtGXU_8AUw",
+            "restaurant_name": "K Pot South Philly",
+            "dish_name": "Szcheuan Spicy",
+            "review_count": 1,
+            "score": 0.6148,
+            "similarity": 0.6057
+          },
+          {
+            "business_id": "teGUSCn6Vlrs07qIgilFHA",
+            "restaurant_name": "Oriental Kitchen",
+            "dish_name": "Chicken With Garlic Sauce",
+            "review_count": 1,
+            "score": 0.6049,
+            "similarity": 0.594
+          }
+        ]
+      },
+      {
+        "query_id": "vietnamese_pho",
+        "preference": "I want Vietnamese pho with a fragrant beef broth and rice noodles.",
+        "ranking_only_seconds": 4.4749998778570443e-05,
+        "results": [
+          {
+            "business_id": "v7KzbLoHo9zC2xRpWEEp0A",
+            "restaurant_name": "A Mandarin Restaurant",
+            "dish_name": "Kung Pao Chicken",
+            "review_count": 1,
+            "score": 0.5459,
+            "similarity": 0.554
+          },
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Hakka Noodles",
+            "review_count": 1,
+            "score": 0.5371,
+            "similarity": 0.5143
+          },
+          {
+            "business_id": "0De2juaQqHNUYs-vNEj9RA",
+            "restaurant_name": "CYM Island Kitchen",
+            "dish_name": "Chicken Stew Con Yellow Rice",
+            "review_count": 1,
+            "score": 0.5137,
+            "similarity": 0.4866
+          },
+          {
+            "business_id": "0De2juaQqHNUYs-vNEj9RA",
+            "restaurant_name": "CYM Island Kitchen",
+            "dish_name": "Yellow Rice",
+            "review_count": 1,
+            "score": 0.5014,
+            "similarity": 0.5016
+          },
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Rice",
+            "review_count": 2,
+            "score": 0.4958,
+            "similarity": 0.473
+          }
+        ]
+      },
+      {
+        "query_id": "thai_curry",
+        "preference": "I want a spicy Thai curry with coconut milk.",
+        "ranking_only_seconds": 4.3791995267383754e-05,
+        "results": [
+          {
+            "business_id": "YsM1qDjivZvf-T7BUxS35A",
+            "restaurant_name": "The Real Lee Ahn",
+            "dish_name": "Pad Thai",
+            "review_count": 2,
+            "score": 0.5805,
+            "similarity": 0.5947
+          },
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Curry",
+            "review_count": 1,
+            "score": 0.5675,
+            "similarity": 0.55
+          },
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Chicken Madras",
+            "review_count": 1,
+            "score": 0.5532,
+            "similarity": 0.5332
+          },
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Dal Tadka",
+            "review_count": 1,
+            "score": 0.5095,
+            "similarity": 0.4818
+          },
+          {
+            "business_id": "RVLF2RaStLkJiQCqBHknDw",
+            "restaurant_name": "Mom Mom's Kitchen and Polish Food Cart",
+            "dish_name": "Galubki",
+            "review_count": 1,
+            "score": 0.498,
+            "similarity": 0.4682
+          }
+        ]
+      },
+      {
+        "query_id": "indian_curry",
+        "preference": "I want an Indian chicken curry with rich, aromatic spices.",
+        "ranking_only_seconds": 4.787500074598938e-05,
+        "results": [
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Chicken Madras",
+            "review_count": 1,
+            "score": 0.6396,
+            "similarity": 0.6348
+          },
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Curry",
+            "review_count": 1,
+            "score": 0.5897,
+            "similarity": 0.5761
+          },
+          {
+            "business_id": "0De2juaQqHNUYs-vNEj9RA",
+            "restaurant_name": "CYM Island Kitchen",
+            "dish_name": "Stew Chicken",
+            "review_count": 1,
+            "score": 0.5524,
+            "similarity": 0.5322
+          },
+          {
+            "business_id": "teGUSCn6Vlrs07qIgilFHA",
+            "restaurant_name": "Oriental Kitchen",
+            "dish_name": "General Tso Chicken",
+            "review_count": 1,
+            "score": 0.545,
+            "similarity": 0.5236
+          },
+          {
+            "business_id": "teGUSCn6Vlrs07qIgilFHA",
+            "restaurant_name": "Oriental Kitchen",
+            "dish_name": "Sesame Chicken",
+            "review_count": 2,
+            "score": 0.5419,
+            "similarity": 0.5052
+          }
+        ]
+      },
+      {
+        "query_id": "ethiopian_injera",
+        "preference": "I want Ethiopian injera with flavorful lentil and meat stews.",
+        "ranking_only_seconds": 4.858300235355273e-05,
+        "results": [
+          {
+            "business_id": "teGUSCn6Vlrs07qIgilFHA",
+            "restaurant_name": "Oriental Kitchen",
+            "dish_name": "Sesame Chicken",
+            "review_count": 2,
+            "score": 0.5216,
+            "similarity": 0.4813
+          },
+          {
+            "business_id": "0De2juaQqHNUYs-vNEj9RA",
+            "restaurant_name": "CYM Island Kitchen",
+            "dish_name": "Stew Chicken",
+            "review_count": 1,
+            "score": 0.5194,
+            "similarity": 0.4934
+          },
+          {
+            "business_id": "zyMkbavgHASQtqVwaock9A",
+            "restaurant_name": "3 J's Cafe",
+            "dish_name": "Great Turkey",
+            "review_count": 1,
+            "score": 0.5092,
+            "similarity": 0.4814
+          },
+          {
+            "business_id": "RVLF2RaStLkJiQCqBHknDw",
+            "restaurant_name": "Mom Mom's Kitchen and Polish Food Cart",
+            "dish_name": "Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",
+            "review_count": 1,
+            "score": 0.5089,
+            "similarity": 0.4811
+          },
+          {
+            "business_id": "0De2juaQqHNUYs-vNEj9RA",
+            "restaurant_name": "CYM Island Kitchen",
+            "dish_name": "Chicken Stew Platters",
+            "review_count": 1,
+            "score": 0.499,
+            "similarity": 0.4694
+          }
+        ]
+      },
+      {
+        "query_id": "french_crepes",
+        "preference": "I want French crepes with a sweet filling.",
+        "ranking_only_seconds": 4.420900222612545e-05,
+        "results": [
+          {
+            "business_id": "NAfITNb2HzObDVktNs3DmA",
+            "restaurant_name": "Kay Kay's",
+            "dish_name": "Chocolate Croissants",
+            "review_count": 1,
+            "score": 0.5879,
+            "similarity": 0.574
+          },
+          {
+            "business_id": "NAfITNb2HzObDVktNs3DmA",
+            "restaurant_name": "Kay Kay's",
+            "dish_name": "Croissants",
+            "review_count": 1,
+            "score": 0.5853,
+            "similarity": 0.571
+          },
+          {
+            "business_id": "etK5pTCprPuKJCtiU-iLKw",
+            "restaurant_name": "Darling's Coffeehouse & Cheesecake",
+            "dish_name": "Croissants",
+            "review_count": 1,
+            "score": 0.5366,
+            "similarity": 0.5431
+          },
+          {
+            "business_id": "vXb4OWsjPoiBtmarfexj-g",
+            "restaurant_name": "Green Eggs Café",
+            "dish_name": "Creme Brûlée French Toast",
+            "review_count": 1,
+            "score": 0.5329,
+            "similarity": 0.5093
+          },
+          {
+            "business_id": "NAfITNb2HzObDVktNs3DmA",
+            "restaurant_name": "Kay Kay's",
+            "dish_name": "Creme Brulee",
+            "review_count": 1,
+            "score": 0.5164,
+            "similarity": 0.4899
+          }
+        ]
+      },
+      {
+        "query_id": "bbq_brisket",
+        "preference": "I want smoky BBQ beef brisket.",
+        "ranking_only_seconds": 4.374999844003469e-05,
+        "results": [
+          {
+            "business_id": "oTTx4ObLjOWVCtGXU_8AUw",
+            "restaurant_name": "K Pot South Philly",
+            "dish_name": "Brisket",
+            "review_count": 1,
+            "score": 0.6449,
+            "similarity": 0.641
+          },
+          {
+            "business_id": "2yuwjVRHUCs9tCAYjISaag",
+            "restaurant_name": "The Barn",
+            "dish_name": "Bbq Burger",
+            "review_count": 1,
+            "score": 0.5669,
+            "similarity": 0.5493
+          },
+          {
+            "business_id": "UIyDw8OqB17EkI2p3m7-EQ",
+            "restaurant_name": "Burg's Hideaway Lounge",
+            "dish_name": "Brisket Chili",
+            "review_count": 1,
+            "score": 0.5622,
+            "similarity": 0.5732
+          },
+          {
+            "business_id": "2yuwjVRHUCs9tCAYjISaag",
+            "restaurant_name": "The Barn",
+            "dish_name": "Bbq Wings",
+            "review_count": 1,
+            "score": 0.5376,
+            "similarity": 0.5148
+          },
+          {
+            "business_id": "f1oDIZxQ7V44PvzPCQ-tEQ",
+            "restaurant_name": "The Union Tap",
+            "dish_name": "Hell Fire Burger",
+            "review_count": 1,
+            "score": 0.5106,
+            "similarity": 0.4831
+          }
+        ]
+      },
+      {
+        "query_id": "japanese_ramen",
+        "preference": "I want Japanese ramen with a rich broth and noodles.",
+        "ranking_only_seconds": 4.437499592313543e-05,
+        "results": [
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Hakka Noodles",
+            "review_count": 1,
+            "score": 0.562,
+            "similarity": 0.5435
+          },
+          {
+            "business_id": "Zxi0AGG2Dh-SeqHEMtuUYg",
+            "restaurant_name": "Myung Ga Gimbap",
+            "dish_name": "Dumpling Ramen",
+            "review_count": 1,
+            "score": 0.4974,
+            "similarity": 0.4969
+          },
+          {
+            "business_id": "k2w1Zf6F6bRQoOzXAi3Atw",
+            "restaurant_name": "Mantra",
+            "dish_name": "Chicken Noodle Salad",
+            "review_count": 1,
+            "score": 0.4861,
+            "similarity": 0.4543
+          },
+          {
+            "business_id": "KUYLBfW9vRNmhBn5mmRSQg",
+            "restaurant_name": "Adobe Cafe",
+            "dish_name": "Chicken And Steak Fajitas",
+            "review_count": 1,
+            "score": 0.4744,
+            "similarity": 0.4405
+          },
+          {
+            "business_id": "RVLF2RaStLkJiQCqBHknDw",
+            "restaurant_name": "Mom Mom's Kitchen and Polish Food Cart",
+            "dish_name": "Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",
+            "review_count": 1,
+            "score": 0.4714,
+            "similarity": 0.437
+          }
+        ]
+      },
+      {
+        "query_id": "chinese_spicy",
+        "preference": "I want a spicy Chinese dish with chili and Sichuan pepper.",
+        "ranking_only_seconds": 4.370800161268562e-05,
+        "results": [
+          {
+            "business_id": "teGUSCn6Vlrs07qIgilFHA",
+            "restaurant_name": "Oriental Kitchen",
+            "dish_name": "Chicken With Garlic Sauce",
+            "review_count": 1,
+            "score": 0.5204,
+            "similarity": 0.4946
+          },
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Dal Tadka",
+            "review_count": 1,
+            "score": 0.5181,
+            "similarity": 0.4919
+          },
+          {
+            "business_id": "oTTx4ObLjOWVCtGXU_8AUw",
+            "restaurant_name": "K Pot South Philly",
+            "dish_name": "Szcheuan Spicy",
+            "review_count": 1,
+            "score": 0.5115,
+            "similarity": 0.4841
+          },
+          {
+            "business_id": "UIyDw8OqB17EkI2p3m7-EQ",
+            "restaurant_name": "Burg's Hideaway Lounge",
+            "dish_name": "Brisket Chili",
+            "review_count": 1,
+            "score": 0.5085,
+            "similarity": 0.51
+          },
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Chicken Madras",
+            "review_count": 1,
+            "score": 0.5044,
+            "similarity": 0.4757
+          }
+        ]
+      },
+      {
+        "query_id": "korean_bibimbap",
+        "preference": "I want Korean bibimbap with rice, vegetables, and spicy sauce.",
+        "ranking_only_seconds": 4.749999789055437e-05,
+        "results": [
+          {
+            "business_id": "Zxi0AGG2Dh-SeqHEMtuUYg",
+            "restaurant_name": "Myung Ga Gimbap",
+            "dish_name": "Bibimbap",
+            "review_count": 1,
+            "score": 0.5859,
+            "similarity": 0.5716
+          },
+          {
+            "business_id": "Zxi0AGG2Dh-SeqHEMtuUYg",
+            "restaurant_name": "Myung Ga Gimbap",
+            "dish_name": "Korean Sausage",
+            "review_count": 1,
+            "score": 0.5829,
+            "similarity": 0.5681
+          },
+          {
+            "business_id": "Zxi0AGG2Dh-SeqHEMtuUYg",
+            "restaurant_name": "Myung Ga Gimbap",
+            "dish_name": "Kimbap",
+            "review_count": 2,
+            "score": 0.561,
+            "similarity": 0.5277
+          },
+          {
+            "business_id": "RVLF2RaStLkJiQCqBHknDw",
+            "restaurant_name": "Mom Mom's Kitchen and Polish Food Cart",
+            "dish_name": "Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",
+            "review_count": 1,
+            "score": 0.5573,
+            "similarity": 0.538
+          },
+          {
+            "business_id": "Zxi0AGG2Dh-SeqHEMtuUYg",
+            "restaurant_name": "Myung Ga Gimbap",
+            "dish_name": "Kimchi Kimbap",
+            "review_count": 1,
+            "score": 0.5449,
+            "similarity": 0.5528
+          }
+        ]
+      },
+      {
+        "query_id": "caribbean_jerk",
+        "preference": "I want Caribbean jerk chicken with bold, spicy seasoning.",
+        "ranking_only_seconds": 4.70000013592653e-05,
+        "results": [
+          {
+            "business_id": "teGUSCn6Vlrs07qIgilFHA",
+            "restaurant_name": "Oriental Kitchen",
+            "dish_name": "Chicken With Garlic Sauce",
+            "review_count": 1,
+            "score": 0.6237,
+            "similarity": 0.6161
+          },
+          {
+            "business_id": "teGUSCn6Vlrs07qIgilFHA",
+            "restaurant_name": "Oriental Kitchen",
+            "dish_name": "General Tso Chicken",
+            "review_count": 1,
+            "score": 0.6233,
+            "similarity": 0.6157
+          },
+          {
+            "business_id": "fYXCk6Usfd2wzyaBBIM4dw",
+            "restaurant_name": "Rasavat",
+            "dish_name": "Chicken 65",
+            "review_count": 2,
+            "score": 0.6197,
+            "similarity": 0.5967
+          },
+          {
+            "business_id": "0De2juaQqHNUYs-vNEj9RA",
+            "restaurant_name": "CYM Island Kitchen",
+            "dish_name": "Stew Chicken",
+            "review_count": 1,
+            "score": 0.6075,
+            "similarity": 0.597
+          },
+          {
+            "business_id": "zyMkbavgHASQtqVwaock9A",
+            "restaurant_name": "3 J's Cafe",
+            "dish_name": "Spicy Chicken Salad Sandwich",
+            "review_count": 2,
+            "score": 0.5986,
+            "similarity": 0.5719
+          }
+        ]
+      }
+    ],
+    "api": {
+      "available": true,
+      "app_sha256": "fd900b710a5520cecd6ace6dcc6a09095146bb2bd20fc26110ec9126ddd8f8c1",
+      "real_model_inference": true,
+      "flask_test_client": true,
+      "served_over_network": false,
+      "artifact_loader_supplied_by_evaluator": true,
+      "checks": [
+        {
+          "query_id": "original_cheesesteak",
+          "preference": "I want a juicy cheesesteak with melted cheese.",
+          "http_status": 200,
+          "warm_request_seconds": 0.009693250001873821,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Cheesesteak",
+                "restaurant_name": "Tony's Luke",
+                "review_count": 2,
+                "score": 0.69,
+                "similarity": 0.6794
+              },
+              {
+                "dish_name": "Cheesesteak",
+                "restaurant_name": "GiGi Restaurant & Lounge",
+                "review_count": 1,
+                "score": 0.6628,
+                "similarity": 0.721
+              },
+              {
+                "dish_name": "Cheesesteaks",
+                "restaurant_name": "Station Pizza",
+                "review_count": 2,
+                "score": 0.6499,
+                "similarity": 0.6323
+              },
+              {
+                "dish_name": "Meatlovers Cheesesteak",
+                "restaurant_name": "Maker artisan pizza",
+                "review_count": 1,
+                "score": 0.6235,
+                "similarity": 0.6159
+              },
+              {
+                "dish_name": "Cheesesteaks",
+                "restaurant_name": "Tony's Luke",
+                "review_count": 1,
+                "score": 0.6124,
+                "similarity": 0.6323
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "original_sushi",
+          "preference": "I want sushi with fresh fish.",
+          "http_status": 200,
+          "warm_request_seconds": 0.00915299999905983,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Sushi Roll",
+                "restaurant_name": "Mantra",
+                "review_count": 1,
+                "score": 0.6145,
+                "similarity": 0.6641
+              },
+              {
+                "dish_name": "Fresh Crawfish",
+                "restaurant_name": "Crabby Cafe - Chinatown BYOB",
+                "review_count": 1,
+                "score": 0.5807,
+                "similarity": 0.5655
+              },
+              {
+                "dish_name": "Fried Fish",
+                "restaurant_name": "E-Z Brunch",
+                "review_count": 1,
+                "score": 0.532,
+                "similarity": 0.5082
+              },
+              {
+                "dish_name": "Crawfish",
+                "restaurant_name": "Crabby Cafe - Chinatown BYOB",
+                "review_count": 3,
+                "score": 0.532,
+                "similarity": 0.5553
+              },
+              {
+                "dish_name": "Seafood Salad",
+                "restaurant_name": "Mipals Deli",
+                "review_count": 1,
+                "score": 0.5297,
+                "similarity": 0.5055
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "original_mushroom",
+          "preference": "I want a hearty mushroom dish.",
+          "http_status": 200,
+          "warm_request_seconds": 0.009005917003378272,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Stuffed Mushrooms",
+                "restaurant_name": "Mediterranean 2000",
+                "review_count": 1,
+                "score": 0.6656,
+                "similarity": 0.6654
+              },
+              {
+                "dish_name": "Mushroom Lasagna",
+                "restaurant_name": "Kensington Quarters",
+                "review_count": 1,
+                "score": 0.5938,
+                "similarity": 0.6103
+              },
+              {
+                "dish_name": "Maitake Mushroom",
+                "restaurant_name": "Kensington Quarters",
+                "review_count": 1,
+                "score": 0.5932,
+                "similarity": 0.5803
+              },
+              {
+                "dish_name": "Portabello Mushroom Burger",
+                "restaurant_name": "GiGi Restaurant & Lounge",
+                "review_count": 1,
+                "score": 0.5665,
+                "similarity": 0.5783
+              },
+              {
+                "dish_name": "Savory Squares",
+                "restaurant_name": "Starbucks",
+                "review_count": 1,
+                "score": 0.5214,
+                "similarity": 0.4958
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "original_dessert",
+          "preference": "I want a sweet dessert, such as tiramisu or cheesecake.",
+          "http_status": 200,
+          "warm_request_seconds": 0.00986916699912399,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Cheesecake",
+                "restaurant_name": "Darling's Coffeehouse & Cheesecake",
+                "review_count": 3,
+                "score": 0.6135,
+                "similarity": 0.5806
+              },
+              {
+                "dish_name": "Tiramisu",
+                "restaurant_name": "Mediterranean 2000",
+                "review_count": 1,
+                "score": 0.5936,
+                "similarity": 0.5808
+              },
+              {
+                "dish_name": "Cheesecakes",
+                "restaurant_name": "Darling's Coffeehouse & Cheesecake",
+                "review_count": 2,
+                "score": 0.5842,
+                "similarity": 0.5549
+              },
+              {
+                "dish_name": "Cheesecake",
+                "restaurant_name": "Al's Italiano Pizzeria & Ristorante",
+                "review_count": 2,
+                "score": 0.5783,
+                "similarity": 0.548
+              },
+              {
+                "dish_name": "Rasmalai",
+                "restaurant_name": "Rasavat",
+                "review_count": 1,
+                "score": 0.5249,
+                "similarity": 0.4999
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "original_spicy",
+          "preference": "I love spicy, savory food with rich flavors.",
+          "http_status": 200,
+          "warm_request_seconds": 0.009051667002495378,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Steak Tacos",
+                "restaurant_name": "Unity Taqueria",
+                "review_count": 2,
+                "score": 0.6473,
+                "similarity": 0.6292
+              },
+              {
+                "dish_name": "Queso And Chips",
+                "restaurant_name": "Unity Taqueria",
+                "review_count": 1,
+                "score": 0.6264,
+                "similarity": 0.6194
+              },
+              {
+                "dish_name": "Mexicano",
+                "restaurant_name": "El Cafeito",
+                "review_count": 1,
+                "score": 0.6179,
+                "similarity": 0.6093
+              },
+              {
+                "dish_name": "Szcheuan Spicy",
+                "restaurant_name": "K Pot South Philly",
+                "review_count": 1,
+                "score": 0.6148,
+                "similarity": 0.6057
+              },
+              {
+                "dish_name": "Chicken With Garlic Sauce",
+                "restaurant_name": "Oriental Kitchen",
+                "review_count": 1,
+                "score": 0.6049,
+                "similarity": 0.594
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "vietnamese_pho",
+          "preference": "I want Vietnamese pho with a fragrant beef broth and rice noodles.",
+          "http_status": 200,
+          "warm_request_seconds": 0.008901540997612756,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Kung Pao Chicken",
+                "restaurant_name": "A Mandarin Restaurant",
+                "review_count": 1,
+                "score": 0.5459,
+                "similarity": 0.554
+              },
+              {
+                "dish_name": "Hakka Noodles",
+                "restaurant_name": "Rasavat",
+                "review_count": 1,
+                "score": 0.5371,
+                "similarity": 0.5143
+              },
+              {
+                "dish_name": "Chicken Stew Con Yellow Rice",
+                "restaurant_name": "CYM Island Kitchen",
+                "review_count": 1,
+                "score": 0.5137,
+                "similarity": 0.4866
+              },
+              {
+                "dish_name": "Yellow Rice",
+                "restaurant_name": "CYM Island Kitchen",
+                "review_count": 1,
+                "score": 0.5014,
+                "similarity": 0.5016
+              },
+              {
+                "dish_name": "Rice",
+                "restaurant_name": "Rasavat",
+                "review_count": 2,
+                "score": 0.4958,
+                "similarity": 0.473
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "thai_curry",
+          "preference": "I want a spicy Thai curry with coconut milk.",
+          "http_status": 200,
+          "warm_request_seconds": 0.011123084004793782,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Pad Thai",
+                "restaurant_name": "The Real Lee Ahn",
+                "review_count": 2,
+                "score": 0.5805,
+                "similarity": 0.5947
+              },
+              {
+                "dish_name": "Curry",
+                "restaurant_name": "Rasavat",
+                "review_count": 1,
+                "score": 0.5675,
+                "similarity": 0.55
+              },
+              {
+                "dish_name": "Chicken Madras",
+                "restaurant_name": "Rasavat",
+                "review_count": 1,
+                "score": 0.5532,
+                "similarity": 0.5332
+              },
+              {
+                "dish_name": "Dal Tadka",
+                "restaurant_name": "Rasavat",
+                "review_count": 1,
+                "score": 0.5095,
+                "similarity": 0.4818
+              },
+              {
+                "dish_name": "Galubki",
+                "restaurant_name": "Mom Mom's Kitchen and Polish Food Cart",
+                "review_count": 1,
+                "score": 0.498,
+                "similarity": 0.4682
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "indian_curry",
+          "preference": "I want an Indian chicken curry with rich, aromatic spices.",
+          "http_status": 200,
+          "warm_request_seconds": 0.0107011660002172,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Chicken Madras",
+                "restaurant_name": "Rasavat",
+                "review_count": 1,
+                "score": 0.6396,
+                "similarity": 0.6348
+              },
+              {
+                "dish_name": "Curry",
+                "restaurant_name": "Rasavat",
+                "review_count": 1,
+                "score": 0.5897,
+                "similarity": 0.5761
+              },
+              {
+                "dish_name": "Stew Chicken",
+                "restaurant_name": "CYM Island Kitchen",
+                "review_count": 1,
+                "score": 0.5524,
+                "similarity": 0.5322
+              },
+              {
+                "dish_name": "General Tso Chicken",
+                "restaurant_name": "Oriental Kitchen",
+                "review_count": 1,
+                "score": 0.545,
+                "similarity": 0.5236
+              },
+              {
+                "dish_name": "Sesame Chicken",
+                "restaurant_name": "Oriental Kitchen",
+                "review_count": 2,
+                "score": 0.5419,
+                "similarity": 0.5052
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "ethiopian_injera",
+          "preference": "I want Ethiopian injera with flavorful lentil and meat stews.",
+          "http_status": 200,
+          "warm_request_seconds": 0.00927616599801695,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Sesame Chicken",
+                "restaurant_name": "Oriental Kitchen",
+                "review_count": 2,
+                "score": 0.5216,
+                "similarity": 0.4813
+              },
+              {
+                "dish_name": "Stew Chicken",
+                "restaurant_name": "CYM Island Kitchen",
+                "review_count": 1,
+                "score": 0.5194,
+                "similarity": 0.4934
+              },
+              {
+                "dish_name": "Great Turkey",
+                "restaurant_name": "3 J's Cafe",
+                "review_count": 1,
+                "score": 0.5092,
+                "similarity": 0.4814
+              },
+              {
+                "dish_name": "Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",
+                "restaurant_name": "Mom Mom's Kitchen and Polish Food Cart",
+                "review_count": 1,
+                "score": 0.5089,
+                "similarity": 0.4811
+              },
+              {
+                "dish_name": "Chicken Stew Platters",
+                "restaurant_name": "CYM Island Kitchen",
+                "review_count": 1,
+                "score": 0.499,
+                "similarity": 0.4694
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "french_crepes",
+          "preference": "I want French crepes with a sweet filling.",
+          "http_status": 200,
+          "warm_request_seconds": 0.008445000006759074,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Chocolate Croissants",
+                "restaurant_name": "Kay Kay's",
+                "review_count": 1,
+                "score": 0.5879,
+                "similarity": 0.574
+              },
+              {
+                "dish_name": "Croissants",
+                "restaurant_name": "Kay Kay's",
+                "review_count": 1,
+                "score": 0.5853,
+                "similarity": 0.571
+              },
+              {
+                "dish_name": "Croissants",
+                "restaurant_name": "Darling's Coffeehouse & Cheesecake",
+                "review_count": 1,
+                "score": 0.5366,
+                "similarity": 0.5431
+              },
+              {
+                "dish_name": "Creme Brûlée French Toast",
+                "restaurant_name": "Green Eggs Café",
+                "review_count": 1,
+                "score": 0.5329,
+                "similarity": 0.5093
+              },
+              {
+                "dish_name": "Creme Brulee",
+                "restaurant_name": "Kay Kay's",
+                "review_count": 1,
+                "score": 0.5164,
+                "similarity": 0.4899
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "bbq_brisket",
+          "preference": "I want smoky BBQ beef brisket.",
+          "http_status": 200,
+          "warm_request_seconds": 0.010424874999444,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Brisket",
+                "restaurant_name": "K Pot South Philly",
+                "review_count": 1,
+                "score": 0.6449,
+                "similarity": 0.641
+              },
+              {
+                "dish_name": "Bbq Burger",
+                "restaurant_name": "The Barn",
+                "review_count": 1,
+                "score": 0.5669,
+                "similarity": 0.5493
+              },
+              {
+                "dish_name": "Brisket Chili",
+                "restaurant_name": "Burg's Hideaway Lounge",
+                "review_count": 1,
+                "score": 0.5622,
+                "similarity": 0.5732
+              },
+              {
+                "dish_name": "Bbq Wings",
+                "restaurant_name": "The Barn",
+                "review_count": 1,
+                "score": 0.5376,
+                "similarity": 0.5148
+              },
+              {
+                "dish_name": "Hell Fire Burger",
+                "restaurant_name": "The Union Tap",
+                "review_count": 1,
+                "score": 0.5106,
+                "similarity": 0.4831
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "japanese_ramen",
+          "preference": "I want Japanese ramen with a rich broth and noodles.",
+          "http_status": 200,
+          "warm_request_seconds": 0.009240708001016174,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Hakka Noodles",
+                "restaurant_name": "Rasavat",
+                "review_count": 1,
+                "score": 0.562,
+                "similarity": 0.5435
+              },
+              {
+                "dish_name": "Dumpling Ramen",
+                "restaurant_name": "Myung Ga Gimbap",
+                "review_count": 1,
+                "score": 0.4974,
+                "similarity": 0.4969
+              },
+              {
+                "dish_name": "Chicken Noodle Salad",
+                "restaurant_name": "Mantra",
+                "review_count": 1,
+                "score": 0.4861,
+                "similarity": 0.4543
+              },
+              {
+                "dish_name": "Chicken And Steak Fajitas",
+                "restaurant_name": "Adobe Cafe",
+                "review_count": 1,
+                "score": 0.4744,
+                "similarity": 0.4405
+              },
+              {
+                "dish_name": "Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",
+                "restaurant_name": "Mom Mom's Kitchen and Polish Food Cart",
+                "review_count": 1,
+                "score": 0.4714,
+                "similarity": 0.437
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "chinese_spicy",
+          "preference": "I want a spicy Chinese dish with chili and Sichuan pepper.",
+          "http_status": 200,
+          "warm_request_seconds": 0.008602791996963788,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Chicken With Garlic Sauce",
+                "restaurant_name": "Oriental Kitchen",
+                "review_count": 1,
+                "score": 0.5204,
+                "similarity": 0.4946
+              },
+              {
+                "dish_name": "Dal Tadka",
+                "restaurant_name": "Rasavat",
+                "review_count": 1,
+                "score": 0.5181,
+                "similarity": 0.4919
+              },
+              {
+                "dish_name": "Szcheuan Spicy",
+                "restaurant_name": "K Pot South Philly",
+                "review_count": 1,
+                "score": 0.5115,
+                "similarity": 0.4841
+              },
+              {
+                "dish_name": "Brisket Chili",
+                "restaurant_name": "Burg's Hideaway Lounge",
+                "review_count": 1,
+                "score": 0.5085,
+                "similarity": 0.51
+              },
+              {
+                "dish_name": "Chicken Madras",
+                "restaurant_name": "Rasavat",
+                "review_count": 1,
+                "score": 0.5044,
+                "similarity": 0.4757
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "korean_bibimbap",
+          "preference": "I want Korean bibimbap with rice, vegetables, and spicy sauce.",
+          "http_status": 200,
+          "warm_request_seconds": 0.008883292000973597,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Bibimbap",
+                "restaurant_name": "Myung Ga Gimbap",
+                "review_count": 1,
+                "score": 0.5859,
+                "similarity": 0.5716
+              },
+              {
+                "dish_name": "Korean Sausage",
+                "restaurant_name": "Myung Ga Gimbap",
+                "review_count": 1,
+                "score": 0.5829,
+                "similarity": 0.5681
+              },
+              {
+                "dish_name": "Kimbap",
+                "restaurant_name": "Myung Ga Gimbap",
+                "review_count": 2,
+                "score": 0.561,
+                "similarity": 0.5277
+              },
+              {
+                "dish_name": "Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",
+                "restaurant_name": "Mom Mom's Kitchen and Polish Food Cart",
+                "review_count": 1,
+                "score": 0.5573,
+                "similarity": 0.538
+              },
+              {
+                "dish_name": "Kimchi Kimbap",
+                "restaurant_name": "Myung Ga Gimbap",
+                "review_count": 1,
+                "score": 0.5449,
+                "similarity": 0.5528
+              }
+            ]
+          }
+        },
+        {
+          "query_id": "caribbean_jerk",
+          "preference": "I want Caribbean jerk chicken with bold, spicy seasoning.",
+          "http_status": 200,
+          "warm_request_seconds": 0.008958167003584094,
+          "matches_isolated_85_15_ranking": true,
+          "response": {
+            "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+            "note": "Uncalibrated ranking scores; not probability of liking a dish",
+            "results": [
+              {
+                "dish_name": "Chicken With Garlic Sauce",
+                "restaurant_name": "Oriental Kitchen",
+                "review_count": 1,
+                "score": 0.6237,
+                "similarity": 0.6161
+              },
+              {
+                "dish_name": "General Tso Chicken",
+                "restaurant_name": "Oriental Kitchen",
+                "review_count": 1,
+                "score": 0.6233,
+                "similarity": 0.6157
+              },
+              {
+                "dish_name": "Chicken 65",
+                "restaurant_name": "Rasavat",
+                "review_count": 2,
+                "score": 0.6197,
+                "similarity": 0.5967
+              },
+              {
+                "dish_name": "Stew Chicken",
+                "restaurant_name": "CYM Island Kitchen",
+                "review_count": 1,
+                "score": 0.6075,
+                "similarity": 0.597
+              },
+              {
+                "dish_name": "Spicy Chicken Salad Sandwich",
+                "restaurant_name": "3 J's Cafe",
+                "review_count": 2,
+                "score": 0.5986,
+                "similarity": 0.5719
+              }
+            ]
+          }
+        }
+      ],
+      "validation_checks": [
+        {
+          "case": "json_array",
+          "http_status": 400,
+          "expected_http_status": 400
+        },
+        {
+          "case": "missing_preference",
+          "http_status": 400,
+          "expected_http_status": 400
+        },
+        {
+          "case": "empty_preference",
+          "http_status": 400,
+          "expected_http_status": 400
+        },
+        {
+          "case": "overlong_preference",
+          "http_status": 400,
+          "expected_http_status": 400
+        },
+        {
+          "case": "noninteger_top_n",
+          "http_status": 400,
+          "expected_http_status": 400
+        },
+        {
+          "case": "boolean_top_n",
+          "http_status": 400,
+          "expected_http_status": 400
+        },
+        {
+          "case": "unverified_dietary_request",
+          "http_status": 422,
+          "expected_http_status": 422
+        }
+      ],
+      "all_rankings_match_isolated_formula": true,
+      "warm_latency": {
+        "requests": 15,
+        "min_seconds": 0.008445000006759074,
+        "median_seconds": 0.00915299999905983,
+        "p95_seconds": 0.010827741401590174,
+        "max_seconds": 0.011123084004793782
+      },
+      "timing_scope": "One measured request per query; excludes startup, model loading, network, browser rendering. Descriptive timings, not a controlled performance benchmark."
+    }
+  },
+  "human_relevance_evaluation_completed": false,
+  "limitations": [
+    "Fifteen fixed probes check coverage, ranking changes, artifact integrity and API behavior; they are not a representative recommendation-quality test set.",
+    "Human relevance and extraction-accuracy evaluation are pending. Blank reviewer columns must be completed by real reviewers.",
+    "Additional data, more review support, larger scores or changed top-five lists do not prove that recommendations improved.",
+    "Scores are uncalibrated ranking values, not probabilities of liking a dish.",
+    "Historical sampled reviews do not verify current menus, business status, ingredients, diets or allergies.",
+    "Timing excludes startup/model loading and network/browser costs; a single request per query is not a controlled latency benchmark."
+  ]
+}

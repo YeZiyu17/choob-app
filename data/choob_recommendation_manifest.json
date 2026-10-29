@@ -1,33 +1,147 @@
 {
   "schema_version": 1,
-  "source_sha256": "0a642e46ac977fafd55d6aa893cc4a592940b9604c62fb3662c2bbbd846c1190",
-  "restaurants_sha256": "d311f700ec850266124ad29c27d0363a90504298511cab776605a08bc1d53507",
+  "source_sha256": "4c539c2a290d1a79177a03112c575f376d85ad423eeeb98d917f5620ab118f52",
+  "restaurants_sha256": "7d5c731af752050d982eab5545375f5ce59a3d6671aab2551e46b9f2fa23b780",
   "extraction_model": "Codex assistant annotation (exact runtime version not recorded)",
   "extraction_route": "supplied_codex_annotations",
-  "annotation_sha256": "3c99f90f018ab0f8ed3d33f1af9f173a81c8a2f2eba477059832ddd48c8cc165",
+  "annotation_sha256": "71f177fdc8cad050489922cda7347fc9e962058e36574b07b16e87381bf32719",
+  "annotation_provenance_sha256": "1b317be028a8416c3f3d348615f6a8378bca7668745caa144e9670a360eb723b",
+  "annotation_provenance": {
+    "schema_version": 1,
+    "extraction_route": "supplied_codex_annotations",
+    "extraction_model": "Codex assistant annotation (exact runtime version not recorded)",
+    "source_sha256": "4c539c2a290d1a79177a03112c575f376d85ad423eeeb98d917f5620ab118f52",
+    "review_counts": {
+      "revalidated_v1_codex_annotations": 484,
+      "added_v2_codex_annotations": 3042
+    },
+    "annotation_sha256": "71f177fdc8cad050489922cda7347fc9e962058e36574b07b16e87381bf32719",
+    "annotation_shards": [
+      {
+        "file": "shard_0_first.jsonl",
+        "sha256": "a4ac47f7a340660433d7eceb1ef55a6adb73ea7a4944cb41b8e98b17e7afab51",
+        "reviews": 507
+      },
+      {
+        "file": "shard_0_second_a.jsonl",
+        "sha256": "3edb5ef1a8520d5285f023977206a60bc024a0e46595026e81d63401dc096e78",
+        "reviews": 170
+      },
+      {
+        "file": "shard_0_second_b.jsonl",
+        "sha256": "bfd215767333a85b382a5549dba8361c27da767a1b57f1dcbc9795575199a3ce",
+        "reviews": 170
+      },
+      {
+        "file": "shard_0_second_c.jsonl",
+        "sha256": "5e302e97abcd89e1f6f2c916f0b2e3a46c1545410c0e30acc60ecba0d5473725",
+        "reviews": 167
+      },
+      {
+        "file": "shard_1_first.jsonl",
+        "sha256": "7cf3c844cb7d8fce8e24c0842168478a3f91363dd653f884b7909ccca840e442",
+        "reviews": 507
+      },
+      {
+        "file": "shard_1_second.jsonl",
+        "sha256": "8ba9e76eea7f1caaebd1306e38ffdd4cb36ac34ed6638a89315f63833cac8489",
+        "reviews": 507
+      },
+      {
+        "file": "shard_2_first.jsonl",
+        "sha256": "cda6fc544e0ba0a68482b1e76695af29f84edf31ea9be4d883c9dbe15b2b9b25",
+        "reviews": 507
+      },
+      {
+        "file": "shard_2_second.jsonl",
+        "sha256": "51b755554922ac38251267580839d2257b2fda6e6f131a449b972378bc0d26d8",
+        "reviews": 507
+      }
+    ],
+    "source_data_notes_sha256": "cbc4fdb54cf70b14a286618977ba0cc81e8e41d0754dba55078d4a62e9dc1508",
+    "legacy_whitespace_migration": {
+      "revalidated_reviews": 484,
+      "retained_dish_mentions": 835,
+      "changed_texts": 165
+    },
+    "source_validation": {
+      "input_reviews": 3526,
+      "input_restaurants": 123,
+      "restaurant_catalog_size": 5855,
+      "join_validated": true,
+      "duplicate_review_ids": 0,
+      "empty_required_fields": 0
+    },
+    "AI_audit_corrected_reviews": 4,
+    "AI_audit_corrections_sha256": "3c3e29e927005911207d51293dd230455f7b6e67bad18f4a83b0a190dd0e57a5",
+    "human_evaluation_completed": false,
+    "model_weights_fine_tuned": false,
+    "method_note": "Every added review was explicitly read and semantically annotated by Codex, then exact-evidence validated. No unread/keyword filler and no local Qwen experiment output is included.",
+    "AI_spot_check": {
+      "review_count": 24,
+      "accepted_dish_records_checked": 41,
+      "AI_corrected_review_cases": 4,
+      "human_evaluation": false,
+      "accuracy_estimated": false,
+      "reference_was_frozen_before_outputs": true,
+      "corrected_cases_are_iteration_not_untouched_holdout": true,
+      "annotation_sha256": "71f177fdc8cad050489922cda7347fc9e962058e36574b07b16e87381bf32719",
+      "reference_sha256": "80f73f2440b6080170d4064015d432d1f80a0f58122aa1f3768c81582d1a604b",
+      "private_audit_sha256": "1ac57adb20cf538d43e05fc09e844b804f0ae7ef7c05289643dbd87f289fb202",
+      "limitations": "Small AI-assisted source cross-check, not human gold or recommendation relevance evaluation. Some sentiment and generic-name policy disagreements remain."
+    }
+  },
   "prompt_sha256": null,
-  "builder_sha256": "4f8abb8a7d1b0826a94e4e2a388ff884ef27b9becc5c29837c7a5033ba8aa654",
+  "builder_sha256": "4d35144b404109cccb419967ffd4c228c4f74be9aa7ad586ca3f9279762e525e",
   "max_new_tokens": 768,
   "retries": 2,
   "limit": null,
-  "input_reviews": 484,
-  "input_restaurants": 50,
+  "input_reviews": 3526,
+  "input_restaurants": 123,
   "restaurant_catalog_size": 5855,
   "join_validated": true,
   "duplicate_review_ids": 0,
   "empty_required_fields": 0,
-  "created_utc": "2026-10-23T21:07:09.258391+00:00",
-  "config_sha256": "1bc4561a4e0cd8b33e562481546b6b6ed8561087e1c45622db74ff5a86a048a0",
-  "selected_reviews": 484,
-  "selected_restaurants": 50,
+  "created_utc": "2026-10-29T08:24:35.975357+00:00",
+  "config_sha256": "5a7c04c0a5f08dd3263de089b514250f7c35fac035c62e1e07ce5685bd19b733",
+  "selected_reviews": 3526,
+  "selected_restaurants": 123,
   "review_status_counts": {
-    "processed": 380,
-    "zero_dishes": 104
+    "processed": 3165,
+    "zero_dishes": 361
   },
   "failed_reviews": 0,
   "filtered_item_counts": {},
-  "extracted_review_dish_records": 835,
-  "restaurants_with_recommendations": 50,
+  "extracted_review_dish_records": 8667,
+  "restaurants_with_recommendations": 123,
+  "cuisine_coverage": {
+    "American/Burgers/Bars": 4,
+    "BBQ": 6,
+    "Breakfast/Diner/Cafe": 7,
+    "Caribbean/Latin American": 6,
+    "Cheesesteaks/Sandwiches": 6,
+    "Chinese": 6,
+    "Ethiopian/African": 6,
+    "French": 6,
+    "Greek/Mediterranean": 6,
+    "Indian/South Asian": 6,
+    "Italian/Pizza": 7,
+    "Japanese/Sushi/Ramen": 6,
+    "Korean": 6,
+    "Mexican": 7,
+    "Middle Eastern": 6,
+    "Other": 2,
+    "Seafood": 6,
+    "Soul Food/Southern": 6,
+    "Thai": 6,
+    "Vegan/Vegetarian": 6,
+    "Vietnamese": 6
+  },
+  "description_features": [
+    "dish name",
+    "explicit taste evidence",
+    "supplied restaurant cuisine group"
+  ],
   "extraction_model_revision": null,
   "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
   "ranking": {
@@ -51,14 +165,14 @@
     "numpy": "2.3.5"
   },
   "embedding_model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
-  "recommendation_rows": 711,
+  "recommendation_rows": 5993,
   "embedding_shape": [
-    711,
+    5993,
     384
   ],
   "output_sha256": {
-    "choob_recommendation_data.csv": "64e3fdcc478cfb1cd3daf5302d96d5b2e25a53d955734213f7710ae4a86fa23c",
-    "choob_dish_embeddings.npy": "e8993499a55d3d7918537be17e93134ce9eb4a1a9d1bba497cfcb076ba59ad8e"
+    "choob_recommendation_data.csv": "af7cbc241e1dc6ccf7ac40a96891a7ee4ed5f42568eebea02f219d7cf55d786f",
+    "choob_dish_embeddings.npy": "3d8c0ad52e5d83c6af5929d4e59784e49673239bd0a88dd20e462be5aacbfe31"
   },
-  "row_order_sha256": "0a94eafed56c7af8d4f9706c0ec9edfbcbf89cd4659dca093b34bb7e1c2829ea"
+  "row_order_sha256": "ba7927726fb6edcc5a0618178653b830627881f41f9215112073fcd1313a53eb"
 }

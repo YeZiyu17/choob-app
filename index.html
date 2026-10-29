@@ -74,10 +74,10 @@
       <label class="eyebrow" for="correctedDish">Confirm / correct dish name</label>
       <input id="correctedDish" class="input-choob" type="text" placeholder="Dish name" />
       <button class="primary" id="saveRecognizedDish">✓ Confirm & add to Food Passport</button>
-      <button class="text-action" data-nav="resultsScreen">View evaluation results →</button>
     </div>
     <div class="upload-box"><label for="photoUpload"><b>Choose a food photo</b><span>JPG / PNG · Upload your own photo to run inference</span></label><input type="file" id="photoUpload" accept="image/jpeg,image/png,image/webp" /></div>
     <p id="cameraHint" style="text-align:center;color:var(--muted);font-size:13px">Upload a photo, then tap the round button to analyze it.</p>
+    <button class="text-action" data-nav="resultsScreen">View evaluation results →</button>
   </section>
 
   <section class="screen hidden" id="recommendScreen">
@@ -87,7 +87,7 @@
     <p class="pitch">Discover dishes mentioned in restaurant reviews. Describe a dish or flavors you enjoy.</p>
     <div class="upload-box" style="margin-top:20px"><label for="preferenceInput"><b>Describe your food preferences</b></label>
     <textarea id="preferenceInput" class="input-choob" rows="3" placeholder="I love spicy, savory dishes with rich flavors.">I love spicy, savory dishes with rich flavors.</textarea>
-    <p class="confidence-note">Taste matching from sampled reviews. Ingredients, dietary suitability and current menus are not verified.</p>
+    <p class="confidence-note">Taste matching from Philadelphia reviews dated 2006–2022. Current menus, operating status, ingredients and dietary suitability are not verified.</p>
     <button class="primary" id="findDishes">✦ Find dishes for me</button></div>
     <p id="recommendHint" class="confidence-note" style="margin:14px 2px">Try different descriptions to see the AI results change.</p>
     <div id="liveRecommendations" aria-live="polite"></div>
@@ -124,10 +124,10 @@
     <article class="hero-card community-card"><span class="pill">Maya collected this</span><h3>Spicy Tsukemen</h3><p>“The dipping broth is incredible.”</p><button class="cta" data-open-restaurant>View dish &rarr;</button></article>
   </section>
 
-  <!-- Recorded snapshot: clip_comparison.json, recommendation_smoke.json and the recommendation manifest. -->
+  <!-- Recognition and v2 checks are recorded snapshots; current recommendation counts come from the manifest API. -->
   <section class="screen hidden" id="resultsScreen">
     <div class="top"><button class="back" data-nav="snapScreen" aria-label="Back">&larr;</button><div class="brand">Results<span class="brand-dot">.</span></div><span class="demo-chip"><i></i> RECORDED</span></div>
-    <div class="eyebrow">Recorded evaluation · 23 Oct 2026</div><h1>Tested with <span class="highlight">real data.</span></h1>
+    <div class="eyebrow">Recognition evaluation · 23 Oct 2026</div><h1>Tested with <span class="highlight">real data.</span></h1>
     <div class="metric-hero"><div class="metric-big">340</div><div><h2>Frozen holdout photos</h2><p>180 supported · 160 unsupported<br>260 separate calibration photos</p></div></div>
     <div class="section-head"><h2>Recognition comparison</h2><span class="section-note">Baseline → Optimized</span></div>
     <div class="test-list">
@@ -137,26 +137,28 @@
       <div class="test-row warning"><div class="test-icon">!</div><div><b>Correct and accepted</b><small>175/180 → 162/180 supported photos</small></div><div class="test-score">97.22%<br>→ 90.00%</div></div>
     </div>
     <p class="results-copy">Fixed Food-101 subset across nine supported dish families. Ramen is evaluated at family level. The scope check reduces false accepts but also asks for manual input on some valid dishes. These results do not establish accuracy on all user photos.</p>
-    <div class="section-head"><h2>Review data pipeline</h2><span class="section-note">Current export</span></div>
-    <div class="stat-row"><div class="stat"><b>484</b><span>REVIEWS PROCESSED</span></div><div class="stat"><b>835</b><span>DISH MENTIONS</span></div><div class="stat"><b>711</b><span>RESTAURANT–DISH PAIRS</span></div></div>
-    <p class="results-copy"><strong>50 restaurants covered.</strong> 0 failed reviews; 104 reviews with no extracted dish. A review with no dish is not a processing failure.</p>
-    <div class="section-head"><h2>Recommendation checks</h2></div>
+    <div class="section-head"><h2>Review data pipeline</h2><span class="section-note" id="recommendationBuildVersion">Current export</span></div>
+    <div class="stat-row"><div class="stat"><b id="summaryReviews">—</b><span>REVIEWS PROCESSED</span></div><div class="stat"><b id="summaryMentions">—</b><span>DISH MENTIONS</span></div><div class="stat"><b id="summaryPairs">—</b><span>RESTAURANT–DISH PAIRS</span></div></div>
+    <p class="results-copy" id="recommendationDataSummary" role="status">Loading current recommendation build metadata…</p>
+    <p class="results-copy" id="recommendationEvaluationStatus">Human evaluation status is loaded with the current build.</p>
+    <div class="section-head"><h2>Recorded recommendation checks</h2><span class="section-note">v2 · 29 Oct 2026</span></div>
     <div class="test-list">
       <div class="test-row"><div class="test-icon">✓</div><div><b>Real model + API smoke checks</b><small>5 preference queries produced 5 distinct top-five lists</small></div><div class="test-score">5/5</div></div>
-      <div class="test-row"><div class="test-icon">✓</div><div><b>Program regression checks</b><small>Synthetic fixtures and mocks · not AI accuracy</small></div><div class="test-score">27 passed</div></div>
+      <div class="test-row"><div class="test-icon">✓</div><div><b>Program regression checks</b><small>Synthetic fixtures and mocks · not AI accuracy</small></div><div class="test-score">54 passed</div></div>
     </div>
-    <p class="results-copy">These checks verify inference, data alignment and API behavior. <strong>Human recommendation relevance evaluation is still pending.</strong></p>
-    <div class="section-head"><h2>Recorded recommendation</h2></div>
+    <p class="results-copy">Recorded for build <strong>5a7c04c0a5f0</strong> on 29 Oct 2026 (source 4c539c2a290d). These checks verify inference, data alignment and API behavior, not recommendation relevance. They do not certify a newer data build.</p>
+    <div class="section-head"><h2>Recorded recommendation</h2><span class="section-note">v2 · 29 Oct 2026</span></div>
     <div class="rec-box"><div class="query">“I love spicy, savory food with rich flavors.”</div>
-      <div class="rec-item"><div class="rec-rank">#1</div><div><strong>Steak Tacos</strong><span>Unity Taqueria</span></div></div>
-      <div class="rec-item"><div class="rec-rank">#2</div><div><strong>Queso And Chips</strong><span>Unity Taqueria</span></div></div>
-      <div class="rec-item"><div class="rec-rank">#3</div><div><strong>Mexicano</strong><span>El Cafeito</span></div></div>
+      <div class="rec-item"><div class="rec-rank">#1</div><div><strong>Spicy Fish</strong><span>Nile Cafe</span></div></div>
+      <div class="rec-item"><div class="rec-rank">#2</div><div><strong>Spicy Bbq Sauce</strong><span>Glick’s Rib Shack</span></div></div>
+      <div class="rec-item"><div class="rec-rank">#3</div><div><strong>Sweet Chili Super Spicy</strong><span>Crunchik&#x27;n</span></div></div>
     </div>
-    <p class="results-copy">Output from the saved smoke test, not a live rerun or a human quality rating. Try Discover for a new recommendation.</p>
+    <p class="results-copy">Output from the saved v2 smoke test, not a live rerun or a human quality rating. Try Discover for a recommendation using the current build.</p>
     <div class="section-head"><h2>Models &amp; runtime</h2></div>
-    <p class="results-copy">CLIP prompt ensemble + calibrated scope check; MiniLM semantic matching + review sentiment. <strong>Both serving models run on CPU.</strong> Review extraction used Codex-assisted annotations. Qwen was not run for this export; no model weights were fine-tuned.</p>
+    <p class="results-copy">CLIP prompt ensemble + calibrated scope check; MiniLM semantic matching + review sentiment. <strong>Both serving models run on CPU.</strong></p>
+    <p class="results-copy" id="recommendationExtractionMethod">Loading the current extraction method…</p>
     <div class="section-head"><h2>Known limitations</h2></div>
-    <div class="issues"><span class="issue">50-restaurant sample</span><span class="issue">Human relevance evaluation pending</span><span class="issue">Dietary suitability unverified</span><span class="issue">Multi-food ambiguity</span><span class="issue">Ranking scores are not probabilities</span></div>
+    <div class="issues"><span class="issue" id="summaryRestaurantLimit">Historical review sample</span><span class="issue" id="summaryHumanEvaluation">Human evaluation status loading</span><span class="issue">Dietary suitability unverified</span><span class="issue">Multi-food ambiguity</span><span class="issue">Ranking scores are not probabilities</span></div>
     <div class="results-links"><a href="https://github.com/YeZiyu17/choob-app/blob/main/evaluation/results/optimization_report.md" target="_blank" rel="noopener noreferrer">Recognition report ↗</a><a href="https://github.com/YeZiyu17/choob-app/blob/main/evaluation/results/recommendation_report.md" target="_blank" rel="noopener noreferrer">Recommendation report ↗</a></div>
     <button class="primary" id="replayDemo">↻ Try a new photo</button>
   </section>
@@ -167,7 +169,51 @@
 </main>
 <script>
   const screens=[...document.querySelectorAll('.screen')], nav=[...document.querySelectorAll('.nav button')];
-  function show(id){screens.forEach(s=>s.classList.toggle('hidden',s.id!==id));nav.forEach(n=>n.classList.toggle('active',n.dataset.nav===id));const active=document.getElementById(id);if(active)active.scrollTop=0;}
+  function show(id){screens.forEach(s=>s.classList.toggle('hidden',s.id!==id));nav.forEach(n=>n.classList.toggle('active',n.dataset.nav===id));const active=document.getElementById(id);if(active)active.scrollTop=0;if(id==='resultsScreen')loadRecommendationSummary();}
+  let summaryRequestVersion=0;
+  async function loadRecommendationSummary(){
+    const version=++summaryRequestVersion;
+    const set=(id,text)=>{document.getElementById(id).textContent=text;};
+    for(const id of ['summaryReviews','summaryMentions','summaryPairs'])set(id,'—');
+    set('recommendationBuildVersion','Loading current export');
+    set('recommendationDataSummary','Loading current recommendation build metadata…');
+    set('recommendationEvaluationStatus','Human evaluation status is loaded with the current build.');
+    set('recommendationExtractionMethod','Loading the current extraction method…');
+    set('summaryRestaurantLimit','Historical review sample');
+    set('summaryHumanEvaluation','Human evaluation status loading');
+    try{
+      const response=await fetch('/api/recommendation-summary',{cache:'no-store'});
+      const data=await response.json();
+      if(version!==summaryRequestVersion)return;
+      if(!response.ok)throw new Error(data.error||'Build metadata unavailable');
+      const counts=['input_reviews','selected_reviews','restaurants_with_recommendations','extracted_review_dish_records','recommendation_rows','failed_reviews','zero_dish_reviews'];
+      const catalogSize=data.restaurant_catalog_size;
+      if(counts.some(key=>!Number.isInteger(data[key])||data[key]<0)||(catalogSize!==null&&(!Number.isInteger(catalogSize)||catalogSize<0))||typeof data.human_evaluation_completed!=='boolean'||!/^\w{12}$/.test(data.build_version)||!Number.isFinite(Date.parse(data.created_utc)))throw new Error('Invalid build metadata');
+      const number=value=>value.toLocaleString('en-US');
+      set('summaryReviews',number(data.selected_reviews-data.failed_reviews));
+      set('summaryMentions',number(data.extracted_review_dish_records));
+      set('summaryPairs',number(data.recommendation_rows));
+      const date=new Date(data.created_utc).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+      set('recommendationBuildVersion',`${date} · ${data.build_version}`);
+      const catalogSummary=catalogSize===null?'source catalog size is unknown':`${number(catalogSize)} restaurants in the source catalog`;
+      set('recommendationDataSummary',`${number(data.restaurants_with_recommendations)} restaurants covered by recommendations; ${catalogSummary}. ${number(data.selected_reviews)} of ${number(data.input_reviews)} source reviews selected; ${number(data.failed_reviews)} failed; ${number(data.zero_dish_reviews)} with no extracted dish. A review with no dish is not a processing failure.`);
+      set('recommendationEvaluationStatus',data.human_evaluation_completed?'Human evaluation is recorded for this build; see the report for its scope and metrics.':'Human recommendation relevance evaluation is still pending for this build.');
+      const routeLabels={supplied_codex_annotations:'Supplied Codex-assisted annotations',local_qwen_inference:'Local Qwen inference'};
+      const route=routeLabels[data.extraction_route]||String(data.extraction_route).replaceAll('_',' ');
+      set('recommendationExtractionMethod',`Current extraction route: ${route}. Extraction model: ${data.extraction_model}. Embedding model: ${data.embedding_model}. These are model-use records, not evidence of fine-tuning.`);
+      set('summaryRestaurantLimit',`${number(data.restaurants_with_recommendations)}-restaurant historical sample`);
+      set('summaryHumanEvaluation',data.human_evaluation_completed?'Human evaluation: see report':'Human relevance evaluation pending');
+    }catch{
+      if(version!==summaryRequestVersion)return;
+      for(const id of ['summaryReviews','summaryMentions','summaryPairs'])set(id,'—');
+      set('recommendationBuildVersion','Metadata unavailable');
+      set('recommendationDataSummary','Current recommendation data could not be loaded. Check the Flask server and saved build manifest; no current counts are shown.');
+      set('recommendationEvaluationStatus','Current human evaluation status is unavailable.');
+      set('recommendationExtractionMethod','Current extraction method is unavailable.');
+      set('summaryRestaurantLimit','Current coverage unavailable');
+      set('summaryHumanEvaluation','Evaluation status unavailable');
+    }
+  }
   document.querySelectorAll('[data-open-restaurant]').forEach(b=>b.addEventListener('click',()=>show('restaurant')));
   document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>show('discover')));
   document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.nav)));

@@ -31,7 +31,7 @@ Open **http://localhost:7860/** in your browser and keep the terminal running. T
 
 The first image recognition and text recommendation requests download public models from the internet. Stay connected, allow several GB of free disk space, and make sure enough memory is available. The initial download and loading can take some time; close memory-intensive applications if needed. Later runs reuse the models cached on your computer.
 
-Start with **Discover** and enter an English food preference, such as `cheesecake or tiramisu`. Then try uploading a food photo in **Snap**. Recommendations use sampled reviews from 50 restaurants. They do not represent complete or current menus and cannot verify dietary restrictions or allergy requirements.
+Start with **Discover** and enter an English food preference, such as `cheesecake or tiramisu`. Then try uploading a food photo in **Snap**. Recommendations use sampled reviews from 123 restaurants. They do not represent complete or current menus and cannot verify dietary restrictions or allergy requirements.
 
 ## Collaborate on the Code
 
