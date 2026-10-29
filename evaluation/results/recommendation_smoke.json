@@ -5,20 +5,20 @@
   "extraction_route": "supplied_codex_annotations",
   "extraction_model": "Codex assistant annotation (exact runtime version not recorded)",
   "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
-  "dataset_rows": 711,
-  "restaurants": 50,
+  "dataset_rows": 5993,
+  "restaurants": 123,
   "embedding_shape": [
-    711,
+    5993,
     384
   ],
-  "manifest_sha256": "f3ea45305bf7e2f223daa47357094b3d9d1c48b3f74be55148890273fb5a6f4c",
+  "manifest_sha256": "e27a685839eee9a64de449f22e5513b69ef1807fe4b954d6c06273db58e83fcb",
   "artifact_alignment_spot_rows": [
     0,
-    355,
-    710
+    2996,
+    5992
   ],
-  "regenerated_embedding_max_difference": 1.2665987014770508e-07,
-  "loading_seconds": 4.50800679193344,
+  "regenerated_embedding_max_difference": 0.0,
+  "loading_seconds": 4.552354665999701,
   "different_top_five_lists": 5,
   "invalid_json_shape_http_status": 400,
   "unverified_dietary_request": {
@@ -31,220 +31,220 @@
     {
       "preference": "I want a juicy cheesesteak with melted cheese.",
       "http_status": 200,
-      "warm_request_seconds": 0.012836750014685094,
+      "warm_request_seconds": 0.01632704100029514,
       "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
       "note": "Uncalibrated ranking scores; not probability of liking a dish",
       "results": [
         {
           "dish_name": "Cheesesteak",
-          "restaurant_name": "Tony's Luke",
-          "review_count": 2,
-          "score": 0.69,
-          "similarity": 0.6794
+          "restaurant_name": "Mipals Deli",
+          "review_count": 4,
+          "score": 0.6787,
+          "similarity": 0.6661
         },
         {
           "dish_name": "Cheesesteak",
-          "restaurant_name": "GiGi Restaurant & Lounge",
+          "restaurant_name": "Mom Mom's Kitchen and Polish Food Cart",
           "review_count": 1,
-          "score": 0.6628,
-          "similarity": 0.721
+          "score": 0.6776,
+          "similarity": 0.6796
         },
         {
-          "dish_name": "Cheesesteaks",
-          "restaurant_name": "Station Pizza",
-          "review_count": 2,
-          "score": 0.6499,
-          "similarity": 0.6323
+          "dish_name": "Cheesesteak",
+          "restaurant_name": "The Union Tap",
+          "review_count": 1,
+          "score": 0.6662,
+          "similarity": 0.6661
         },
         {
-          "dish_name": "Meatlovers Cheesesteak",
-          "restaurant_name": "Maker artisan pizza",
+          "dish_name": "Cheesesteak",
+          "restaurant_name": "Morea",
           "review_count": 1,
-          "score": 0.6235,
-          "similarity": 0.6159
+          "score": 0.6498,
+          "similarity": 0.6468
         },
         {
-          "dish_name": "Cheesesteaks",
-          "restaurant_name": "Tony's Luke",
-          "review_count": 1,
-          "score": 0.6124,
-          "similarity": 0.6323
+          "dish_name": "Cheesesteak",
+          "restaurant_name": "Chuck's Alibi",
+          "review_count": 4,
+          "score": 0.6498,
+          "similarity": 0.6468
         }
       ]
     },
     {
       "preference": "I want sushi with fresh fish.",
       "http_status": 200,
-      "warm_request_seconds": 0.009364333003759384,
+      "warm_request_seconds": 0.009923374999743828,
       "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
       "note": "Uncalibrated ranking scores; not probability of liking a dish",
       "results": [
         {
-          "dish_name": "Sushi Roll",
-          "restaurant_name": "Mantra",
-          "review_count": 1,
-          "score": 0.6145,
-          "similarity": 0.6641
+          "dish_name": "Sushi",
+          "restaurant_name": "Engimono Sushi",
+          "review_count": 6,
+          "score": 0.727,
+          "similarity": 0.7119
         },
         {
-          "dish_name": "Fresh Crawfish",
-          "restaurant_name": "Crabby Cafe - Chinatown BYOB",
-          "review_count": 1,
-          "score": 0.5807,
-          "similarity": 0.5655
+          "dish_name": "Sushi",
+          "restaurant_name": "Sakana Omakasè Sushi",
+          "review_count": 7,
+          "score": 0.7134,
+          "similarity": 0.7119
         },
         {
-          "dish_name": "Fried Fish",
-          "restaurant_name": "E-Z Brunch",
+          "dish_name": "Lunch Sushi Special",
+          "restaurant_name": "Kinme",
           "review_count": 1,
-          "score": 0.532,
-          "similarity": 0.5082
+          "score": 0.704,
+          "similarity": 0.7105
         },
         {
-          "dish_name": "Crawfish",
-          "restaurant_name": "Crabby Cafe - Chinatown BYOB",
-          "review_count": 3,
-          "score": 0.532,
-          "similarity": 0.5553
+          "dish_name": "Sushi",
+          "restaurant_name": "Sky Asian Bistro",
+          "review_count": 6,
+          "score": 0.6922,
+          "similarity": 0.671
         },
         {
-          "dish_name": "Seafood Salad",
-          "restaurant_name": "Mipals Deli",
+          "dish_name": "Sushi Boat",
+          "restaurant_name": "Engimono Sushi",
           "review_count": 1,
-          "score": 0.5297,
-          "similarity": 0.5055
+          "score": 0.6904,
+          "similarity": 0.6946
         }
       ]
     },
     {
       "preference": "I want a hearty mushroom dish.",
       "http_status": 200,
-      "warm_request_seconds": 0.008309750002808869,
+      "warm_request_seconds": 0.009725624999191496,
       "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
       "note": "Uncalibrated ranking scores; not probability of liking a dish",
       "results": [
         {
           "dish_name": "Stuffed Mushrooms",
           "restaurant_name": "Mediterranean 2000",
+          "review_count": 3,
+          "score": 0.6511,
+          "similarity": 0.6248
+        },
+        {
+          "dish_name": "Stuffed Mushroom",
+          "restaurant_name": "Keating's Rope & Anchor",
           "review_count": 1,
-          "score": 0.6656,
-          "similarity": 0.6654
+          "score": 0.6494,
+          "similarity": 0.6758
+        },
+        {
+          "dish_name": "Mushrooms",
+          "restaurant_name": "Fette Sau",
+          "review_count": 2,
+          "score": 0.6466,
+          "similarity": 0.6283
+        },
+        {
+          "dish_name": "Roasted Mushrooms",
+          "restaurant_name": "Fette Sau",
+          "review_count": 2,
+          "score": 0.636,
+          "similarity": 0.6379
         },
         {
           "dish_name": "Mushroom Lasagna",
           "restaurant_name": "Kensington Quarters",
-          "review_count": 1,
-          "score": 0.5938,
-          "similarity": 0.6103
-        },
-        {
-          "dish_name": "Maitake Mushroom",
-          "restaurant_name": "Kensington Quarters",
-          "review_count": 1,
-          "score": 0.5932,
-          "similarity": 0.5803
-        },
-        {
-          "dish_name": "Portabello Mushroom Burger",
-          "restaurant_name": "GiGi Restaurant & Lounge",
-          "review_count": 1,
-          "score": 0.5665,
-          "similarity": 0.5783
-        },
-        {
-          "dish_name": "Savory Squares",
-          "restaurant_name": "Starbucks",
-          "review_count": 1,
-          "score": 0.5214,
-          "similarity": 0.4958
+          "review_count": 3,
+          "score": 0.6135,
+          "similarity": 0.5983
         }
       ]
     },
     {
       "preference": "I want a sweet dessert, such as tiramisu or cheesecake.",
       "http_status": 200,
-      "warm_request_seconds": 0.009816708043217659,
+      "warm_request_seconds": 0.011820916000033321,
       "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
       "note": "Uncalibrated ranking scores; not probability of liking a dish",
       "results": [
         {
-          "dish_name": "Cheesecake",
-          "restaurant_name": "Darling's Coffeehouse & Cheesecake",
-          "review_count": 3,
-          "score": 0.6135,
-          "similarity": 0.5806
-        },
-        {
-          "dish_name": "Tiramisu",
+          "dish_name": "Tiramisu Dessert",
           "restaurant_name": "Mediterranean 2000",
           "review_count": 1,
-          "score": 0.5936,
-          "similarity": 0.5808
+          "score": 0.6391,
+          "similarity": 0.693
+        },
+        {
+          "dish_name": "Cheesecake",
+          "restaurant_name": "Darling's Coffeehouse & Cheesecake",
+          "review_count": 8,
+          "score": 0.6279,
+          "similarity": 0.5887
+        },
+        {
+          "dish_name": "Sweet Potato Cheesecake",
+          "restaurant_name": "Butter's Soul Food",
+          "review_count": 1,
+          "score": 0.6084,
+          "similarity": 0.5981
         },
         {
           "dish_name": "Cheesecakes",
           "restaurant_name": "Darling's Coffeehouse & Cheesecake",
-          "review_count": 2,
-          "score": 0.5842,
-          "similarity": 0.5549
+          "review_count": 3,
+          "score": 0.6061,
+          "similarity": 0.5719
         },
         {
-          "dish_name": "Cheesecake",
-          "restaurant_name": "Al's Italiano Pizzeria & Ristorante",
-          "review_count": 2,
-          "score": 0.5783,
-          "similarity": 0.548
-        },
-        {
-          "dish_name": "Rasmalai",
-          "restaurant_name": "Rasavat",
+          "dish_name": "Baklava Cheesecake",
+          "restaurant_name": "Zesty's",
           "review_count": 1,
-          "score": 0.5249,
-          "similarity": 0.4999
+          "score": 0.602,
+          "similarity": 0.6199
         }
       ]
     },
     {
       "preference": "I love spicy, savory food with rich flavors.",
       "http_status": 200,
-      "warm_request_seconds": 0.009895041934214532,
+      "warm_request_seconds": 0.010640999999850465,
       "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
       "note": "Uncalibrated ranking scores; not probability of liking a dish",
       "results": [
         {
-          "dish_name": "Steak Tacos",
-          "restaurant_name": "Unity Taqueria",
+          "dish_name": "Spicy Fish",
+          "restaurant_name": "Nile Cafe",
           "review_count": 2,
-          "score": 0.6473,
-          "similarity": 0.6292
+          "score": 0.6501,
+          "similarity": 0.6546
         },
         {
-          "dish_name": "Queso And Chips",
-          "restaurant_name": "Unity Taqueria",
+          "dish_name": "Spicy Bbq Sauce",
+          "restaurant_name": "Glick’s Rib Shack",
           "review_count": 1,
-          "score": 0.6264,
-          "similarity": 0.6194
+          "score": 0.6415,
+          "similarity": 0.637
         },
         {
-          "dish_name": "Mexicano",
-          "restaurant_name": "El Cafeito",
+          "dish_name": "Sweet Chili Super Spicy",
+          "restaurant_name": "Crunchik'n",
           "review_count": 1,
-          "score": 0.6179,
-          "similarity": 0.6093
+          "score": 0.6404,
+          "similarity": 0.6358
         },
         {
-          "dish_name": "Szcheuan Spicy",
-          "restaurant_name": "K Pot South Philly",
+          "dish_name": "Spicy Beef Starter",
+          "restaurant_name": "Kensington Quarters",
           "review_count": 1,
-          "score": 0.6148,
-          "similarity": 0.6057
+          "score": 0.6401,
+          "similarity": 0.6354
         },
         {
-          "dish_name": "Chicken With Garlic Sauce",
-          "restaurant_name": "Oriental Kitchen",
+          "dish_name": "Spicy Slaw",
+          "restaurant_name": "Fette Sau",
           "review_count": 1,
-          "score": 0.6049,
-          "similarity": 0.594
+          "score": 0.6389,
+          "similarity": 0.6339
         }
       ]
     }
@@ -252,7 +252,7 @@
   "limitations": [
     "This checks real inference, API integration and row alignment; it is not a recommendation relevance benchmark.",
     "Sampled historical reviews do not establish current menu availability, dietary safety or restaurant status.",
-    "Dish extraction was Codex-assistant annotation, not a run of Qwen; no model weights were fine-tuned.",
+    "The manifest identifies the actual extraction route and any reused annotations; no model weights were fine-tuned.",
     "The semantic spot audit was performed by AI, not a human reviewer.",
     "Warm request timings exclude process startup, model loading, network and browser rendering."
   ]

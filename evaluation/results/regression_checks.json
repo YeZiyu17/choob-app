@@ -1,0 +1,14 @@
+{
+  "created_utc": "2026-10-29T08:25:41.281911+00:00",
+  "client_date": "2026-10-29",
+  "tests_run": 54,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "success": true,
+  "elapsed_seconds": 0.21330070800013345,
+  "synthetic_fixtures_and_mocks": true,
+  "ai_accuracy_or_human_relevance_evaluation": false,
+  "manifest_sha256": "e27a685839eee9a64de449f22e5513b69ef1807fe4b954d6c06273db58e83fcb",
+  "scope": "Program contracts: source evidence, input provenance, metadata, artifact loading, API validation/ranking and recognition scope policy. No model downloads."
+}

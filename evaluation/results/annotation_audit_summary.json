@@ -1,0 +1,13 @@
+{
+  "review_count": 24,
+  "accepted_dish_records_checked": 41,
+  "AI_corrected_review_cases": 4,
+  "human_evaluation": false,
+  "accuracy_estimated": false,
+  "reference_was_frozen_before_outputs": true,
+  "corrected_cases_are_iteration_not_untouched_holdout": true,
+  "annotation_sha256": "71f177fdc8cad050489922cda7347fc9e962058e36574b07b16e87381bf32719",
+  "reference_sha256": "80f73f2440b6080170d4064015d432d1f80a0f58122aa1f3768c81582d1a604b",
+  "private_audit_sha256": "1ac57adb20cf538d43e05fc09e844b804f0ae7ef7c05289643dbd87f289fb202",
+  "limitations": "Small AI-assisted source cross-check, not human gold or recommendation relevance evaluation. Some sentiment and generic-name policy disagreements remain."
+}

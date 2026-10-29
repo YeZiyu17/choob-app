@@ -1,0 +1,141 @@
+{
+  "created_utc": "2026-10-29T08:30:00.652501+00:00",
+  "served_over_network": true,
+  "url": "http://127.0.0.1:7860",
+  "actual_model_inference": true,
+  "build_version": "5a7c04c0a5f0",
+  "checks": [
+    {
+      "case": "current_build_summary",
+      "http_status": 200,
+      "network_seconds": 0.014821665999988909,
+      "response": {
+        "build_version": "5a7c04c0a5f0",
+        "created_utc": "2026-10-29T08:24:35.975357+00:00",
+        "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "extracted_review_dish_records": 8667,
+        "extraction_model": "Codex assistant annotation (exact runtime version not recorded)",
+        "extraction_route": "supplied_codex_annotations",
+        "failed_reviews": 0,
+        "human_evaluation_completed": false,
+        "input_restaurants": 123,
+        "input_reviews": 3526,
+        "manifest_sha256": "e27a685839eee9a64de449f22e5513b69ef1807fe4b954d6c06273db58e83fcb",
+        "recommendation_rows": 5993,
+        "restaurant_catalog_size": 5855,
+        "restaurants_with_recommendations": 123,
+        "selected_restaurants": 123,
+        "selected_reviews": 3526,
+        "source_version": "4c539c2a290d",
+        "zero_dish_reviews": 361
+      }
+    },
+    {
+      "case": "new_cuisine_preference",
+      "http_status": 200,
+      "network_seconds": 4.466328542000156,
+      "response": {
+        "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+        "note": "Uncalibrated ranking scores; not probability of liking a dish",
+        "results": [
+          {
+            "dish_name": "Pho",
+            "restaurant_name": "Hello Vietnam",
+            "review_count": 7,
+            "score": 0.735,
+            "similarity": 0.7078
+          },
+          {
+            "dish_name": "Pho",
+            "restaurant_name": "Pho Cyclo Cafe",
+            "review_count": 14,
+            "score": 0.7281,
+            "similarity": 0.7022
+          },
+          {
+            "dish_name": "Pho",
+            "restaurant_name": "Pho Street",
+            "review_count": 14,
+            "score": 0.7186,
+            "similarity": 0.702
+          },
+          {
+            "dish_name": "Plain Pho",
+            "restaurant_name": "Pho Street",
+            "review_count": 1,
+            "score": 0.7124,
+            "similarity": 0.7205
+          },
+          {
+            "dish_name": "Chicken Pho",
+            "restaurant_name": "Pho Cali Vietnamese Restaurant",
+            "review_count": 1,
+            "score": 0.7075,
+            "similarity": 0.7147
+          }
+        ]
+      }
+    },
+    {
+      "case": "unverified_allergy_request",
+      "http_status": 422,
+      "network_seconds": 0.003770082999835722,
+      "response": {
+        "error": "This version matches taste, but cannot verify dietary or allergy requirements from reviews. Try a dish or flavor preference."
+      }
+    },
+    {
+      "case": "empty_preference",
+      "http_status": 400,
+      "network_seconds": 0.0014155839999148156,
+      "response": {
+        "error": "Please provide a food preference of 1–1000 characters."
+      }
+    },
+    {
+      "case": "actual_clip_image_inference",
+      "http_status": 200,
+      "network_seconds": 2.7157443339992824,
+      "response": {
+        "accepted": true,
+        "alternatives": [
+          {
+            "dish_name": "Pasta",
+            "relative_score": 0.00565
+          },
+          {
+            "dish_name": "Hamburger",
+            "relative_score": 0.00014
+          }
+        ],
+        "category": "Pizza",
+        "cuisine": "Italian",
+        "dish_name": "Pizza",
+        "message": "Confirm or correct this suggested dish before collecting.",
+        "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
+        "needs_user_confirmation": true,
+        "relative_score": 0.99419,
+        "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+        "status": "supported",
+        "suggested_dish": "Pizza",
+        "supported_labels": [
+          "ramen",
+          "sushi",
+          "dumplings",
+          "fried rice",
+          "pad thai",
+          "pizza",
+          "pasta",
+          "hamburger",
+          "tacos"
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Local HTTP checks, not a browser user-flow test or public deployment.",
+    "One CLIP request checks actual inference only, not recognition accuracy.",
+    "Timings include local HTTP and any first model load; not a controlled latency benchmark.",
+    "Human recommendation relevance evaluation remains pending."
+  ]
+}

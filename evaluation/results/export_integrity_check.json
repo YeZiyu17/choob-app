@@ -1,0 +1,26 @@
+{
+  "input_reviews": 3526,
+  "mentions": 8667,
+  "pairs": 5993,
+  "restaurants": 123,
+  "embedding_shape": [
+    5993,
+    384
+  ],
+  "old711_pair_keys_retained": 711,
+  "single_review_pairs": 4852,
+  "multi_review_pairs": 1141,
+  "status_counts": {
+    "processed": 3165,
+    "zero_dishes": 361
+  },
+  "model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "output_hashes_match": true,
+  "ai_quality_metric": false,
+  "manifest_sha256": "e27a685839eee9a64de449f22e5513b69ef1807fe4b954d6c06273db58e83fcb",
+  "build_version": "5a7c04c0a5f0",
+  "output_sha256": {
+    "choob_recommendation_data.csv": "af7cbc241e1dc6ccf7ac40a96891a7ee4ed5f42568eebea02f219d7cf55d786f",
+    "choob_dish_embeddings.npy": "3d8c0ad52e5d83c6af5929d4e59784e49673239bd0a88dd20e462be5aacbfe31"
+  }
+}
