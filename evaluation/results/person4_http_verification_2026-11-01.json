@@ -1,0 +1,320 @@
+{
+  "created_utc": "2026-11-01T20:11:08.950215+00:00",
+  "base_url": "http://127.0.0.1:7861",
+  "served_over_network": true,
+  "actual_model_inference": true,
+  "checks": {
+    "home": {
+      "http_status": 200,
+      "seconds": 0.021968958993966226,
+      "contains_original_ui_copy": true
+    },
+    "status": {
+      "http_status": 200,
+      "seconds": 0.005065170000307262,
+      "response": {
+        "api": "running",
+        "recognition": "CLIP prompt ensemble + scope check (weights download on first use)",
+        "recognition_config_present": true,
+        "recommendation_data_present": true,
+        "recommendation_embeddings_present": true
+      }
+    },
+    "current_build_summary": {
+      "http_status": 200,
+      "seconds": 0.005578846001299098,
+      "response": {
+        "build_version": "5a7c04c0a5f0",
+        "created_utc": "2026-10-29T08:24:35.975357+00:00",
+        "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "extracted_review_dish_records": 8667,
+        "extraction_model": "Codex assistant annotation (exact runtime version not recorded)",
+        "extraction_route": "supplied_codex_annotations",
+        "failed_reviews": 0,
+        "human_evaluation_completed": false,
+        "input_restaurants": 123,
+        "input_reviews": 3526,
+        "manifest_sha256": "e27a685839eee9a64de449f22e5513b69ef1807fe4b954d6c06273db58e83fcb",
+        "recommendation_rows": 5993,
+        "restaurant_catalog_size": 5855,
+        "restaurants_with_recommendations": 123,
+        "selected_restaurants": 123,
+        "selected_reviews": 3526,
+        "source_version": "4c539c2a290d",
+        "zero_dish_reviews": 361
+      }
+    },
+    "recommendations": [
+      {
+        "http_status": 200,
+        "seconds": 8.57370935400104,
+        "response": {
+          "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+          "note": "Uncalibrated ranking scores; not probability of liking a dish",
+          "results": [
+            {
+              "dish_name": "Sushi",
+              "restaurant_name": "Engimono Sushi",
+              "review_count": 6,
+              "score": 0.727,
+              "similarity": 0.7119
+            },
+            {
+              "dish_name": "Sushi",
+              "restaurant_name": "Sakana Omakasè Sushi",
+              "review_count": 7,
+              "score": 0.7134,
+              "similarity": 0.7119
+            },
+            {
+              "dish_name": "Lunch Sushi Special",
+              "restaurant_name": "Kinme",
+              "review_count": 1,
+              "score": 0.704,
+              "similarity": 0.7105
+            },
+            {
+              "dish_name": "Sushi",
+              "restaurant_name": "Sky Asian Bistro",
+              "review_count": 6,
+              "score": 0.6922,
+              "similarity": 0.671
+            },
+            {
+              "dish_name": "Sushi Boat",
+              "restaurant_name": "Engimono Sushi",
+              "review_count": 1,
+              "score": 0.6904,
+              "similarity": 0.6946
+            }
+          ]
+        },
+        "preference": "I want sushi with fresh fish.",
+        "timing_kind": "cold request: model load + inference + HTTP"
+      },
+      {
+        "http_status": 200,
+        "seconds": 0.03306796700053383,
+        "response": {
+          "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+          "note": "Uncalibrated ranking scores; not probability of liking a dish",
+          "results": [
+            {
+              "dish_name": "Tiramisu Dessert",
+              "restaurant_name": "Mediterranean 2000",
+              "review_count": 1,
+              "score": 0.6391,
+              "similarity": 0.693
+            },
+            {
+              "dish_name": "Cheesecake",
+              "restaurant_name": "Darling's Coffeehouse & Cheesecake",
+              "review_count": 8,
+              "score": 0.6279,
+              "similarity": 0.5887
+            },
+            {
+              "dish_name": "Sweet Potato Cheesecake",
+              "restaurant_name": "Butter's Soul Food",
+              "review_count": 1,
+              "score": 0.6084,
+              "similarity": 0.5981
+            },
+            {
+              "dish_name": "Cheesecakes",
+              "restaurant_name": "Darling's Coffeehouse & Cheesecake",
+              "review_count": 3,
+              "score": 0.6061,
+              "similarity": 0.5719
+            },
+            {
+              "dish_name": "Baklava Cheesecake",
+              "restaurant_name": "Zesty's",
+              "review_count": 1,
+              "score": 0.602,
+              "similarity": 0.6199
+            }
+          ]
+        },
+        "preference": "I want a sweet dessert, such as tiramisu or cheesecake.",
+        "timing_kind": "warm inference + HTTP"
+      },
+      {
+        "http_status": 200,
+        "seconds": 0.024298165997606702,
+        "response": {
+          "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+          "note": "Uncalibrated ranking scores; not probability of liking a dish",
+          "results": [
+            {
+              "dish_name": "Spicy Fish",
+              "restaurant_name": "Nile Cafe",
+              "review_count": 2,
+              "score": 0.6501,
+              "similarity": 0.6546
+            },
+            {
+              "dish_name": "Spicy Bbq Sauce",
+              "restaurant_name": "Glick’s Rib Shack",
+              "review_count": 1,
+              "score": 0.6415,
+              "similarity": 0.637
+            },
+            {
+              "dish_name": "Sweet Chili Super Spicy",
+              "restaurant_name": "Crunchik'n",
+              "review_count": 1,
+              "score": 0.6404,
+              "similarity": 0.6358
+            },
+            {
+              "dish_name": "Spicy Beef Starter",
+              "restaurant_name": "Kensington Quarters",
+              "review_count": 1,
+              "score": 0.6401,
+              "similarity": 0.6354
+            },
+            {
+              "dish_name": "Spicy Slaw",
+              "restaurant_name": "Fette Sau",
+              "review_count": 1,
+              "score": 0.6389,
+              "similarity": 0.6339
+            }
+          ]
+        },
+        "preference": "I love spicy, savory food with rich flavors.",
+        "timing_kind": "warm inference + HTTP"
+      }
+    ],
+    "distinct_recommendation_lists": 3,
+    "recognition_photos": [
+      {
+        "http_status": 200,
+        "seconds": 20.63237860600202,
+        "response": {
+          "accepted": true,
+          "alternatives": [
+            {
+              "dish_name": "Hamburger",
+              "relative_score": 0.00284
+            },
+            {
+              "dish_name": "Pasta",
+              "relative_score": 0.00114
+            }
+          ],
+          "category": "Pizza",
+          "cuisine": "Italian",
+          "dish_name": "Pizza",
+          "message": "Confirm or correct this suggested dish before collecting.",
+          "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
+          "needs_user_confirmation": true,
+          "relative_score": 0.99544,
+          "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+          "status": "supported",
+          "suggested_dish": "Pizza",
+          "supported_labels": [
+            "ramen",
+            "sushi",
+            "dumplings",
+            "fried rice",
+            "pad thai",
+            "pizza",
+            "pasta",
+            "hamburger",
+            "tacos"
+          ]
+        },
+        "file_name": "pizza-wikimedia.jpeg",
+        "sha256": "a5c3fe114e310199c76b59336b451de2a9ba6f8c23d37744cbde0c357cda9819",
+        "bytes": 1339708,
+        "timing_kind": "cold request: model load + inference + HTTP"
+      },
+      {
+        "http_status": 200,
+        "seconds": 0.689632237998012,
+        "response": {
+          "accepted": false,
+          "alternatives": [
+            {
+              "dish_name": "Dumplings",
+              "relative_score": 0.00571
+            },
+            {
+              "dish_name": "Fried Rice",
+              "relative_score": 0.00093
+            }
+          ],
+          "category": "Unknown",
+          "cuisine": "Unknown",
+          "dish_name": "Unknown",
+          "message": "This photo may show an unsupported dish or an unclear image. Enter the dish name manually or try another photo.",
+          "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
+          "needs_user_confirmation": true,
+          "relative_score": 0.99169,
+          "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+          "status": "uncertain",
+          "suggested_dish": "Sushi",
+          "supported_labels": [
+            "ramen",
+            "sushi",
+            "dumplings",
+            "fried rice",
+            "pad thai",
+            "pizza",
+            "pasta",
+            "hamburger",
+            "tacos"
+          ]
+        },
+        "file_name": "sushi-wikimedia.jpg",
+        "sha256": "1c83bce3be348d73d9e6bf6687fbbc197087c5fd4de9b3493deeb992fd3f93aa",
+        "bytes": 3363998,
+        "timing_kind": "warm inference + HTTP"
+      }
+    ],
+    "errors": {
+      "empty_preference": {
+        "http_status": 400,
+        "seconds": 0.003512142000545282,
+        "response": {
+          "error": "Please provide a food preference of 1–1000 characters."
+        }
+      },
+      "dietary_request": {
+        "http_status": 422,
+        "seconds": 0.0032679089999874122,
+        "response": {
+          "error": "This version matches taste, but cannot verify dietary or allergy requirements from reviews. Try a dish or flavor preference."
+        }
+      },
+      "missing_image": {
+        "http_status": 400,
+        "seconds": 0.004649221002182458,
+        "response": {
+          "error": "Upload a JPG, PNG or WebP food photo."
+        }
+      },
+      "invalid_image": {
+        "http_status": 400,
+        "seconds": 0.24193909499445,
+        "response": {
+          "error": "The file is not a valid image."
+        }
+      },
+      "oversized_upload": {
+        "http_status": 413,
+        "seconds": 0.038731824002752546,
+        "response": {
+          "error": "Photo must be smaller than 8 MB."
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Loopback HTTP and browser checks are local, not public deployment tests.",
+    "Two photos are a demo check, not a recognition-accuracy estimate.",
+    "Recommendation results verify real inference and changing outputs, not human relevance."
+  ]
+}

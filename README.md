@@ -32,6 +32,22 @@ python app.py
 
 Open **http://localhost:7860**. First image inference downloads CLIP weights and may take a while. The first recommendation downloads MiniLM weights. Both need internet and enough RAM.
 
+### Intel Mac (x86_64, Python 3.11)
+
+`torch>=2.3` is not installable on some Intel Macs. Do not downgrade the shared requirements for every platform. Use the separate, verified compatibility profile instead:
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements-intel-mac.txt
+python -m pip check
+python cache_models.py
+python app.py
+```
+
+See [docs/INTEL_MAC_SETUP.md](docs/INTEL_MAC_SETUP.md) for clean-install evidence, model verification, stopping the server and troubleshooting. See [docs/PERSON4_DEMO_HANDOFF.md](docs/PERSON4_DEMO_HANDOFF.md) for the November 2 demo runbook and current verification record.
+
 Check connection: http://localhost:7860/api/status
 
 Keep `recognition.py` and `recognition_config.json` with `app.py`. The scope threshold is tied to a fingerprint of the prompt vocabulary. Changing that vocabulary requires recalibration; an absent or stale configuration causes recognition to return a clear backend error instead of silently using an arbitrary threshold.

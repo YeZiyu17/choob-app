@@ -28,10 +28,11 @@ COUNT_COLUMNS = (
 class FixedUnitEmbedder:
     instances = []
 
-    def __init__(self, model_name, device="cpu", revision=None):
+    def __init__(self, model_name, device="cpu", revision=None, local_files_only=False):
         self.model_name = model_name
         self.device = device
         self.revision = revision
+        self.local_files_only = local_files_only
         self.calls = []
         self.instances.append(self)
 
@@ -94,6 +95,22 @@ class _RecommendationFixture(unittest.TestCase):
 
 
 class RecommendationLoadingTests(_RecommendationFixture):
+    def test_minilm_uses_cache_first_then_downloads_only_on_cache_miss(self):
+        calls = []
+
+        class CacheMissThenLoad(FixedUnitEmbedder):
+            def __init__(self, model_name, device="cpu", revision=None, local_files_only=False):
+                calls.append(local_files_only)
+                if local_files_only:
+                    raise OSError("cache miss")
+                super().__init__(model_name, device=device, revision=revision,
+                                 local_files_only=local_files_only)
+
+        with patch.object(sys.modules["sentence_transformers"], "SentenceTransformer", CacheMissThenLoad):
+            _, _, model = backend.load_recommender()
+        self.assertEqual(calls, [True, False])
+        self.assertFalse(model.local_files_only)
+
     def test_manifest_detects_mixed_or_modified_export_pair(self):
         paths = [self.directory / "choob_recommendation_data.csv",
                  self.directory / "choob_dish_embeddings.npy"]
@@ -115,6 +132,7 @@ class RecommendationLoadingTests(_RecommendationFixture):
         np.testing.assert_allclose(embeddings, self.embeddings)
         self.assertEqual(model.model_name, "sentence-transformers/all-MiniLM-L6-v2")
         self.assertEqual(model.device, "cpu")
+        self.assertTrue(model.local_files_only)
         self.assertIs(backend.load_recommender()[2], model)
         self.assertEqual(len(FixedUnitEmbedder.instances), 1)
 

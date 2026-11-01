@@ -20,8 +20,10 @@ from recognition import CATEGORY_MAP, DishRecognizer, load_threshold
 
 BASE = Path(__file__).resolve().parent
 DATA = BASE / "data"
+MAX_IMAGE_BYTES = 8 * 1024 * 1024
 app = Flask(__name__)
-app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
+# Leave room for multipart headers, then enforce the exact file limit below.
+app.config["MAX_CONTENT_LENGTH"] = MAX_IMAGE_BYTES + 64 * 1024
 
 
 @app.get("/")
@@ -116,8 +118,16 @@ def recommendation_summary_api():
 def get_clip():
     from transformers import CLIPModel, CLIPProcessor
     model_id = "openai/clip-vit-base-patch32"
-    model = CLIPModel.from_pretrained(model_id)
-    processor = CLIPProcessor.from_pretrained(model_id)
+    # Cached demos should continue to work when classroom Wi-Fi is unavailable.
+    # If the cache is absent, fall back to the normal download behavior.
+    try:
+        model = CLIPModel.from_pretrained(model_id, local_files_only=True)
+    except OSError:
+        model = CLIPModel.from_pretrained(model_id)
+    try:
+        processor = CLIPProcessor.from_pretrained(model_id, local_files_only=True)
+    except OSError:
+        processor = CLIPProcessor.from_pretrained(model_id)
     model.eval()
     return model, processor
 
@@ -140,12 +150,14 @@ def recognize():
         raw = upload.read()
         if not raw:
             return jsonify(error="The uploaded file is empty."), 400
-        image = Image.open(io.BytesIO(raw))
-        image.verify()
-        image = Image.open(io.BytesIO(raw))
-        if image.width * image.height > 16_000_000:
-            return jsonify(error="Please use an image smaller than 16 megapixels."), 400
-        image = ImageOps.exif_transpose(image).convert("RGB")
+        if len(raw) > MAX_IMAGE_BYTES:
+            return jsonify(error="Photo must be smaller than 8 MB."), 413
+        with Image.open(io.BytesIO(raw)) as opened:
+            opened.verify()
+        with Image.open(io.BytesIO(raw)) as opened:
+            if opened.width * opened.height > 16_000_000:
+                return jsonify(error="Please use an image smaller than 16 megapixels."), 400
+            image = ImageOps.exif_transpose(opened).convert("RGB")
     except (UnidentifiedImageError, OSError, ValueError, Image.DecompressionBombError):
         return jsonify(error="The file is not a valid image."), 400
 
@@ -230,7 +242,14 @@ def _load_recommender_version(directory, version, manifest_raw):
     model_options = {"device": "cpu"}
     if manifest.get("embedding_model_revision"):
         model_options["revision"] = manifest["embedding_model_revision"]
-    model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", **model_options)
+    try:
+        model = SentenceTransformer(
+            "sentence-transformers/all-MiniLM-L6-v2",
+            local_files_only=True,
+            **model_options,
+        )
+    except OSError:
+        model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", **model_options)
     return df, embeddings, model
 
 

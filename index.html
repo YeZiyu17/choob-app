@@ -75,7 +75,7 @@
       <input id="correctedDish" class="input-choob" type="text" placeholder="Dish name" />
       <button class="primary" id="saveRecognizedDish">✓ Confirm & add to Food Passport</button>
     </div>
-    <div class="upload-box"><label for="photoUpload"><b>Choose a food photo</b><span>JPG / PNG · Upload your own photo to run inference</span></label><input type="file" id="photoUpload" accept="image/jpeg,image/png,image/webp" /></div>
+    <div class="upload-box"><label for="photoUpload"><b>Choose a food photo</b><span>JPG / PNG / WebP · Maximum 8 MB · Upload your own photo to run live inference</span></label><input type="file" id="photoUpload" accept="image/jpeg,image/png,image/webp" /></div>
     <p id="cameraHint" style="text-align:center;color:var(--muted);font-size:13px">Upload a photo, then tap the round button to analyze it.</p>
     <button class="text-action" data-nav="resultsScreen">View evaluation results →</button>
   </section>
@@ -223,12 +223,13 @@
   document.getElementById('closeDetail').addEventListener('click',()=>document.getElementById('dishDetail').classList.add('hidden'));
   // User collections are a local prototype, not a shared account or database.
   const COLLECTION_KEY = 'choob.saved.v1';
-  function getSaved(){try{const x=JSON.parse(localStorage.getItem(COLLECTION_KEY)||'[]');return Array.isArray(x)?x:[]}catch{return []}}
+  function getSaved(){try{const x=JSON.parse(localStorage.getItem(COLLECTION_KEY)||'[]');return Array.isArray(x)?x.filter(item=>item&&isValidDishName(item.dish_name)):[]}catch{return []}}
   function isValidDishName(name){return typeof name==='string' && !!name.trim() && !/^(unknown|uncertain|unsupported(?: dish)?|uncertain\s*\/\s*unsupported dish)$/i.test(name.trim())}
+  function collectionKey(item){const normalize=value=>String(value||'').trim().toLocaleLowerCase();return `${normalize(item.dish_name)}\u0000${normalize(item.restaurant_name)}`}
   function addSaved(item){
     if(!item || !isValidDishName(item.dish_name))return false;
     const list=getSaved();
-    const duplicate=list.some(x=>x.dish_name.toLowerCase()===item.dish_name.trim().toLowerCase() && (x.restaurant_name||'')===(item.restaurant_name||''));
+    const duplicate=list.some(x=>collectionKey(x)===collectionKey(item));
     if(!duplicate){list.push({...item,dish_name:item.dish_name.trim(),saved_at:new Date().toISOString()});localStorage.setItem(COLLECTION_KEY,JSON.stringify(list));}
     renderSaved();
     const t=document.getElementById('toast');t.textContent=duplicate?'Already in your collection':'Added to your Food Passport!';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);
@@ -240,12 +241,13 @@
     if(!list.length){const p=document.createElement('p');p.className='pitch';p.textContent='No dishes saved yet. Try Snap or Discover.';wrap.append(p);return}
     for(const x of [...list].reverse()){
       const div=document.createElement('div');div.className='saved-entry';const b=document.createElement('b');b.textContent=x.dish_name;
-      const small=document.createElement('small');small.textContent=[x.restaurant_name,x.cuisine,x.category].filter(Boolean).join(' · ')||'My discovery';div.append(b,small);wrap.append(div);
+      const small=document.createElement('small');small.textContent=[x.source,x.restaurant_name,x.cuisine,x.category].filter(Boolean).join(' · ')||'My discovery';div.append(b,small);wrap.append(div);
     }
   }
   renderSaved();
-  document.getElementById('collectBtn').addEventListener('click',e=>{addSaved({dish_name:'Blaze Ramen',restaurant_name:'Sample restaurant (illustrative)'});e.target.textContent='✓ Collected';e.target.classList.add('done')});
-  let selectedImage=null,recognitionVersion=0,currentPrediction=null;
+  document.getElementById('collectBtn').addEventListener('click',e=>{const added=addSaved({dish_name:'Blaze Ramen',restaurant_name:'Sample restaurant (illustrative)',source:'Illustrative sample'});e.target.textContent=added?'✓ Collected':'Already collected';e.target.classList.add('done')});
+  const CLIENT_MAX_IMAGE_BYTES=8*1024*1024,REQUEST_TIMEOUT_MS=180000;
+  let selectedImage=null,recognitionVersion=0,currentPrediction=null,recognitionController=null;
   function clearRecognition(){
     currentPrediction=null;
     document.getElementById('scanResult').classList.remove('show');
@@ -258,9 +260,11 @@
   }
   document.getElementById('photoUpload').addEventListener('change',e=>{
     const file=e.target.files[0];selectedImage=file||null;
+    if(recognitionController)recognitionController.abort();
     recognitionVersion++;clearRecognition();document.getElementById('camera').classList.remove('scanning');
     if(!file){document.getElementById('cameraHint').textContent='Choose a photo to analyze.';return;}
     if(!['image/jpeg','image/png','image/webp'].includes(file.type)){document.getElementById('cameraHint').textContent='Please choose a JPG, PNG or WebP photo.';selectedImage=null;return;}
+    if(file.size>CLIENT_MAX_IMAGE_BYTES){document.getElementById('cameraHint').textContent='Photo must be smaller than 8 MB.';selectedImage=null;return;}
     const img=document.querySelector('.camera-photo');if(img.dataset.blobUrl)URL.revokeObjectURL(img.dataset.blobUrl);
     img.src=URL.createObjectURL(file);img.dataset.blobUrl=img.src;
     document.getElementById('cameraHint').textContent=`Ready to analyze: ${file.name}`;
@@ -268,11 +272,15 @@
   document.getElementById('shutter').addEventListener('click',async()=>{
     const hint=document.getElementById('cameraHint'),camera=document.getElementById('camera');
     if(!selectedImage){hint.textContent='Choose your own photo using the upload field below first.';return;}
+    if(recognitionController)recognitionController.abort();
+    const controller=new AbortController();recognitionController=controller;let timedOut=false;
+    const timeout=setTimeout(()=>{timedOut=true;controller.abort()},REQUEST_TIMEOUT_MS);
     const version=++recognitionVersion;clearRecognition();
     camera.classList.add('scanning');hint.textContent='Running the CLIP model; first request may take a minute while loading...';
     const body=new FormData();body.append('image',selectedImage);
     try{
-      const r=await fetch('/api/recognize',{method:'POST',body});const result=await r.json();
+      const r=await fetch('/api/recognize',{method:'POST',body,signal:controller.signal});
+      const result=await r.json().catch(()=>{throw new Error('The server returned an invalid response.')});
       if(version!==recognitionVersion)return;
       if(!r.ok)throw new Error(result.error||'Recognition is unavailable');
       const uncertain=result.status==='uncertain' || result.accepted===false || !isValidDishName(result.dish_name);
@@ -288,21 +296,28 @@
       document.getElementById('recognitionNote').textContent=[result.message,scoreNote,`${result.model||'CLIP'} · ${(100*(result.relative_score||0)).toFixed(1)}% relative score`].filter(Boolean).join(' ');
       document.getElementById('scanResult').classList.add('show');
       hint.textContent=uncertain?'Please enter the dish name manually before collecting.':'Recognition complete. Please confirm or edit the dish name.';
-    }catch(err){if(version===recognitionVersion){clearRecognition();hint.textContent=`Recognition unavailable: ${err.message}`;}}
-    finally{if(version===recognitionVersion)camera.classList.remove('scanning')}
+    }catch(err){if(version===recognitionVersion){clearRecognition();const message=timedOut?'Request timed out after 3 minutes. Check the server and model cache.':err.name==='AbortError'?'Request cancelled.':err.message;hint.textContent=`Recognition unavailable: ${message}`;}}
+    finally{clearTimeout(timeout);if(version===recognitionVersion)camera.classList.remove('scanning')}
   });
   document.getElementById('saveRecognizedDish').addEventListener('click',()=>{
     if(!currentPrediction){document.getElementById('cameraHint').textContent='Analyze the current photo before collecting.';return;}
     const dish=document.getElementById('correctedDish').value.trim();if(!isValidDishName(dish)){document.getElementById('cameraHint').textContent='Enter a dish name instead of Unknown or Uncertain.';return}
     const unchanged=currentPrediction.accepted && dish.toLowerCase()===currentPrediction.dish_name.trim().toLowerCase();
-    addSaved({dish_name:dish,cuisine:unchanged?currentPrediction.cuisine||'Unknown':'Unknown',category:unchanged?currentPrediction.category||'Unknown':'Unknown'});show('collectionScreen');
+    addSaved({dish_name:dish,cuisine:unchanged?currentPrediction.cuisine||'Unknown':'Unknown',category:unchanged?currentPrediction.category||'Unknown':'Unknown',source:unchanged?'Live Snap inference':'Snap · manual dish name'});show('collectionScreen');
   });
+  let recommendationVersion=0,recommendationController=null;
   document.getElementById('findDishes').addEventListener('click',async()=>{
     const input=document.getElementById('preferenceInput').value.trim();const hint=document.getElementById('recommendHint');const wrap=document.getElementById('liveRecommendations');
-    if(!input){hint.textContent='Enter a preference first.';return;}
+    const version=++recommendationVersion;
+    if(recommendationController)recommendationController.abort();
+    if(!input){wrap.replaceChildren();hint.textContent='Enter a preference first.';return;}
+    const controller=new AbortController();recommendationController=controller;let timedOut=false;
+    const timeout=setTimeout(()=>{timedOut=true;controller.abort()},REQUEST_TIMEOUT_MS);
     wrap.replaceChildren();hint.textContent='Finding dishes using the saved Yelp review embeddings...';
     try{
-      const r=await fetch('/api/recommend',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({preference:input,top_n:5})});const data=await r.json();
+      const r=await fetch('/api/recommend',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({preference:input,top_n:5}),signal:controller.signal});
+      const data=await r.json().catch(()=>{throw new Error('The server returned an invalid response.')});
+      if(version!==recommendationVersion)return;
       if(!r.ok)throw new Error(data.error||'Recommendations are unavailable');
       hint.textContent=`${data.results.length} dishes matched to your preference · Based on sampled Yelp reviews`;
       for(const item of data.results){
@@ -310,12 +325,13 @@
         const title=document.createElement('b');title.textContent=item.dish_name;
         const sub=document.createElement('small');sub.textContent=`${item.restaurant_name} · Review count: ${item.review_count} · Match score: ${item.score.toFixed(3)}`;
         const button=document.createElement('button');button.textContent='+ Collect dish';
-        button.addEventListener('click',()=>{addSaved({...item});button.textContent='✓ Saved'})
+        button.addEventListener('click',()=>{const added=addSaved({...item,source:'Live Discover inference'});button.textContent=added?'✓ Saved':'Already saved'})
         card.append(title,sub,button);wrap.append(card);
       }
-    }catch(err){hint.textContent='Unable to load recommendations.';const p=document.createElement('p');p.className='error-note';p.textContent=err.message;wrap.append(p)}
+    }catch(err){if(version===recommendationVersion){hint.textContent='Unable to load recommendations.';const p=document.createElement('p');p.className='error-note';p.textContent=timedOut?'Request timed out after 3 minutes. Check the server and model cache.':err.name==='AbortError'?'The previous request was cancelled.':err.message;wrap.append(p)}}
+    finally{clearTimeout(timeout)}
   });
-  document.getElementById('replayDemo').addEventListener('click',()=>{recognitionVersion++;clearRecognition();document.getElementById('camera').classList.remove('scanning');document.getElementById('cameraHint').textContent='Upload a photo, then tap the round button to analyze it.';show('snapScreen')});
+  document.getElementById('replayDemo').addEventListener('click',()=>{if(recognitionController)recognitionController.abort();recognitionVersion++;clearRecognition();document.getElementById('camera').classList.remove('scanning');document.getElementById('cameraHint').textContent='Upload a photo, then tap the round button to analyze it.';show('snapScreen')});
   document.querySelectorAll('.follow').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('on');b.textContent=b.classList.contains('on')?'Following':'Follow'}));
 </script>
 </body>

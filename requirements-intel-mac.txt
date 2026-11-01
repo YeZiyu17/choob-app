@@ -1,0 +1,12 @@
+# Intel Mac (x86_64), macOS, Python 3.11 compatibility profile.
+# Keep this separate from requirements.txt: other platforms and Docker retain
+# their newer production dependency ranges.
+numpy==1.26.4
+torch==2.2.2
+transformers==4.44.2
+sentence-transformers==3.0.1
+flask>=3,<4
+gunicorn>=21,<24
+pandas>=2,<3
+pillow>=10,<13
+requests>=2.31,<3

@@ -1,0 +1,42 @@
+{
+  "created_local_date": "2026-11-01",
+  "clean_environment": true,
+  "environment_location_committed": false,
+  "platform": {
+    "machine": "x86_64",
+    "macos": "26.7.1",
+    "python": "3.11.9"
+  },
+  "requirements_file": "requirements-intel-mac.txt",
+  "install_succeeded": true,
+  "pip_check": "No broken requirements found.",
+  "resolved_packages": {
+    "numpy": "1.26.4",
+    "torch": "2.2.2",
+    "transformers": "4.44.2",
+    "sentence-transformers": "3.0.1",
+    "flask": "3.1.3",
+    "gunicorn": "23.0.0",
+    "pandas": "2.3.3",
+    "pillow": "12.3.0",
+    "requests": "2.34.2"
+  },
+  "regression_checks": {
+    "passed": 61,
+    "failed": 0,
+    "classification": "synthetic fixtures and integration checks; not model accuracy"
+  },
+  "server_start": {
+    "home_http_status": 200,
+    "status_api_http_status": 200,
+    "home_seconds": 0.008862,
+    "status_seconds": 0.001681
+  },
+  "real_model_inference": {
+    "clip": true,
+    "minilm": true,
+    "evidence_file": "person4_clean_intel_benchmark_2026-11-01.json"
+  },
+  "model_download_seconds": null,
+  "model_download_note": "Public model files were already cached. This clean environment validates package installation, server startup and inference, but not first-time model download duration."
+}
