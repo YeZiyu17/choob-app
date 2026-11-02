@@ -27,7 +27,7 @@ def main() -> None:
 
     clip_id = "openai/clip-vit-base-patch32"
     print(f"Caching {clip_id}", flush=True)
-    model = CLIPModel.from_pretrained(clip_id)
+    model = CLIPModel.from_pretrained(clip_id, low_cpu_mem_usage=False, device_map=None)
     processor = CLIPProcessor.from_pretrained(clip_id)
     del model, processor
     gc.collect()

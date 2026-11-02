@@ -69,6 +69,46 @@ CATEGORY_MAP = {
     "tacos": ("Mexican", "Other"),
 }
 
+# Broader zero-shot suggestions are evaluated only after the calibrated scope
+# check rejects an image. They do not change supported-class acceptance or the
+# saved calibration fingerprint. Every fallback still requires user confirmation.
+FALLBACK_DESCRIPTIONS = {
+    "hot pot": ["Chinese hot pot", "Sichuan hot pot", "a communal pot of broth with sliced meat and vegetables"],
+    "oatmeal with fruit": ["oatmeal with berries and banana", "a bowl of porridge topped with fruit", "breakfast oatmeal"],
+    "rice porridge": ["rice porridge", "Chinese congee", "a bowl of savory rice porridge"],
+    "stew": ["a bowl of meat and vegetable stew", "slow cooked stew", "a rustic stew in a pot"],
+    "barbecue": ["barbecue meat", "grilled barbecue platter", "Chinese barbecue"],
+    "bibimbap": ["Korean bibimbap rice bowl", "rice with vegetables and egg"],
+    "pho": ["Vietnamese pho noodle soup", "beef pho with herbs"],
+    "curry": ["curry with rice", "a bowl of chicken curry", "a rich savory curry"],
+    "noodle soup": ["Asian noodle soup", "noodles in broth with vegetables and meat"],
+    "stir-fried noodles": ["stir fried noodles", "chow mein", "lo mein noodles"],
+    "spring rolls": ["spring rolls", "fried vegetable spring rolls"],
+    "dim sum": ["Chinese dim sum", "a selection of dim sum dishes"],
+    "peking duck": ["Peking duck", "Chinese roast duck"],
+    "fried chicken": ["fried chicken", "crispy chicken pieces"],
+    "chicken wings": ["chicken wings", "crispy fried chicken wings"],
+    "steak": ["grilled steak", "sliced beef steak"],
+    "grilled fish": ["grilled fish", "a whole cooked fish"],
+    "salmon": ["grilled salmon fillet", "cooked salmon"],
+    "salad": ["a fresh vegetable salad", "mixed green salad"],
+    "sandwich": ["a sandwich", "a filled bread sandwich"],
+    "burrito": ["Mexican burrito", "a wrapped burrito"],
+    "quesadilla": ["cheese quesadilla", "Mexican quesadilla"],
+    "nachos": ["nachos with cheese and toppings", "a plate of nachos"],
+    "pancakes": ["a stack of pancakes", "breakfast pancakes with syrup"],
+    "waffles": ["waffles", "breakfast waffles with fruit"],
+    "omelette": ["an omelette", "egg omelette with vegetables"],
+    "eggs benedict": ["eggs benedict", "poached eggs on English muffins"],
+    "french toast": ["French toast", "sweet breakfast toast with fruit"],
+    "soup": ["a bowl of soup", "vegetable soup", "meat soup"],
+    "ice cream": ["ice cream", "a bowl of ice cream"],
+    "cake": ["a slice of cake", "layer cake", "chocolate cake"],
+    "cheesecake": ["cheesecake", "a slice of cheesecake"],
+    "donuts": ["donuts", "glazed doughnuts"],
+    "fruit bowl": ["a bowl of fresh fruit", "mixed fruit bowl"],
+}
+
 
 def vocabulary_fingerprint():
     spec = {"version": VERSION, "model": MODEL_ID, "templates": TEMPLATES,
@@ -107,6 +147,21 @@ class DishRecognizer:
         prompts = [template.format(name) for name in descriptions for template in TEMPLATES]
         text = self._encode_text(prompts)
         self.prototypes = F.normalize(text.reshape(len(descriptions), len(TEMPLATES), -1).mean(1), dim=-1)
+        self.fallback_labels = list(FALLBACK_DESCRIPTIONS)
+        fallback_groups, fallback_descriptions = [], []
+        for label in self.fallback_labels:
+            first = len(fallback_descriptions)
+            fallback_descriptions.extend(FALLBACK_DESCRIPTIONS[label])
+            fallback_groups.append((first, len(fallback_descriptions)))
+        fallback_prompts = [template.format(name) for name in fallback_descriptions for template in TEMPLATES]
+        fallback_text = self._encode_text(fallback_prompts)
+        fallback_prototypes = F.normalize(
+            fallback_text.reshape(len(fallback_descriptions), len(TEMPLATES), -1).mean(1), dim=-1
+        )
+        self.fallback_prototypes = torch.stack([
+            F.normalize(fallback_prototypes[start:end].mean(0), dim=-1)
+            for start, end in fallback_groups
+        ])
         self.baseline_text = self._encode_text([f"a photo of {name}" for name in BASELINE_LABELS])
         self.logit_scale = float(model.logit_scale.detach().exp().cpu())
 
@@ -140,15 +195,21 @@ class DishRecognizer:
         supported = torch.stack([similarities[:, start:end].max(dim=1).values for start, end in self.groups], dim=1)
         relative = (supported * self.logit_scale).softmax(dim=1)
         background, background_idx = similarities[:, self.support_count:].max(dim=1)
+        fallback_similarities = features.cpu() @ self.fallback_prototypes.T
         rows = []
         for i in range(len(features)):
             order = supported[i].argsort(descending=True).tolist()
+            fallback_order = fallback_similarities[i].argsort(descending=True).tolist()
             best = float(supported[i, order[0]])
             rows.append({
                 "top_3": [{"dish_name": self.labels[j], "relative_score": float(relative[i, j])} for j in order[:3]],
                 "support_margin": best - float(background[i]),
                 "support_similarity": best, "background_similarity": float(background[i]),
                 "background_label": BACKGROUND_DESCRIPTIONS[int(background_idx[i])],
+                "fallback_top_3": [
+                    {"dish_name": self.fallback_labels[j], "similarity": float(fallback_similarities[i, j])}
+                    for j in fallback_order[:3]
+                ],
             })
         return rows
 
@@ -160,18 +221,22 @@ class DishRecognizer:
     def predict_from_scores(self, score, threshold=None):
         limit = self.threshold if threshold is None else float(threshold)
         accepted = score["support_margin"] >= limit
-        suggestion = score["top_3"][0]["dish_name"]
-        cuisine, category = CATEGORY_MAP[suggestion] if accepted else ("Unknown", "Unknown")
+        supported_suggestion = score["top_3"][0]["dish_name"]
+        fallback_suggestion = score.get("fallback_top_3", [{}])[0].get("dish_name")
+        suggestion = supported_suggestion if accepted else (fallback_suggestion or supported_suggestion)
+        cuisine, category = CATEGORY_MAP[supported_suggestion] if accepted else ("Unknown", "Unknown")
         return {
-            "dish_name": suggestion.title() if accepted else "Unknown",
+            "dish_name": supported_suggestion.title() if accepted else "Unknown",
             "suggested_dish": suggestion.title(),
             "cuisine": cuisine, "category": category,
             "status": "supported" if accepted else "uncertain", "accepted": bool(accepted),
             "relative_score": round(score["top_3"][0]["relative_score"], 5),
             "alternatives": [{"dish_name": row["dish_name"].title(), "relative_score": round(row["relative_score"], 5)} for row in score["top_3"][1:]],
             "needs_user_confirmation": True, "supported_labels": self.labels,
+            "suggestion_mode": "calibrated_supported" if accepted else "expanded_zero_shot",
             "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
-            "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+            "score_note": ("Relative ranking among nine calibrated dish families; not calibrated confidence." if accepted else
+                           "Expanded zero-shot suggestion after calibrated rejection; confirmation is required."),
             "message": ("Confirm or correct this suggested dish before collecting." if accepted else
                         "This photo may show an unsupported dish or an unclear image. Enter the dish name manually or try another photo."),
         }

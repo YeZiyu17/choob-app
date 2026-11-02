@@ -116,8 +116,13 @@ def recommendation_summary_api():
 def get_clip():
     from transformers import CLIPModel, CLIPProcessor
     model_id = "openai/clip-vit-base-patch32"
-    model = CLIPModel.from_pretrained(model_id)
+    model = CLIPModel.from_pretrained(
+        model_id,
+        low_cpu_mem_usage=False,
+        device_map=None,
+    )
     processor = CLIPProcessor.from_pretrained(model_id)
+    model = model.to("cpu")
     model.eval()
     return model, processor
 
