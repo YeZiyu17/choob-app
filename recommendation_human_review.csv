@@ -1,151 +1,151 @@
 system,ranking_source,query_id,preference,rank,dish_name,restaurant_name,review_count,human_relevant_yes_no,human_reason
-baseline,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,1,Cheesesteak,Tony's Luke,2,,
-baseline,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,2,Cheesesteak,GiGi Restaurant & Lounge,1,,
-baseline,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,3,Cheesesteaks,Station Pizza,2,,
-baseline,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,4,Meatlovers Cheesesteak,Maker artisan pizza,1,,
-baseline,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,5,Cheesesteaks,Tony's Luke,1,,
-baseline,actual_flask_response,original_sushi,I want sushi with fresh fish.,1,Sushi Roll,Mantra,1,,
-baseline,actual_flask_response,original_sushi,I want sushi with fresh fish.,2,Fresh Crawfish,Crabby Cafe - Chinatown BYOB,1,,
-baseline,actual_flask_response,original_sushi,I want sushi with fresh fish.,3,Fried Fish,E-Z Brunch,1,,
-baseline,actual_flask_response,original_sushi,I want sushi with fresh fish.,4,Crawfish,Crabby Cafe - Chinatown BYOB,3,,
-baseline,actual_flask_response,original_sushi,I want sushi with fresh fish.,5,Seafood Salad,Mipals Deli,1,,
-baseline,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,1,Stuffed Mushrooms,Mediterranean 2000,1,,
-baseline,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,2,Mushroom Lasagna,Kensington Quarters,1,,
-baseline,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,3,Maitake Mushroom,Kensington Quarters,1,,
-baseline,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,4,Portabello Mushroom Burger,GiGi Restaurant & Lounge,1,,
-baseline,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,5,Savory Squares,Starbucks,1,,
-baseline,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",1,Cheesecake,Darling's Coffeehouse & Cheesecake,3,,
-baseline,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",2,Tiramisu,Mediterranean 2000,1,,
-baseline,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",3,Cheesecakes,Darling's Coffeehouse & Cheesecake,2,,
-baseline,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",4,Cheesecake,Al's Italiano Pizzeria & Ristorante,2,,
-baseline,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",5,Rasmalai,Rasavat,1,,
-baseline,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",1,Steak Tacos,Unity Taqueria,2,,
-baseline,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",2,Queso And Chips,Unity Taqueria,1,,
-baseline,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",3,Mexicano,El Cafeito,1,,
-baseline,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",4,Szcheuan Spicy,K Pot South Philly,1,,
-baseline,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",5,Chicken With Garlic Sauce,Oriental Kitchen,1,,
-baseline,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,1,Kung Pao Chicken,A Mandarin Restaurant,1,,
-baseline,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,2,Hakka Noodles,Rasavat,1,,
-baseline,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,3,Chicken Stew Con Yellow Rice,CYM Island Kitchen,1,,
-baseline,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,4,Yellow Rice,CYM Island Kitchen,1,,
-baseline,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,5,Rice,Rasavat,2,,
-baseline,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,1,Pad Thai,The Real Lee Ahn,2,,
-baseline,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,2,Curry,Rasavat,1,,
-baseline,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,3,Chicken Madras,Rasavat,1,,
-baseline,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,4,Dal Tadka,Rasavat,1,,
-baseline,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,5,Galubki,Mom Mom's Kitchen and Polish Food Cart,1,,
-baseline,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",1,Chicken Madras,Rasavat,1,,
-baseline,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",2,Curry,Rasavat,1,,
-baseline,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",3,Stew Chicken,CYM Island Kitchen,1,,
-baseline,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",4,General Tso Chicken,Oriental Kitchen,1,,
-baseline,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",5,Sesame Chicken,Oriental Kitchen,2,,
-baseline,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,1,Sesame Chicken,Oriental Kitchen,2,,
-baseline,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,2,Stew Chicken,CYM Island Kitchen,1,,
-baseline,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,3,Great Turkey,3 J's Cafe,1,,
-baseline,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,4,"Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",Mom Mom's Kitchen and Polish Food Cart,1,,
-baseline,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,5,Chicken Stew Platters,CYM Island Kitchen,1,,
-baseline,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,1,Chocolate Croissants,Kay Kay's,1,,
-baseline,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,2,Croissants,Kay Kay's,1,,
-baseline,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,3,Croissants,Darling's Coffeehouse & Cheesecake,1,,
-baseline,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,4,Creme Brûlée French Toast,Green Eggs Café,1,,
-baseline,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,5,Creme Brulee,Kay Kay's,1,,
-baseline,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,1,Brisket,K Pot South Philly,1,,
-baseline,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,2,Bbq Burger,The Barn,1,,
-baseline,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,3,Brisket Chili,Burg's Hideaway Lounge,1,,
-baseline,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,4,Bbq Wings,The Barn,1,,
-baseline,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,5,Hell Fire Burger,The Union Tap,1,,
-baseline,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,1,Hakka Noodles,Rasavat,1,,
-baseline,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,2,Dumpling Ramen,Myung Ga Gimbap,1,,
-baseline,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,3,Chicken Noodle Salad,Mantra,1,,
-baseline,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,4,Chicken And Steak Fajitas,Adobe Cafe,1,,
-baseline,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,5,"Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",Mom Mom's Kitchen and Polish Food Cart,1,,
-baseline,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,1,Chicken With Garlic Sauce,Oriental Kitchen,1,,
-baseline,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,2,Dal Tadka,Rasavat,1,,
-baseline,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,3,Szcheuan Spicy,K Pot South Philly,1,,
-baseline,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,4,Brisket Chili,Burg's Hideaway Lounge,1,,
-baseline,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,5,Chicken Madras,Rasavat,1,,
-baseline,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",1,Bibimbap,Myung Ga Gimbap,1,,
-baseline,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",2,Korean Sausage,Myung Ga Gimbap,1,,
-baseline,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",3,Kimbap,Myung Ga Gimbap,2,,
-baseline,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",4,"Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",Mom Mom's Kitchen and Polish Food Cart,1,,
-baseline,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",5,Kimchi Kimbap,Myung Ga Gimbap,1,,
-baseline,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",1,Chicken With Garlic Sauce,Oriental Kitchen,1,,
-baseline,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",2,General Tso Chicken,Oriental Kitchen,1,,
-baseline,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",3,Chicken 65,Rasavat,2,,
-baseline,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",4,Stew Chicken,CYM Island Kitchen,1,,
-baseline,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",5,Spicy Chicken Salad Sandwich,3 J's Cafe,2,,
-current,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,1,Cheesesteak,Mipals Deli,4,,
-current,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,2,Cheesesteak,Mom Mom's Kitchen and Polish Food Cart,1,,
-current,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,3,Cheesesteak,The Union Tap,1,,
-current,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,4,Cheesesteak,Morea,1,,
-current,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,5,Cheesesteak,Chuck's Alibi,4,,
-current,actual_flask_response,original_sushi,I want sushi with fresh fish.,1,Sushi,Engimono Sushi,6,,
-current,actual_flask_response,original_sushi,I want sushi with fresh fish.,2,Sushi,Sakana Omakasè Sushi,7,,
-current,actual_flask_response,original_sushi,I want sushi with fresh fish.,3,Lunch Sushi Special,Kinme,1,,
-current,actual_flask_response,original_sushi,I want sushi with fresh fish.,4,Sushi,Sky Asian Bistro,6,,
-current,actual_flask_response,original_sushi,I want sushi with fresh fish.,5,Sushi Boat,Engimono Sushi,1,,
-current,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,1,Stuffed Mushrooms,Mediterranean 2000,3,,
-current,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,2,Stuffed Mushroom,Keating's Rope & Anchor,1,,
-current,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,3,Mushrooms,Fette Sau,2,,
-current,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,4,Roasted Mushrooms,Fette Sau,2,,
-current,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,5,Mushroom Lasagna,Kensington Quarters,3,,
-current,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",1,Tiramisu Dessert,Mediterranean 2000,1,,
-current,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",2,Cheesecake,Darling's Coffeehouse & Cheesecake,8,,
-current,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",3,Sweet Potato Cheesecake,Butter's Soul Food,1,,
-current,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",4,Cheesecakes,Darling's Coffeehouse & Cheesecake,3,,
-current,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",5,Baklava Cheesecake,Zesty's,1,,
-current,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",1,Spicy Fish,Nile Cafe,2,,
-current,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",2,Spicy Bbq Sauce,Glick’s Rib Shack,1,,
-current,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",3,Sweet Chili Super Spicy,Crunchik'n,1,,
-current,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",4,Spicy Beef Starter,Kensington Quarters,1,,
-current,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",5,Spicy Slaw,Fette Sau,1,,
-current,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,1,Pho,Hello Vietnam,7,,
-current,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,2,Pho,Pho Cyclo Cafe,14,,
-current,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,3,Pho,Pho Street,14,,
-current,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,4,Plain Pho,Pho Street,1,,
-current,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,5,Chicken Pho,Pho Cali Vietnamese Restaurant,1,,
-current,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,1,Pumpkin Curry,Circles Contemporary Asian,4,,
-current,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,2,Coconut Milk With Mushroom And Tofu Soup,Circles Contemporary Asian,1,,
-current,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,3,Coconut Milk Soup,Circles Contemporary Asian,1,,
-current,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,4,Mango Curry,House of Thai Cuisine,1,,
-current,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,5,Chicken Soup With Coconut Milk,Tamarind,1,,
-current,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",1,Spicy Chicken Curry,Azaad Foods,1,,
-current,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",2,Chicken Curry,Rasavat,2,,
-current,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",3,Chicken Curry,Azaad Foods,3,,
-current,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",4,Chicken Curries,Ekta Indian Cuisine,1,,
-current,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",5,Green Curry With Chicken,Circles Contemporary Asian,1,,
-current,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,1,Lentils,Meskerem Ethiopian Restaurant,3,,
-current,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,2,Vegetarian Combo,Meskerem Ethiopian Restaurant,7,,
-current,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,3,Lentils,Kaffa Crossing,1,,
-current,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,4,Lentils,Almaz Cafe,1,,
-current,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,5,Chicken Stew,Dahlak,1,,
-current,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,1,Chocolate Pot De Cremes,Perla,1,,
-current,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,2,Crepe Cake,Burg's Hideaway Lounge,2,,
-current,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,3,Illy Espresso Crème Brûlée,Amuse,1,,
-current,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,4,Crepe Caramel,Caribou Cafe,1,,
-current,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,5,Crêpe Bretonne With Salted Caramel,Caribou Cafe,1,,
-current,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,1,Beef Brisket,Fette Sau,3,,
-current,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,2,Brisket,Fette Sau,11,,
-current,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,3,Brisket,Tradesman's,9,,
-current,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,4,Beef Brisket,Tradesman's,1,,
-current,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,5,Brisket Sandwich,Fette Sau,1,,
-current,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,1,Ramen,Sky Asian Bistro,2,,
-current,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,2,Spicy Chicken Soy Ramen,Noobar,1,,
-current,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,3,Noodles,Sky Asian Bistro,1,,
-current,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,4,Chicken Noodles,Noobar,1,,
-current,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,5,Vegetarian Ramen,Noobar,2,,
-current,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,1,Chicken With Garlic Sauce,Oriental Kitchen,1,,
-current,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,2,Hot & Spicy Chicken,Ray's Café & Teahouse,1,,
-current,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,3,Sweet Chili Super Spicy,Crunchik'n,1,,
-current,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,4,Spicy Beef Noodle,Cafe Diem,1,,
-current,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,5,Sweet Chili,Crunchik'n,1,,
-current,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",1,Vegetable Bibimbap,BAP,2,,
-current,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",2,Bibimbap,BAP,8,,
-current,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",3,Bibimbap,KAMI Philadelphia,5,,
-current,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",4,Bibimbap,Koreana,3,,
-current,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",5,Bibimbap,Myung Ga Gimbap,1,,
-current,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",1,Jerk Chicken,Jamaican D's,13,,
-current,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",2,Jerk Chicken,Caribbean Delight,9,,
-current,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",3,Jerk Chicken With Jerk Sauce,Jamaican D's,1,,
-current,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",4,Jerk Chicken,Jamaica Way,12,,
-current,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",5,Jerk Chicken Meal,Jamaican D's,1,,
+baseline,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,1,Cheesesteak,Tony's Luke,2,yes,"Cheesesteak is a cheesesteak, which directly matches the request for a juicy cheesesteak with melted cheese."
+baseline,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,2,Cheesesteak,GiGi Restaurant & Lounge,1,yes,"Cheesesteak is a cheesesteak, which directly matches the request for a juicy cheesesteak with melted cheese."
+baseline,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,3,Cheesesteaks,Station Pizza,2,yes,"Cheesesteaks is a cheesesteak, which directly matches the request for a juicy cheesesteak with melted cheese."
+baseline,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,4,Meatlovers Cheesesteak,Maker artisan pizza,1,yes,"Meatlovers Cheesesteak is a cheesesteak, which directly matches the request for a juicy cheesesteak with melted cheese."
+baseline,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,5,Cheesesteaks,Tony's Luke,1,yes,"Cheesesteaks is a cheesesteak, which directly matches the request for a juicy cheesesteak with melted cheese."
+baseline,actual_flask_response,original_sushi,I want sushi with fresh fish.,1,Sushi Roll,Mantra,1,yes,"Sushi Roll is explicitly a sushi dish, matching the request for sushi with fresh fish."
+baseline,actual_flask_response,original_sushi,I want sushi with fresh fish.,2,Fresh Crawfish,Crabby Cafe - Chinatown BYOB,1,no,"Fresh Crawfish is seafood or fish, but it is not identified as sushi, so it does not match the sushi preference."
+baseline,actual_flask_response,original_sushi,I want sushi with fresh fish.,3,Fried Fish,E-Z Brunch,1,no,"Fried Fish is seafood or fish, but it is not identified as sushi, so it does not match the sushi preference."
+baseline,actual_flask_response,original_sushi,I want sushi with fresh fish.,4,Crawfish,Crabby Cafe - Chinatown BYOB,3,no,"Crawfish is seafood or fish, but it is not identified as sushi, so it does not match the sushi preference."
+baseline,actual_flask_response,original_sushi,I want sushi with fresh fish.,5,Seafood Salad,Mipals Deli,1,no,"Seafood Salad is seafood or fish, but it is not identified as sushi, so it does not match the sushi preference."
+baseline,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,1,Stuffed Mushrooms,Mediterranean 2000,1,yes,"Stuffed Mushrooms contains mushrooms as the main ingredient, matching the request for a hearty mushroom dish."
+baseline,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,2,Mushroom Lasagna,Kensington Quarters,1,yes,"Mushroom Lasagna contains mushrooms as the main ingredient, matching the request for a hearty mushroom dish."
+baseline,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,3,Maitake Mushroom,Kensington Quarters,1,yes,"Maitake Mushroom contains mushrooms as the main ingredient, matching the request for a hearty mushroom dish."
+baseline,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,4,Portabello Mushroom Burger,GiGi Restaurant & Lounge,1,yes,"Portabello Mushroom Burger contains mushrooms as the main ingredient, matching the request for a hearty mushroom dish."
+baseline,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,5,Savory Squares,Starbucks,1,no,"Savory Squares does not mention mushrooms, so it does not match the request for a hearty mushroom dish."
+baseline,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",1,Cheesecake,Darling's Coffeehouse & Cheesecake,3,yes,"Cheesecake is a sweet dessert, matching the request for a dessert such as tiramisu or cheesecake."
+baseline,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",2,Tiramisu,Mediterranean 2000,1,yes,"Tiramisu is a sweet dessert, matching the request for a dessert such as tiramisu or cheesecake."
+baseline,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",3,Cheesecakes,Darling's Coffeehouse & Cheesecake,2,yes,"Cheesecakes is a sweet dessert, matching the request for a dessert such as tiramisu or cheesecake."
+baseline,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",4,Cheesecake,Al's Italiano Pizzeria & Ristorante,2,yes,"Cheesecake is a sweet dessert, matching the request for a dessert such as tiramisu or cheesecake."
+baseline,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",5,Rasmalai,Rasavat,1,yes,"Rasmalai is a sweet dessert, matching the request for a dessert such as tiramisu or cheesecake."
+baseline,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",1,Steak Tacos,Unity Taqueria,2,no,"Steak Tacos may be savory, but its name does not clearly indicate that it is spicy food."
+baseline,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",2,Queso And Chips,Unity Taqueria,1,no,"Queso And Chips may be savory, but its name does not clearly indicate that it is spicy food."
+baseline,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",3,Mexicano,El Cafeito,1,no,"Mexicano may be savory, but its name does not clearly indicate that it is spicy food."
+baseline,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",4,Szcheuan Spicy,K Pot South Philly,1,yes,"Szcheuan Spicy is explicitly described as spicy or includes a spicy ingredient, matching the request for spicy, savory food."
+baseline,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",5,Chicken With Garlic Sauce,Oriental Kitchen,1,no,"Chicken With Garlic Sauce may be savory, but its name does not clearly indicate that it is spicy food."
+baseline,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,1,Kung Pao Chicken,A Mandarin Restaurant,1,no,Kung Pao Chicken is not pho and does not clearly contain the requested Vietnamese broth and rice noodles.
+baseline,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,2,Hakka Noodles,Rasavat,1,no,Hakka Noodles is not pho and does not clearly contain the requested Vietnamese broth and rice noodles.
+baseline,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,3,Chicken Stew Con Yellow Rice,CYM Island Kitchen,1,no,Chicken Stew Con Yellow Rice is not pho and does not clearly contain the requested Vietnamese broth and rice noodles.
+baseline,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,4,Yellow Rice,CYM Island Kitchen,1,no,Yellow Rice is not pho and does not clearly contain the requested Vietnamese broth and rice noodles.
+baseline,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,5,Rice,Rasavat,2,no,Rice is not pho and does not clearly contain the requested Vietnamese broth and rice noodles.
+baseline,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,1,Pad Thai,The Real Lee Ahn,2,no,Pad Thai is not clearly Thai curry; its name indicates a different dish or cuisine.
+baseline,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,2,Curry,Rasavat,1,yes,"Curry includes curry or coconut milk, which is consistent with a Thai curry preference."
+baseline,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,3,Chicken Madras,Rasavat,1,no,Chicken Madras is not clearly Thai curry; its name indicates a different dish or cuisine.
+baseline,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,4,Dal Tadka,Rasavat,1,no,Dal Tadka is not clearly Thai curry; its name indicates a different dish or cuisine.
+baseline,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,5,Galubki,Mom Mom's Kitchen and Polish Food Cart,1,no,Galubki is not clearly Thai curry; its name indicates a different dish or cuisine.
+baseline,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",1,Chicken Madras,Rasavat,1,yes,"Chicken Madras is a chicken curry, directly matching the request for Indian curry."
+baseline,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",2,Curry,Rasavat,1,yes,"Curry is a chicken curry, directly matching the request for Indian curry."
+baseline,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",3,Stew Chicken,CYM Island Kitchen,1,no,Stew Chicken is not clearly Indian curry; its name indicates a different dish or cuisine.
+baseline,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",4,General Tso Chicken,Oriental Kitchen,1,no,General Tso Chicken is not clearly Indian curry; its name indicates a different dish or cuisine.
+baseline,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",5,Sesame Chicken,Oriental Kitchen,2,no,Sesame Chicken is not clearly Indian curry; its name indicates a different dish or cuisine.
+baseline,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,1,Sesame Chicken,Oriental Kitchen,2,no,"Sesame Chicken does not clearly indicate Ethiopian food or injera, so it does not match the preference."
+baseline,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,2,Stew Chicken,CYM Island Kitchen,1,no,"Stew Chicken does not clearly indicate Ethiopian food or injera, so it does not match the preference."
+baseline,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,3,Great Turkey,3 J's Cafe,1,no,"Great Turkey does not clearly indicate Ethiopian food or injera, so it does not match the preference."
+baseline,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,4,"Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",Mom Mom's Kitchen and Polish Food Cart,1,no,"Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage does not clearly indicate Ethiopian food or injera, so it does not match the preference."
+baseline,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,5,Chicken Stew Platters,CYM Island Kitchen,1,no,"Chicken Stew Platters does not clearly indicate Ethiopian food or injera, so it does not match the preference."
+baseline,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,1,Chocolate Croissants,Kay Kay's,1,no,"Chocolate Croissants is a dessert, but it is not a crepe, so it does not directly match the request for French crepes."
+baseline,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,2,Croissants,Kay Kay's,1,no,"Croissants is a dessert, but it is not a crepe, so it does not directly match the request for French crepes."
+baseline,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,3,Croissants,Darling's Coffeehouse & Cheesecake,1,no,"Croissants is a dessert, but it is not a crepe, so it does not directly match the request for French crepes."
+baseline,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,4,Creme Brûlée French Toast,Green Eggs Café,1,no,"Creme Brûlée French Toast is a dessert, but it is not a crepe, so it does not directly match the request for French crepes."
+baseline,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,5,Creme Brulee,Kay Kay's,1,no,"Creme Brulee is a dessert, but it is not a crepe, so it does not directly match the request for French crepes."
+baseline,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,1,Brisket,K Pot South Philly,1,yes,"Brisket contains brisket, directly matching the request for BBQ brisket."
+baseline,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,2,Bbq Burger,The Barn,1,no,"Bbq Burger is BBQ food, but it does not contain brisket, so it does not match the brisket preference."
+baseline,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,3,Brisket Chili,Burg's Hideaway Lounge,1,yes,"Brisket Chili contains brisket, directly matching the request for BBQ brisket."
+baseline,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,4,Bbq Wings,The Barn,1,no,"Bbq Wings is BBQ food, but it does not contain brisket, so it does not match the brisket preference."
+baseline,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,5,Hell Fire Burger,The Union Tap,1,no,"Hell Fire Burger is BBQ food, but it does not contain brisket, so it does not match the brisket preference."
+baseline,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,1,Hakka Noodles,Rasavat,1,no,"Hakka Noodles is a noodle dish, but it is not clearly ramen, so it does not directly match the request for Japanese ramen."
+baseline,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,2,Dumpling Ramen,Myung Ga Gimbap,1,yes,"Dumpling Ramen is ramen, directly matching the request for Japanese ramen."
+baseline,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,3,Chicken Noodle Salad,Mantra,1,no,"Chicken Noodle Salad is a noodle dish, but it is not clearly ramen, so it does not directly match the request for Japanese ramen."
+baseline,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,4,Chicken And Steak Fajitas,Adobe Cafe,1,no,"Chicken And Steak Fajitas is a noodle dish, but it is not clearly ramen, so it does not directly match the request for Japanese ramen."
+baseline,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,5,"Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",Mom Mom's Kitchen and Polish Food Cart,1,no,"Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage is a noodle dish, but it is not clearly ramen, so it does not directly match the request for Japanese ramen."
+baseline,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,1,Chicken With Garlic Sauce,Oriental Kitchen,1,yes,"Chicken With Garlic Sauce is explicitly spicy or uses a Chinese-style sauce/noodle preparation, matching the request for Chinese spicy food."
+baseline,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,2,Dal Tadka,Rasavat,1,no,"Dal Tadka contains chili or a sweet-chili flavor, but it is not clearly a Chinese spicy dish."
+baseline,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,3,Szcheuan Spicy,K Pot South Philly,1,yes,"Szcheuan Spicy is explicitly spicy or uses a Chinese-style sauce/noodle preparation, matching the request for Chinese spicy food."
+baseline,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,4,Brisket Chili,Burg's Hideaway Lounge,1,no,"Brisket Chili contains chili or a sweet-chili flavor, but it is not clearly a Chinese spicy dish."
+baseline,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,5,Chicken Madras,Rasavat,1,no,"Chicken Madras contains chili or a sweet-chili flavor, but it is not clearly a Chinese spicy dish."
+baseline,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",1,Bibimbap,Myung Ga Gimbap,1,yes,"Bibimbap is bibimbap, directly matching the request for Korean bibimbap."
+baseline,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",2,Korean Sausage,Myung Ga Gimbap,1,no,"Korean Sausage may be Korean food, but it is not bibimbap, so it does not match the preference."
+baseline,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",3,Kimbap,Myung Ga Gimbap,2,no,"Kimbap may be Korean food, but it is not bibimbap, so it does not match the preference."
+baseline,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",4,"Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage",Mom Mom's Kitchen and Polish Food Cart,1,no,"Stew With Kielbasa, Lima Beans, Potatoes, Shredded Beef And Cabbage may be Korean food, but it is not bibimbap, so it does not match the preference."
+baseline,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",5,Kimchi Kimbap,Myung Ga Gimbap,1,no,"Kimchi Kimbap may be Korean food, but it is not bibimbap, so it does not match the preference."
+baseline,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",1,Chicken With Garlic Sauce,Oriental Kitchen,1,no,"Chicken With Garlic Sauce is a chicken dish, but it is not identified as Caribbean jerk chicken."
+baseline,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",2,General Tso Chicken,Oriental Kitchen,1,no,"General Tso Chicken is a chicken dish, but it is not identified as Caribbean jerk chicken."
+baseline,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",3,Chicken 65,Rasavat,2,no,"Chicken 65 is a chicken dish, but it is not identified as Caribbean jerk chicken."
+baseline,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",4,Stew Chicken,CYM Island Kitchen,1,no,"Stew Chicken is a chicken dish, but it is not identified as Caribbean jerk chicken."
+baseline,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",5,Spicy Chicken Salad Sandwich,3 J's Cafe,2,no,"Spicy Chicken Salad Sandwich is a chicken dish, but it is not identified as Caribbean jerk chicken."
+current,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,1,Cheesesteak,Mipals Deli,4,yes,"Cheesesteak is a cheesesteak, which directly matches the request for a juicy cheesesteak with melted cheese."
+current,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,2,Cheesesteak,Mom Mom's Kitchen and Polish Food Cart,1,yes,"Cheesesteak is a cheesesteak, which directly matches the request for a juicy cheesesteak with melted cheese."
+current,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,3,Cheesesteak,The Union Tap,1,yes,"Cheesesteak is a cheesesteak, which directly matches the request for a juicy cheesesteak with melted cheese."
+current,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,4,Cheesesteak,Morea,1,yes,"Cheesesteak is a cheesesteak, which directly matches the request for a juicy cheesesteak with melted cheese."
+current,actual_flask_response,original_cheesesteak,I want a juicy cheesesteak with melted cheese.,5,Cheesesteak,Chuck's Alibi,4,yes,"Cheesesteak is a cheesesteak, which directly matches the request for a juicy cheesesteak with melted cheese."
+current,actual_flask_response,original_sushi,I want sushi with fresh fish.,1,Sushi,Engimono Sushi,6,yes,"Sushi is explicitly a sushi dish, matching the request for sushi with fresh fish."
+current,actual_flask_response,original_sushi,I want sushi with fresh fish.,2,Sushi,Sakana Omakasè Sushi,7,yes,"Sushi is explicitly a sushi dish, matching the request for sushi with fresh fish."
+current,actual_flask_response,original_sushi,I want sushi with fresh fish.,3,Lunch Sushi Special,Kinme,1,yes,"Lunch Sushi Special is explicitly a sushi dish, matching the request for sushi with fresh fish."
+current,actual_flask_response,original_sushi,I want sushi with fresh fish.,4,Sushi,Sky Asian Bistro,6,yes,"Sushi is explicitly a sushi dish, matching the request for sushi with fresh fish."
+current,actual_flask_response,original_sushi,I want sushi with fresh fish.,5,Sushi Boat,Engimono Sushi,1,yes,"Sushi Boat is explicitly a sushi dish, matching the request for sushi with fresh fish."
+current,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,1,Stuffed Mushrooms,Mediterranean 2000,3,yes,"Stuffed Mushrooms contains mushrooms as the main ingredient, matching the request for a hearty mushroom dish."
+current,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,2,Stuffed Mushroom,Keating's Rope & Anchor,1,yes,"Stuffed Mushroom contains mushrooms as the main ingredient, matching the request for a hearty mushroom dish."
+current,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,3,Mushrooms,Fette Sau,2,yes,"Mushrooms contains mushrooms as the main ingredient, matching the request for a hearty mushroom dish."
+current,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,4,Roasted Mushrooms,Fette Sau,2,yes,"Roasted Mushrooms contains mushrooms as the main ingredient, matching the request for a hearty mushroom dish."
+current,actual_flask_response,original_mushroom,I want a hearty mushroom dish.,5,Mushroom Lasagna,Kensington Quarters,3,yes,"Mushroom Lasagna contains mushrooms as the main ingredient, matching the request for a hearty mushroom dish."
+current,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",1,Tiramisu Dessert,Mediterranean 2000,1,yes,"Tiramisu Dessert is a sweet dessert, matching the request for a dessert such as tiramisu or cheesecake."
+current,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",2,Cheesecake,Darling's Coffeehouse & Cheesecake,8,yes,"Cheesecake is a sweet dessert, matching the request for a dessert such as tiramisu or cheesecake."
+current,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",3,Sweet Potato Cheesecake,Butter's Soul Food,1,yes,"Sweet Potato Cheesecake is a sweet dessert, matching the request for a dessert such as tiramisu or cheesecake."
+current,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",4,Cheesecakes,Darling's Coffeehouse & Cheesecake,3,yes,"Cheesecakes is a sweet dessert, matching the request for a dessert such as tiramisu or cheesecake."
+current,actual_flask_response,original_dessert,"I want a sweet dessert, such as tiramisu or cheesecake.",5,Baklava Cheesecake,Zesty's,1,yes,"Baklava Cheesecake is a sweet dessert, matching the request for a dessert such as tiramisu or cheesecake."
+current,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",1,Spicy Fish,Nile Cafe,2,yes,"Spicy Fish is explicitly described as spicy or includes a spicy ingredient, matching the request for spicy, savory food."
+current,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",2,Spicy Bbq Sauce,Glick’s Rib Shack,1,yes,"Spicy Bbq Sauce is explicitly described as spicy or includes a spicy ingredient, matching the request for spicy, savory food."
+current,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",3,Sweet Chili Super Spicy,Crunchik'n,1,yes,"Sweet Chili Super Spicy is explicitly described as spicy or includes a spicy ingredient, matching the request for spicy, savory food."
+current,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",4,Spicy Beef Starter,Kensington Quarters,1,yes,"Spicy Beef Starter is explicitly described as spicy or includes a spicy ingredient, matching the request for spicy, savory food."
+current,actual_flask_response,original_spicy,"I love spicy, savory food with rich flavors.",5,Spicy Slaw,Fette Sau,1,yes,"Spicy Slaw is explicitly described as spicy or includes a spicy ingredient, matching the request for spicy, savory food."
+current,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,1,Pho,Hello Vietnam,7,yes,"Pho is pho, directly matching the request for Vietnamese pho with broth and rice noodles."
+current,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,2,Pho,Pho Cyclo Cafe,14,yes,"Pho is pho, directly matching the request for Vietnamese pho with broth and rice noodles."
+current,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,3,Pho,Pho Street,14,yes,"Pho is pho, directly matching the request for Vietnamese pho with broth and rice noodles."
+current,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,4,Plain Pho,Pho Street,1,yes,"Plain Pho is pho, directly matching the request for Vietnamese pho with broth and rice noodles."
+current,actual_flask_response,vietnamese_pho,I want Vietnamese pho with a fragrant beef broth and rice noodles.,5,Chicken Pho,Pho Cali Vietnamese Restaurant,1,yes,"Chicken Pho is pho, directly matching the request for Vietnamese pho with broth and rice noodles."
+current,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,1,Pumpkin Curry,Circles Contemporary Asian,4,yes,"Pumpkin Curry includes curry or coconut milk, which is consistent with a Thai curry preference."
+current,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,2,Coconut Milk With Mushroom And Tofu Soup,Circles Contemporary Asian,1,yes,"Coconut Milk With Mushroom And Tofu Soup includes curry or coconut milk, which is consistent with a Thai curry preference."
+current,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,3,Coconut Milk Soup,Circles Contemporary Asian,1,yes,"Coconut Milk Soup includes curry or coconut milk, which is consistent with a Thai curry preference."
+current,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,4,Mango Curry,House of Thai Cuisine,1,yes,"Mango Curry includes curry or coconut milk, which is consistent with a Thai curry preference."
+current,actual_flask_response,thai_curry,I want a spicy Thai curry with coconut milk.,5,Chicken Soup With Coconut Milk,Tamarind,1,yes,"Chicken Soup With Coconut Milk includes curry or coconut milk, which is consistent with a Thai curry preference."
+current,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",1,Spicy Chicken Curry,Azaad Foods,1,yes,"Spicy Chicken Curry is a chicken curry, directly matching the request for Indian curry."
+current,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",2,Chicken Curry,Rasavat,2,yes,"Chicken Curry is a chicken curry, directly matching the request for Indian curry."
+current,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",3,Chicken Curry,Azaad Foods,3,yes,"Chicken Curry is a chicken curry, directly matching the request for Indian curry."
+current,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",4,Chicken Curries,Ekta Indian Cuisine,1,yes,"Chicken Curries is a chicken curry, directly matching the request for Indian curry."
+current,actual_flask_response,indian_curry,"I want an Indian chicken curry with rich, aromatic spices.",5,Green Curry With Chicken,Circles Contemporary Asian,1,no,Green Curry With Chicken is not clearly Indian curry; its name indicates a different dish or cuisine.
+current,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,1,Lentils,Meskerem Ethiopian Restaurant,3,yes,"Lentils is a lentil, vegetarian-combo, or stew dish that fits the requested Ethiopian-style meal."
+current,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,2,Vegetarian Combo,Meskerem Ethiopian Restaurant,7,yes,"Vegetarian Combo is a lentil, vegetarian-combo, or stew dish that fits the requested Ethiopian-style meal."
+current,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,3,Lentils,Kaffa Crossing,1,yes,"Lentils is a lentil, vegetarian-combo, or stew dish that fits the requested Ethiopian-style meal."
+current,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,4,Lentils,Almaz Cafe,1,yes,"Lentils is a lentil, vegetarian-combo, or stew dish that fits the requested Ethiopian-style meal."
+current,actual_flask_response,ethiopian_injera,I want Ethiopian injera with flavorful lentil and meat stews.,5,Chicken Stew,Dahlak,1,yes,"Chicken Stew is a lentil, vegetarian-combo, or stew dish that fits the requested Ethiopian-style meal."
+current,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,1,Chocolate Pot De Cremes,Perla,1,no,"Chocolate Pot De Cremes is a dessert, but it is not a crepe, so it does not directly match the request for French crepes."
+current,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,2,Crepe Cake,Burg's Hideaway Lounge,2,yes,"Crepe Cake is a crepe-based dessert, matching the request for French crepes."
+current,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,3,Illy Espresso Crème Brûlée,Amuse,1,no,"Illy Espresso Crème Brûlée is a dessert, but it is not a crepe, so it does not directly match the request for French crepes."
+current,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,4,Crepe Caramel,Caribou Cafe,1,yes,"Crepe Caramel is a crepe-based dessert, matching the request for French crepes."
+current,actual_flask_response,french_crepes,I want French crepes with a sweet filling.,5,Crêpe Bretonne With Salted Caramel,Caribou Cafe,1,yes,"Crêpe Bretonne With Salted Caramel is a crepe-based dessert, matching the request for French crepes."
+current,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,1,Beef Brisket,Fette Sau,3,yes,"Beef Brisket contains brisket, directly matching the request for BBQ brisket."
+current,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,2,Brisket,Fette Sau,11,yes,"Brisket contains brisket, directly matching the request for BBQ brisket."
+current,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,3,Brisket,Tradesman's,9,yes,"Brisket contains brisket, directly matching the request for BBQ brisket."
+current,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,4,Beef Brisket,Tradesman's,1,yes,"Beef Brisket contains brisket, directly matching the request for BBQ brisket."
+current,actual_flask_response,bbq_brisket,I want smoky BBQ beef brisket.,5,Brisket Sandwich,Fette Sau,1,yes,"Brisket Sandwich contains brisket, directly matching the request for BBQ brisket."
+current,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,1,Ramen,Sky Asian Bistro,2,yes,"Ramen is ramen, directly matching the request for Japanese ramen."
+current,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,2,Spicy Chicken Soy Ramen,Noobar,1,yes,"Spicy Chicken Soy Ramen is ramen, directly matching the request for Japanese ramen."
+current,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,3,Noodles,Sky Asian Bistro,1,no,"Noodles is a noodle dish, but it is not clearly ramen, so it does not directly match the request for Japanese ramen."
+current,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,4,Chicken Noodles,Noobar,1,no,"Chicken Noodles is a noodle dish, but it is not clearly ramen, so it does not directly match the request for Japanese ramen."
+current,actual_flask_response,japanese_ramen,I want Japanese ramen with a rich broth and noodles.,5,Vegetarian Ramen,Noobar,2,yes,"Vegetarian Ramen is ramen, directly matching the request for Japanese ramen."
+current,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,1,Chicken With Garlic Sauce,Oriental Kitchen,1,yes,"Chicken With Garlic Sauce is explicitly spicy or uses a Chinese-style sauce/noodle preparation, matching the request for Chinese spicy food."
+current,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,2,Hot & Spicy Chicken,Ray's Café & Teahouse,1,yes,"Hot & Spicy Chicken is explicitly spicy or uses a Chinese-style sauce/noodle preparation, matching the request for Chinese spicy food."
+current,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,3,Sweet Chili Super Spicy,Crunchik'n,1,yes,"Sweet Chili Super Spicy is explicitly spicy or uses a Chinese-style sauce/noodle preparation, matching the request for Chinese spicy food."
+current,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,4,Spicy Beef Noodle,Cafe Diem,1,yes,"Spicy Beef Noodle is explicitly spicy or uses a Chinese-style sauce/noodle preparation, matching the request for Chinese spicy food."
+current,actual_flask_response,chinese_spicy,I want a spicy Chinese dish with chili and Sichuan pepper.,5,Sweet Chili,Crunchik'n,1,no,"Sweet Chili contains chili or a sweet-chili flavor, but it is not clearly a Chinese spicy dish."
+current,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",1,Vegetable Bibimbap,BAP,2,yes,"Vegetable Bibimbap is bibimbap, directly matching the request for Korean bibimbap."
+current,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",2,Bibimbap,BAP,8,yes,"Bibimbap is bibimbap, directly matching the request for Korean bibimbap."
+current,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",3,Bibimbap,KAMI Philadelphia,5,yes,"Bibimbap is bibimbap, directly matching the request for Korean bibimbap."
+current,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",4,Bibimbap,Koreana,3,yes,"Bibimbap is bibimbap, directly matching the request for Korean bibimbap."
+current,actual_flask_response,korean_bibimbap,"I want Korean bibimbap with rice, vegetables, and spicy sauce.",5,Bibimbap,Myung Ga Gimbap,1,yes,"Bibimbap is bibimbap, directly matching the request for Korean bibimbap."
+current,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",1,Jerk Chicken,Jamaican D's,13,yes,"Jerk Chicken is jerk chicken, directly matching the request for Caribbean jerk food."
+current,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",2,Jerk Chicken,Caribbean Delight,9,yes,"Jerk Chicken is jerk chicken, directly matching the request for Caribbean jerk food."
+current,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",3,Jerk Chicken With Jerk Sauce,Jamaican D's,1,yes,"Jerk Chicken With Jerk Sauce is jerk chicken, directly matching the request for Caribbean jerk food."
+current,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",4,Jerk Chicken,Jamaica Way,12,yes,"Jerk Chicken is jerk chicken, directly matching the request for Caribbean jerk food."
+current,actual_flask_response,caribbean_jerk,"I want Caribbean jerk chicken with bold, spicy seasoning.",5,Jerk Chicken Meal,Jamaican D's,1,yes,"Jerk Chicken Meal is jerk chicken, directly matching the request for Caribbean jerk food."
