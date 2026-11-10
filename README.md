@@ -26,31 +26,24 @@ The bottom navigation links to **Home, Snap, Passport, Discover, and Connect**. 
 - **Evaluation**: Open **View model evaluation report** from Snap to see recorded recognition tests and build metadata for the local recommendation data.
 - The notebook's GPU-intensive **Qwen2.5-VL-3B** is **not integrated**. Snap uses CLIP with application inference improvements; its weights have not been fine-tuned. Scope checking is a best-effort comparison against a fixed background vocabulary, not reliable identification of every food or non-food object.
 
-## Quick start (local development)
+## Quick start for rehearsal
+
+On macOS, run the commands below from the project folder. See the [team guide](TEAM_GUIDE.md#run-the-rehearsal-build) for the Windows steps.
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\\Scripts\\activate
-pip install -r requirements.txt
-python app.py
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python start_choob.py
 ```
 
-Open **http://localhost:7860**. First image inference downloads CLIP weights and may take a while. The first recommendation downloads MiniLM weights. Both need internet and enough RAM.
-
-Check connection: http://localhost:7860/api/status
+Enter your Gemini and Tavily keys when prompted, then open **http://127.0.0.1:7861/**. The first image scan downloads CLIP weights. To practice with the bundled Philadelphia data, run `python start_choob.py --local`.
 
 ### Try Discover with online menus
 
 The local mode keeps the conversation on your machine and uses the bundled Philadelphia reviews. Quick choices work without a chat model. Free text uses the cached MLX Qwen model in the sibling `recommendation-work` folder. `CHOOB_MLX_PYTHON` and `CHOOB_CHAT_MODEL_PATH` can point to a different local environment and model directory.
 
-**Gemini Flash-Lite + Tavily:** Create a key in [Google AI Studio](https://aistudio.google.com/app/apikey) and [Tavily](https://app.tavily.com/home). [Gemini 3.5 Flash-Lite](https://ai.google.dev/gemini-api/docs/pricing#gemini-3.5-flash-lite) and [Tavily](https://docs.tavily.com/documentation/api-credits) have free tiers. In macOS Terminal, with your virtual environment active and `choob-app` as your current directory, enter the keys when prompted:
-
-```zsh
-read -rs 'GEMINI_API_KEY?Gemini API key: '; printf '\n'
-read -rs 'TAVILY_API_KEY?Tavily API key: '; printf '\n'
-export GEMINI_API_KEY TAVILY_API_KEY
-CHOOB_DISCOVER_PROVIDER=gemini_tavily python -m flask --app app run --reload --host 127.0.0.1 --port 7861
-```
+**Gemini Flash-Lite + Tavily:** Create a key in [Google AI Studio](https://aistudio.google.com/app/apikey) and [Tavily](https://app.tavily.com/home). Run `python start_choob.py` and paste your keys at the hidden prompts. The launcher also reads `GEMINI_API_KEY` and `TAVILY_API_KEY` from the environment when already set.
 
 Open [the local preview](http://127.0.0.1:7861). Port 7861 lets you try the new mode alongside a running demo on 7860 and has its own browser storage. To use your existing Passport and Saved dishes, restart on port 7860 and open the same address as before. The keys stay in the server environment. Tavily searches menus in the selected city, and Gemini interprets the request and selects dishes supported by those menus. Each batch shows up to three restaurants with a reason and a source. **Show more dishes** looks for additional restaurants with the same preferences. `CHOOB_DISCOVER_CITY` sets the initial city (Philadelphia by default), and `CHOOB_GEMINI_MODEL` can override the default model.
 
@@ -109,17 +102,7 @@ The bundled dish records use **Codex-assisted annotations with exact source quot
 
 ## Collaboration
 
-All five teammates work in the same GitHub repository using their existing collaborator access. Each person creates a branch from the latest `main`, makes changes, opens a pull request, and has another teammate review it before merging. After a merge, everyone updates their local `main` before starting the next branch.
-
-| Person | Main handoff |
-|---|---|
-| 1: UI + flow | `index.html`; preserve API request and response fields |
-| 2: Data processing | Clean review/catalog CSVs using `data/README.md` |
-| 3: AI + recommendation | Model code, exports, manifest and model limitations |
-| 4: Integration + deployment | Flask/HTML integration and shared hosted URL |
-| 5: Evaluation + testing | Human-labeled relevance tests and end-to-end checks |
-
-A localhost URL is only available on the computer running Flask. Collaborator access allows code collaboration; it does not create a shared live app. Future changes should be committed on a branch and merged through a reviewed pull request so teammates can pull the same version.
+For rehearsal, create a branch from `choob-rehearsal` and open a pull request back into `choob-rehearsal`. See the [team workflow](TEAM_GUIDE.md#collaborate-on-the-code) for review and integration steps.
 
 ## Deployment
 
@@ -153,6 +136,7 @@ Hosting services vary in RAM, disk and CPU limits. Render's Free service has onl
 
 ```
 app.py              Flask backend: /api/recognize, /api/recommend
+start_choob.py      Launch the rehearsal build with Gemini + Tavily
 build_recommendations.py  Validated extraction, aggregation and aligned export
 Choob_Recommendation_Pipeline.ipynb  Self-contained Colab rebuild entry point
 recognition.py      CLIP prompt ensembles and scope decision

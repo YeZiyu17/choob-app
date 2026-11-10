@@ -2,7 +2,7 @@
 
 All five teammates use the same [GitHub repository](https://github.com/YeZiyu17/choob-app) to store and edit the code. We currently **collaborate through GitHub and run the app on our own computers**. No hosting account is required for this workflow.
 
-## Run the App Locally
+## Run the Rehearsal Build
 
 1. Install **Python 3.11**. On Windows, select **Add Python to PATH** during installation.
 2. Open the repository, select the `choob-rehearsal` branch, and choose **Code → Download ZIP**. Extract the ZIP to a folder on your computer.
@@ -15,7 +15,7 @@ macOS:
 python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python app.py
+python start_choob.py
 ```
 
 Windows (Command Prompt / CMD):
@@ -24,14 +24,14 @@ Windows (Command Prompt / CMD):
 py -3.11 -m venv .venv
 .venv\Scripts\activate.bat
 python -m pip install -r requirements.txt
-python app.py
+python start_choob.py
 ```
 
-Open **http://localhost:7860/** in your browser and keep the terminal running. To stop the server, press `Ctrl+C` in the terminal. To run the app again later, open the same folder, activate `.venv`, and run `python app.py`.
+Paste your own [Gemini key](https://aistudio.google.com/app/apikey) and [Tavily key](https://app.tavily.com/home) when prompted. The input is hidden. Open **http://127.0.0.1:7861/** and go to **Discover** to see the city menu. Keep the terminal running and press `Ctrl+C` there when you want to stop the app.
+
+For later runs, activate `.venv` and run `python start_choob.py` again. If port 7861 is busy, run `python start_choob.py --port 7863` and open the address printed by the server. To practice with the bundled Philadelphia data, run `python start_choob.py --local`.
 
 The first image recognition request downloads CLIP model weights. Stay connected and allow time and disk space for that first request. Later runs reuse the cached weights.
-
-In the default local mode, pick a cuisine and flavor in **Discover** to try the bundled Philadelphia data. Local free text requires the optional MLX setup. For the live menu search shown in the rehearsal, follow the [Gemini + Tavily setup](README.md#try-discover-with-online-menus) and use your own keys in the server environment.
 
 ## Rehearsal checklist
 
@@ -42,31 +42,21 @@ In the default local mode, pick a cuisine and flavor in **Discover** to try the 
 
 ## Collaborate on the Code
 
-Downloading the ZIP is a convenient way to try the app. For ongoing development, install **GitHub Desktop**, sign in to your GitHub account, and use **File → Clone repository → URL** to clone this repository. Everyone already has collaborator access, so there is no need to create a separate repository or fork.
+Download the ZIP to try the app. To contribute code, clone the repository in GitHub Desktop and accept the repository invitation if it's still pending.
 
 Follow these steps whenever you make changes:
 
-1. Switch to `main` and choose **Fetch origin / Pull origin** to get the team's latest code.
-2. Create your own branch from `main`, such as `person1-ui`, `person2-data`, or `person3-ai`.
-3. Edit the files, run and check the app on your computer, then **Commit → Publish branch / Push origin**.
-4. Choose **Create Pull Request**, select `main` as the target branch, and describe what changed and how you checked it.
-5. Ask another teammate to review the pull request before merging. Everyone else can then update their local `main`.
+1. Switch to `choob-rehearsal` and choose **Fetch origin / Pull origin**.
+2. Create a branch for your feature, such as `rehearsal-snap`, `rehearsal-passport`, `rehearsal-discover`, or `rehearsal-connect`.
+3. Edit and test your part, then **Commit → Publish branch / Push origin**. If you edit `index.html`, keep the changes in your screen and coordinate any shared navigation or saved-data changes.
+4. Open a pull request into `choob-rehearsal`. Include a short note on what changed and how you tested it.
+5. Pick one teammate to review and merge one PR at a time. After each merge, pull the updated rehearsal branch and run the flow that changed. Before rehearsal, do a full run on the computer you'll present from.
 
-Keep `.venv`, model caches, passwords, and raw review files that have not been approved for sharing out of GitHub. When updating the recommendation exports, keep the CSV, NPY, and manifest files from the same build together.
-
-## Team Responsibilities
-
-| Team member | Responsibility | Main handoff |
-|---|---|---|
-| Person 1 | UI Design + User Flow | Maintain `index.html` and coordinate API interfaces with Person 4 |
-| Person 2 | Data Processing | Provide cleaned review and restaurant data using the contract in `data/README.md` |
-| Person 3 | AI Model + Recommendation | Maintain recognition, recommendations, data exports, and documentation of model limitations |
-| Person 4 | App Integration + Deployment | Connect Flask to the UI, support local setup, and arrange cloud deployment if needed |
-| Person 5 | Evaluation + Testing | Test new images, evaluate recommendations manually, and check complete user flows |
+Keep API keys, `.venv`, model caches, and raw review files out of GitHub. Keep the recommendation CSV, NPY, and manifest together if updating those exports.
 
 ## What Is Shared?
 
-- **GitHub shares code and version history.** After a teammate's changes are committed and merged, others must update their local code to see them.
+- **GitHub shares code and version history.** Pull `choob-rehearsal` after a merge to get the latest rehearsal build. The earlier build is on `main`.
 - **Each teammate runs the app on their own computer.** `localhost` refers to the computer opening the page. Sending someone your localhost URL will not give them access to your app.
 - **Passport and Saved dishes use the current browser's storage.** Run the rehearsal in the same browser and at the same local address and port to see the same records.
 - If everyone later needs to use the full AI app through one shared URL, we can arrange hosting. GitHub repository pages let teammates view the code directly, but GitHub Pages cannot run this project's Flask server and Python models.
