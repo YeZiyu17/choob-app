@@ -254,6 +254,31 @@ class RecommendationApiTests(_RecommendationFixture):
         self.assertEqual([item["review_count"] for item in results], [2, 2])
         self.assertEqual(FixedUnitEmbedder.instances[0].calls, [(["synthetic preference"], True, True)])
 
+    def test_high_sentiment_cannot_make_a_low_similarity_dish_eligible(self):
+        for row, similarity in zip(self.embeddings, (0.49, 0.47)):
+            row[:2] = [similarity, math.sqrt(1 - similarity ** 2)]
+        self.write_data()
+        response = self.client.post("/api/recommend", json={"preference": "synthetic preference"})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual([item["dish_name"] for item in response.get_json()["results"]], ["Fixture A"])
+
+    def test_valid_query_with_no_close_matches_returns_an_empty_result(self):
+        embeddings = np.zeros_like(self.embeddings)
+        embeddings[:, 1] = 1
+        self.write_data(embeddings=embeddings)
+        response = self.client.post("/api/recommend", json={"preference": "a dish missing from the catalog"})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json()["results"], [])
+        self.assertIn("No close matches", response.get_json()["message"])
+
+    def test_preference_without_letters_returns_empty_results_before_loading_model(self):
+        for preference in ("12345", "???", "😄"):
+            with self.subTest(preference=preference):
+                response = self.client.post("/api/recommend", json={"preference": preference})
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.get_json()["results"], [])
+        self.assertEqual(FixedUnitEmbedder.instances, [])
+
     def test_top_n_limits_results_and_default_can_exceed_available_rows(self):
         response = self.client.post("/api/recommend", json={"preference": "synthetic preference", "top_n": 1})
         self.assertEqual(response.status_code, 200)

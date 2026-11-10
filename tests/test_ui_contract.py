@@ -39,7 +39,7 @@ class UIContractTests(unittest.TestCase):
         self.assertTrue(expected.issubset(set(self.parser.nav_targets)))
 
     def test_live_ui_keeps_backend_contracts(self):
-        for endpoint in ("/api/recognize", "/api/recommend", "/api/recommendation-summary"):
+        for endpoint in ("/api/recognize", "/api/discover/chat", "/api/recommendation-summary"):
             self.assertIn(endpoint, self.html)
         for element_id in (
             "photoUpload", "shutter", "scanResult", "correctedDish",
