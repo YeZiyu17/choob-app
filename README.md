@@ -15,14 +15,15 @@ This project preserves the group's **original Choob HTML UI**, adds real food-ph
 
 ## UI flow
 
-The presentation-ready mobile interface follows **Snap → Collect → Discover → Connect**. It keeps the existing Flask API contracts intact, adds clear journey progress, browser-local collection persistence, history-aware back navigation, responsive layouts, keyboard focus states, reduced-motion support, and stable fallback fonts. Fast UI contract checks live in `tests/test_ui_contract.py`.
+The bottom navigation links to **Home, Snap, Passport, Discover, and Connect**. **Passport** shows meals logged in Snap. **Saved dishes** is a separate list available from Discover and Connect. Both persist in the same browser. Fast UI contract checks live in `tests/test_ui_contract.py`. Use the [sample photos and rehearsal checklist](TEAM_GUIDE.md#rehearsal-checklist) to try the full flow.
 
 ## What is actually live?
 
-- **Snap**: Upload a new food image. The original pretrained **CLIP ViT-B/32** weights use four prompt templates, dish synonyms, cached text features and competing background categories. Nine calibrated dish families include generic **ramen**; tonkotsu/shoyu subtypes are not asserted. When the calibrated scope check returns **Unknown**, a separate broader zero-shot vocabulary can suggest common dishes such as hot pot, oatmeal or pho, but the suggestion always requires manual confirmation and does not count as calibrated recognition. Relative scores are **not calibrated probabilities**.
-- **Discover**: Enter an English dish or taste preference. The server uses **Sentence-Transformers all-MiniLM-L6-v2**, the bundled Yelp-derived records and embeddings, and an 85% similarity + 15% smoothed dish-sentiment formula. The current export contains **5,993 restaurant–dish pairs from 3,526 sampled reviews across 123 Philadelphia restaurants**. Common explicit dietary/allergy requests return a clear unsupported-request message; review text cannot verify ingredients or dietary suitability.
-- **Collect**: Saved dishes persist locally in the same browser via `localStorage`. There is **no multi-user account storage** yet.
-- **Connect**, sample restaurant and sample challenges: illustrative UI, **not live community data**. Results combines recorded recognition/test evidence with current recommendation-build metadata read from Flask. Open it directly from Snap using **View evaluation results**; no photo inference is needed first.
+- **Snap**: Upload one food image to get dish suggestions. **CLIP ViT-B/32** checks the full photo and crops of separate areas for distinct dish families. Review and edit the suggested dishes before logging the meal. The existing nine-family vocabulary includes generic ramen. If recognition is uncertain, enter a dish manually. Relative scores compare model labels and are not calibrated probabilities.
+- **Discover**: Choose a cuisine and flavor or type what you’re craving. Local mode uses Qwen and an export of **5,993 restaurant–dish pairs from 3,526 sampled reviews across 123 Philadelphia restaurants**. In Gemini + Tavily mode, Gemini understands the chat input and recommends dishes based on public menus Tavily finds. Each result links to its source. The original `/api/recommend` endpoint still ranks the local embeddings with MiniLM and smoothed review sentiment.
+- **Passport**: Shows meals logged in Snap and map stamps for meals with a location. Browser storage retains the meal history on the same device.
+- **Connect**: Compares distinct dish types in your Passport stamps with three demo passports. Open a match to add a dish to **Saved dishes**.
+- **Evaluation**: Open **View model evaluation report** from Snap to see recorded recognition tests and build metadata for the local recommendation data.
 - The notebook's GPU-intensive **Qwen2.5-VL-3B** is **not integrated**. Snap uses CLIP with application inference improvements; its weights have not been fine-tuned. Scope checking is a best-effort comparison against a fixed background vocabulary, not reliable identification of every food or non-food object.
 
 ## Quick start (local development)
@@ -38,11 +39,46 @@ Open **http://localhost:7860**. First image inference downloads CLIP weights and
 
 Check connection: http://localhost:7860/api/status
 
+### Try Discover with online menus
+
+The local mode keeps the conversation on your machine and uses the bundled Philadelphia reviews. Quick choices work without a chat model. Free text uses the cached MLX Qwen model in the sibling `recommendation-work` folder. `CHOOB_MLX_PYTHON` and `CHOOB_CHAT_MODEL_PATH` can point to a different local environment and model directory.
+
+**Gemini Flash-Lite + Tavily:** Create a key in [Google AI Studio](https://aistudio.google.com/app/apikey) and [Tavily](https://app.tavily.com/home). [Gemini 3.5 Flash-Lite](https://ai.google.dev/gemini-api/docs/pricing#gemini-3.5-flash-lite) and [Tavily](https://docs.tavily.com/documentation/api-credits) have free tiers. In macOS Terminal, with your virtual environment active and `choob-app` as your current directory, enter the keys when prompted:
+
+```zsh
+read -rs 'GEMINI_API_KEY?Gemini API key: '; printf '\n'
+read -rs 'TAVILY_API_KEY?Tavily API key: '; printf '\n'
+export GEMINI_API_KEY TAVILY_API_KEY
+CHOOB_DISCOVER_PROVIDER=gemini_tavily python -m flask --app app run --reload --host 127.0.0.1 --port 7861
+```
+
+Open [the local preview](http://127.0.0.1:7861). Port 7861 lets you try the new mode alongside a running demo on 7860 and has its own browser storage. To use your existing Passport and Saved dishes, restart on port 7860 and open the same address as before. The keys stay in the server environment. Tavily searches menus in the selected city, and Gemini interprets the request and selects dishes supported by those menus. Each batch shows up to three restaurants with a reason and a source. **Show more dishes** looks for additional restaurants with the same preferences. `CHOOB_DISCOVER_CITY` sets the initial city (Philadelphia by default), and `CHOOB_GEMINI_MODEL` can override the default model.
+
+For free online menu search, run the local server with Firecrawl. It accepts keyless requests with a daily limit per IP address. The app sends a menu query built from the selected city and dining preferences, and the local Qwen model selects dishes from the returned menu text. You can use `CHOOB_DISCOVER_CITY` to change the city from Philadelphia. [Firecrawl limits](https://docs.firecrawl.dev/rate-limits)
+
+```bash
+CHOOB_DISCOVER_PROVIDER=firecrawl python -m flask --app app run --host 127.0.0.1 --port 7860
+```
+
+For OpenAI search, set `OPENAI_API_KEY` in your local server shell and restart with:
+
+```bash
+CHOOB_DISCOVER_PROVIDER=openai python -m flask --app app run --host 127.0.0.1 --port 7860
+```
+
+Online Discover sends dining preferences to the OpenAI Responses API and uses web search for menu sources. You can set `CHOOB_DISCOVER_CITY` to change the search city from Philadelphia. Keep the key in the server environment. The browser receives cards and links to the menu sources.
+
+### Try the Food Passport map
+
+In Snap, analyze a photo or enter the dish name manually. You can add more dishes and save them as one meal. A meal location and photo are optional. In Passport, open a stamp to see the meal and all its dishes. From **Saved dishes**, tap **I tried this** to prefill the meal. The saved idea is removed when you successfully press **Log as eaten**. Tap **Cancel** to keep it in the list.
+
+The local map uses OpenStreetMap by default and needs an internet connection for the map tiles. To use Google Maps instead, start Flask with a website-restricted Maps JavaScript browser key in `CHOOB_GOOGLE_MAPS_BROWSER_KEY` and an optional `CHOOB_GOOGLE_MAPS_MAP_ID` (defaults to `DEMO_MAP_ID` for testing). Configure the key for the exact local origin you open.
+
 Keep `recognition.py` and `recognition_config.json` with `app.py`. The scope threshold is tied to a fingerprint of the prompt vocabulary. Changing that vocabulary requires recalibration; an absent or stale configuration causes recognition to return a clear backend error instead of silently using an arbitrary threshold.
 
 ## Recognition evaluation
 
-The original 50-photo baseline remains in `evaluation/results/README.md`. The new comparison uses 600 distinct Food-101 validation photos: 260 calibration photos followed by a frozen 340-photo holdout. Previous first-five-per-class photos are excluded. Threshold selection uses only calibration data. Ramen is scored only at family level.
+The original 50-photo baseline remains in `evaluation/results/README.md`. The single-dish comparison uses 600 distinct Food-101 validation photos: 260 calibration photos followed by a frozen 340-photo holdout. Previous first-five-per-class photos are excluded. Threshold selection uses only calibration data. Ramen is scored only at family level. The crop-based multi-dish suggestions are experimental and have not been evaluated by this comparison.
 
 See `evaluation/results/optimization_report.md` and `evaluation/results/clip_comparison.json` for results, individual predictions, limitations and sampling details. These are fixed dataset subsets; do not present them as overall real-world accuracy.
 
@@ -57,7 +93,7 @@ summary, records = run_comparison(model, processor)
 
 Use a fresh output directory for an intentional new experiment. A completed comparison is protected against accidental overwrite. Source photos are downloaded to that runtime and are not bundled with this project.
 
-Regression checks use synthetic fixtures and do not download weights (54 checks currently pass):
+Regression checks use synthetic fixtures and do not download weights:
 
 ```bash
 python -m unittest discover -s tests -v
@@ -120,6 +156,7 @@ app.py              Flask backend: /api/recognize, /api/recommend
 build_recommendations.py  Validated extraction, aggregation and aligned export
 Choob_Recommendation_Pipeline.ipynb  Self-contained Colab rebuild entry point
 recognition.py      CLIP prompt ensembles and scope decision
+multi_dish.py       Suggest distinct dishes from regions of a meal photo
 recognition_config.json  Frozen calibration threshold and vocabulary fingerprint
 index.html          Original Choob UI (updated, no frameworks required)
 evaluation/         Reproducible comparisons and recorded results

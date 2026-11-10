@@ -5,8 +5,8 @@ All five teammates use the same [GitHub repository](https://github.com/YeZiyu17/
 ## Run the App Locally
 
 1. Install **Python 3.11**. On Windows, select **Add Python to PATH** during installation.
-2. Open the repository, select the `main` branch, and choose the green **Code → Download ZIP** button. Extract the ZIP to a folder on your computer.
-3. Open a terminal in the extracted `choob-app-main` folder. Make sure it contains `app.py` and `requirements.txt`.
+2. Open the repository, select the `choob-rehearsal` branch, and choose **Code → Download ZIP**. Extract the ZIP to a folder on your computer.
+3. Open a terminal in the extracted folder. Make sure it contains `app.py` and `requirements.txt`.
 4. Run the commands for your operating system below.
 
 macOS:
@@ -29,9 +29,16 @@ python app.py
 
 Open **http://localhost:7860/** in your browser and keep the terminal running. To stop the server, press `Ctrl+C` in the terminal. To run the app again later, open the same folder, activate `.venv`, and run `python app.py`.
 
-The first image recognition and text recommendation requests download public models from the internet. Stay connected, allow several GB of free disk space, and make sure enough memory is available. The initial download and loading can take some time; close memory-intensive applications if needed. Later runs reuse the models cached on your computer.
+The first image recognition request downloads CLIP model weights. Stay connected and allow time and disk space for that first request. Later runs reuse the cached weights.
 
-Start with **Discover** and enter an English food preference, such as `cheesecake or tiramisu`. Then try uploading a food photo in **Snap**. Recommendations use sampled reviews from 123 restaurants. They do not represent complete or current menus and cannot verify dietary restrictions or allergy requirements.
+In the default local mode, pick a cuisine and flavor in **Discover** to try the bundled Philadelphia data. Local free text requires the optional MLX setup. For the live menu search shown in the rehearsal, follow the [Gemini + Tavily setup](README.md#try-discover-with-online-menus) and use your own keys in the server environment.
+
+## Rehearsal checklist
+
+- **Snap**: Start with the [sample photos](examples/snap/README.md), then try a new photo. Review or correct the dish suggestions and log them as one meal.
+- **Discover**: Select a city and try a request such as `spicy Chinese food`. Check a menu source and its reason, then try **Show more dishes** and save one dish.
+- **Passport**: Open **Saved dishes**, use **I tried this**, and confirm the meal in Snap. If you add a location, open its stamp in Passport. Refresh on the same local URL to check that the meal persists.
+- **Connect**: Log a supported dish such as sushi with a location, then check the shared stamp on a matching demo profile.
 
 ## Collaborate on the Code
 
@@ -61,5 +68,5 @@ Keep `.venv`, model caches, passwords, and raw review files that have not been a
 
 - **GitHub shares code and version history.** After a teammate's changes are committed and merged, others must update their local code to see them.
 - **Each teammate runs the app on their own computer.** `localhost` refers to the computer opening the page. Sending someone your localhost URL will not give them access to your app.
-- **Collect saves items only in the current browser.** Saved items do not automatically sync across computers or browsers. There is currently no shared team account or database.
+- **Passport and Saved dishes use the current browser's storage.** Run the rehearsal in the same browser and at the same local address and port to see the same records.
 - If everyone later needs to use the full AI app through one shared URL, we can arrange hosting. GitHub repository pages let teammates view the code directly, but GitHub Pages cannot run this project's Flask server and Python models.

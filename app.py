@@ -1,6 +1,6 @@
 """Serve the original Choob HTML and connect it to real pretrained-model inference.
 
-CLIP recognition: cached prompt ensembles plus calibrated scope checking.
+CLIP recognition: cached prompt ensembles, scope checking, and dish suggestions from crops.
 Recommendation: reproduces notebook cell 42, requiring its exported CSV and .npy.
 Models are lazily loaded to avoid downloading weights during application startup.
 """
@@ -16,17 +16,39 @@ from functools import lru_cache
 from pathlib import Path
 
 from flask import Flask, jsonify, request, send_from_directory
+from discover_ai import infer_preferences
+from discover_chat import DIETARY_MESSAGE, DIETARY_REQUEST, clean_preferences, discover_turn, review_matches
+from discover_firecrawl import FirecrawlDiscoverError, search_firecrawl
+from discover_gemini import GeminiDiscoverError, gemini_configured, infer_gemini, select_gemini_picks
+from discover_online import OnlineDiscoverError, infer_online, is_configured, search_online
+from discover_tavily import TavilyDiscoverError, search_tavily, tavily_configured
+from multi_dish import recognize_meal
 from recognition import CATEGORY_MAP, DishRecognizer, load_threshold
 
 BASE = Path(__file__).resolve().parent
 DATA = BASE / "data"
+# The 15 recorded v2 preference probes had top-five cosine similarities of
+# at least 0.572. This lower floor is a serving heuristic, not a confidence score.
+MIN_RECOMMENDATION_SIMILARITY = 0.48
+DISCOVER_CITIES = ("Philadelphia", "Los Angeles", "New York", "Chicago", "San Francisco")
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
+app.config["DISCOVER_PROVIDER"] = os.environ.get("CHOOB_DISCOVER_PROVIDER", "local").strip().lower()
+app.config["DISCOVER_CITY"] = os.environ.get("CHOOB_DISCOVER_CITY", "Philadelphia").strip() or "Philadelphia"
 
 
 @app.get("/")
 def home():
     return send_from_directory(str(BASE), "index.html")
+
+
+@app.get("/api/passport-map-config")
+def passport_map_config():
+    # Use a browser key restricted to the app's origin.
+    return jsonify({
+        "googleMapsKey": os.environ.get("CHOOB_GOOGLE_MAPS_BROWSER_KEY", ""),
+        "googleMapsMapId": os.environ.get("CHOOB_GOOGLE_MAPS_MAP_ID", "DEMO_MAP_ID"),
+    })
 
 
 @app.get("/api/status")
@@ -155,7 +177,7 @@ def recognize():
         return jsonify(error="The file is not a valid image."), 400
 
     try:
-        return jsonify(get_recognizer().predict(image))
+        return jsonify(recognize_meal(get_recognizer(), image))
     except Exception as exc:
         app.logger.exception("CLIP recognition error")
         return jsonify(error="Recognition backend unavailable. Check model downloads, server memory, and recognition_config.json."), 503
@@ -245,6 +267,23 @@ load_recommender.cache_info = _load_recommender_version.cache_info
 load_recommender.cache_parameters = _load_recommender_version.cache_parameters
 
 
+def review_sentiment(frame):
+    pos, neg, mixed, neutral = (frame[column].to_numpy(dtype=float) for column in
+                                ("positive_count", "negative_count", "mixed_count", "neutral_count"))
+    return (pos + 0.5 * mixed + 0.5 * neutral + 1) / (pos + neg + mixed + neutral + 2)
+
+
+def recommendation_response(results):
+    response = {
+        "results": results,
+        "model": "all-MiniLM-L6-v2 + Yelp review sentiment",
+        "note": "Uncalibrated ranking scores; not probability of liking a dish",
+    }
+    if not results:
+        response["message"] = "No close matches in our Philadelphia reviews. Try a dish name or a food preference like ‘crispy chicken’."
+    return jsonify(response)
+
+
 @app.post("/api/recommend")
 def recommend():
     import numpy as np
@@ -260,12 +299,14 @@ def recommend():
         return jsonify(error="Please provide a food preference of 1–1000 characters."), 400
     # Semantic similarity cannot establish dietary suitability from review text.
     # Do not present a meat-containing semantic match as a verified diet result.
-    if re.search(r"\b(vegetarian|vegan|meat[- ]free|no meat|without meat|halal|kosher|allerg(?:y|ies|ic)|gluten[- ]free|dairy[- ]free|nut[- ]free|peanut[- ]free)\b|素食|纯素|过敏|无麸质", pref, re.I):
-        return jsonify(error="This version matches taste, but cannot verify dietary or allergy requirements from reviews. Try a dish or flavor preference."), 422
+    if DIETARY_REQUEST.search(pref):
+        return jsonify(error=DIETARY_MESSAGE), 422
     top_n = payload.get("top_n", 5)
     if isinstance(top_n, bool) or not isinstance(top_n, int):
         return jsonify(error="top_n must be an integer."), 400
     top_n = max(1, min(10, top_n))
+    if not any(character.isalpha() for character in pref):
+        return recommendation_response([])
 
     try:
         df, embeddings, model = load_recommender()
@@ -274,14 +315,13 @@ def recommend():
             raise ValueError("Preference embedding must be a finite 384-dimensional vector.")
         query_vec = query[0]
         similarity = embeddings @ query_vec
-        pos = df["positive_count"].to_numpy(dtype=float)
-        neg = df["negative_count"].to_numpy(dtype=float)
-        mixed = df["mixed_count"].to_numpy(dtype=float)
-        neutral = df["neutral_count"].to_numpy(dtype=float)
-        total = pos + neg + mixed + neutral
-        sentiment = (pos + 0.5 * mixed + 0.5 * neutral + 1) / (total + 2)
-        scores = 0.85 * similarity + 0.15 * sentiment
-        top = np.argsort(-scores, kind="stable")[:top_n]
+        # Review sentiment can order relevant dishes but cannot make an
+        # unrelated dish eligible for recommendation.
+        eligible = np.flatnonzero(similarity >= MIN_RECOMMENDATION_SIMILARITY)
+        if not eligible.size:
+            return recommendation_response([])
+        scores = 0.85 * similarity + 0.15 * review_sentiment(df)
+        top = eligible[np.argsort(-scores[eligible], kind="stable")[:top_n]]
         results = []
         for idx in top:
             row = df.iloc[int(idx)]
@@ -292,12 +332,102 @@ def recommend():
                 "score": round(float(scores[idx]), 4),
                 "similarity": round(float(similarity[idx]), 4),
             })
-        return jsonify(results=results, model="all-MiniLM-L6-v2 + Yelp review sentiment", note="Uncalibrated ranking scores; not probability of liking a dish")
+        return recommendation_response(results)
     except FileNotFoundError as exc:
         return jsonify(error=str(exc)), 503
     except Exception:
         app.logger.exception("Recommendation error")
         return jsonify(error="Recommendation backend failed. Check data files and model downloads in the server logs."), 503
+
+
+def discover_settings():
+    provider = app.config["DISCOVER_PROVIDER"]
+    if provider == "gemini_tavily":
+        ready = gemini_configured() and tavily_configured()
+    elif provider == "openai":
+        ready = is_configured()
+    elif provider == "firecrawl":
+        ready = True
+    else:
+        return {"provider": "local", "city": "Philadelphia", "online_ready": False, "cities": []}
+    city = app.config["DISCOVER_CITY"]
+    cities = [city, *(option for option in DISCOVER_CITIES if option.casefold() != city.casefold())]
+    return {"provider": provider, "city": city, "online_ready": ready, "cities": cities}
+
+
+@app.get("/api/discover/config")
+def discover_config():
+    return jsonify(discover_settings())
+
+
+def local_discover_picks(preferences):
+    frame, _, _ = load_recommender()
+    return review_matches(frame, preferences, review_sentiment(frame))
+
+
+@app.post("/api/discover/chat")
+def discover_chat():
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict):
+        return jsonify(error="Send a message to start Discover."), 400
+    more = payload.get("action") == "more"
+    message = payload.get("message")
+    previous = payload.get("preferences", {})
+    if not isinstance(previous, dict) or (not more and (
+        not isinstance(message, str) or not 1 <= len(message.strip()) <= 400
+    )):
+        return jsonify(error="Send a message of 1–400 characters and valid preferences."), 400
+    message = "" if more else message.strip()
+    previous = clean_preferences(previous)
+    if DIETARY_REQUEST.search(message) or DIETARY_REQUEST.search(previous["dish"]):
+        return jsonify(error=DIETARY_MESSAGE), 422
+
+    settings = discover_settings()
+    provider, city = settings["provider"], settings["city"]
+    if settings["cities"] and "city" in payload:
+        selected_city = payload["city"]
+        if not isinstance(selected_city, str) or selected_city not in settings["cities"]:
+            return jsonify(error="Choose a city from the Discover city list."), 400
+        city = selected_city
+    if more and provider != "gemini_tavily":
+        return jsonify(error="More dishes are available with online menu search."), 400
+
+    try:
+        if provider == "openai":
+            if not settings["online_ready"]:
+                raise OnlineDiscoverError("Online Discover needs an OpenAI API key configured on the local server.")
+            result = discover_turn(message, previous, infer=infer_online,
+                                   recommend=lambda prefs: search_online(prefs, city), online_city=city)
+        elif provider == "firecrawl":
+            result = discover_turn(message, previous, infer=infer_preferences,
+                                   recommend=lambda prefs: search_firecrawl(prefs, city), online_city=city)
+        elif provider == "gemini_tavily":
+            if not settings["online_ready"]:
+                raise GeminiDiscoverError("Gemini + Tavily needs both API keys configured on the local server.")
+            if more:
+                excluded = payload.get("exclude_restaurants")
+                if (not isinstance(excluded, list) or not 1 <= len(excluded) <= 60
+                        or any(not isinstance(name, str) or not 1 <= len(name.strip()) <= 120 for name in excluded)
+                        or not previous["taste"] or not (previous["cuisine"] or previous["dish"])):
+                    return jsonify(error="Start a search before asking for more dishes."), 400
+                if previous["cuisine"] != "Chinese":
+                    previous.pop("region", None)
+                results = search_tavily(previous, city, select_picks=select_gemini_picks,
+                                        exclude_restaurants=excluded)
+                return jsonify(results=results, provider=provider, city=city)
+            result = discover_turn(
+                message, previous, infer=infer_gemini, online_city=city,
+                recommend=lambda prefs: search_tavily(prefs, city, select_picks=select_gemini_picks),
+                chinese_regions=True,
+            )
+        else:
+            result = discover_turn(message, previous, infer=infer_preferences, recommend=local_discover_picks)
+        return jsonify(**result, provider=provider, city=city)
+    except (OnlineDiscoverError, FirecrawlDiscoverError, GeminiDiscoverError, TavilyDiscoverError) as exc:
+        return jsonify(error=str(exc)), 503
+    except Exception:
+        app.logger.exception("Discover chat failed")
+        return jsonify(error="Discover is temporarily unavailable. Please try again."), 503
 
 
 @app.errorhandler(413)
