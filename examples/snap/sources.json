@@ -1,0 +1,46 @@
+[
+  {
+    "filename": "pizza.jpg",
+    "dish": "Pizza",
+    "file_page": "https://commons.wikimedia.org/wiki/File:PizzaMargherita.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/PizzaMargherita.jpg",
+    "author": "SIG SG 510",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "changes": "None; original file downloaded unchanged.",
+    "width": 1536,
+    "height": 1625,
+    "bytes": 773296,
+    "sha256": "0ab969c6728501b468bcde32b77b25c9bd86c0f6342c4772065c6f4efa5549f0"
+  },
+  {
+    "filename": "sushi.jpg",
+    "dish": "Sushi",
+    "file_page": "https://commons.wikimedia.org/wiki/File:Sushi_(146427173).jpeg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Sushi_%28146427173%29.jpeg?utm_campaign=index&utm_content=original&utm_source=commons.wikimedia.org",
+    "license": "CC0 1.0 Universal Public Domain Dedication",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "author": "San Dta",
+    "changes": "None; downloaded original file unchanged.",
+    "format": "JPEG",
+    "width": 2048,
+    "height": 1365,
+    "bytes": 626255,
+    "sha256": "ca7b3ba1b60c7125de70d7fc6ed87138461f99d1005ab4dfa968a9cf86c5b612"
+  },
+  {
+    "filename": "hamburger.jpg",
+    "dish": "Hamburger",
+    "file_page": "https://commons.wikimedia.org/wiki/File:Homemade_hamburger.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Homemade_hamburger.jpg?utm_campaign=index&utm_content=original&utm_source=commons.wikimedia.org",
+    "license": "Public domain, released by the author",
+    "license_url": "https://commons.wikimedia.org/wiki/File:Homemade_hamburger.jpg#Licensing",
+    "author": "Jon Sullivan (PD Photo.org)",
+    "changes": "None; downloaded original file unchanged.",
+    "format": "JPEG",
+    "width": 800,
+    "height": 600,
+    "bytes": 43920,
+    "sha256": "0d49568672f2f27eb76605adf9090b8067f6cf840038e88446357d485a53acb1"
+  }
+]
