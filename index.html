@@ -817,17 +817,25 @@
     else showToast(movedIdea?'Meal moved to your Food Passport!':'Meal logged in your Food Passport!');
     return true;
   }
-  function badgeForMeal(item) {
-    const name = item.dish_name.toLowerCase();
-    if (/\b(ramen|noodles?|pho|pad thai)\b/.test(name)) return '🍜';
-    if (/\b(sushi|sashimi|nigiri)\b/.test(name)) return '🍣';
-    if (/\bpizza\b/.test(name)) return '🍕';
-    if (/\b(dumplings?|gyoza|potstickers?)\b/.test(name)) return '🥟';
-    if (/\b(burgers?|hamburgers?|cheeseburgers?)\b/.test(name)) return '🍔';
-    if (/\btacos?\b/.test(name)) return '🌮';
-    if (/\b(pasta|spaghetti|lasagna)\b/.test(name)) return '🍝';
-    return '🍽️';
-  }
+function badgeForMeal(item) {
+  const name = String(item.dish_name || '').toLowerCase();
+
+  if (/\b(sushi|sashimi|nigiri|maki|rolls?)\b/.test(name)) return '🍣';
+  if (/\b(ramen|noodles?|pho|pad thai|lo mein|chow mein)\b/.test(name)) return '🍜';
+  if (/\b(pizza)\b/.test(name)) return '🍕';
+  if (/\b(dumplings?|gyoza|potstickers?|wontons?)\b/.test(name)) return '🥟';
+  if (/\b(pasta|spaghetti|lasagna|fettuccine|linguine|penne|ravioli|alfredo|mac and cheese)\b/.test(name)) return '🍝';
+  if (/\b(burgers?|hamburgers?|cheeseburgers?)\b/.test(name)) return '🍔';
+  if (/\b(tacos?|burritos?|quesadillas?|nachos?)\b/.test(name)) return '🌮';
+  if (/\b(sandwiches?|subs?|hoagies?|paninis?)\b/.test(name)) return '🥪';
+  if (/\b(salads?|caesar salad)\b/.test(name)) return '🥗';
+  if (/\b(soup|stew|chili|chowder)\b/.test(name)) return '🍲';
+  if (/\b(curry|masala|tikka masala)\b/.test(name)) return '🍛';
+  if (/\b(rice|fried rice|bibimbap)\b/.test(name)) return '🍚';
+  if (/\b(cake|cheesecake|tiramisu|ice cream|gelato|cookies?)\b/.test(name)) return '🍰';
+
+  return '🍽️';
+}
   function mealPlace(item) {
     return item.location.label || `${item.location.lat.toFixed(4)}, ${item.location.lng.toFixed(4)}`;
   }
