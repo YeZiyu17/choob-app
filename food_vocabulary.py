@@ -296,4 +296,3 @@ def _build_vocabulary():
 
 
 FOOD_CANDIDATES = _build_vocabulary()
-
