@@ -178,7 +178,12 @@ def recognize():
         return jsonify(error="The file is not a valid image."), 400
 
     try:
-        return jsonify(recognize_meal(get_recognizer(), image))
+        return jsonify(recognize_meal(
+            get_recognizer(), image,
+            trace=lambda details: app.logger.info(
+                "Snap recognition trace %s", json.dumps(details, separators=(",", ":"))
+            ),
+        ))
     except Exception as exc:
         app.logger.exception("CLIP recognition error")
         return jsonify(error="Recognition backend unavailable. Check model downloads, server memory, and recognition_config.json."), 503

@@ -76,8 +76,9 @@ class SnapRecognitionApiTests(unittest.TestCase):
     def test_single_dish_sample_reaches_recognition_as_rgb(self):
         observed = {}
 
-        def recognize(_recognizer, image):
+        def recognize(_recognizer, image, trace=None):
             observed.update(mode=image.mode, size=image.size)
+            self.assertTrue(callable(trace))
             return {"accepted": True, "dish_name": "Pizza", "dishes": [{"dish_name": "Pizza"}]}
 
         with patch.object(backend, "get_recognizer", return_value=object()), \

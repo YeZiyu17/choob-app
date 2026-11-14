@@ -1093,7 +1093,7 @@
   const placeName = document.getElementById('mealPlaceName');
   const usePosition = document.getElementById('useMealPosition');
   const pinMealCenter = document.getElementById('pinMealCenter');
-  const MAX_MEAL_DISHES = 8;
+  const MAX_MEAL_DISHES = 12;
   const MAX_PHOTO_BYTES = 8 * 1024 * 1024;
   const extraMealDishes = [];
   const dismissedSuggestions = new Set();
@@ -1110,7 +1110,7 @@
   function updateMealDishActions() {
     removeFirstMealDishButton.classList.toggle('hidden',Boolean(pendingWish) || extraMealDishes.length===0);
     addMealDishButton.disabled=extraMealDishes.length>=MAX_MEAL_DISHES-1;
-    addMealDishButton.textContent=addMealDishButton.disabled?'8 dishes per meal':'＋ Add another dish';
+    addMealDishButton.textContent=addMealDishButton.disabled?`${MAX_MEAL_DISHES} dishes per meal`:'＋ Add another dish';
     document.getElementById('correctedDishLabel').textContent=`Dish 1 · ${primaryMealSuggestion?'Suggested':'Manual'}`;
     extraMealDishes.forEach((entry,index)=>{entry.label.textContent=`Dish ${index+2} · ${entry.suggestion?'Suggested':'Manual'}`;});
     const count=[correctedDish,...extraMealDishes.map(entry=>entry.input)].filter(input=>isValidDishName(input.value)).length;
