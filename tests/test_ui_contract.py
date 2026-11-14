@@ -54,6 +54,29 @@ class UIContractTests(unittest.TestCase):
         self.assertIn('name="viewport"', self.html)
         self.assertNotIn("�", self.html)
 
+    def test_snap_review_exposes_editable_grouped_meal_controls(self):
+        ids = set(self.parser.ids)
+        self.assertTrue({
+            "replaceSnapPhoto", "correctedDish", "extraMealDishes",
+            "addMealDish", "removeFirstMealDish", "mealReviewSummary",
+            "saveRecognizedDish", "snapSaveSuccess", "snapSaveSuccessMessage",
+        }.issubset(ids))
+        self.assertIn("will be logged together as one meal", self.html)
+        self.assertIn("dishes,\n        image", self.html)
+
+    def test_snap_rescans_preserve_corrections_and_removed_suggestions(self):
+        self.assertIn("primaryDishEdited", self.html)
+        self.assertIn("dismissedSuggestions", self.html)
+        self.assertIn("entry.suggestion&&!entry.edited", self.html)
+        self.assertIn("Your photo and meal edits are still here", self.html)
+
+    def test_snap_submission_has_both_click_and_storage_duplicate_guards(self):
+        self.assertIn("if(mealSaveInFlight)return", self.html)
+        self.assertIn("snap_draft_id:mealDraftId", self.html)
+        self.assertIn("submittedDraftIndex", self.html)
+        self.assertIn("source:'snap'", self.html)
+        self.assertIn("want_to_try", self.html)
+
 
 if __name__ == "__main__":
     unittest.main()

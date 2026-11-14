@@ -218,8 +218,11 @@
     .meal-dish-row .input-choob{margin:0}
     .meal-dish-remove{min-height:44px;color:#6b6176;background:#fff}
     #addMealDish{min-height:40px}
+    #mealReviewSummary{margin:8px 0 0;color:#514a5a}
     #mealDishError{margin:8px 0 0;color:#962f45}
     #mealDishError:empty{display:none}
+    #snapSaveSuccess{margin:0 0 14px;background:#effbd5;border-color:#d6ee9d}
+    #snapSaveSuccess .passport-note{margin:4px 0 10px}
     .multi-meal-detail .sheet{max-height:100%;overflow-y:auto}
     .meal-detail-dishes{display:grid;gap:6px;padding:0;list-style:none}
     .meal-detail-dishes li{display:grid;gap:3px;padding:9px 12px;border-radius:11px;background:#fff}
@@ -414,11 +417,12 @@
       </div>
       <p id="recognitionNote" class="confidence-note">CLIP scores compare only the supplied candidate dish labels. Confirm or correct the result before logging your meal.</p>
       <div class="meal-dish-row">
-        <div><label class="eyebrow" id="correctedDishLabel" for="correctedDish">Dish name</label><input id="correctedDish" class="input-choob" type="text" placeholder="Dish name" /></div>
+        <div><label class="eyebrow" id="correctedDishLabel" for="correctedDish">Dish 1</label><input id="correctedDish" class="input-choob" type="text" maxlength="80" placeholder="Dish name" /></div>
         <button type="button" class="passport-action meal-dish-remove hidden" id="removeFirstMealDish" aria-label="Remove first dish">Remove</button>
       </div>
       <div id="extraMealDishes"></div>
       <button type="button" class="passport-action" id="addMealDish">＋ Add another dish</button>
+      <p id="mealReviewSummary" class="confidence-note">Enter at least one dish. All dishes listed here will be logged together as one meal.</p>
       <p id="mealDishError" class="confidence-note" role="status"></p>
       <div class="passport-card meal-location-card">
         <div class="passport-head"><h3>Where did you eat?</h3><span class="passport-count">Optional</span></div>
@@ -488,6 +492,11 @@
   <section class="screen hidden" id="collectionScreen">
     <div class="top passport-collection-top">
       <div><div class="eyebrow">Choob · Meal history</div><h1>Food Passport</h1><p id="liveCollectionTotal">0 meals logged</p></div>
+    </div>
+    <div class="passport-card hidden" id="snapSaveSuccess" role="status">
+      <strong>Meal logged!</strong>
+      <p class="passport-note" id="snapSaveSuccessMessage">Your reviewed dishes are together in Food Passport.</p>
+      <button type="button" class="passport-action" data-nav="snapScreen">Log another meal</button>
     </div>
     <section class="passport-card" aria-labelledby="passportMapTitle">
       <div class="passport-head"><h2 id="passportMapTitle">Passport map</h2><span id="passportMapCount" class="passport-count">0 stamps</span></div>
@@ -785,9 +794,13 @@
     // Each confirmed meal is a separate visit, even when the dish name repeats.
     const newVisit = !want && (item.source==='snap' || hasMealLocation(item));
     const list=getSaved().filter(saved=>!newVisit || !movedIdea || !sameSavedIdea(saved,movedIdea));
-    const duplicateIndex=newVisit?-1:list.findIndex(x=>
-      isWantToTry(x)===want && (want || !hasMealLocation(x)) &&
-      sameDishAndPlace(x,item));
+    // A Snap draft keeps the same id through retries. This makes a repeated
+    // submit idempotent without collapsing two genuine visits to the same dish.
+    const submittedDraftIndex=newVisit&&item.snap_draft_id
+      ? list.findIndex(saved=>saved.snap_draft_id===item.snap_draft_id)
+      : -1;
+    const duplicateIndex=submittedDraftIndex>=0?submittedDraftIndex:newVisit?-1:list.findIndex(x=>
+      isWantToTry(x)===want && (want || !hasMealLocation(x)) && sameDishAndPlace(x,item));
     const duplicate=duplicateIndex>=0;
     let newPhotoIndex=-1;
     if(!duplicate){
@@ -1054,6 +1067,8 @@
     collectDetailButton.disabled=true;
   });
   let selectedImage=null,selectedThumbnailPromise=Promise.resolve(null),recognitionVersion=0,currentPrediction=null,pendingWish=null;
+  let scanRequest=null,mealSaveInFlight=false,primaryDishEdited=false;
+  let mealDraftId=createMealDraftId();
   const snapScreen = document.getElementById('snapScreen');
   const snapCamera = document.getElementById('camera');
   const snapShutter = document.getElementById('shutter');
@@ -1067,6 +1082,7 @@
   const extraMealDishList = document.getElementById('extraMealDishes');
   const addMealDishButton = document.getElementById('addMealDish');
   const removeFirstMealDishButton = document.getElementById('removeFirstMealDish');
+  const mealReviewSummary = document.getElementById('mealReviewSummary');
   const mealDishError = document.getElementById('mealDishError');
   const wishlistMealContext = document.getElementById('wishlistMealContext');
   const locationPicker = document.getElementById('mealLocationPicker');
@@ -1078,11 +1094,16 @@
   const usePosition = document.getElementById('useMealPosition');
   const pinMealCenter = document.getElementById('pinMealCenter');
   const MAX_MEAL_DISHES = 8;
+  const MAX_PHOTO_BYTES = 8 * 1024 * 1024;
   const extraMealDishes = [];
+  const dismissedSuggestions = new Set();
   let primaryMealSuggestion = null;
   let extraMealDishSequence = 0;
   let mealLocation = null;
   let mealPicker, mealPickerRequest, positionVersion = 0;
+  function createMealDraftId() {
+    return globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  }
   function sameMealDishName(first, second) {
     return first.trim().toLowerCase()===second.trim().toLowerCase();
   }
@@ -1090,13 +1111,22 @@
     removeFirstMealDishButton.classList.toggle('hidden',Boolean(pendingWish) || extraMealDishes.length===0);
     addMealDishButton.disabled=extraMealDishes.length>=MAX_MEAL_DISHES-1;
     addMealDishButton.textContent=addMealDishButton.disabled?'8 dishes per meal':'＋ Add another dish';
+    document.getElementById('correctedDishLabel').textContent=`Dish 1 · ${primaryMealSuggestion?'Suggested':'Manual'}`;
+    extraMealDishes.forEach((entry,index)=>{entry.label.textContent=`Dish ${index+2} · ${entry.suggestion?'Suggested':'Manual'}`;});
+    const count=[correctedDish,...extraMealDishes.map(entry=>entry.input)].filter(input=>isValidDishName(input.value)).length;
+    mealReviewSummary.textContent=count
+      ? `${count} ${count===1?'dish':'dishes'} will be logged together as one meal.`
+      : 'Enter at least one dish. All dishes listed here will be logged together as one meal.';
   }
-  function setPrimaryMealDish(name, suggestion=null) {
+  function setPrimaryMealDish(name, suggestion=null, edited=false) {
     correctedDish.value=name;
     primaryMealSuggestion=suggestion;
+    primaryDishEdited=edited;
     mealDishError.textContent='';
+    updateMealDishActions();
   }
-  function removeExtraMealDish(entry) {
+  function removeExtraMealDish(entry, remember=true) {
+    if(remember&&entry.suggestion)dismissedSuggestions.add(entry.suggestion.dish_name.trim().toLowerCase());
     extraMealDishes.splice(extraMealDishes.indexOf(entry),1);
     entry.row.remove();
     mealDishError.textContent='';
@@ -1113,9 +1143,10 @@
     input.id=`extraMealDish${++extraMealDishSequence}`;
     input.className='input-choob';
     input.type='text';
+    input.maxLength=80;
     input.placeholder='Dish name';
     input.value=name;
-    input.addEventListener('input',()=>{mealDishError.textContent='';});
+    input.addEventListener('input',()=>{entry.edited=true;mealDishError.textContent='';updateMealDishActions();});
     label.setAttribute('for',input.id);
     field.append(label,input);
     const remove=document.createElement('button');
@@ -1123,7 +1154,7 @@
     remove.className='passport-action meal-dish-remove';
     remove.textContent='Remove';
     remove.setAttribute('aria-label','Remove additional dish');
-    const entry={row,input,suggestion};
+    const entry={row,input,label,suggestion,edited:false};
     remove.addEventListener('click',()=>{
       removeExtraMealDish(entry);
       (addMealDishButton.disabled?correctedDish:addMealDishButton).focus();
@@ -1135,12 +1166,13 @@
     return input;
   }
   addMealDishButton.addEventListener('click',()=>addExtraMealDish().focus());
-  correctedDish.addEventListener('input',()=>{mealDishError.textContent='';});
+  correctedDish.addEventListener('input',()=>{primaryDishEdited=true;mealDishError.textContent='';updateMealDishActions();});
   removeFirstMealDishButton.addEventListener('click',()=>{
     const next=extraMealDishes[0];
     if(!next || pendingWish)return;
-    setPrimaryMealDish(next.input.value,next.suggestion);
-    removeExtraMealDish(next);
+    if(primaryMealSuggestion)dismissedSuggestions.add(primaryMealSuggestion.dish_name.trim().toLowerCase());
+    setPrimaryMealDish(next.input.value,next.suggestion,true);
+    removeExtraMealDish(next,false);
     recognitionFields.classList.add('hidden');
     document.getElementById('identifiedDish').textContent='Review your meal';
     correctedDish.focus();
@@ -1245,6 +1277,8 @@
     setPrimaryMealDish('');
     extraMealDishes.length=0;
     extraMealDishList.replaceChildren();
+    dismissedSuggestions.clear();
+    primaryDishEdited=false;
     updateMealDishActions();
     recognitionFields.classList.remove('hidden');
     document.getElementById('identifiedDish').textContent='Waiting for analysis';
@@ -1275,7 +1309,10 @@
   }
   function resetSnap() {
     recognitionVersion++;
+    scanRequest?.abort();
+    scanRequest=null;
     pendingWish=null;
+    mealDraftId=createMealDraftId();
     wishlistMealContext.classList.add('hidden');
     photoUpload.value='';
     clearRecognition();
@@ -1284,6 +1321,8 @@
     cameraHint.textContent='';
   }
   function showManualMeal(name,note) {
+    const keepCorrection=primaryDishEdited;
+    const suggestion=primaryMealSuggestion;
     currentPrediction={accepted:false,manual:true};
     snapScreen.classList.add('meal-draft');
     updateSnapAction();
@@ -1292,8 +1331,7 @@
     recognitionFields.classList.add('hidden');
     document.getElementById('identifiedDish').textContent='Log a meal';
     document.getElementById('recognitionNote').textContent=note;
-    document.getElementById('correctedDishLabel').textContent='Dish name';
-    setPrimaryMealDish(name);
+    setPrimaryMealDish(name,suggestion,keepCorrection);
     scanResult.classList.add('show');
   }
   function beginWishMeal(item) {
@@ -1310,59 +1348,78 @@
   });
   document.getElementById('manualMealEntry').addEventListener('click',()=>{
     recognitionVersion++;
+    scanRequest?.abort();
+    scanRequest=null;
     showManualMeal(correctedDish.value || pendingWish?.dish_name || '','Enter the name of the dish you ate. A photo and location are optional.');
     cameraHint.textContent='';
   });
-  document.getElementById('replaceSnapPhoto').addEventListener('click',()=>photoUpload.click());
+  function chooseSnapPhoto(){
+    photoUpload.value='';
+    photoUpload.click();
+  }
+  document.getElementById('replaceSnapPhoto').addEventListener('click',chooseSnapPhoto);
   photoUpload.addEventListener('change',e=>{
     const file=e.target.files[0]||null;
-    const keepDraft=Boolean(currentPrediction?.manual || pendingWish);
+    const keepDraft=scanResult.classList.contains('show');
     const name=correctedDish.value || pendingWish?.dish_name || '';
-    recognitionVersion++;
-    if(!keepDraft)clearRecognition();
-    snapCamera.classList.remove('scanning');
-    if(file && !['image/jpeg','image/png','image/webp'].includes(file.type)){
+    if(!file)return;
+    if(!['image/jpeg','image/png','image/webp'].includes(file.type)){
       photoUpload.value='';
-      setSnapPhoto(null);
-      cameraHint.textContent='Please choose a JPG, PNG or WebP photo.';
+      cameraHint.textContent='Please choose a JPG, PNG or WebP photo. Your current photo and meal edits are unchanged.';
       return;
     }
+    if(file.size>MAX_PHOTO_BYTES){
+      photoUpload.value='';
+      cameraHint.textContent='Please choose a photo smaller than 8 MB. Your current photo and meal edits are unchanged.';
+      return;
+    }
+    recognitionVersion++;
+    scanRequest?.abort();
+    scanRequest=null;
+    if(!keepDraft)clearRecognition();
+    snapCamera.classList.remove('scanning');
     setSnapPhoto(file);
-    if(keepDraft)showManualMeal(name,'Keep this name or scan your photo for a suggestion.');
+    if(keepDraft)showManualMeal(name,'Your meal edits are still here. Keep them, or scan the replacement photo for new suggestions.');
     cameraHint.textContent=file?'Photo ready. Tap Scan dish to analyze it.':'';
   });
   function showDishSuggestions(result, fallbackName) {
     const detected=Array.isArray(result.dishes)?result.dishes.filter(dish=>isValidDishName(dish?.dish_name)):[];
     const acceptedWholePhoto=result.status!=='uncertain' && result.accepted!==false && isValidDishName(result.dish_name);
     const main=detected[0] || (acceptedWholePhoto?result:null);
-    const name=pendingWish&&fallbackName?fallbackName:main?.dish_name||fallbackName;
+    const keepPrimary=Boolean(fallbackName&&(primaryDishEdited||pendingWish));
+    const name=keepPrimary?fallbackName:main?.dish_name||fallbackName;
     const match=detected.find(dish=>sameMealDishName(dish.dish_name,name));
-    setPrimaryMealDish(name,match || (main&&sameMealDishName(main.dish_name,name)?main:null));
+    setPrimaryMealDish(name,match || (main&&sameMealDishName(main.dish_name,name)?main:null),keepPrimary);
 
     // Keep manual rows and user corrections when rescanning the same meal.
     for(const entry of [...extraMealDishes]){
-      if(entry.suggestion&&sameMealDishName(entry.input.value,entry.suggestion.dish_name))removeExtraMealDish(entry);
+      if(entry.suggestion&&!entry.edited&&sameMealDishName(entry.input.value,entry.suggestion.dish_name))removeExtraMealDish(entry,false);
     }
     for(const dish of detected){
       if(extraMealDishes.length>=MAX_MEAL_DISHES-1)break;
+      if(dismissedSuggestions.has(dish.dish_name.trim().toLowerCase()))continue;
       const alreadyListed=extraMealDishes.some(entry=>sameMealDishName(entry.input.value,dish.dish_name) ||
         (entry.suggestion&&sameMealDishName(entry.suggestion.dish_name,dish.dish_name)));
       if(!alreadyListed&&!sameMealDishName(name,dish.dish_name))addExtraMealDish(dish.dish_name,dish);
     }
+    updateMealDishActions();
     return main;
   }
   snapShutter.addEventListener('click',async()=>{
-    if(!selectedImage){photoUpload.click();return;}
+    if(!selectedImage){chooseSnapPhoto();return;}
     if(snapCamera.classList.contains('scanning'))return;
     const fallbackName=correctedDish.value.trim() || pendingWish?.dish_name || '';
     const version=++recognitionVersion;
     currentPrediction=null;
     snapCamera.classList.add('scanning');cameraHint.textContent='Analyzing photo…';
     const body=new FormData();body.append('image',selectedImage);
+    const controller=new AbortController();
+    scanRequest=controller;
     try{
-      const r=await fetch('/api/recognize',{method:'POST',body});const result=await r.json();
+      const r=await fetch('/api/recognize',{method:'POST',body,signal:controller.signal});
+      const result=await r.json().catch(()=>({}));
       if(version!==recognitionVersion)return;
-      if(!r.ok)throw new Error(result.error||'Recognition is unavailable');
+      if(!r.ok)throw new Error(result.error||'Recognition is unavailable right now.');
       const main=showDishSuggestions(result,fallbackName);
       const uncertain=!main;
       const multiple=extraMealDishes.length>0;
@@ -1370,7 +1427,6 @@
       currentPrediction={...result,accepted:!uncertain};
       recognitionMode.textContent='Dish recognition';
       recognitionFields.classList.toggle('hidden',multiple);
-      document.getElementById('correctedDishLabel').textContent=multiple&&primaryMealSuggestion?'Suggested dish':'Confirm / correct dish name';
       document.getElementById('identifiedDish').textContent=multiple?'Review your meal':main?.dish_name||'Uncertain / unsupported dish';
       document.getElementById('identifiedCuisine').textContent=main?.cuisine||'Unknown';
       document.getElementById('identifiedCategory').textContent=main?.category||'Unknown';
@@ -1382,50 +1438,75 @@
       scanResult.classList.add('show');
       scanResult.scrollIntoView?.({block:'nearest'});
       cameraHint.textContent=uncertain?'Please enter the dish name manually before logging the meal.':'Recognition complete. Review the dishes before logging your meal.';
-    }catch{
+    }catch(error){
       if(version===recognitionVersion){
-        showManualMeal(fallbackName,'Photo recognition is unavailable. You can still enter the dish name and log the meal.');
+        const detail=error?.name==='AbortError'?'The scan was canceled.':error?.message||'Could not connect to recognition.';
+        showManualMeal(fallbackName,`${detail} Your photo and meal edits are still here; enter a dish manually or try scanning again.`);
         scanResult.scrollIntoView?.({block:'nearest'});
-        cameraHint.textContent='Photo recognition is unavailable. Manual entry is ready below.';
+        cameraHint.textContent='Scan failed. You can retry or finish with manual entry below.';
       }
-    }finally{if(version===recognitionVersion)snapCamera.classList.remove('scanning')}
+    }finally{
+      if(scanRequest===controller)scanRequest=null;
+      if(version===recognitionVersion)snapCamera.classList.remove('scanning');
+    }
   });
   const saveRecognizedDish = document.getElementById('saveRecognizedDish');
   saveRecognizedDish.addEventListener('click',async()=>{
+    if(mealSaveInFlight)return;
     if(!currentPrediction){cameraHint.textContent='Scan the photo or enter the dish manually.';return;}
     const fields=[{input:correctedDish,suggestion:primaryMealSuggestion},...extraMealDishes];
     const dishes=[];
+    const dishNames=new Set();
     for(const {input,suggestion} of fields){
       const dish_name=input.value.trim();
       if(!dish_name&&input!==correctedDish)continue;
-      if(!isValidDishName(dish_name)){
-        mealDishError.textContent='Enter the name of each dish you want to log.';
+      if(!isValidDishName(dish_name)||dish_name.length>80){
+        mealDishError.textContent='Enter at least one valid dish name (up to 80 characters).';
         input.focus();
         return;
       }
+      const normalized=dish_name.toLowerCase();
+      if(dishNames.has(normalized)){
+        mealDishError.textContent='Each dish should appear once. Rename or remove the duplicate.';
+        input.focus();
+        return;
+      }
+      dishNames.add(normalized);
       const match=suggestion&&sameMealDishName(dish_name,suggestion.dish_name)?suggestion:null;
       dishes.push({dish_name,cuisine:match?.cuisine||'Unknown',category:match?.category||'Unknown'});
     }
     const version = recognitionVersion;
     const movedIdea = pendingWish;
     const location = mealLocation ? {...mealLocation,label:placeName.value.trim()} : null;
+    mealSaveInFlight = true;
     saveRecognizedDish.disabled = true;
+    saveRecognizedDish.textContent='Logging meal…';
     try {
       const image = await selectedThumbnailPromise;
       if (version !== recognitionVersion) return;
       const saved = addSaved({
         ...dishes[0],
         source:'snap',
+        snap_draft_id:mealDraftId,
         dishes,
         image,
         ...(location?{location}:{}),
       },movedIdea);
       if (saved) {
+        const successMessage=`${dishes.length} ${dishes.length===1?'dish was':'dishes were'} logged together as one meal.`;
+        // Keep rapid second taps on the disabled save control instead of the
+        // Passport item that will occupy the same area after navigation.
+        await new Promise(resolve=>setTimeout(resolve,220));
+        if(version!==recognitionVersion)return;
         resetSnap();
+        document.getElementById('snapSaveSuccessMessage').textContent=successMessage;
+        document.getElementById('snapSaveSuccess').classList.remove('hidden');
         show('collectionScreen');
       }
     } finally {
+      mealSaveInFlight = false;
       saveRecognizedDish.disabled = false;
+      saveRecognizedDish.textContent='✓ Log as eaten';
     }
   });
   const discoverInput=document.getElementById('preferenceInput');
