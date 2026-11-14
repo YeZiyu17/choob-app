@@ -23,7 +23,7 @@ from discover_gemini import GeminiDiscoverError, gemini_configured, infer_gemini
 from discover_online import OnlineDiscoverError, infer_online, is_configured, search_online
 from discover_tavily import TavilyDiscoverError, search_tavily, tavily_configured
 from multi_dish import recognize_meal
-from recognition import CATEGORY_MAP, DishRecognizer, load_threshold
+from recognition import DishRecognizer, load_recognition_config
 
 BASE = Path(__file__).resolve().parent
 DATA = BASE / "data"
@@ -55,7 +55,7 @@ def passport_map_config():
 def status():
     return jsonify({
         "api": "running",
-        "recognition": "CLIP prompt ensemble + scope check (weights download on first use)",
+        "recognition": "CLIP calibrated legacy gate + provisional broad food suggestions",
         "recognition_config_present": (BASE / "recognition_config.json").is_file(),
         "recommendation_data_present": (DATA / "choob_recommendation_data.csv").is_file(),
         "recommendation_embeddings_present": (DATA / "choob_dish_embeddings.npy").is_file(),
@@ -152,9 +152,14 @@ def get_clip():
 
 @lru_cache(maxsize=1)
 def get_recognizer():
-    threshold = load_threshold()
+    config = load_recognition_config()
+    legacy = config["legacy_calibrated_gate"]
     model, processor = get_clip()
-    return DishRecognizer(model, processor, threshold=threshold)
+    return DishRecognizer(
+        model, processor,
+        threshold=legacy["support_margin_threshold"],
+        suggestion_policy=config["expanded_suggestion_policy"],
+    )
 
 
 @app.post("/api/recognize")

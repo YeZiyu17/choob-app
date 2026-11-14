@@ -1,0 +1,11 @@
+# Intel macOS / Python 3.11 compatibility profile for rehearsal machines.
+# PyTorch 2.2.2 wheels were built against NumPy 1.x.
+flask>=3.0,<4
+gunicorn>=21,<24
+numpy>=1.26,<2
+pandas>=2,<3
+pillow>=10,<13
+torch==2.2.2
+transformers>=4.45,<5
+sentence-transformers>=3,<6
+requests>=2.31,<3

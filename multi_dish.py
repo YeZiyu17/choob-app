@@ -43,6 +43,10 @@ def _overlap(left, right):
 
 
 def _candidate_filter(score, margin):
+    if "suggestion_useful" in score and score.get("review_mode") == "provisional":
+        return list(score.get("suggestion_filter_reasons", [])) or (
+            [] if score.get("suggestion_useful") else ["provisional_food_check"]
+        )
     reasons = []
     if score["support_margin"] < margin:
         reasons.append("support_margin")
@@ -68,9 +72,9 @@ def _regional_dishes(scores, margin, primary, trace=None):
             for other in candidates
         )
     ]
-    # Choose at most one spatially separated region for each supported family.
+    # Choose at most one spatially separated region for each canonical food.
     # Optimize coverage first and evidence strength second instead of imposing
-    # the old arbitrary three-dish cap. There are only nine calibrated labels.
+    # an arbitrary dish cap. Provisional candidates still need two views.
     options = {}
     for candidate in corroborated:
         options.setdefault(_label(candidate), []).append(candidate)
@@ -78,9 +82,9 @@ def _regional_dishes(scores, margin, primary, trace=None):
         selected = []
     else:
         for label_options in options.values():
-            label_options.sort(key=lambda item: item[1]["support_margin"], reverse=True)
+            label_options.sort(key=lambda item: _evidence(item[1]), reverse=True)
         labels = sorted(options, key=lambda label: (
-            label != primary, -options[label][0][1]["support_margin"], label,
+            label != primary, -_evidence(options[label][0][1]), label,
         ))
         best = []
         best_key = (0, float("-inf"))
@@ -90,7 +94,7 @@ def _regional_dishes(scores, margin, primary, trace=None):
             if len(chosen) + len(labels) - index < best_key[0]:
                 return
             if index == len(labels):
-                key = (len(chosen), sum(item[1]["support_margin"] for item in chosen))
+                key = (len(chosen), sum(_evidence(item[1]) for item in chosen))
                 if key > best_key:
                     best, best_key = list(chosen), key
                 return
@@ -98,7 +102,7 @@ def _regional_dishes(scores, margin, primary, trace=None):
             if label != primary:
                 search(index + 1, chosen)
             for candidate in options[label]:
-                if all(_overlap(candidate[0], other[0]) <= 0.2 for other in chosen):
+                if all(_regions_are_distinct(candidate, other) for other in chosen):
                     search(index + 1, [*chosen, candidate])
 
         search(0, [])
@@ -118,6 +122,12 @@ def _regional_dishes(scores, margin, primary, trace=None):
             "background_label": score.get("background_label"),
             "background_similarity": score.get("background_similarity"),
             "fallback_top_3": score.get("fallback_top_3", []),
+            "suggestion_top_3": score.get("suggestion_top_3", []),
+            "suggestion_similarity": score.get("suggestion_similarity"),
+            "suggestion_separation": score.get("suggestion_separation"),
+            "food_over_non_food_margin": score.get("food_over_non_food_margin"),
+            "non_food_label": score.get("non_food_label"),
+            "non_food_similarity": score.get("non_food_similarity"),
             "filter_reasons": _candidate_filter(score, margin),
             "candidate": id(score) in candidate_ids,
             "corroborated": id(score) in corroborated_ids,
@@ -127,7 +137,49 @@ def _regional_dishes(scores, margin, primary, trace=None):
 
 
 def _label(candidate):
-    return candidate[1]["top_3"][0]["dish_name"]
+    score = candidate[1]
+    return score.get("review_label") or score["top_3"][0]["dish_name"]
+
+
+def _evidence(score):
+    if score.get("review_mode") != "provisional" or "suggestion_useful" not in score:
+        return score["support_margin"]
+    return score.get("food_over_non_food_margin", float("-inf"))
+
+
+def _food_family(label):
+    normalized = label.casefold()
+    for family, words in {
+        "noodles": ("noodle", "ramen", "udon", "soba", "pasta", "spaghetti", "carbonara",
+                    "pad thai", "pad see ew", "laksa", "pho", "yakisoba", "japchae"),
+        "curries": ("curry", "curries"),
+        "cakes": ("cake", "cheesecake", "tiramisu"),
+        "sandwiches": ("sandwich", "hamburger", "burger", "banh mi"),
+        "dumplings": ("dumpling", "gyoza", "wonton", "mandu", "potsticker"),
+        "soups": ("soup", "stew", "chowder"),
+        "rice": ("rice", "biryani", "pulao", "paella", "risotto"),
+    }.items():
+        if any(word in normalized for word in words):
+            return family
+    return None
+
+
+def _regions_are_distinct(left, right):
+    overlap = _overlap(left[0], right[0])
+    same_family = _food_family(_label(left)) == _food_family(_label(right))
+    left_legacy = left[1]["top_3"][0]["dish_name"]
+    right_legacy = right[1]["top_3"][0]["dish_name"]
+    alternatives_for_same_food = (
+        same_family and _food_family(_label(left))
+        and (left_legacy == _label(right) or right_legacy == _label(left))
+    )
+    if alternatives_for_same_food:
+        left_center = ((left[0][0] + left[0][2]) / 2, (left[0][1] + left[0][3]) / 2)
+        right_center = ((right[0][0] + right[0][2]) / 2, (right[0][1] + right[0][3]) / 2)
+        distance = ((left_center[0] - right_center[0]) ** 2
+                    + (left_center[1] - right_center[1]) ** 2) ** 0.5
+        return overlap <= 0.05 and distance >= 0.4
+    return overlap <= 0.2
 
 
 def _dish(prediction, region=None):
@@ -160,6 +212,16 @@ def recognize_meal(recognizer, image, trace=None):
     regions = _regional_dishes(
         scores[1:], max(recognizer.threshold, _REGION_MARGIN), primary, regional_trace,
     )
+    # A provisional whole-photo label is useful as one editable suggestion, but
+    # it is not calibrated evidence that the image contains multiple foods.
+    # Avoid turning texture changes across one plate into a list of dishes.
+    if whole.get("status") == "suggestion" and regions:
+        regions = []
+        if regional_trace is not None:
+            for row in regional_trace:
+                if row["selected"]:
+                    row["selected"] = False
+                    row["selection_blocked"] = "provisional_whole_image"
     if trace is not None:
         trace({
             "whole": {
@@ -171,6 +233,12 @@ def recognize_meal(recognizer, image, trace=None):
                 "background_label": scores[0].get("background_label"),
                 "background_similarity": scores[0].get("background_similarity"),
                 "fallback_top_3": scores[0].get("fallback_top_3", []),
+                "suggestion_top_3": scores[0].get("suggestion_top_3", []),
+                "suggestion_similarity": scores[0].get("suggestion_similarity"),
+                "suggestion_separation": scores[0].get("suggestion_separation"),
+                "food_over_non_food_margin": scores[0].get("food_over_non_food_margin"),
+                "non_food_label": scores[0].get("non_food_label"),
+                "non_food_similarity": scores[0].get("non_food_similarity"),
             },
             "thresholds": {
                 "support_margin": max(recognizer.threshold, _REGION_MARGIN),
@@ -185,9 +253,13 @@ def recognize_meal(recognizer, image, trace=None):
     if regions:
         predictions = [recognizer.predict_from_scores(score) for _, score in regions]
         return {
-            **(whole if whole["accepted"] else predictions[0]),
+            **(whole if whole.get("reviewable") else predictions[0]),
             "recognition_mode": "multi",
             "dishes": [_dish(prediction, region) for (region, _), prediction in zip(regions, predictions)],
             "message": "Review the dishes suggested from different areas of this photo.",
         }
-    return {**whole, "recognition_mode": "single", "dishes": [_dish(whole)] if whole["accepted"] else []}
+    return {
+        **whole,
+        "recognition_mode": "single",
+        "dishes": [_dish(whole)] if whole.get("reviewable", whole["accepted"]) else [],
+    }

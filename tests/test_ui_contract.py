@@ -64,6 +64,8 @@ class UIContractTests(unittest.TestCase):
         self.assertIn("will be logged together as one meal", self.html)
         self.assertIn("dishes,\n        image", self.html)
         self.assertIn("const MAX_MEAL_DISHES = 12", self.html)
+        self.assertNotIn("% relative score", self.html)
+        self.assertIn("Confirmation required", self.html)
 
     def test_snap_rescans_preserve_corrections_and_removed_suggestions(self):
         self.assertIn("primaryDishEdited", self.html)

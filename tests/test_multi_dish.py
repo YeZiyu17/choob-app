@@ -19,6 +19,20 @@ def score(label, margin, relative_score=0.93):
     }
 
 
+def provisional_score(label, margin=0.05, legacy_label="pasta"):
+    return {
+        **score(legacy_label, -0.03, 0.45),
+        "calibrated_accepted": False,
+        "suggestion_useful": True,
+        "suggestion_filter_reasons": [],
+        "suggestion_top_3": [{"dish_name": label, "similarity": 0.3}],
+        "suggestion_similarity": 0.3,
+        "food_over_non_food_margin": margin,
+        "review_label": label,
+        "review_mode": "provisional",
+    }
+
+
 class MultiDishPolicyTests(unittest.TestCase):
     def setUp(self):
         self.recognizer = DishRecognizer.__new__(DishRecognizer)
@@ -95,3 +109,45 @@ class MultiDishPolicyTests(unittest.TestCase):
         self.assertTrue(sushi["candidate"])
         self.assertFalse(sushi["corroborated"])
         self.assertIn("support_margin", ramen["filter_reasons"])
+
+    def test_provisional_foods_outside_original_nine_can_form_a_meal(self):
+        grid = _grid_windows()
+        regional = {}
+        for pair, label in zip((grid[0:2], grid[4:6], grid[12:14], grid[16:18]),
+                               ("biryani", "fish and chips", "falafel", "cheesecake")):
+            regional.update({pair[0]: provisional_score(label), pair[1]: provisional_score(label, 0.04)})
+
+        result = self.run_recognition(score("pasta", -0.03), regional)
+
+        self.assertEqual(result["recognition_mode"], "multi")
+        self.assertEqual(
+            {dish["dish_name"] for dish in result["dishes"]},
+            {"Biryani", "Fish And Chips", "Falafel", "Cheesecake"},
+        )
+        self.assertFalse(result["accepted"])
+
+    def test_provisional_whole_image_does_not_expand_one_plate_into_many_dishes(self):
+        grid = _grid_windows()
+        result = self.run_recognition(provisional_score("pancakes"), {
+            grid[0]: provisional_score("pancakes"),
+            grid[1]: provisional_score("pancakes", 0.04),
+            grid[2]: provisional_score("arepas"),
+            grid[3]: provisional_score("arepas", 0.04),
+        })
+
+        self.assertEqual(result["recognition_mode"], "single")
+        self.assertEqual([dish["dish_name"] for dish in result["dishes"]], ["Pancakes"])
+
+    def test_adjacent_alternative_noodle_guesses_do_not_become_two_dishes(self):
+        grid = _grid_windows()
+        regional = {
+            grid[0]: provisional_score("ramen", 0.06),
+            grid[1]: provisional_score("ramen", 0.05),
+            grid[2]: provisional_score("dan dan noodles", 0.055, "ramen"),
+            grid[3]: provisional_score("dan dan noodles", 0.045, "ramen"),
+        }
+
+        result = self.run_recognition(provisional_score("ramen"), regional)
+
+        self.assertEqual(result["recognition_mode"], "single")
+        self.assertEqual([dish["dish_name"] for dish in result["dishes"]], ["Ramen"])

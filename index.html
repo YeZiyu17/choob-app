@@ -1423,6 +1423,7 @@
       const main=showDishSuggestions(result,fallbackName);
       const uncertain=!main;
       const multiple=extraMealDishes.length>0;
+      const provisional=result.status==='suggestion';
       const suggested=typeof result.suggested_dish==='string'?result.suggested_dish:result.suggested_dish?.dish_name;
       currentPrediction={...result,accepted:!uncertain};
       recognitionMode.textContent='Dish recognition';
@@ -1430,11 +1431,11 @@
       document.getElementById('identifiedDish').textContent=multiple?'Review your meal':main?.dish_name||'Uncertain / unsupported dish';
       document.getElementById('identifiedCuisine').textContent=main?.cuisine||'Unknown';
       document.getElementById('identifiedCategory').textContent=main?.category||'Unknown';
-      document.getElementById('identifiedAlternativeLabel').textContent=uncertain?'SUGGESTED CANDIDATE':'TOP ALTERNATIVE';
-      document.getElementById('identifiedAlternative').textContent=(uncertain?suggested:result.alternatives?.[0]?.dish_name)||'—';
+      document.getElementById('identifiedAlternativeLabel').textContent=uncertain?'SUGGESTED CANDIDATE':provisional?'REVIEW STATUS':'TOP ALTERNATIVE';
+      document.getElementById('identifiedAlternative').textContent=provisional?'Confirmation required':(uncertain?suggested:result.alternatives?.[0]?.dish_name)||'—';
       const scoreNote=result.score_note||'Relative scores compare supplied candidates and are not calibrated confidence.';
       document.getElementById('recognitionNote').textContent=multiple?'Keep the dishes you ate. You can edit the names, remove a suggestion, or add a missing dish.':
-        [result.message,scoreNote,`${result.model||'CLIP'} · ${(100*(main?.relative_score??result.relative_score??0)).toFixed(1)}% relative score`].filter(Boolean).join(' ');
+        [result.message,scoreNote,result.model||'CLIP'].filter(Boolean).join(' ');
       scanResult.classList.add('show');
       scanResult.scrollIntoView?.({block:'nearest'});
       cameraHint.textContent=uncertain?'Please enter the dish name manually before logging the meal.':'Recognition complete. Review the dishes before logging your meal.';

@@ -1,16 +1,25 @@
 {
-  "version": "clip-scope-v2",
-  "vocabulary_fingerprint": "89858d0bba3e287cf687bf0cb1f9e97f88eb34974a671059040dc4226e5c2843",
-  "support_margin_threshold": 0.004918932914733887,
-  "selection": {
-    "rule": "Largest support-margin threshold retaining at least 90% of calibration in-scope images; acceptance uses margin >= threshold.",
-    "required_supported_accepts": 162,
-    "supported_images": 180,
-    "actual_supported_accepts": 162,
-    "minimum_supported_recall": 0.9,
-    "threshold": 0.004918932914733887,
-    "ties": "All margins equal to the threshold are accepted; recall can exceed the target."
+  "version": "clip-broad-suggestions-v1",
+  "vocabulary_fingerprint": "5901105eef5ad53d7a3babe96497acca6c288139df3d03ab3df83476b349e43d",
+  "legacy_calibrated_gate": {
+    "version": "clip-scope-v2",
+    "vocabulary_fingerprint": "89858d0bba3e287cf687bf0cb1f9e97f88eb34974a671059040dc4226e5c2843",
+    "support_margin_threshold": 0.004918932914733887,
+    "calibration_images": 260,
+    "holdout_images": 340,
+    "selection": {
+      "rule": "Frozen nine-family gate retaining at least 90% of its calibration in-scope images.",
+      "required_supported_accepts": 162,
+      "supported_images": 180,
+      "actual_supported_accepts": 162,
+      "minimum_supported_recall": 0.9
+    }
   },
-  "calibration_images": 260,
-  "holdout_images": 340
+  "expanded_suggestion_policy": {
+    "calibration_status": "provisional_unvalidated",
+    "minimum_food_similarity": 0.23,
+    "minimum_food_over_non_food_margin": 0.01,
+    "minimum_label_separation": 0.012,
+    "meaning": "Heuristic only. Passing candidates require confirmation and are not calibrated accepts or confidence estimates."
+  }
 }
