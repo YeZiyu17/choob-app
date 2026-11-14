@@ -2,6 +2,8 @@
 from io import BytesIO
 from pathlib import Path
 import gc
+import sys
+import types
 import unittest
 from unittest.mock import patch
 import warnings
@@ -37,6 +39,39 @@ class SnapRecognitionApiTests(unittest.TestCase):
             return response
         finally:
             stream.close()
+
+    def test_clip_loader_requires_safe_tensor_weights(self):
+        calls = {}
+
+        class FakeModel:
+            @classmethod
+            def from_pretrained(cls, model_id, **options):
+                calls.update(model_id=model_id, options=options)
+                return cls()
+
+            def to(self, _device):
+                return self
+
+            def eval(self):
+                return self
+
+        class FakeProcessor:
+            @classmethod
+            def from_pretrained(cls, _model_id):
+                return cls()
+
+        transformers = types.ModuleType("transformers")
+        transformers.CLIPModel = FakeModel
+        transformers.CLIPProcessor = FakeProcessor
+        backend.get_clip.cache_clear()
+        try:
+            with patch.dict(sys.modules, {"transformers": transformers}):
+                backend.get_clip()
+        finally:
+            backend.get_clip.cache_clear()
+
+        self.assertEqual(calls["model_id"], "openai/clip-vit-base-patch32")
+        self.assertIs(calls["options"]["use_safetensors"], True)
 
     def test_single_dish_sample_reaches_recognition_as_rgb(self):
         observed = {}

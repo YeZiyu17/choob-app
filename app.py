@@ -140,6 +140,7 @@ def get_clip():
     model_id = "openai/clip-vit-base-patch32"
     model = CLIPModel.from_pretrained(
         model_id,
+        use_safetensors=True,
         low_cpu_mem_usage=False,
         device_map=None,
     )
