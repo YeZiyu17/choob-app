@@ -192,6 +192,38 @@
     .connect-profile summary:focus-visible{outline:2px solid #6a49d1;outline-offset:3px;border-radius:4px}
     .connect-try-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-top:1px solid #f0ecf3;font-size:13px}
     .connect-try-row .passport-action{flex:none}
+    .connect-dish{display:grid;gap:2px;min-width:0}
+    .connect-dish small{color:#6f677b;font-size:11px}
+    .connect-note{color:#453858;font-size:12px;font-style:italic;quotes:"“" "”"}
+    .connect-match-meta{display:flex;align-items:center;gap:8px;margin-top:10px}
+    .connect-strength{padding:3px 8px;border-radius:99px;background:#e8ddff;color:#51379f;font-size:11px;font-weight:800}
+    .connect-reason{margin:8px 0 0;color:#2b2438;font-size:13px;line-height:1.45;font-weight:650}
+    .connect-bio{margin:8px 0 0;color:#6f677b;font-size:12px;line-height:1.45}
+    .connect-subhead{margin:12px 0 2px;color:#5b4196;font-size:12px;font-weight:800}
+    .connect-shared-dishes .connect-try-row:first-of-type{border-top:0}
+    .connect-follow[aria-pressed="true"]{background:#1e1b2c;color:#fff}
+    .connect-explore-title{margin:14px 0 0}
+    .connect-your-stamps .connect-profile-name h2{margin:0 0 2px;font-size:20px;letter-spacing:-.4px}
+    .connect-me-icon{background:#fff;width:48px;height:48px;font-size:26px;border-radius:14px}
+    .connect-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}
+    .connect-stat{display:grid;gap:1px;padding:8px 4px;border:1px solid #ece2f7;border-radius:12px;background:#fff;color:#2b2438;text-align:center;font:inherit}
+    button.connect-stat{cursor:pointer}button.connect-stat:hover{background:#faf6ff}
+    .connect-stat b{font-size:18px;line-height:1.2}.connect-stat small{color:#6f677b;font-size:10px;font-weight:700}
+    .connect-tastes{margin-top:12px;padding-top:10px;border-top:1px solid #ece2f7}.connect-tastes .connect-subhead{margin-top:0}
+    .connect-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:16px 0 4px}
+    .connect-tastes-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .connect-tab{min-height:40px;padding:6px 4px;border:1px solid #e7def4;border-radius:99px;background:#fff;color:#51379f;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+    .connect-tab[aria-pressed="true"]{background:#1e1b2c;border-color:#1e1b2c;color:#fff}
+    .connect-follows-you{padding:3px 8px;border-radius:99px;background:#dff5d8;color:#2f6b23;font-size:11px;font-weight:800}
+    .connect-profile-form h2{margin:0 0 4px;font-size:18px;letter-spacing:-.3px}
+    .connect-name-input{width:100%;min-height:44px;padding:9px 12px;border:1px solid #e1d6ef;border-radius:12px;background:#fff;color:var(--ink);font:inherit;font-size:16px}
+    .connect-avatars{display:flex;flex-wrap:wrap;gap:6px}
+    .connect-avatar{width:44px;height:44px;border:1px solid #e7def4;border-radius:12px;background:#fff;font-size:22px;cursor:pointer}
+    .connect-avatar[aria-pressed="true"]{border:2px solid #6a49d1;background:#f3edfc}
+    .connect-form-error{margin:6px 0 0;color:#b3261e;font-size:12px;min-height:0}
+    .connect-form-actions{display:flex;gap:8px;margin-top:10px}
+    .connect-primary{background:#1e1b2c;border-color:#1e1b2c;color:#fff}
+    .connect-tab:focus-visible,.connect-avatar:focus-visible,.connect-stat:focus-visible,.connect-name-input:focus-visible{outline:2px solid #6a49d1;outline-offset:2px}
     .try-header{margin-bottom:16px}
     #wantToTryScreen h1{margin:8px 0}
     .try-idea{border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden}
@@ -513,14 +545,10 @@
   <section class="screen hidden" id="connectScreen">
     <div class="top"><button class="back" data-back aria-label="Back">&larr;</button><div class="brand">Connect<span class="brand-dot">.</span></div></div>
     <h1>Find your taste twins.</h1>
-    <p class="pitch">Find demo passports with food stamps in common and discover what to try next.</p>
-    <section class="passport-card connect-your-stamps" aria-labelledby="connectStampTitle">
-      <h2 id="connectStampTitle">Your stamp tastes</h2>
-      <p class="passport-note" id="connectStampNote">Add a meal with a location to start matching.</p>
-      <div class="connect-stamps" id="connectStampTypes"></div>
-    </section>
-    <section aria-labelledby="connectMatchTitle">
-      <div class="passport-head"><h2 class="connect-matches-title" id="connectMatchTitle">Matching passports</h2><button type="button" class="passport-action" data-nav="wantToTryScreen">Saved dishes</button></div>
+    <p class="pitch">See who shares your food stamps, why you match, and which of their dishes to try next.</p>
+    <section class="passport-card connect-your-stamps" id="connectMe" aria-label="Your profile"></section>
+    <section aria-label="Passports">
+      <div class="connect-tabs" id="connectTabs" role="group" aria-label="Show"></div>
       <div class="connect-results" id="connectResults"></div>
     </section>
   </section>
@@ -744,6 +772,7 @@
     return typeof item?.restaurant_name === 'string' && item.restaurant_name.trim() !== '';
   }
   function trySource(item) {
+    if (item.source==='connect' && item.shared_by) return [item.restaurant_name,`${item.shared_by}’s pick`].filter(Boolean).join(' · ');
     return item.restaurant_name || (item.source==='discover'?'From Discover':'From Connect');
   }
   function isValidDishName(name){return typeof name==='string' && !!name.trim() && !/^(unknown|uncertain|unsupported(?: dish)?|uncertain\s*\/\s*unsupported dish)$/i.test(name.trim())}
@@ -971,80 +1000,272 @@
     if (text) element.textContent = text;
     return element;
   }
-  function connectStampChips(types) {
-    return types.map(({label,emoji})=>connectElement('span','connect-stamp',`${emoji} ${label}`));
+  const CONNECT_FOLLOW_KEY='choob.connect.following.v1';
+  const CONNECT_PROFILE_KEY='choob.connect.profile.v1';
+  const CONNECT_AVATARS=['😋','🍣','🍜','🌮','🍕','🥟','🍛','🧋'];
+  let connectTab='matches';
+  let connectEditingProfile=false;
+  function getFollowing(){try{const x=JSON.parse(localStorage.getItem(CONNECT_FOLLOW_KEY)||'[]');return new Set(Array.isArray(x)?x.filter(id=>typeof id==='string'):[])}catch{return new Set()}}
+  function setFollowing(ids){try{localStorage.setItem(CONNECT_FOLLOW_KEY,JSON.stringify([...ids]));return true}catch{return false}}
+  function getMyProfile(){
+    try{
+      const p=JSON.parse(localStorage.getItem(CONNECT_PROFILE_KEY)||'null');
+      if(!p||typeof p.name!=='string'||!p.name.trim())return null;
+      return {name:p.name.trim().slice(0,40),emoji:CONNECT_AVATARS.includes(p.emoji)?p.emoji:CONNECT_AVATARS[0]};
+    }catch{return null}
+  }
+  function setMyProfile(profile){try{localStorage.setItem(CONNECT_PROFILE_KEY,JSON.stringify(profile));return true}catch{return false}}
+  function connectDishKey(name,restaurant){return `${name.trim().toLowerCase()}|${restaurant||''}`}
+  function connectDishRow(dish,{wanted,results,profile,saveable}) {
+    const row = connectElement('div','connect-try-row');
+    const text = connectElement('div','connect-dish');
+    text.append(connectElement('b','',`${dish.emoji} ${dish.name}`));
+    text.append(connectElement('small','',[dish.restaurant,dish.city].filter(Boolean).join(' · ')));
+    if (dish.note) text.append(connectElement('q','connect-note',dish.note));
+    row.append(text);
+    if (!saveable) return row;
+    const key = connectDishKey(dish.name,dish.restaurant);
+    const button = connectElement('button','passport-action',wanted.has(key)?'Saved':'Save to try');
+    button.type = 'button';
+    button.disabled = wanted.has(key);
+    button.dataset.tryDish = key;
+    button.setAttribute('aria-label',`${button.textContent}: ${dish.name} at ${dish.restaurant}`);
+    button.addEventListener('click',()=>{
+      if (!addSaved({dish_name:dish.name,restaurant_name:dish.restaurant,city:dish.city,shared_by:profile.name,source:'connect',want_to_try:true})) return;
+      wanted.add(key);
+      for (const other of results.querySelectorAll('[data-try-dish]')) {
+        if (other.dataset.tryDish !== key) continue;
+        other.textContent = 'Saved';
+        other.setAttribute('aria-label',`Saved: ${dish.name} at ${dish.restaurant}`);
+        other.disabled = true;
+      }
+    });
+    row.append(button);
+    return row;
+  }
+  function connectProfileCard(match,{wanted,results,following}) {
+    const isMatch = match.score > 0;
+    const card = connectElement('article','passport-card connect-profile');
+    const head = connectElement('div','connect-profile-head');
+    const icon = connectElement('span','connect-profile-icon',match.emoji);
+    icon.setAttribute('aria-hidden','true');
+    const name = connectElement('div','connect-profile-name');
+    name.append(connectElement('h3','',match.name),connectElement('p','',`Demo passport · ${match.city}`));
+    const follow = connectElement('button','passport-action connect-follow');
+    follow.type = 'button';
+    const on = following.has(match.id);
+    follow.textContent = on?'Following':'Follow';
+    follow.setAttribute('aria-pressed',String(on));
+    follow.setAttribute('aria-label',`${on?'Unfollow':'Follow'} ${match.name}`);
+    follow.addEventListener('click',()=>{
+      if (on) following.delete(match.id); else following.add(match.id);
+      if (!setFollowing(following)) { showToast('Could not save on this device.'); return; }
+      renderConnect();
+      showToast(on?`Unfollowed ${match.name}.`:isMatch?`Following ${match.name}. ${match.name} followed you back!`:`Following ${match.name}.`);
+    });
+    head.append(icon,name,follow);
+    card.append(head);
+    const meta = connectElement('div','connect-match-meta');
+    if (isMatch) {
+      meta.append(connectElement('span','connect-strength',match.strength));
+      if (match.shared.length) meta.append(connectElement('span','passport-count',`${match.shared.length} shared dish${match.shared.length===1?'':'es'}`));
+    }
+    // Demo rule: a passport you share a stamp with follows you back.
+    if (on && isMatch) meta.append(connectElement('span','connect-follows-you','Follows you'));
+    if (meta.childElementCount) card.append(meta);
+    if (isMatch) {
+      card.append(connectElement('p','connect-reason',match.reason));
+      const chips = [...match.shared.map(({label,emoji})=>`${emoji} ${label}`),...match.sharedCuisines.map(cuisine=>`🌏 ${cuisine}`)];
+      if (match.sameCity) chips.push(`📍 ${match.city}`);
+      const shared = connectElement('div','connect-stamps');
+      shared.setAttribute('aria-label','What you have in common');
+      shared.append(...chips.map(text=>connectElement('span','connect-stamp',text)));
+      card.append(shared);
+    } else {
+      card.append(connectElement('p','connect-reason','No shared stamps yet. Try one of their picks to start a match.'));
+    }
+    card.append(connectElement('p','connect-bio',match.bio));
+    if (match.sharedDishes.length) {
+      const yours = connectElement('div','connect-shared-dishes');
+      yours.append(connectElement('p','connect-subhead',`${match.name}’s take on dishes you both have`));
+      for (const dish of match.sharedDishes) yours.append(connectDishRow(dish,{wanted,results,profile:match,saveable:true}));
+      card.append(yours);
+    }
+    const details = connectElement('details','');
+    if (!isMatch) details.open = true;
+    const count = match.suggestions.length;
+    details.append(connectElement('summary','',!isMatch?`${match.name}’s picks (${count})`:count?`More from ${match.name}’s passport (${count})`:`${match.name}’s passport`));
+    if (!count) {
+      details.append(connectElement('p','passport-note','You already have every dish type in this passport.'));
+    }
+    for (const dish of match.suggestions) details.append(connectDishRow(dish,{wanted,results,profile:match,saveable:true}));
+    card.append(details);
+    return card;
+  }
+  function connectProfileForm(container,me) {
+    const form = connectElement('form','connect-profile-form');
+    form.append(connectElement('h2','',me?'Edit your profile':'Create your Choob profile'));
+    form.append(connectElement('p','passport-note','Your profile is saved in this browser. Demo only, no password.'));
+    const label = connectElement('label','passport-location-label','Your name');
+    label.htmlFor = 'connectProfileName';
+    const input = connectElement('input','connect-name-input');
+    input.id = 'connectProfileName';
+    input.maxLength = 40;
+    input.autocomplete = 'nickname';
+    input.placeholder = 'e.g. Rui';
+    input.value = me?.name || '';
+    let emoji = me?.emoji || CONNECT_AVATARS[0];
+    const avatarLabel = connectElement('p','passport-location-label','Pick an avatar');
+    const avatars = connectElement('div','connect-avatars');
+    avatars.setAttribute('role','group');
+    avatars.setAttribute('aria-label','Avatar');
+    for (const choice of CONNECT_AVATARS) {
+      const button = connectElement('button','connect-avatar',choice);
+      button.type = 'button';
+      button.setAttribute('aria-pressed',String(choice===emoji));
+      button.setAttribute('aria-label',`Avatar ${choice}`);
+      button.addEventListener('click',()=>{
+        emoji = choice;
+        for (const other of avatars.children) other.setAttribute('aria-pressed',String(other===button));
+      });
+      avatars.append(button);
+    }
+    const error = connectElement('p','connect-form-error');
+    error.setAttribute('role','alert');
+    const actions = connectElement('div','connect-form-actions');
+    const save = connectElement('button','passport-action connect-primary',me?'Save':'Create profile');
+    save.type = 'submit';
+    actions.append(save);
+    if (me) {
+      const cancel = connectElement('button','passport-action','Cancel');
+      cancel.type = 'button';
+      cancel.addEventListener('click',()=>{connectEditingProfile=false;renderConnect();});
+      actions.append(cancel);
+    }
+    form.addEventListener('submit',event=>{
+      event.preventDefault();
+      const name = input.value.normalize('NFKC').trim().replace(/\s+/g,' ');
+      if (!name || /[<>\p{Cc}\p{Cf}]/u.test(name)) {
+        error.textContent = 'Enter a name to show on your profile.';
+        input.focus();
+        return;
+      }
+      if (!setMyProfile({name,emoji})) { showToast('Could not save on this device.'); return; }
+      connectEditingProfile = false;
+      renderConnect();
+      showToast(me?'Profile updated.':`Welcome, ${name}!`);
+    });
+    form.append(label,input,avatarLabel,avatars,error,actions);
+    container.append(form);
+  }
+  function connectStat(value,label,tab) {
+    const stat = connectElement(tab?'button':'div','connect-stat');
+    if (tab) {
+      stat.type = 'button';
+      stat.setAttribute('aria-label',`${value} ${label}. Show ${label.toLowerCase()}`);
+      stat.addEventListener('click',()=>{connectTab=tab;renderConnect();});
+    }
+    stat.append(connectElement('b','',String(value)),connectElement('small','',label));
+    return stat;
   }
   function renderConnect() {
     const results = document.getElementById('connectResults');
-    const stampNote = document.getElementById('connectStampNote');
-    const stampChips = document.getElementById('connectStampTypes');
+    const me = document.getElementById('connectMe');
+    const tabs = document.getElementById('connectTabs');
     const saved = getSaved();
     results.replaceChildren();
-    stampChips.replaceChildren();
+    me.replaceChildren();
+    tabs.replaceChildren();
     if (!window.ChoobConnect) {
       results.append(connectElement('p','passport-empty','Could not load passport matches. Refresh to try again.'));
       return;
     }
-    const {stampTypes,matches} = window.ChoobConnect.matchStamps(saved.filter(item=>!isWantToTry(item)));
-    stampNote.textContent = stampTypes.length
-      ? 'Your saved map stamps shape these matches.'
-      : 'Save a meal with a location to add your first stamp.';
-    stampChips.append(...connectStampChips(stampTypes));
+    const meals = saved.filter(item=>!isWantToTry(item));
+    const {stampTypes,matches,explore} = window.ChoobConnect.matchStamps(meals);
+    const everyone = [...matches,...explore];
+    const following = getFollowing();
+    const followed = everyone.filter(profile=>following.has(profile.id));
+    const followers = followed.filter(profile=>profile.score>0);
+    const myProfile = getMyProfile();
+
+    if (!myProfile || connectEditingProfile) {
+      connectProfileForm(me,myProfile);
+    } else {
+      const head = connectElement('div','connect-profile-head');
+      const icon = connectElement('span','connect-profile-icon connect-me-icon',myProfile.emoji);
+      icon.setAttribute('aria-hidden','true');
+      const name = connectElement('div','connect-profile-name');
+      name.append(connectElement('h2','',myProfile.name),connectElement('p','','Your Choob profile'));
+      const edit = connectElement('button','passport-action','Edit');
+      edit.type = 'button';
+      edit.setAttribute('aria-label','Edit your profile');
+      edit.addEventListener('click',()=>{connectEditingProfile=true;renderConnect();});
+      head.append(icon,name,edit);
+      const stats = connectElement('div','connect-stats');
+      stats.append(
+        connectStat(meals.length,meals.length===1?'Meal':'Meals'),
+        connectStat(stampTypes.length,'Dish types'),
+        connectStat(followed.length,'Following','following'),
+        connectStat(followers.length,'Followers','followers'));
+      me.append(head,stats);
+    }
+    const tastes = connectElement('div','connect-tastes');
+    const tastesHead = connectElement('div','connect-tastes-head');
+    const savedLink = connectElement('button','passport-action','Saved dishes');
+    savedLink.type = 'button';
+    savedLink.addEventListener('click',()=>show('wantToTryScreen'));
+    tastesHead.append(connectElement('p','connect-subhead','Your passport tastes'),savedLink);
+    tastes.append(tastesHead);
+    tastes.append(connectElement('p','passport-note',stampTypes.length
+      ? 'Matches are based on the dishes and cuisines in your Food Passport.'
+      : 'Log a meal in Snap to add your first stamp and start matching.'));
+    const chips = connectElement('div','connect-stamps');
+    chips.append(...stampTypes.map(({label,emoji,count})=>connectElement('span','connect-stamp',`${emoji} ${label}${count>1?` ×${count}`:''}`)));
+    tastes.append(chips);
+    me.append(tastes);
+
+    for (const [id,label,count] of [['matches','Matches',matches.length],['following','Following',followed.length],['followers','Followers',followers.length]]) {
+      const tab = connectElement('button','connect-tab',`${label} (${count})`);
+      tab.type = 'button';
+      tab.setAttribute('aria-pressed',String(connectTab===id));
+      tab.addEventListener('click',()=>{connectTab=id;renderConnect();});
+      tabs.append(tab);
+    }
+
+    const wanted = new Set(saved.filter(isWantToTry).map(item=>connectDishKey(item.dish_name,item.restaurant_name)));
+    const card = profile=>connectProfileCard(profile,{wanted,results,following});
+    const emptyNote = text=>{
+      const empty = connectElement('div','passport-empty');
+      empty.append(connectElement('p','passport-note',text));
+      results.append(empty);
+    };
+    if (connectTab==='following') {
+      if (!followed.length) emptyNote('You are not following anyone yet. Tap Follow on a passport to keep it here.');
+      for (const profile of followed) results.append(card(profile));
+      return;
+    }
+    if (connectTab==='followers') {
+      if (!followers.length) emptyNote('Follow someone you share a stamp with, and they will follow you back here.');
+      for (const profile of followers) results.append(card(profile));
+      return;
+    }
+    // Followed profiles first, then by match score.
+    const byFollow = list=>[...list].sort((a,b)=>Number(following.has(b.id))-Number(following.has(a.id)));
     if (!matches.length) {
       const empty = connectElement('div','passport-empty');
       empty.append(connectElement('p','passport-note',stampTypes.length
-        ? 'No shared stamps with the demo passports yet. Add more meals as you try them.'
-        : 'Once you have a stamp, Choob can look for a shared dish.'));
-      const add = connectElement('button','passport-action','Add a stamp in Snap');
+        ? 'No shared stamps with the demo passports yet. Try one of these dishes, then log it in Snap.'
+        : 'Once you log a meal, Choob shows who shares your tastes. Meanwhile, browse these passports.'));
+      const add = connectElement('button','passport-action','Log a meal in Snap');
       add.type = 'button';
       add.addEventListener('click',()=>show('snapScreen'));
       empty.append(add);
       results.append(empty);
-      return;
     }
-    const wanted = new Set(saved.filter(isWantToTry).map(item=>item.dish_name.toLowerCase()));
-    for (const match of matches) {
-      const card = connectElement('article','passport-card connect-profile');
-      const head = connectElement('div','connect-profile-head');
-      const icon = connectElement('span','connect-profile-icon',match.emoji);
-      icon.setAttribute('aria-hidden','true');
-      const name = connectElement('div','connect-profile-name');
-      name.append(connectElement('h3','',match.name),connectElement('p','','Demo passport'));
-      head.append(icon,name,connectElement('span','passport-count',`${match.shared.length} shared`));
-      const shared = connectElement('div','connect-stamps');
-      shared.setAttribute('aria-label','Shared stamps');
-      shared.append(...connectStampChips(match.shared));
-      const details = connectElement('details','');
-      const summary = connectElement('summary','',`View ${match.name}’s passport`);
-      details.append(summary);
-      if (!match.suggestions.length) {
-        details.append(connectElement('p','passport-note','You already share all the dish types in this passport.'));
-      } else {
-        details.append(connectElement('p','passport-note','Other dishes to try'));
-      }
-      for (const dish of match.suggestions) {
-        const row = connectElement('div','connect-try-row');
-        const key = dish.name.toLowerCase();
-        const button = connectElement('button','passport-action',wanted.has(key)?'Saved':'Save to try');
-        button.type = 'button';
-        button.disabled = wanted.has(key);
-        button.dataset.tryDish = key;
-        button.setAttribute('aria-label',`${button.textContent} ${dish.name}`);
-        button.addEventListener('click',()=>{
-          if (!addSaved({dish_name:dish.name,source:'connect',want_to_try:true})) return;
-          wanted.add(key);
-          for (const other of results.querySelectorAll('[data-try-dish]')) {
-            if (other.dataset.tryDish !== key) continue;
-            other.textContent = 'Saved';
-            other.setAttribute('aria-label',`Saved ${dish.name}`);
-            other.disabled = true;
-          }
-        });
-        row.append(connectElement('span','',`${dish.emoji} ${dish.name}`),button);
-        details.append(row);
-      }
-      card.append(head,shared,details);
-      results.append(card);
+    for (const match of byFollow(matches)) results.append(card(match));
+    if (explore.length) {
+      results.append(connectElement('h2','connect-matches-title connect-explore-title','More passports to explore'));
+      for (const profile of byFollow(explore).slice(0,matches.length?2:3)) results.append(card(profile));
     }
   }
   collectDetailButton.addEventListener('click',()=>{
