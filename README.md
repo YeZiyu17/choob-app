@@ -67,11 +67,13 @@ In Snap, analyze a photo or enter the dish name manually. You can add more dishe
 
 The local map uses OpenStreetMap by default and needs an internet connection for the map tiles. To use Google Maps instead, start Flask with a website-restricted Maps JavaScript browser key in `CHOOB_GOOGLE_MAPS_BROWSER_KEY` and an optional `CHOOB_GOOGLE_MAPS_MAP_ID` (defaults to `DEMO_MAP_ID` for testing). Configure the key for the exact local origin you open.
 
-Keep `recognition.py` and `recognition_config.json` with `app.py`. The scope threshold is tied to a fingerprint of the prompt vocabulary. Changing that vocabulary requires recalibration; an absent or stale configuration causes recognition to return a clear backend error instead of silently using an arbitrary threshold.
+Keep `recognition.py`, `food_vocabulary.py`, and `recognition_config.json` with `app.py`. The original nine-family acceptance threshold remains tied to its frozen vocabulary fingerprint. The broader vocabulary contains 387 candidate labels and aliases for editable suggestions; it is explicitly provisional and is not covered by the old calibration. Changing either vocabulary invalidates the configuration fingerprint instead of silently reusing a threshold. Text prototypes are batched once and cached under the platform cache directory; set `CHOOB_TEXT_CACHE` to choose another location.
+
+On an Intel Mac with Python 3.11 and PyTorch 2.2.2, install `requirements-intel-py311.txt`. It keeps NumPy below 2 for compatibility and does not add another recognition provider or require credentials.
 
 ## Recognition evaluation
 
-The original 50-photo baseline remains in `evaluation/results/README.md`. The single-dish comparison uses 600 distinct Food-101 validation photos: 260 calibration photos followed by a frozen 340-photo holdout. Previous first-five-per-class photos are excluded. Threshold selection uses only calibration data. Ramen is scored only at family level. The crop-based multi-dish suggestions are experimental and have not been evaluated by this comparison.
+The original 50-photo baseline remains in `evaluation/results/README.md`. The single-dish comparison uses 600 distinct Food-101 validation photos: 260 calibration photos followed by a frozen 340-photo holdout. Previous first-five-per-class photos are excluded. Threshold selection uses only calibration data. Ramen is scored only at family level. That result applies only to the frozen nine-family gate. The 387-label broad suggestion layer and crop-based multi-dish suggestions are experimental, require user confirmation, and have not been calibrated by this comparison. Candidate-label coverage must not be reported as recognition accuracy.
 
 See `evaluation/results/optimization_report.md` and `evaluation/results/clip_comparison.json` for results, individual predictions, limitations and sampling details. These are fixed dataset subsets; do not present them as overall real-world accuracy.
 
@@ -140,13 +142,15 @@ start_choob.py      Launch the rehearsal build with Gemini + Tavily
 build_recommendations.py  Validated extraction, aggregation and aligned export
 Choob_Recommendation_Pipeline.ipynb  Self-contained Colab rebuild entry point
 recognition.py      CLIP prompt ensembles and scope decision
+food_vocabulary.py  Structured provisional food candidates and aliases
 multi_dish.py       Suggest distinct dishes from regions of a meal photo
-recognition_config.json  Frozen calibration threshold and vocabulary fingerprint
+recognition_config.json  Frozen legacy calibration plus provisional broad policy
 index.html          Original Choob UI (updated, no frameworks required)
 evaluation/         Reproducible comparisons and recorded results
 tests/              Recognition and recommendation regression checks
 data/               Recommendation CSV, embeddings, manifest and input contract
 requirements.txt    Python dependencies
+requirements-intel-py311.txt  Intel Mac / Python 3.11 / PyTorch 2.2.2 profile
 Dockerfile          Deployment option
 cache_models.py     Cache public model weights during Docker image construction
 .dockerignore       Keep private inputs, local caches and environments out of images
