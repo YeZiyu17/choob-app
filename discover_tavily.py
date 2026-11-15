@@ -77,6 +77,15 @@ _MENU_SECTION = re.compile(
     re.I | re.M,
 )
 _MENU_PRICE = re.compile(r"\$\s*\d+\.\d{2}\b")
+_TASTE_WORDS = {
+    "Spicy": "spicy",
+    "Crispy": "crispy",
+    "Fresh & light": "fresh, light",
+    "Rich & creamy": "rich, creamy",
+    "Sweet": "sweet",
+    "Savory": "savory",
+    "Mild": "mild",
+}
 
 
 class TavilyDiscoverError(RuntimeError):
@@ -368,6 +377,39 @@ def _spicy_detail(quote, dish, passages, restaurant):
     return ""
 
 
+def _request_phrase(preferences, region=""):
+    """Restate the diner's request, such as "spicy Thai food" or "fresh, light sushi"."""
+    dish = _text(preferences.get("dish"), 80)
+    cuisine = _text(preferences.get("cuisine"), 80)
+    if dish:
+        subject = f"{region}-style {dish}" if region and not _contains(region, dish) else dish
+    elif region:
+        subject = f"{region} food"
+    elif cuisine and cuisine.casefold() not in _FLEXIBLE:
+        subject = f"{cuisine} food"
+    else:
+        subject = "food"
+    adjective = _TASTE_WORDS.get(_text(preferences.get("taste"), 80), "")
+    if adjective and not any(_contains(word, subject) for word in adjective.split(", ")):
+        return f"{adjective} {subject}"
+    return "" if subject == "food" and not adjective else subject
+
+
+def _why(preferences, region, dish, evidence):
+    """Explain the fit using only the request and a quote already checked against the menu."""
+    phrase = _request_phrase(preferences, region)
+    evidence = _text(evidence, 180).rstrip(".")
+    has_taste = _text(preferences.get("taste"), 80) in _TASTE_WORDS
+    if has_taste and evidence:
+        if _normalized(evidence) == _normalized(dish):
+            return f"Its name on the menu, “{dish}”, fits the {phrase} you asked for."
+        return f"You asked for {phrase}, and its menu listing says “{evidence}”."
+    detail = f", described as “{evidence}”" if evidence and _normalized(evidence) != _normalized(dish) else ""
+    if phrase:
+        return f"You asked for {phrase}, and this menu lists “{dish}”{detail}."
+    return f"You left it open, so here’s a dish from this menu: “{dish}”{detail}."
+
+
 def _pick_results(pages, preferences, city, select_picks, existing=(), *,
                   source_limit=_MODEL_SOURCE_LIMIT, excluded=()):
     city_name = city.partition(",")[0].strip()
@@ -457,11 +499,10 @@ def _pick_results(pages, preferences, city, select_picks, existing=(), *,
             "source_url": source["url"],
             "source_title": source["title"],
             "note": f"Menu mentions “{quote}”" if quote else "",
+            "why": _why(preferences, region, dish, detail if chinese_spicy and detail else quote),
         }
         if region_scope:
             result["region" if region_scope == "dish" else "menu_region"] = region
-        if chinese_spicy and detail:
-            result["why"] = f"For your spicy pick, the menu says “{detail.rstrip('.')}”."
         results.append(result)
 
     if chinese_spicy:

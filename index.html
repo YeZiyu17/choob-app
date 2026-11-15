@@ -1857,8 +1857,16 @@
     let url;
     try{url=new URL(item.source_url);}catch{return null;}
     if(!['https:','http:'].includes(url.protocol)||url.username||url.password)return null;
-    const link=connectElement('a','discover-source',`View source · ${item.source_title||url.hostname} ↗`);
-    link.href=url.href;
+    const dish=typeof item.dish_name==='string'?item.dish_name.replace(/\s+/g,' ').trim():'';
+    // A text fragment asks the browser to scroll to and highlight the dish on the menu page.
+    // Browsers without support, or pages where the exact text differs, simply open the page normally.
+    const highlight=dish&&!url.hash.includes(':~:')
+      ? `${url.hash?'':'#'}:~:text=${encodeURIComponent(dish).replace(/-/g,'%2D')}`
+      : '';
+    const label=`${dish?'See it on the menu':'View menu'} · ${item.source_title||url.hostname} ↗`;
+    const link=connectElement('a','discover-source',label);
+    if(dish)link.setAttribute('aria-label',`See ${dish} on the ${item.source_title||url.hostname} menu (opens in a new tab)`);
+    link.href=url.href.replace(/#$/,'')+highlight;
     link.target='_blank';
     link.rel='noopener noreferrer';
     return link;
