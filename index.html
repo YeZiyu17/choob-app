@@ -820,7 +820,8 @@
 function badgeForMeal(item) {
   const name = String(item.dish_name || '').toLowerCase();
 
-  if (/\b(sushi|sashimi|nigiri|maki|rolls?)\b/.test(name)) return '🍣';
+  if (/\b(?:spring|egg|summer) rolls?\b/.test(name)) return '🌯';
+  if (/\b(sushi|sashimi|nigiri|maki|(?:tuna|salmon|california|avocado|dragon|rainbow|eel|shrimp tempura) rolls?)\b|寿司|壽司/.test(name)) return '🍣';
   if (/\b(ramen|noodles?|pho|pad thai|lo mein|chow mein)\b/.test(name)) return '🍜';
   if (/\b(pizza)\b/.test(name)) return '🍕';
   if (/\b(dumplings?|gyoza|potstickers?|wontons?)\b/.test(name)) return '🥟';
