@@ -196,7 +196,7 @@ class DiscoverChatTests(TestCase):
         beef, eggplant, wontons = broad["results"]
         self.assertIn("spicy Sichuan sauce", beef["why"])
         self.assertIn("chili oil", wontons["why"])
-        self.assertNotIn("why", eggplant)
+        self.assertEqual(eggplant["why"], "Its name on the menu, “Spicy Eggplant”, fits the spicy Chinese food you asked for.")
         self.assertIn("Spicy Eggplant", eggplant["note"])
         self.assertTrue(all("region" not in item for item in broad["results"]))
         self.assertEqual(refined["preferences"], {"cuisine": "Chinese", "taste": "Spicy", "dish": "", "region": "Sichuan"})
@@ -260,6 +260,30 @@ class DiscoverChatTests(TestCase):
             self.assertIn(picks[item["source_url"]]["taste_evidence"], item["note"])
         calamari = next(item for item in results if item["dish_name"] == "Fried Calamari")
         self.assertIn("Fried Calamari", calamari["note"])
+        reasons = {item["dish_name"]: item["why"] for item in results}
+        self.assertEqual(reasons["Arancini"],
+                         "You asked for crispy Italian food, and its menu listing says “Fried risotto balls with mozzarella”.")
+        self.assertEqual(reasons["Fried Calamari"],
+                         "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for.")
+
+    def test_reasons_restate_the_request_and_quote_only_checked_menu_text(self):
+        from discover_tavily import _why
+
+        cases = [
+            ({"cuisine": "Japanese", "taste": "Fresh & light", "dish": "sushi"}, "", "Omakase", "pristine raw fish",
+             "You asked for fresh, light sushi, and its menu listing says “pristine raw fish”."),
+            ({"cuisine": "Chinese", "taste": "Spicy", "dish": ""}, "Sichuan", "Mapo Tofu", "chili oil.",
+             "You asked for spicy Sichuan food, and its menu listing says “chili oil”."),
+            ({"cuisine": "Japanese", "taste": "Rich & creamy", "dish": "creamy ramen"}, "", "Tonkotsu", "rich broth",
+             "You asked for creamy ramen, and its menu listing says “rich broth”."),
+            ({"cuisine": "Thai", "taste": "Any flavor", "dish": ""}, "", "Pad See Ew", "",
+             "You asked for Thai food, and this menu lists “Pad See Ew”."),
+            ({"cuisine": "Any cuisine", "taste": "Any flavor", "dish": ""}, "", "Bibimbap", "with gochujang",
+             "You left it open, so here’s a dish from this menu: “Bibimbap”, described as “with gochujang”."),
+        ]
+        for preferences, region, dish, evidence, expected in cases:
+            with self.subTest(dish=dish):
+                self.assertEqual(_why(preferences, region, dish, evidence), expected)
 
     def test_online_modes_route_to_menu_search_without_loading_local_reviews(self):
         pick = {"dish_name": "Spicy Ramen", "restaurant_name": "Menu fixture",
