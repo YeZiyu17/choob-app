@@ -1,0 +1,33 @@
+/* Mobile-only presentation. No meal, rating, address or matching data is changed. */
+.mobile-install-button{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 13px;border:1px solid #e7e0d7;border-radius:14px;background:#fff;color:#17151f;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.mobile-install-button svg{width:17px;height:17px;flex:none}
+.mobile-install-button[hidden]{display:none}
+.mobile-install-button:focus-visible,.mobile-install-dialog button:focus-visible{outline:3px solid #7658ff;outline-offset:3px}
+.mobile-install-dialog{width:min(360px,calc(100vw - 36px));max-height:calc(100dvh - 48px);overflow:auto;border:1px solid #e7e0d7;border-radius:26px;padding:25px;background:#f7f4ed;color:#17151f;box-shadow:0 24px 80px #17151f33;font-family:Nunito,system-ui,sans-serif}
+.mobile-install-dialog::backdrop{background:#17151f80}
+.mobile-install-dialog img{width:58px;height:58px;border-radius:16px}
+.mobile-install-dialog h2{font-size:24px;line-height:1.2;letter-spacing:-.5px;margin:16px 0 10px}
+.mobile-install-dialog p,.mobile-install-dialog ol{font-size:14px;line-height:1.6;color:#6f6b75}
+.mobile-install-dialog ol{padding-left:22px}.mobile-install-dialog li+li{margin-top:9px}
+.mobile-install-dialog button{width:100%;min-height:48px;margin-top:8px;border:0;border-radius:14px;background:#17151f;color:#fff;font:inherit;font-weight:800;cursor:pointer}
+
+/* Use the actual screen on phones (including wide/landscape phones) and when
+   installed. Desktop browser previews keep the existing decorative frame. */
+@media (max-width:600px), (max-height:500px) and (pointer:coarse), (display-mode:standalone), (display-mode:fullscreen){
+  html{height:100%;background:#f7f4ed}
+  body{display:block;min-height:100%;background:#f7f4ed;overflow:hidden}
+  main.app{position:relative;top:auto;left:auto;width:100%;height:100vh;height:100dvh;height:var(--mobile-viewport-height,100dvh);border:0;border-radius:0;box-shadow:none;transform:none;overflow:hidden}
+  main.app::before,main.app::after{display:none}
+  .app .screen{padding-top:max(18px,calc(env(safe-area-inset-top) + 10px));padding-left:max(21px,env(safe-area-inset-left));padding-right:max(21px,env(safe-area-inset-right))}
+  .app #connectScreen{padding-top:max(18px,calc(env(safe-area-inset-top) + 10px))}
+  .app input:not([type=file]):not([type=checkbox]):not([type=radio]),.app textarea,.app select{font-size:16px}
+  .app .sheet{max-height:92%;overflow-y:auto;overscroll-behavior:contain;padding-bottom:max(24px,calc(env(safe-area-inset-bottom) + 16px))}
+  .app .nav{left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right))}
+}
+@media (max-width:390px){
+  .app .screen{padding-left:max(17px,env(safe-area-inset-left));padding-right:max(17px,env(safe-area-inset-right))}
+  .mobile-install-button{font-size:11px;padding:8px 10px}
+}
+@media (display-mode:standalone), (display-mode:fullscreen){
+  .mobile-install-button{display:none}
+}
