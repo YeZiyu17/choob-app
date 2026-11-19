@@ -9,9 +9,9 @@ app_port: 7860
 
 # Choob — Shared Working AI Prototype
 
-Start with the [Team collaboration and local setup guide](TEAM_GUIDE.md). We collaborate through GitHub and run the app on our own computers.
+For instructors and evaluators, start with the [rehearsal setup guide](TEAM_GUIDE.md#run-the-rehearsal-build). This branch contains the rehearsal version. Download it and run the app on your own computer; the GitHub page displays the code and documentation rather than a running application.
 
-This project preserves the group's **original Choob HTML UI**, adds real food-photo upload and a dynamically populated Discover panel, and supplies Python endpoints based on the same models/logic as `Choob_AI_Dish_Recognition.ipynb`.
+This project preserves the group's **original Choob HTML UI**, adds real food-photo upload and a dynamically populated Discover panel, and supplies Python endpoints for recognition and recommendations. The current recognition reproduction notebook is [Choob_Recognition_Optimized.ipynb](Choob_Recognition_Optimized.ipynb).
 
 ## UI flow
 
@@ -28,16 +28,53 @@ The bottom navigation links to **Home, Snap, Passport, Discover, and Connect**. 
 
 ## Quick start for rehearsal
 
-On macOS, run the commands below from the project folder. See the [team guide](TEAM_GUIDE.md#run-the-rehearsal-build) for the Windows steps.
+### 1. Download and install
+
+Open the [choob-rehearsal branch](https://github.com/YeZiyu17/choob-app/tree/choob-rehearsal), choose **Code > Download ZIP**, and extract the ZIP. Install **Python 3.11**, then open a terminal in the extracted folder containing `app.py` and `requirements.txt`. A GitHub account is not required to download this public repository.
+
+On macOS:
 
 ```bash
-python -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
+```
+
+On Windows, use **Command Prompt (CMD)**; select **Add Python to PATH** when installing Python:
+
+```bat
+py -3.11 -m venv .venv
+.venv\Scripts\activate.bat
+python -m pip install -r requirements.txt
+```
+
+**Intel Mac:** Replace the installation command above with `python -m pip install -r requirements-intel-py311.txt` in the activated Python 3.11 environment. This profile uses PyTorch 2.2.2 and NumPy below 2.
+
+### 2. Choose how to run Discover
+
+**Online menus and free-text requests:** Obtain your own [Gemini](https://aistudio.google.com/app/apikey) and [Tavily](https://app.tavily.com/home) API keys, then run:
+
+```bash
 python start_choob.py
 ```
 
-Enter your Gemini and Tavily keys when prompted, then open **http://127.0.0.1:7861/**. The first image scan downloads CLIP weights. To practice with the bundled Philadelphia data, run `python start_choob.py --local`.
+Paste both keys at the hidden terminal prompts. The cursor may appear not to move while you type. Keys already set in the server environment are reused; keys are not included in the repository. Online Discover needs internet access and valid access to both services.
+
+**Without API keys:** Run:
+
+```bash
+python start_choob.py --local
+```
+
+Use the cuisine and flavor choice buttons in Discover to explore the bundled Philadelphia data. Local free-text chat requires a separate MLX/Qwen environment and model that are not bundled here. Without that extra setup, the app offers the choice buttons instead. Local mode still needs internet on a fresh installation to download dependencies and model weights; the first image scan downloads CLIP, and the first local recommendations may download MiniLM. Map tiles also need internet access.
+
+### 3. Open and test the app
+
+Open **http://127.0.0.1:7861/** on the computer running the server. Keep the terminal open; press `Ctrl+C` there to stop the app. This local address does not let someone on another computer open your server. For later runs, activate `.venv` again and run the same launch command.
+
+Start with a [sample food photo](examples/snap/README.md) in Snap, review the suggestions, log a meal, and inspect Passport. Then try Discover and Connect using the [rehearsal checklist](TEAM_GUIDE.md#rehearsal-checklist). Meals and saved dishes persist in the same browser at the same address and port.
+
+If port 7861 is busy, use `python start_choob.py --port 7863` (or add `--local` for local mode), then open **http://127.0.0.1:7863/**. See the [detailed setup and troubleshooting guide](TEAM_GUIDE.md#run-the-rehearsal-build) if startup fails.
 
 ### Try Discover with online menus
 
