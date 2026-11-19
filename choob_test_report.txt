@@ -1,0 +1,47 @@
+Choob Evaluation and Testing
+
+1. Snap -> Collect
+
+Result: Pass
+
+Notes: I uploaded a photo of Mexican pizza. The app recognized it as pizza and Italian food. I corrected the dish name to "Mexican Pizza," and it was successfully saved to Collect.
+
+
+2. Discover -> Collect
+
+Result: Pass
+
+Notes: I entered "I love chocolate." The app returned relevant results, including Hot Chocolate and Chocolate. I clicked Collect dish, and Hot Chocolate appeared in my collected dishes with the restaurant name.
+
+
+3. Refresh Saved Dishes
+
+Result: Pass
+
+Notes: After refreshing the page, both Hot Chocolate and Mexican Pizza were still visible in my collected dishes. The saved dishes did not disappear.
+
+
+4. Empty Input
+
+Result: Pass
+
+Notes: When no preference was entered, the app displayed "Enter a preference first" instead of generating recommendations.
+
+
+5. Allergy Request
+
+Result: Pass for handling the limitation
+
+Notes: I entered a peanut allergy request. The app did not give a food recommendation and explained that it cannot verify allergy or dietary requirements from restaurant reviews. This was safer than giving an unverified allergy recommendation.
+
+
+6. Unclear Photo
+
+Result: Pass
+
+Notes: I uploaded a blurry or unclear photo. The app marked the dish, cuisine, and category as unknown. It suggested Bibimbap as a possible option but required me to manually enter or confirm the dish name before saving it.
+
+
+Overall Results
+
+The main Snap, Discover, and Collect features worked. Saved dishes also remained after refreshing the page. The main limitations were that the image recognition sometimes needed corrections and the app does not verify allergies or dietary requirements.

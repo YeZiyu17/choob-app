@@ -120,14 +120,16 @@ def get_clip():
     model_id = "openai/clip-vit-base-patch32"
     # Cached demos should continue to work when classroom Wi-Fi is unavailable.
     # If the cache is absent, fall back to the normal download behavior.
+    model_options = {"low_cpu_mem_usage": False, "device_map": None}
     try:
-        model = CLIPModel.from_pretrained(model_id, local_files_only=True)
+        model = CLIPModel.from_pretrained(model_id, local_files_only=True, **model_options)
     except OSError:
-        model = CLIPModel.from_pretrained(model_id)
+        model = CLIPModel.from_pretrained(model_id, **model_options)
     try:
         processor = CLIPProcessor.from_pretrained(model_id, local_files_only=True)
     except OSError:
         processor = CLIPProcessor.from_pretrained(model_id)
+    model = model.to("cpu")
     model.eval()
     return model, processor
 

@@ -27,6 +27,20 @@ class ScopePolicyTests(unittest.TestCase):
         self.assertEqual(result["cuisine"], "Unknown")
         self.assertTrue(result["needs_user_confirmation"])
 
+    def test_rejected_image_uses_expanded_fallback_suggestion(self):
+        result = self.recognizer.predict_from_scores({
+            **self.scores,
+            "fallback_top_3": [
+                {"dish_name": "hot pot", "similarity": 0.31},
+                {"dish_name": "stew", "similarity": 0.28},
+            ],
+        })
+        self.assertFalse(result["accepted"])
+        self.assertEqual(result["dish_name"], "Unknown")
+        self.assertEqual(result["suggested_dish"], "Hot Pot")
+        self.assertEqual(result["suggestion_mode"], "expanded_zero_shot")
+        self.assertTrue(result["needs_user_confirmation"])
+
     def test_threshold_boundary_is_consistent_with_calibration(self):
         result = self.recognizer.predict_from_scores({**self.scores, "support_margin": 0.02})
         self.assertTrue(result["accepted"])

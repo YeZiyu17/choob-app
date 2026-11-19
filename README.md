@@ -13,9 +13,13 @@ Start with the [Team collaboration and local setup guide](TEAM_GUIDE.md). We col
 
 This project preserves the group's **original Choob HTML UI**, adds real food-photo upload and a dynamically populated Discover panel, and supplies Python endpoints based on the same models/logic as `Choob_AI_Dish_Recognition.ipynb`.
 
+## UI flow
+
+The presentation-ready mobile interface follows **Snap → Collect → Discover → Connect**. It keeps the existing Flask API contracts intact, adds clear journey progress, browser-local collection persistence, history-aware back navigation, responsive layouts, keyboard focus states, reduced-motion support, and stable fallback fonts. Fast UI contract checks live in `tests/test_ui_contract.py`.
+
 ## What is actually live?
 
-- **Snap**: Upload a new food image. The original pretrained **CLIP ViT-B/32** weights now use four prompt templates, dish synonyms, cached text features and competing background categories. Nine supported dish families include generic **ramen**; tonkotsu/shoyu subtypes are not asserted. A calibrated scope check can return **Unknown**. The UI requires confirmation or a manually entered dish name and makes clear that relative scores are **not calibrated probabilities**.
+- **Snap**: Upload a new food image. The original pretrained **CLIP ViT-B/32** weights use four prompt templates, dish synonyms, cached text features and competing background categories. Nine calibrated dish families include generic **ramen**; tonkotsu/shoyu subtypes are not asserted. When the calibrated scope check returns **Unknown**, a separate broader zero-shot vocabulary can suggest common dishes such as hot pot, oatmeal or pho, but the suggestion always requires manual confirmation and does not count as calibrated recognition. Relative scores are **not calibrated probabilities**.
 - **Discover**: Enter an English dish or taste preference. The server uses **Sentence-Transformers all-MiniLM-L6-v2**, the bundled Yelp-derived records and embeddings, and an 85% similarity + 15% smoothed dish-sentiment formula. The current export contains **5,993 restaurant–dish pairs from 3,526 sampled reviews across 123 Philadelphia restaurants**. Common explicit dietary/allergy requests return a clear unsupported-request message; review text cannot verify ingredients or dietary suitability.
 - **Collect**: Saved dishes persist locally in the same browser via `localStorage`. There is **no multi-user account storage** yet.
 - **Connect**, sample restaurant and sample challenges: illustrative UI, **not live community data**. Results combines recorded recognition/test evidence with current recommendation-build metadata read from Flask. Open it directly from Snap using **View evaluation results**; no photo inference is needed first.
