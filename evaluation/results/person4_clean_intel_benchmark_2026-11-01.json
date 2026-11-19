@@ -1,0 +1,334 @@
+{
+  "created_utc": "2026-11-01T20:17:44.787244+00:00",
+  "actual_model_inference": true,
+  "served_over_network": false,
+  "platform": {
+    "machine": "x86_64",
+    "macos": "26.7.1",
+    "python": "3.11.9"
+  },
+  "packages": {
+    "numpy": "1.26.4",
+    "torch": "2.2.2",
+    "transformers": "4.44.2",
+    "sentence-transformers": "3.0.1",
+    "flask": "3.1.3",
+    "gunicorn": "23.0.0",
+    "pandas": "2.3.3",
+    "pillow": "12.3.0",
+    "requests": "2.34.2"
+  },
+  "download_seconds": null,
+  "download_note": "Models were already cached; download time was not measured.",
+  "recommendation_manifest_sha256": "e27a685839eee9a64de449f22e5513b69ef1807fe4b954d6c06273db58e83fcb",
+  "recommendation_build": {
+    "rows": 5993,
+    "restaurants": 123,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "embedding_model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  },
+  "recommendation": {
+    "artifact_and_model_load_seconds": 80.43226065899944,
+    "first_inference_seconds": 1.4345586279960116,
+    "subsequent_inference": {
+      "n": 2,
+      "seconds": [
+        0.013407573002041318,
+        0.011597138000070117
+      ],
+      "mean_seconds": 0.012502355501055717,
+      "median_seconds": 0.012502355501055717
+    },
+    "checks": [
+      {
+        "preference": "I want sushi with fresh fish.",
+        "seconds": 1.4345586279960116,
+        "top_semantic_dish": "sushi",
+        "top_semantic_restaurant": "Engimono Sushi"
+      },
+      {
+        "preference": "I want a sweet dessert, such as tiramisu or cheesecake.",
+        "seconds": 0.013407573002041318,
+        "top_semantic_dish": "tiramisu dessert",
+        "top_semantic_restaurant": "Mediterranean 2000"
+      },
+      {
+        "preference": "I love spicy, savory food with rich flavors.",
+        "seconds": 0.011597138000070117,
+        "top_semantic_dish": "spicy fish",
+        "top_semantic_restaurant": "Nile Cafe"
+      }
+    ],
+    "note": "Direct MiniLM encode timing; ranking API also adds data scoring and JSON serialization."
+  },
+  "recognition": {
+    "model": "openai/clip-vit-base-patch32",
+    "recognizer_model_and_prompt_cache_load_seconds": 4.245104663001257,
+    "first_inference_seconds": 0.28355209800065495,
+    "subsequent_inference": {
+      "n": 5,
+      "seconds": [
+        0.19576647299982142,
+        0.2034169979961007,
+        0.21826046699425206,
+        0.20243745899642818,
+        0.197087227999873
+      ],
+      "mean_seconds": 0.20339372499729508,
+      "median_seconds": 0.20243745899642818
+    },
+    "checks": [
+      {
+        "file_name": "pizza-wikimedia.jpeg",
+        "sha256": "a5c3fe114e310199c76b59336b451de2a9ba6f8c23d37744cbde0c357cda9819",
+        "bytes": 1339708,
+        "size": [
+          2816,
+          2112
+        ],
+        "runs": [
+          {
+            "run": 1,
+            "seconds": 0.28355209800065495,
+            "response": {
+              "dish_name": "Pizza",
+              "suggested_dish": "Pizza",
+              "cuisine": "Italian",
+              "category": "Pizza",
+              "status": "supported",
+              "accepted": true,
+              "relative_score": 0.99544,
+              "alternatives": [
+                {
+                  "dish_name": "Hamburger",
+                  "relative_score": 0.00284
+                },
+                {
+                  "dish_name": "Pasta",
+                  "relative_score": 0.00114
+                }
+              ],
+              "needs_user_confirmation": true,
+              "supported_labels": [
+                "ramen",
+                "sushi",
+                "dumplings",
+                "fried rice",
+                "pad thai",
+                "pizza",
+                "pasta",
+                "hamburger",
+                "tacos"
+              ],
+              "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
+              "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+              "message": "Confirm or correct this suggested dish before collecting."
+            }
+          },
+          {
+            "run": 2,
+            "seconds": 0.19576647299982142,
+            "response": {
+              "dish_name": "Pizza",
+              "suggested_dish": "Pizza",
+              "cuisine": "Italian",
+              "category": "Pizza",
+              "status": "supported",
+              "accepted": true,
+              "relative_score": 0.99544,
+              "alternatives": [
+                {
+                  "dish_name": "Hamburger",
+                  "relative_score": 0.00284
+                },
+                {
+                  "dish_name": "Pasta",
+                  "relative_score": 0.00114
+                }
+              ],
+              "needs_user_confirmation": true,
+              "supported_labels": [
+                "ramen",
+                "sushi",
+                "dumplings",
+                "fried rice",
+                "pad thai",
+                "pizza",
+                "pasta",
+                "hamburger",
+                "tacos"
+              ],
+              "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
+              "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+              "message": "Confirm or correct this suggested dish before collecting."
+            }
+          },
+          {
+            "run": 3,
+            "seconds": 0.2034169979961007,
+            "response": {
+              "dish_name": "Pizza",
+              "suggested_dish": "Pizza",
+              "cuisine": "Italian",
+              "category": "Pizza",
+              "status": "supported",
+              "accepted": true,
+              "relative_score": 0.99544,
+              "alternatives": [
+                {
+                  "dish_name": "Hamburger",
+                  "relative_score": 0.00284
+                },
+                {
+                  "dish_name": "Pasta",
+                  "relative_score": 0.00114
+                }
+              ],
+              "needs_user_confirmation": true,
+              "supported_labels": [
+                "ramen",
+                "sushi",
+                "dumplings",
+                "fried rice",
+                "pad thai",
+                "pizza",
+                "pasta",
+                "hamburger",
+                "tacos"
+              ],
+              "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
+              "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+              "message": "Confirm or correct this suggested dish before collecting."
+            }
+          }
+        ]
+      },
+      {
+        "file_name": "sushi-wikimedia.jpg",
+        "sha256": "1c83bce3be348d73d9e6bf6687fbbc197087c5fd4de9b3493deeb992fd3f93aa",
+        "bytes": 3363998,
+        "size": [
+          3008,
+          2000
+        ],
+        "runs": [
+          {
+            "run": 1,
+            "seconds": 0.21826046699425206,
+            "response": {
+              "dish_name": "Unknown",
+              "suggested_dish": "Sushi",
+              "cuisine": "Unknown",
+              "category": "Unknown",
+              "status": "uncertain",
+              "accepted": false,
+              "relative_score": 0.99169,
+              "alternatives": [
+                {
+                  "dish_name": "Dumplings",
+                  "relative_score": 0.00571
+                },
+                {
+                  "dish_name": "Fried Rice",
+                  "relative_score": 0.00093
+                }
+              ],
+              "needs_user_confirmation": true,
+              "supported_labels": [
+                "ramen",
+                "sushi",
+                "dumplings",
+                "fried rice",
+                "pad thai",
+                "pizza",
+                "pasta",
+                "hamburger",
+                "tacos"
+              ],
+              "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
+              "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+              "message": "This photo may show an unsupported dish or an unclear image. Enter the dish name manually or try another photo."
+            }
+          },
+          {
+            "run": 2,
+            "seconds": 0.20243745899642818,
+            "response": {
+              "dish_name": "Unknown",
+              "suggested_dish": "Sushi",
+              "cuisine": "Unknown",
+              "category": "Unknown",
+              "status": "uncertain",
+              "accepted": false,
+              "relative_score": 0.99169,
+              "alternatives": [
+                {
+                  "dish_name": "Dumplings",
+                  "relative_score": 0.00571
+                },
+                {
+                  "dish_name": "Fried Rice",
+                  "relative_score": 0.00093
+                }
+              ],
+              "needs_user_confirmation": true,
+              "supported_labels": [
+                "ramen",
+                "sushi",
+                "dumplings",
+                "fried rice",
+                "pad thai",
+                "pizza",
+                "pasta",
+                "hamburger",
+                "tacos"
+              ],
+              "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
+              "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+              "message": "This photo may show an unsupported dish or an unclear image. Enter the dish name manually or try another photo."
+            }
+          },
+          {
+            "run": 3,
+            "seconds": 0.197087227999873,
+            "response": {
+              "dish_name": "Unknown",
+              "suggested_dish": "Sushi",
+              "cuisine": "Unknown",
+              "category": "Unknown",
+              "status": "uncertain",
+              "accepted": false,
+              "relative_score": 0.99169,
+              "alternatives": [
+                {
+                  "dish_name": "Dumplings",
+                  "relative_score": 0.00571
+                },
+                {
+                  "dish_name": "Fried Rice",
+                  "relative_score": 0.00093
+                }
+              ],
+              "needs_user_confirmation": true,
+              "supported_labels": [
+                "ramen",
+                "sushi",
+                "dumplings",
+                "fried rice",
+                "pad thai",
+                "pizza",
+                "pasta",
+                "hamburger",
+                "tacos"
+              ],
+              "model": "CLIP ViT-B/32 · prompt ensemble + scope check",
+              "score_note": "Relative ranking among nine supported dish families; not calibrated confidence.",
+              "message": "This photo may show an unsupported dish or an unclear image. Enter the dish name manually or try another photo."
+            }
+          }
+        ]
+      }
+    ],
+    "note": "Two external photos, three sequential predictions each; this is a demo check, not an accuracy estimate."
+  }
+}
