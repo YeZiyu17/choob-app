@@ -2,10 +2,10 @@
 
 All five teammates use the same [GitHub repository](https://github.com/YeZiyu17/choob-app) to store and edit the code. We currently **collaborate through GitHub and run the app on our own computers**. No hosting account is required for this workflow.
 
-## Run the Rehearsal Build
+## Run the Final Build
 
 1. Install **Python 3.11**. On Windows, select **Add Python to PATH** during installation.
-2. Open the repository, select the `choob-rehearsal` branch, and choose **Code → Download ZIP**. Extract the ZIP to a folder on your computer.
+2. Open the repository, select the **`final`** branch, and choose **Code → Download ZIP**. Extract the ZIP to a folder on your computer. Keep any old rehearsal folder separate.
 3. Open a terminal in the extracted folder. Make sure it contains `app.py` and `requirements.txt`.
 4. Run the commands for your operating system below.
 
@@ -29,11 +29,27 @@ python start_choob.py
 
 Paste your own [Gemini key](https://aistudio.google.com/app/apikey) and [Tavily key](https://app.tavily.com/home) when prompted. The input is hidden. Open **http://127.0.0.1:7861/** and go to **Discover** to see the city menu. Keep the terminal running and press `Ctrl+C` there when you want to stop the app.
 
+For an Intel Mac with Python 3.11, use `python -m pip install -r requirements-intel-py311.txt` instead of the generic requirements command above.
+
 For later runs, activate `.venv` and run `python start_choob.py` again. If port 7861 is busy, run `python start_choob.py --port 7863` and open the address printed by the server. To practice with the bundled Philadelphia data, run `python start_choob.py --local`.
 
 The first image recognition request downloads CLIP model weights. Stay connected and allow time and disk space for that first request. Later runs reuse the cached weights.
 
-## Rehearsal checklist
+## Test on a phone
+
+After installing the dependencies, run `python start_choob.py --lan --port 7873`.
+On macOS you can instead run `chmod +x "Start Mobile Online.command"` once after
+downloading, then double-click **Start Mobile Online.command**. Enter your
+own Gemini and Tavily keys at the hidden prompts. Keep the computer and terminal
+running, connect the phone to the same Wi-Fi, and open
+`http://<computer-Wi-Fi-IP>:7873/`. The phone's `localhost` is not the computer.
+
+See [Mobile instructions and recorded tests](MOBILE_TESTING.md) for Home Screen
+steps and HTTPS requirements. An updated final build appears after updating the
+computer's code, restarting the service when needed, and refreshing the phone.
+Keep the same host/port to retain the same browser storage.
+
+## Final checklist
 
 - **Snap**: Start with the [sample photos](examples/snap/README.md), then try a new photo. Review or correct the dish suggestions and log them as one meal.
 - **Discover**: Select a city and try a request such as `spicy Chinese food`. Check a menu source and its reason, then try **Show more dishes** and save one dish.
@@ -46,17 +62,17 @@ Download the ZIP to try the app. To contribute code, clone the repository in Git
 
 Follow these steps whenever you make changes:
 
-1. Switch to `choob-rehearsal` and choose **Fetch origin / Pull origin**.
-2. Create a branch for your feature, such as `rehearsal-snap`, `rehearsal-passport`, `rehearsal-discover`, or `rehearsal-connect`.
+1. Switch to **`final`** and choose **Fetch origin / Pull origin**.
+2. Create a branch for your feature, such as `final-snap`, `final-passport`, `final-discover`, `final-connect`, or `final-mobile`.
 3. Edit and test your part, then **Commit → Publish branch / Push origin**. If you edit `index.html`, keep the changes in your screen and coordinate any shared navigation or saved-data changes.
-4. Open a pull request into `choob-rehearsal`. Include a short note on what changed and how you tested it.
-5. Pick one teammate to review and merge one PR at a time. After each merge, pull the updated rehearsal branch and run the flow that changed. Before rehearsal, do a full run on the computer you'll present from.
+4. Open a pull request with **base branch `final`**. Include a short note on what changed and how you tested it.
+5. Pick one teammate to review and merge one PR at a time. After each merge, pull the updated `final` and run the flow that changed, including on a phone when relevant. Before the final presentation, do a full run on the computer you'll present from.
 
 Keep API keys, `.venv`, model caches, and raw review files out of GitHub. Keep the recommendation CSV, NPY, and manifest together if updating those exports.
 
 ## What Is Shared?
 
-- **GitHub shares code and version history.** Pull `choob-rehearsal` after a merge to get the latest rehearsal build. The earlier build is on `main`.
+- **GitHub shares code and version history.** Pull `final` after a merge to get this round's integrated build. The earlier `main` and `choob-rehearsal` branches are preserved. A teammate's separate branch does not enter the shared build until merged into `final`.
 - **Each teammate runs the app on their own computer.** `localhost` refers to the computer opening the page. Sending someone your localhost URL will not give them access to your app.
-- **Passport and Saved dishes use the current browser's storage.** Run the rehearsal in the same browser and at the same local address and port to see the same records.
+- **Passport and Saved dishes use the current browser's storage.** Use the same browser/app and the same address and port to see the same records. Computer and phone records are not automatically synchronized.
 - If everyone later needs to use the full AI app through one shared URL, we can arrange hosting. GitHub repository pages let teammates view the code directly, but GitHub Pages cannot run this project's Flask server and Python models.

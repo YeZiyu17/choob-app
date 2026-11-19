@@ -42,6 +42,20 @@ def home():
     return send_from_directory(str(BASE), "index.html")
 
 
+@app.get("/service-worker.js")
+def mobile_service_worker():
+    # Root scope covers the app. Revalidate updates; never freeze a teammate's UI.
+    response = send_from_directory(str(BASE / "static"), "service-worker.js", mimetype="text/javascript")
+    response.headers["Cache-Control"] = "no-cache"
+    response.headers["Service-Worker-Allowed"] = "/"
+    return response
+
+
+@app.get("/offline.html")
+def mobile_offline():
+    return send_from_directory(str(BASE / "static"), "offline.html", mimetype="text/html")
+
+
 @app.get("/api/passport-map-config")
 def passport_map_config():
     # Use a browser key restricted to the app's origin.

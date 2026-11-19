@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Choob — Working AI Demo</title>
+  <meta name="theme-color" content="#f7f4ed" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Choob" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="manifest" href="/static/manifest.webmanifest" />
+  <link rel="icon" href="/static/icons/choob-icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png" />
   <style>
     @font-face{font-family:Nunito;src:url("/static/fonts/nunito-latin.woff2") format("woff2");font-style:normal;font-weight:200 1000;font-display:swap}
     :root{--ink:#151523;--muted:#767483;--cream:#fbf8f2;--card:#fff;--lime:#d9ff71;--violet:#8d6bff;--orange:#ff7452;--line:#e9e4dc;--shadow:0 18px 50px rgba(31,24,54,.12)}
@@ -367,6 +375,8 @@
     .app :is(.passport-action,.text-action,.live-result button,.section-head button,.connect-profile summary){font-size:var(--type-caption);line-height:1.35}
     .app .nav button{font-size:11px;line-height:1.15}
   </style>
+  <link rel="stylesheet" href="/static/mobile.css" />
+  <script src="/static/mobile.js" defer></script>
 </head>
 <body>
 <main class="app">

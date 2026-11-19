@@ -9,13 +9,13 @@ app_port: 7860
 
 # Choob — Shared Working AI Prototype
 
-Start with the [Team collaboration and local setup guide](TEAM_GUIDE.md). We collaborate through GitHub and run the app on our own computers.
+Use the **`final` branch** for this round's shared application. Start with the [Team collaboration and local setup guide](TEAM_GUIDE.md). We collaborate through GitHub and run the app on our own computers. The earlier `main` and `choob-rehearsal` branches remain available.
 
-This project preserves the group's **original Choob HTML UI**, adds real food-photo upload and a dynamically populated Discover panel, and supplies Python endpoints based on the same models/logic as `Choob_AI_Dish_Recognition.ipynb`.
+This project preserves the group's **original Choob HTML UI**, connects food-photo upload and Discover to Python AI endpoints, and supports a phone layout and Home Screen entry through its PWA configuration.
 
 ## UI flow
 
-The bottom navigation links to **Home, Snap, Passport, Discover, and Connect**. **Passport** shows meals logged in Snap. **Saved dishes** is a separate list available from Discover and Connect. Both persist in the same browser. Fast UI contract checks live in `tests/test_ui_contract.py`. Use the [sample photos and rehearsal checklist](TEAM_GUIDE.md#rehearsal-checklist) to try the full flow.
+The bottom navigation links to **Home, Snap, Passport, Discover, and Connect**. **Passport** shows meals logged in Snap. **Saved dishes** is a separate list available from Discover and Connect. Both persist in the same browser. Fast UI contract checks live in `tests/test_ui_contract.py`. Use the [sample photos and final checklist](TEAM_GUIDE.md#final-checklist) to try the full flow.
 
 ## What is actually live?
 
@@ -26,9 +26,9 @@ The bottom navigation links to **Home, Snap, Passport, Discover, and Connect**. 
 - **Evaluation**: Open **View model evaluation report** from Snap to see recorded recognition tests and build metadata for the local recommendation data.
 - The notebook's GPU-intensive **Qwen2.5-VL-3B** is **not integrated**. Snap uses CLIP with application inference improvements; its weights have not been fine-tuned. Scope checking is a best-effort comparison against a fixed background vocabulary, not reliable identification of every food or non-food object.
 
-## Quick start for rehearsal
+## Quick start for final
 
-On macOS, run the commands below from the project folder. See the [team guide](TEAM_GUIDE.md#run-the-rehearsal-build) for the Windows steps.
+On macOS, run the commands below from the project folder. See the [team guide](TEAM_GUIDE.md#run-the-final-build) for the Windows steps and Intel Mac dependency profile.
 
 ```bash
 python -m venv .venv
@@ -38,6 +38,23 @@ python start_choob.py
 ```
 
 Enter your Gemini and Tavily keys when prompted, then open **http://127.0.0.1:7861/**. The first image scan downloads CLIP weights. To practice with the bundled Philadelphia data, run `python start_choob.py --local`.
+
+### Mobile and Home Screen testing
+
+After installing the dependencies, run `python start_choob.py --lan --port 7873`
+and open `http://<computer-Wi-Fi-IP>:7873/` on a phone on the same Wi-Fi. On
+macOS, **Start Mobile Online.command** provides the same Gemini + Tavily startup
+with hidden key prompts; run `chmod +x "Start Mobile Online.command"` once after
+downloading before double-clicking it. The computer must keep running the service.
+
+The PWA adds app icons, installation guidance, standalone display metadata,
+phone/landscape layout, and a reconnect page. The service worker caches only
+that reconnect page, so teammates' updated UI and AI outputs are not replayed
+from an old app cache. Full PWA/service-worker verification needs HTTPS on a
+phone; LAN HTTP supports browser testing and any Home Screen entry the browser
+offers. See [Mobile setup and test results](MOBILE_TESTING.md) for instructions,
+test scope, and Home Screen steps. GitHub stores the code; it does not host the
+Flask AI service.
 
 ### Try Discover with online menus
 
@@ -104,7 +121,7 @@ The bundled dish records use **Codex-assisted annotations with exact source quot
 
 ## Collaboration
 
-For rehearsal, create a branch from `choob-rehearsal` and open a pull request back into `choob-rehearsal`. See the [team workflow](TEAM_GUIDE.md#collaborate-on-the-code) for review and integration steps.
+Pull the latest **`final`**, create a feature branch such as `final-snap` or `final-mobile`, and open a pull request with **base `final`**. Review and merge one shared-page change at a time, then pull `final` before starting the next change. See the [team workflow](TEAM_GUIDE.md#collaborate-on-the-code). The final branch includes the rehearsal baseline and Mobile work; teammates' subsequent features arrive when their PRs are merged.
 
 ## Deployment
 
@@ -125,12 +142,12 @@ For Hugging Face Spaces, create a **Docker** Space and copy the application file
 
 Hosting services vary in RAM, disk and CPU limits. Render's Free service has only 512 MB RAM, which is insufficient for the full PyTorch + CLIP + MiniLM application; use a host with enough memory and verify both AI endpoints after deployment. CPU hosting may experience slow cold starts. A GPU is not required. [Render compute plans](https://render.com/docs/compute-plans).
 
-## Before the intermediate project demo
+## Before the final presentation
 
 - Upload **two or more new, unseen photos**, not just the embedded example image.
 - Test recognition across multiple categories, noting label limitations.
 - Try several different text preferences and show the recommendations change with the input.
-- Verify the entire Snap/Discover → Collect flow.
+- Verify Snap → Passport and Discover/Connect → Saved dishes, including phone use.
 - Record real accuracy/relevance/latency numbers and compare to a baseline.
 - Clearly label sample data vs live inference. Rehearse a backup demo recording.
 
@@ -138,7 +155,11 @@ Hosting services vary in RAM, disk and CPU limits. Render's Free service has onl
 
 ```
 app.py              Flask backend: /api/recognize, /api/recommend
-start_choob.py      Launch the rehearsal build with Gemini + Tavily
+start_choob.py      Launch the final build with Gemini + Tavily; --lan for phone tests
+Start Mobile Online.command  macOS Wi-Fi launcher with hidden API key prompts
+MOBILE_TESTING.md   Mobile setup, Home Screen instructions and test evidence
+static/mobile.*    Isolated phone layout and installation enhancements
+static/manifest.webmanifest  App name, icons and standalone launch metadata
 build_recommendations.py  Validated extraction, aggregation and aligned export
 Choob_Recommendation_Pipeline.ipynb  Self-contained Colab rebuild entry point
 recognition.py      CLIP prompt ensembles and scope decision
