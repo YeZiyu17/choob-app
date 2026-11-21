@@ -325,6 +325,8 @@
     .discover-city[open] .discover-city-caret{transform:rotate(180deg)}
     .discover-city-menu{position:absolute;z-index:5;top:calc(100% + 6px);left:0;display:grid;gap:2px;min-width:max(100%,180px);max-height:min(248px,42dvh);overflow-y:auto;padding:5px;border:1px solid #e7d9f4;border-radius:14px;background:#fff;box-shadow:0 8px 24px #342f4024}
     .discover-city:not([open]) .discover-city-menu{display:none}
+    .discover-place-row{display:flex;flex-wrap:wrap;gap:8px}
+    .discover-place-row .discover-city-trigger{font-size:15px}
     .discover-city-menu button{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:8px 10px;border:0;border-radius:9px;background:transparent;color:var(--ink);font-size:15px;font-weight:650;text-align:left}
     .discover-city-menu button:hover,.discover-city-menu button[aria-pressed="true"]{background:#f4edfc;color:#51379f}
     .discover-city-menu button[aria-pressed="false"] .discover-city-check{visibility:hidden}
@@ -521,6 +523,7 @@
   <section class="screen hidden" id="recommendScreen" aria-labelledby="discoverTitle">
     <div class="top"><button class="back" data-back aria-label="Back">&larr;</button><div class="brand">Discover<span class="brand-dot">.</span></div><button type="button" class="passport-action" data-nav="wantToTryScreen">Saved dishes</button></div>
     <div class="eyebrow" id="discoverLocation">Philadelphia · Taste picks</div>
+    <div class="discover-place-row">
     <details class="discover-city hidden" id="discoverCityControl">
       <summary class="discover-city-trigger" id="discoverCityTrigger" aria-label="Choose a city">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M19 10c0 4.3-7 9.4-7 9.4S5 14.3 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.25"/></svg>
@@ -529,6 +532,14 @@
       </summary>
       <div class="discover-city-menu" id="discoverCityMenu" role="group" aria-label="Cities"></div>
     </details>
+    <details class="discover-city hidden" id="discoverAreaControl">
+      <summary class="discover-city-trigger" id="discoverAreaTrigger" aria-label="Choose a neighborhood">
+        <span id="discoverAreaLabel"></span>
+        <svg class="discover-city-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </summary>
+      <div class="discover-city-menu" id="discoverAreaMenu" role="group" aria-label="Neighborhoods"></div>
+    </details>
+    </div>
     <h1 id="discoverTitle">Find your next <span class="highlight">bite.</span></h1>
     <div class="discover-chat" aria-label="Choob AI taste chat">
       <div class="discover-chat-head"><span class="discover-chat-mark" aria-hidden="true">✦</span><b>Choob AI</b><button type="button" class="passport-action hidden" id="restartDiscover">Start over</button></div>
@@ -2086,6 +2097,11 @@ function badgeForMeal(item) {
   const discoverCityLabel=document.getElementById('discoverCityLabel');
   const discoverCityMenu=document.getElementById('discoverCityMenu');
   const DISCOVER_CITY_KEY='choob.discover.city.v1';
+  const discoverAreaControl=document.getElementById('discoverAreaControl');
+  const discoverAreaTrigger=document.getElementById('discoverAreaTrigger');
+  const discoverAreaLabel=document.getElementById('discoverAreaLabel');
+  const discoverAreaMenu=document.getElementById('discoverAreaMenu');
+  let discoverAreaValue='', discoverAreas={};
   let discoverPreferences={}, discoverRequestVersion=0, discoverPending=false, discoverCards=[];
   let discoverConfig;
   let discoverCityValue='';
@@ -2113,6 +2129,41 @@ function badgeForMeal(item) {
     for(const button of discoverCityMenu.children){
       button.setAttribute('aria-pressed',String(button.value===city));
     }
+    showDiscoverAreas();
+  }
+  // Neighborhoods narrow a city search; an empty value means the whole city.
+  function setDiscoverArea(area) {
+    discoverAreaValue=area;
+    discoverAreaLabel.textContent=area||(discoverCityValue?`All of ${discoverCityValue}`:'All areas');
+    discoverAreaTrigger.setAttribute('aria-label',`Neighborhood, ${discoverAreaLabel.textContent}`);
+    for(const button of discoverAreaMenu.children){
+      button.setAttribute('aria-pressed',String(button.value===area));
+    }
+  }
+  function chooseDiscoverArea(area) {
+    discoverAreaControl.open=false;
+    if(area!==discoverAreaValue){
+      setDiscoverArea(area);
+      resetDiscover();
+      document.getElementById('recommendScreen').scrollTop=0;
+    }
+    discoverAreaTrigger.focus({preventScroll:true});
+  }
+  function showDiscoverAreas() {
+    const areas=Array.isArray(discoverAreas[discoverCityValue])?discoverAreas[discoverCityValue]:[];
+    discoverAreaControl.open=false;
+    discoverAreaMenu.replaceChildren(...['',...areas].map(name=>{
+      const button=connectElement('button','',name||`All of ${discoverCityValue}`);
+      button.type='button';
+      button.value=name;
+      const check=connectElement('span','discover-city-check','✓');
+      check.setAttribute('aria-hidden','true');
+      button.append(check);
+      button.addEventListener('click',()=>chooseDiscoverArea(name));
+      return button;
+    }));
+    discoverAreaControl.classList.toggle('hidden',!areas.length);
+    setDiscoverArea('');
   }
   function chooseDiscoverCity(city) {
     discoverCityControl.open=false;
@@ -2124,8 +2175,9 @@ function badgeForMeal(item) {
     }
     discoverCityTrigger.focus({preventScroll:true});
   }
-  function showDiscoverCities({city,cities}) {
+  function showDiscoverCities({city,cities,neighborhoods}) {
     const choices=Array.isArray(cities)?cities:[];
+    discoverAreas=neighborhoods&&typeof neighborhoods==='object'?neighborhoods:{};
     discoverCityControl.open=false;
     discoverCityMenu.replaceChildren(...choices.map(name=>{
       const button=connectElement('button','',name);
@@ -2264,6 +2316,7 @@ function badgeForMeal(item) {
     const version=++discoverRequestVersion;
     const payload={action:'more',preferences:discoverPreferences,exclude_restaurants:existing.map(item=>item.restaurant_name)};
     if(discoverCityValue)payload.city=discoverCityValue;
+    if(discoverAreaValue)payload.neighborhood=discoverAreaValue;
     setDiscoverPending(true);
     discoverMoreHint.textContent='Looking for more dishes…';
     try{
@@ -2324,6 +2377,7 @@ function badgeForMeal(item) {
       if(version!==discoverRequestVersion)return;
       const payload={message,preferences:discoverPreferences};
       if(discoverCityValue)payload.city=discoverCityValue;
+      if(discoverAreaValue)payload.neighborhood=discoverAreaValue;
       const response=await fetch('/api/discover/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       const data=await response.json();
       if(version!==discoverRequestVersion)return;
@@ -2369,8 +2423,16 @@ function badgeForMeal(item) {
     discoverCityControl.open=false;
     discoverCityTrigger.focus({preventScroll:true});
   });
+  discoverAreaControl.addEventListener('keydown',event=>{
+    if(event.key!=='Escape'||!discoverAreaControl.open)return;
+    event.preventDefault();
+    event.stopPropagation();
+    discoverAreaControl.open=false;
+    discoverAreaTrigger.focus({preventScroll:true});
+  });
   document.addEventListener('click',event=>{
     if(discoverCityControl.open&&!discoverCityControl.contains(event.target))discoverCityControl.open=false;
+    if(discoverAreaControl.open&&!discoverAreaControl.contains(event.target))discoverAreaControl.open=false;
   });
   discoverRestart.addEventListener('click',()=>{
     resetDiscover();

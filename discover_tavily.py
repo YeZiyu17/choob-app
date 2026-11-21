@@ -10,6 +10,7 @@ from urllib.parse import unquote, urldefrag, urlsplit
 
 import requests
 
+from discover_areas import area_spec
 from discover_chat import TASTE_TERMS
 from discover_gemini import GeminiDiscoverError
 from discover_online import _public_url, _text
@@ -149,6 +150,11 @@ def _contains(phrase, text):
     return bool(words and f" {words} " in f" {_normalized(text)} ")
 
 
+def _in_area(area, text):
+    """True when the text names one of the neighborhood's places or carries one of its ZIP codes."""
+    return any(_contains(place, text) for place in area["places"]) or bool(area["zip"].search(text))
+
+
 def _chinese_region(preferences):
     region = _text(preferences.get("region"), 30)
     return region if preferences.get("cuisine") == "Chinese" and region in _REGION_ALIASES else ""
@@ -198,7 +204,7 @@ def _focused_passage(value, limit, terms):
     return value[start:start + limit].strip()
 
 
-def _menu_passages(raw, snippets, page_label, city, terms):
+def _menu_passages(raw, snippets, page_label, city, terms, area=None):
     chunks = [part.strip() for part in re.split(r"\[\s*\.\.\.\s*\]", snippets) if part.strip()][:3]
     chunks.sort(key=lambda part: any(_contains(term, part) for term in terms), reverse=True)
     passages = [_focused_passage(part, 560, terms) for part in chunks[:2]]
@@ -213,6 +219,11 @@ def _menu_passages(raw, snippets, page_label, city, terms):
         if nearby:
             passages.insert(0, _focused_passage(nearby, 170, (city,)))
 
+    if area and not _in_area(area, f"{page_label} {' '.join(passages)}"):
+        nearby = next((part for part in [*chunks, *raw.splitlines()] if _in_area(area, part)), "")
+        if nearby:
+            passages.insert(0, _focused_passage(nearby, 170, area["places"]))
+
     remaining = _EXCERPT_LIMIT - sum(len(part) + 2 for part in passages)
     if raw and remaining >= 160:
         details = _focused_passage(raw, remaining, terms)
@@ -221,7 +232,7 @@ def _menu_passages(raw, snippets, page_label, city, terms):
     return passages
 
 
-def _menu_sources(pages, city, preferences=None, *, limit=_MODEL_SOURCE_LIMIT):
+def _menu_sources(pages, city, preferences=None, *, limit=_MODEL_SOURCE_LIMIT, area=None):
     sources = []
     evidence = {}
     seen = set()
@@ -254,9 +265,10 @@ def _menu_sources(pages, city, preferences=None, *, limit=_MODEL_SOURCE_LIMIT):
         if not _looks_like_menu(page_label, hostname, raw, snippets):
             continue
 
-        passages = _menu_passages(raw, snippets, page_label, city, terms)
+        passages = _menu_passages(raw, snippets, page_label, city, terms, area)
         location_text = f"{page_label} {' '.join(passages)}"
-        if not _contains(city, location_text):
+        # A neighborhood search needs an address in that area; otherwise the city must appear.
+        if not (_in_area(area, location_text) if area else _contains(city, location_text)):
             continue
 
         seen.add(urldefrag(url).url)
@@ -411,7 +423,7 @@ def _why(preferences, region, dish, evidence):
 
 
 def _pick_results(pages, preferences, city, select_picks, existing=(), *,
-                  source_limit=_MODEL_SOURCE_LIMIT, excluded=()):
+                  source_limit=_MODEL_SOURCE_LIMIT, excluded=(), area=None):
     city_name = city.partition(",")[0].strip()
     chosen_cuisine = _text(preferences.get("cuisine"), 80)
     taste = _text(preferences.get("taste"), 80)
@@ -427,12 +439,12 @@ def _pick_results(pages, preferences, city, select_picks, existing=(), *,
             return any(f" {restaurant} " in title for restaurant in excluded)
 
         pages = sorted(pages, key=shown_menu)
-    sources, evidence = _menu_sources(pages, city_name, preferences, limit=source_limit)
+    sources, evidence = _menu_sources(pages, city_name, preferences, limit=source_limit, area=area)
     if not sources:
         return []
 
     indexed = {source["id"]: source for source in sources}
-    picks = select_picks(preferences, city, sources)
+    picks = select_picks(preferences, f"{area['label']}, {city}" if area else city, sources)
     if not isinstance(picks, list):
         return []
 
@@ -495,12 +507,16 @@ def _pick_results(pages, preferences, city, select_picks, existing=(), *,
             "dish_name": dish,
             "restaurant_name": restaurant,
             "cuisine": cuisine if region or _contains(cuisine, location_text) else "",
-            "location": location if _contains(city_name, location) and _contains(location, location_text) else city_name,
+            "location": (f"{area['label']}, {city_name}" if area else
+                         location if _contains(city_name, location) and _contains(location, location_text)
+                         else city_name),
             "source_url": source["url"],
             "source_title": source["title"],
             "note": f"Menu mentions “{quote}”" if quote else "",
             "why": _why(preferences, region, dish, detail if chinese_spicy and detail else quote),
         }
+        if area:
+            result["neighborhood"] = area["label"]
         if region_scope:
             result["region" if region_scope == "dish" else "menu_region"] = region
         results.append(result)
@@ -541,44 +557,47 @@ def _followup_pages(pages, initial_pages, cards):
     return remaining
 
 
-def search_tavily(preferences, city, *, select_picks, exclude_restaurants=()):
+def search_tavily(preferences, city, *, select_picks, exclude_restaurants=(), neighborhood=""):
     """Return up to three distinct, menu-backed restaurants beyond any already shown."""
     city = _text(city, 100)
+    area = area_spec(city, _text(neighborhood, 60)) if neighborhood else None
+    # Search the neighborhood by name; the menu checks below keep picks inside it.
+    place = f"{area['label']} {city}" if area else city
     cuisine, taste, dish = (_text(preferences.get(field), 80) for field in ("cuisine", "taste", "dish"))
     region = _chinese_region(preferences)
     excluded = {_restaurant_key(_text(name, 120)) for name in exclude_restaurants}
     excluded.discard("")
     choices = [value for value in (cuisine, region, taste, dish) if value and value.casefold() not in _FLEXIBLE]
-    query = " ".join([city, "restaurant menus", *choices])
+    query = " ".join([place, "restaurant menus", *choices])
     if region:
         regional_choices = [value for value in (taste, dish) if value and value.casefold() not in _FLEXIBLE]
-        query = " ".join([city, region, "cuisine restaurant menus", *regional_choices])
+        query = " ".join([place, region, "cuisine restaurant menus", *regional_choices])
     pages = _fetch_results(query)
-    cards = _pick_results(pages, preferences, city, select_picks, excluded=excluded)
+    cards = _pick_results(pages, preferences, city, select_picks, excluded=excluded, area=area)
     if len(cards) == _CARD_LIMIT:
         return cards
 
     related = () if dish else _FOLLOWUP_DISH_TERMS.get((region or cuisine, taste), ())
     terms = related or _FOLLOWUP_TASTE_TERMS.get(taste, ())
     if excluded:
-        followup_query = " ".join([city, *choices, "takeout menus order online"])
+        followup_query = " ".join([place, *choices, "takeout menus order online"])
     elif region and not cards:
         # A narrow query can miss Chinese menus whose regional style is listed on individual dishes.
         broader_choices = [value for value in (cuisine, taste, dish) if value and value.casefold() not in _FLEXIBLE]
-        followup_query = " ".join([city, "restaurant menus", *broader_choices])
+        followup_query = " ".join([place, "restaurant menus", *broader_choices])
     elif region and terms:
         followup_query = f"{query} with {' or '.join(terms[:2])}"
     elif terms:
         # Substitute menu vocabulary for the abstract taste label to find different sources.
         menu_type = " ".join(value for value in (cuisine, dish) if value and value.casefold() not in _FLEXIBLE)
-        followup_query = f"{city} {menu_type} restaurant dinner menus with {' or '.join(terms[:2])}"
+        followup_query = f"{place} {menu_type} restaurant dinner menus with {' or '.join(terms[:2])}"
     else:
         followup_query = f"{query} with dinner dishes and restaurant ordering pages"
     try:
         more_pages = _fetch_results(followup_query, read_timeout=12)
         fresh_pages = _followup_pages(more_pages, pages, cards)
         cards.extend(_pick_results(fresh_pages, preferences, city, select_picks, cards,
-                                   source_limit=_FOLLOWUP_SOURCE_LIMIT, excluded=excluded))
+                                   source_limit=_FOLLOWUP_SOURCE_LIMIT, excluded=excluded, area=area))
     except (TavilyDiscoverError, GeminiDiscoverError):
         if not cards:
             raise
