@@ -324,3 +324,69 @@ class DiscoverChatTests(TestCase):
         result = response.get_json()
         self.assertEqual([(row["restaurant_name"], row["dish_name"]) for row in result["results"]],
                          [("Osteria One", "Crispy Mozzarella"), ("Osteria Two", "Chicken Milanese")])
+
+    def test_flavor_is_asked_once_then_any_flavor_is_searched(self):
+        from discover_chat import discover_turn
+
+        searched = []
+
+        def recommend(preferences):
+            searched.append(dict(preferences))
+            return [{"dish_name": "Pho Tai", "restaurant_name": "Pho Fixture"}]
+
+        def infer(message, previous, **_options):
+            # Gemini reads "just pho" and "pho please" as the dish again, with no flavor.
+            return {"dish": "pho"} if "pho" in message else {}
+
+        first = discover_turn("pho", {}, infer=infer, recommend=recommend, online_city="Philadelphia")
+        self.assertEqual(first["stage"], "taste")
+        self.assertEqual(searched, [])
+        for answer in ("just pho", "pho please", "no preference", "随便", "whatever", "idk"):
+            with self.subTest(answer=answer):
+                searched.clear()
+                reply = discover_turn(answer, first["preferences"], infer=infer, recommend=recommend,
+                                      online_city="Philadelphia")
+                self.assertNotEqual(reply["stage"], "taste")
+                self.assertEqual(searched[0]["taste"], "Any flavor")
+                self.assertEqual(searched[0]["dish"], "pho")
+
+    def test_a_flavor_named_in_the_follow_up_is_still_used(self):
+        from discover_chat import discover_turn
+
+        searched = []
+        first = discover_turn("pho", {}, infer=lambda *_a, **_k: {"dish": "pho"},
+                              recommend=lambda p: searched.append(dict(p)) or [], online_city="Philadelphia")
+        discover_turn("just spicy", first["preferences"], infer=lambda *_a, **_k: {"taste": "Spicy"},
+                      recommend=lambda p: searched.append(dict(p)) or [], online_city="Philadelphia")
+        self.assertEqual(searched[0]["taste"], "Spicy")
+
+    def test_gemini_busy_responses_are_retried_before_giving_up(self):
+        import discover_gemini
+
+        def reply(status, body=None):
+            response = Mock(status_code=status)
+            response.json.return_value = body or {}
+            return response
+
+        ok = reply(200, {"candidates": [{"finishReason": "STOP", "content": {"parts": [{"text": '{"taste": "Spicy"}'}]}}]})
+        with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), \
+             patch.object(discover_gemini, "sleep") as pause, \
+             patch("requests.post", side_effect=[reply(503), reply(503), ok]) as post:
+            result = discover_gemini._generate_json("x", {}, {}, phase="test", max_tokens=10, read_timeout=5)
+        self.assertEqual(result, {"taste": "Spicy"})
+        self.assertEqual(post.call_count, 3)
+        self.assertEqual(pause.call_count, 2)
+
+        with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), \
+             patch.object(discover_gemini, "sleep"), \
+             patch("requests.post", side_effect=[reply(503)] * 3) as post:
+            with self.assertRaisesRegex(discover_gemini.GeminiDiscoverError, "temporarily busy"):
+                discover_gemini._generate_json("x", {}, {}, phase="test", max_tokens=10, read_timeout=5)
+        self.assertEqual(post.call_count, 3)
+
+        with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), \
+             patch.object(discover_gemini, "sleep") as pause, \
+             patch("requests.post", side_effect=[reply(429)]) as post:
+            with self.assertRaisesRegex(discover_gemini.GeminiDiscoverError, "quota"):
+                discover_gemini._generate_json("x", {}, {}, phase="test", max_tokens=10, read_timeout=5)
+        self.assertEqual((post.call_count, pause.call_count), (1, 0))
