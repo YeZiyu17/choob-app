@@ -25,6 +25,7 @@ def png_bytes(size=(32, 24)):
 class SnapRecognitionApiTests(unittest.TestCase):
     def setUp(self):
         self.client = backend.app.test_client()
+        backend.reverse_geocode_coordinates.cache_clear()
 
     def post_image(self, content, filename="meal.png", content_type="image/png"):
         stream = BytesIO(content)
@@ -149,6 +150,45 @@ class SnapRecognitionApiTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 503)
         self.assertIn("Recognition backend unavailable", response.get_json()["error"])
+
+    def test_reverse_geocode_returns_an_editable_address(self):
+        class Response:
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return {"display_name": "123 Market Street, Philadelphia, PA"}
+
+        with patch.object(backend.requests, "get", return_value=Response()) as get:
+            response = self.client.get("/api/reverse-geocode?lat=39.95261&lng=-75.16519")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json()["address"], "123 Market Street, Philadelphia, PA")
+        self.assertEqual(get.call_args.kwargs["params"]["lat"], 39.95261)
+        self.assertIn("User-Agent", get.call_args.kwargs["headers"])
+
+    def test_reverse_geocode_validates_coordinates_and_handles_no_result(self):
+        self.assertEqual(self.client.get("/api/reverse-geocode?lat=91&lng=0").status_code, 400)
+        self.assertEqual(self.client.get("/api/reverse-geocode?lat=nope&lng=0").status_code, 400)
+
+        class Response:
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return {}
+
+        with patch.object(backend.requests, "get", return_value=Response()):
+            response = self.client.get("/api/reverse-geocode?lat=0&lng=0")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json(), {"address": ""})
+
+    def test_reverse_geocode_failure_keeps_manual_fallback_available(self):
+        with patch.object(backend.requests, "get", side_effect=backend.requests.Timeout), \
+                patch.object(backend.app.logger, "warning"):
+            response = self.client.get("/api/reverse-geocode?lat=39&lng=-75")
+        self.assertEqual(response.status_code, 503)
+        self.assertIn("unavailable", response.get_json()["error"])
 
 
 if __name__ == "__main__":

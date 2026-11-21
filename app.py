@@ -15,6 +15,7 @@ from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
 
+import requests
 from flask import Flask, jsonify, request, send_from_directory
 from discover_ai import infer_preferences
 from discover_chat import DIETARY_MESSAGE, DIETARY_REQUEST, clean_preferences, discover_turn, review_matches
@@ -63,6 +64,39 @@ def passport_map_config():
         "googleMapsKey": os.environ.get("CHOOB_GOOGLE_MAPS_BROWSER_KEY", ""),
         "googleMapsMapId": os.environ.get("CHOOB_GOOGLE_MAPS_MAP_ID", "DEMO_MAP_ID"),
     })
+
+
+@lru_cache(maxsize=256)
+def reverse_geocode_coordinates(lat, lng):
+    """Return an editable display address for a Snap pin, or an empty string."""
+    response = requests.get(
+        "https://nominatim.openstreetmap.org/reverse",
+        params={"format": "jsonv2", "lat": lat, "lon": lng, "zoom": 18, "addressdetails": 1},
+        headers={"User-Agent": os.environ.get(
+            "CHOOB_GEOCODER_USER_AGENT", "CHOOB-class-project/1.0"
+        )},
+        timeout=6,
+    )
+    response.raise_for_status()
+    payload = response.json()
+    address = payload.get("display_name", "") if isinstance(payload, dict) else ""
+    return address.strip() if isinstance(address, str) else ""
+
+
+@app.get("/api/reverse-geocode")
+def reverse_geocode_api():
+    try:
+        lat = float(request.args.get("lat", ""))
+        lng = float(request.args.get("lng", ""))
+    except (TypeError, ValueError):
+        return jsonify(error="Valid latitude and longitude are required."), 400
+    if not (-90 <= lat <= 90 and -180 <= lng <= 180):
+        return jsonify(error="Valid latitude and longitude are required."), 400
+    try:
+        return jsonify(address=reverse_geocode_coordinates(round(lat, 5), round(lng, 5)))
+    except (requests.RequestException, ValueError, TypeError):
+        app.logger.warning("Snap reverse geocoding unavailable", exc_info=True)
+        return jsonify(error="Address lookup is unavailable."), 503
 
 
 @app.get("/api/status")
