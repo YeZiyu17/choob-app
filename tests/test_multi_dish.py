@@ -56,6 +56,8 @@ class MultiDishPolicyTests(unittest.TestCase):
         self.assertTrue(result["accepted"])
         self.assertEqual(result["recognition_mode"], "multi")
         self.assertEqual({dish["dish_name"] for dish in result["dishes"]}, {"Pizza", "Sushi"})
+        self.assertTrue(all(dish["rank_scope"] == "region" for dish in result["dishes"]))
+        self.assertTrue(all(dish["ranked_guesses"] for dish in result["dishes"]))
 
     def test_one_strong_second_crop_keeps_the_original_prediction(self):
         whole = score("pizza", 0.03, relative_score=0.77)

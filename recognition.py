@@ -285,7 +285,9 @@ class DishRecognizer:
             review_mode = ("provisional" if review_label and (not calibrated_accepted or expanded_adds_information)
                            else "calibrated" if review_label else "none")
             rows.append({
-                "top_3": [{"dish_name": self.labels[j], "relative_score": float(relative[i, j])}
+                "top_3": [{"dish_name": self.labels[j],
+                           "relative_score": float(relative[i, j]),
+                           "match_score": float(supported[i, j])}
                           for j in order[:3]],
                 "support_margin": best - float(background[i]), "support_similarity": best,
                 "background_similarity": float(background[i]),
@@ -335,12 +337,38 @@ class DishRecognizer:
             dish_name, cuisine, category = "Unknown", "Unknown", "Unknown"
             status, mode = "uncertain", "no_useful_food_suggestion"
         display_name = dish_name.title() if dish_name != "Unknown" else dish_name
+        ranked_source = suggestions if review_mode == "provisional" else score.get("top_3", [])
+        ranked_guesses = []
+        seen_labels = set()
+        if calibrated or provisional_name:
+            for row in ranked_source:
+                raw_name = str(row.get("dish_name", "")).strip()
+                canonical = raw_name.casefold()
+                if not raw_name or canonical in seen_labels:
+                    continue
+                seen_labels.add(canonical)
+                metadata = (CATEGORY_MAP.get(canonical)
+                            or (FOOD_CANDIDATES.get(canonical, {}).get("cuisine", "Unknown"),
+                                FOOD_CANDIDATES.get(canonical, {}).get("category", "Unknown")))
+                match_score = row.get("similarity", row.get("match_score"))
+                guess = {
+                    "dish_name": raw_name.title(),
+                    "cuisine": metadata[0],
+                    "category": metadata[1],
+                }
+                if isinstance(match_score, (int, float)) and math.isfinite(match_score):
+                    guess["match_score"] = round(float(match_score), 5)
+                ranked_guesses.append(guess)
+                if len(ranked_guesses) == 3:
+                    break
         return {
             "dish_name": display_name, "suggested_dish": display_name,
             "cuisine": cuisine, "category": category, "status": status,
             "accepted": bool(calibrated), "reviewable": bool(calibrated or provisional_name),
             "relative_score": round(score["top_3"][0]["relative_score"], 5) if calibrated else None,
-            "alternatives": [], "needs_user_confirmation": True,
+            "alternatives": ranked_guesses[1:], "ranked_guesses": ranked_guesses,
+            "rank_scope": "photo", "score_label": "Match score",
+            "needs_user_confirmation": True,
             "supported_labels": self.labels, "candidate_label_count": len(FOOD_CANDIDATES),
             "suggestion_mode": mode, "model": "CLIP ViT-B/32 · prompt ensembles",
             "score_note": ("Calibrated only for the original nine-family scope gate; confirm or rename the dish."
