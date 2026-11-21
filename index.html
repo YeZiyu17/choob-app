@@ -326,6 +326,9 @@
     .discover-city-menu{position:absolute;z-index:5;top:calc(100% + 6px);left:0;display:grid;gap:2px;min-width:max(100%,180px);max-height:min(248px,42dvh);overflow-y:auto;padding:5px;border:1px solid #e7d9f4;border-radius:14px;background:#fff;box-shadow:0 8px 24px #342f4024}
     .discover-city:not([open]) .discover-city-menu{display:none}
     .discover-place-row{display:flex;flex-wrap:wrap;gap:8px}
+    .discover-plan{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:10px 12px;border-radius:16px;background:#eef8c9;color:#2e3a12;font-size:14px;font-weight:650;line-height:1.35}
+    .discover-plan.hidden{display:none}
+    .discover-plan button{margin-left:auto;flex:none;min-height:36px;border:1px solid #c9dc84;border-radius:999px;background:#fff;color:#2e3a12;padding:6px 12px;font-size:13px;font-weight:750}
     .discover-place-row .discover-city-trigger{font-size:15px}
     .discover-city-menu button{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:8px 10px;border:0;border-radius:9px;background:transparent;color:var(--ink);font-size:15px;font-weight:650;text-align:left}
     .discover-city-menu button:hover,.discover-city-menu button[aria-pressed="true"]{background:#f4edfc;color:#51379f}
@@ -541,6 +544,7 @@
     </details>
     </div>
     <h1 id="discoverTitle">Find your next <span class="highlight">bite.</span></h1>
+    <div class="discover-plan hidden" id="discoverPlan" role="status"><span id="discoverPlanText"></span><button type="button" id="discoverPlanEnd">Stop planning</button></div>
     <div class="discover-chat" aria-label="Choob AI taste chat">
       <div class="discover-chat-head"><span class="discover-chat-mark" aria-hidden="true">✦</span><b>Choob AI</b><button type="button" class="passport-action hidden" id="restartDiscover">Start over</button></div>
       <p id="discoverMode" class="confidence-note"></p>
@@ -2102,6 +2106,71 @@ function badgeForMeal(item) {
   const discoverAreaLabel=document.getElementById('discoverAreaLabel');
   const discoverAreaMenu=document.getElementById('discoverAreaMenu');
   let discoverAreaValue='', discoverAreas={};
+  const discoverPlan=document.getElementById('discoverPlan');
+  const discoverPlanText=document.getElementById('discoverPlanText');
+  let discoverPartner=null;
+  const DISCOVER_DEFAULT_CUISINES=['Japanese','Italian','Mexican','Thai','Chinese','Korean'];
+
+  // Summarize Passport ratings for Discover: cuisines averaging 4★ or more, and dishes rated 1–2★.
+  // Profiles with no ratings at all (like Connect's demo passports) count every cuisine they ate.
+  function discoverTasteSummary(dishes,{countUnrated=false}={}) {
+    const cuisines=new Map(), disliked=[];
+    for(const dish of Array.isArray(dishes)?dishes:[]){
+      const name=typeof dish?.dish_name==='string'?dish.dish_name:dish?.name;
+      if(!isValidDishName(name))continue;
+      const rating=Number.isInteger(dish?.rating)&&dish.rating>=1&&dish.rating<=5?dish.rating:null;
+      if(rating!==null&&rating<=2)disliked.push(name.trim().slice(0,80));
+      const cuisine=window.ChoobConnect?.stampType(name,dish?.cuisine)?.cuisine;
+      if(!cuisine)continue;
+      const entry=cuisines.get(cuisine)||{cuisine,sum:0,rated:0,count:0};
+      entry.count++;
+      if(rating!==null){entry.sum+=rating;entry.rated++;}
+      cuisines.set(cuisine,entry);
+    }
+    const entries=[...cuisines.values()];
+    const anyRated=entries.some(entry=>entry.rated);
+    const average=entry=>entry.rated?entry.sum/entry.rated:0;
+    const liked=entries.filter(entry=>entry.rated?average(entry)>=4:countUnrated&&!anyRated)
+      .sort((a,b)=>average(b)-average(a)||b.count-a.count).map(entry=>entry.cuisine);
+    return {liked_cuisines:liked.slice(0,5),disliked_dishes:[...new Set(disliked)].slice(0,20)};
+  }
+  function myDiscoverTastes() {
+    const eaten=getSaved().filter(item=>item&&!isWantToTry(item));
+    return discoverTasteSummary(eaten.flatMap(mealDishes));
+  }
+  function discoverTastePayload() {
+    const extra={}, mine=myDiscoverTastes();
+    if(mine.liked_cuisines.length||mine.disliked_dishes.length)extra.taste_profile=mine;
+    if(discoverPartner){
+      const {name,liked_cuisines,disliked_dishes}=discoverPartner;
+      extra.partner={name,liked_cuisines,disliked_dishes};
+    }
+    return extra;
+  }
+  function listWords(items) {
+    return items.length<=1?items.join(''):`${items.slice(0,-1).join(', ')} and ${items.at(-1)}`;
+  }
+  // Called by Connect's "Plan a meal together" button with a passport profile:
+  // {name, city, dishes:[{name or dish_name, cuisine?, rating?}]}.
+  async function planMealWith(profile) {
+    const name=typeof profile?.name==='string'?profile.name.trim().slice(0,40):'';
+    if(!name)return false;
+    discoverPartner={name,...discoverTasteSummary(profile.dishes,{countUnrated:true})};
+    show('recommendScreen');
+    if(discoverConfig)await discoverConfig;
+    const cities=[...discoverCityMenu.children].map(button=>button.value);
+    if(typeof profile.city==='string'&&cities.includes(profile.city)&&profile.city!==discoverCityValue){
+      setDiscoverCity(profile.city);
+    }
+    resetDiscover();
+    document.getElementById('recommendScreen').scrollTop=0;
+    return true;
+  }
+  function stopPlanning() {
+    discoverPartner=null;
+    resetDiscover();
+  }
+  window.ChoobDiscover=Object.freeze({planMealWith});
   let discoverPreferences={}, discoverRequestVersion=0, discoverPending=false, discoverCards=[];
   let discoverConfig;
   let discoverCityValue='';
@@ -2317,6 +2386,7 @@ function badgeForMeal(item) {
     const payload={action:'more',preferences:discoverPreferences,exclude_restaurants:existing.map(item=>item.restaurant_name)};
     if(discoverCityValue)payload.city=discoverCityValue;
     if(discoverAreaValue)payload.neighborhood=discoverAreaValue;
+    Object.assign(payload,discoverTastePayload());
     setDiscoverPending(true);
     discoverMoreHint.textContent='Looking for more dishes…';
     try{
@@ -2355,8 +2425,21 @@ function badgeForMeal(item) {
     discoverHint.textContent='';
     discoverRestart.classList.add('hidden');
     discoverThread.replaceChildren();
-    addDiscoverMessage('What are you craving today? Pick a cuisine or tell me what sounds good.');
-    setDiscoverOptions(['Japanese','Italian','Mexican','Thai','Chinese','Any cuisine'],'cuisine');
+    discoverPlan.classList.toggle('hidden',!discoverPartner);
+    if(discoverPartner){
+      const mine=myDiscoverTastes().liked_cuisines;
+      const theirs=discoverPartner.liked_cuisines;
+      const shared=theirs.filter(cuisine=>mine.includes(cuisine));
+      discoverPlanText.textContent=`🍽️ Planning a meal with ${discoverPartner.name}`;
+      const opener=shared.length?`You and ${discoverPartner.name} both like ${listWords(shared.slice(0,3))}.`
+        :theirs.length?`${discoverPartner.name} likes ${listWords(theirs.slice(0,3))}.`:'';
+      addDiscoverMessage(`${opener} Pick a cuisine or tell me what you’re both craving, and I’ll find a place you’d both like.`.trim());
+      const choices=[...new Set([...shared,...theirs,...mine,...DISCOVER_DEFAULT_CUISINES])].slice(0,6);
+      setDiscoverOptions([...choices,'Any cuisine'],'cuisine');
+    }else{
+      addDiscoverMessage('What are you craving today? Pick a cuisine or tell me what sounds good.');
+      setDiscoverOptions(['Japanese','Italian','Mexican','Thai','Chinese','Any cuisine'],'cuisine');
+    }
     setDiscoverPending(false);
     renderDiscoverResults([]);
   }
@@ -2378,6 +2461,7 @@ function badgeForMeal(item) {
       const payload={message,preferences:discoverPreferences};
       if(discoverCityValue)payload.city=discoverCityValue;
       if(discoverAreaValue)payload.neighborhood=discoverAreaValue;
+      Object.assign(payload,discoverTastePayload());
       const response=await fetch('/api/discover/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       const data=await response.json();
       if(version!==discoverRequestVersion)return;
@@ -2433,6 +2517,10 @@ function badgeForMeal(item) {
   document.addEventListener('click',event=>{
     if(discoverCityControl.open&&!discoverCityControl.contains(event.target))discoverCityControl.open=false;
     if(discoverAreaControl.open&&!discoverAreaControl.contains(event.target))discoverAreaControl.open=false;
+  });
+  document.getElementById('discoverPlanEnd').addEventListener('click',()=>{
+    stopPlanning();
+    discoverOptions.firstElementChild?.focus({preventScroll:true});
   });
   discoverRestart.addEventListener('click',()=>{
     resetDiscover();

@@ -225,6 +225,13 @@ def select_gemini_picks(preferences: dict, city: str, sources: list[dict]) -> li
             "itself. Keep any requested flavor proof in taste_evidence from the selected item. A brand name alone, "
             "another menu item, a general mention, or a known recipe is insufficient. Skip dishes without either proof."
         )
+    favored = [_text(value, 40) for value in preferences.get("favored_cuisines") or () if isinstance(value, str)]
+    if favored and menu_preferences["cuisine"] in ("", "Any cuisine"):
+        menu_preferences["favored_cuisines"] = favored[:5]
+        instructions += (
+            "\nThe diner rated these cuisines highly: favored_cuisines, best first. When several dishes match "
+            "equally well, prefer ones from those cuisines, but still include other cuisines that match better."
+        )
     if menu_preferences["cuisine"] == "Chinese" and menu_preferences["taste"] == "Spicy":
         instructions += (
             "\nRank Chinese dishes by explicit heat in each dish's own title or description. Look for terms such as "

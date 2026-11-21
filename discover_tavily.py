@@ -12,6 +12,7 @@ import requests
 
 from discover_areas import area_spec
 from discover_chat import TASTE_TERMS
+from discover_tastes import favored_rank, taste_note
 from discover_gemini import GeminiDiscoverError
 from discover_online import _public_url, _text
 
@@ -423,7 +424,7 @@ def _why(preferences, region, dish, evidence):
 
 
 def _pick_results(pages, preferences, city, select_picks, existing=(), *,
-                  source_limit=_MODEL_SOURCE_LIMIT, excluded=(), area=None):
+                  source_limit=_MODEL_SOURCE_LIMIT, excluded=(), area=None, tastes=None):
     city_name = city.partition(",")[0].strip()
     chosen_cuisine = _text(preferences.get("cuisine"), 80)
     taste = _text(preferences.get("taste"), 80)
@@ -444,7 +445,10 @@ def _pick_results(pages, preferences, city, select_picks, existing=(), *,
         return []
 
     indexed = {source["id"]: source for source in sources}
-    picks = select_picks(preferences, f"{area['label']}, {city}" if area else city, sources)
+    model_preferences = preferences
+    if tastes and tastes["favored_cuisines"]:
+        model_preferences = {**preferences, "favored_cuisines": tastes["favored_cuisines"]}
+    picks = select_picks(model_preferences, f"{area['label']}, {city}" if area else city, sources)
     if not isinstance(picks, list):
         return []
 
@@ -467,6 +471,9 @@ def _pick_results(pages, preferences, city, select_picks, existing=(), *,
                 or not _contains(restaurant, location_text)):
             continue
 
+        if tastes and any(_contains(disliked, dish) or _normalized(disliked) == _normalized(dish)
+                          for disliked in tastes["disliked_dishes"]):
+            continue  # Someone rated this dish low in their Passport.
         cuisine = _text(pick.get("cuisine"), 60)
         if (region or chinese_spicy) and _normalized(cuisine) != "chinese":
             continue
@@ -517,12 +524,23 @@ def _pick_results(pages, preferences, city, select_picks, existing=(), *,
         }
         if area:
             result["neighborhood"] = area["label"]
+        if tastes:
+            shown_cuisine = result["cuisine"] or (chosen_cuisine if chosen_cuisine.casefold() not in _FLEXIBLE else "")
+            note = taste_note(tastes, shown_cuisine)
+            if note:
+                result["taste_match"] = note
+            # Rank on the model's cuisine label too; it only orders picks and is not shown.
+            result["_rank"] = favored_rank(tastes, shown_cuisine or cuisine)
         if region_scope:
             result["region" if region_scope == "dish" else "menu_region"] = region
         results.append(result)
 
     if chinese_spicy:
         results.sort(key=_explicit_heat, reverse=True)
+    if tastes:
+        results.sort(key=lambda item: item.get("_rank", 0))
+    for item in results:
+        item.pop("_rank", None)
     distinct = []
     for result in results:
         brand = _restaurant_key(result["restaurant_name"])
@@ -557,7 +575,7 @@ def _followup_pages(pages, initial_pages, cards):
     return remaining
 
 
-def search_tavily(preferences, city, *, select_picks, exclude_restaurants=(), neighborhood=""):
+def search_tavily(preferences, city, *, select_picks, exclude_restaurants=(), neighborhood="", tastes=None):
     """Return up to three distinct, menu-backed restaurants beyond any already shown."""
     city = _text(city, 100)
     area = area_spec(city, _text(neighborhood, 60)) if neighborhood else None
@@ -573,7 +591,7 @@ def search_tavily(preferences, city, *, select_picks, exclude_restaurants=(), ne
         regional_choices = [value for value in (taste, dish) if value and value.casefold() not in _FLEXIBLE]
         query = " ".join([place, region, "cuisine restaurant menus", *regional_choices])
     pages = _fetch_results(query)
-    cards = _pick_results(pages, preferences, city, select_picks, excluded=excluded, area=area)
+    cards = _pick_results(pages, preferences, city, select_picks, excluded=excluded, area=area, tastes=tastes)
     if len(cards) == _CARD_LIMIT:
         return cards
 
@@ -597,7 +615,8 @@ def search_tavily(preferences, city, *, select_picks, exclude_restaurants=(), ne
         more_pages = _fetch_results(followup_query, read_timeout=12)
         fresh_pages = _followup_pages(more_pages, pages, cards)
         cards.extend(_pick_results(fresh_pages, preferences, city, select_picks, cards,
-                                   source_limit=_FOLLOWUP_SOURCE_LIMIT, excluded=excluded, area=area))
+                                   source_limit=_FOLLOWUP_SOURCE_LIMIT, excluded=excluded, area=area,
+                                   tastes=tastes))
     except (TavilyDiscoverError, GeminiDiscoverError):
         if not cards:
             raise

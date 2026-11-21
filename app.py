@@ -23,6 +23,7 @@ from discover_firecrawl import FirecrawlDiscoverError, search_firecrawl
 from discover_gemini import GeminiDiscoverError, gemini_configured, infer_gemini, select_gemini_picks
 from discover_online import OnlineDiscoverError, infer_online, is_configured, search_online
 from discover_areas import neighborhood_options
+from discover_tastes import clean_taste_profile, combine_tastes
 from discover_tavily import TavilyDiscoverError, search_tavily, tavily_configured
 from multi_dish import recognize_meal
 from recognition import DishRecognizer, load_recognition_config
@@ -455,9 +456,19 @@ def discover_chat():
     if neighborhood:
         if not isinstance(neighborhood, str) or neighborhood not in settings.get("neighborhoods", {}).get(city, ()):
             return jsonify(error="Choose a neighborhood from the list for this city."), 400
-    # Keep the call unchanged for whole-city searches; add the area only when one is chosen.
-    area = {"neighborhood": neighborhood} if neighborhood else {}
+    # Extra search options are added only when used, so a plain city search is unchanged.
+    search_options = {"neighborhood": neighborhood} if neighborhood else {}
+    # Ratings from Passport, and optionally a second person's, when planning a meal together.
+    partner = None
+    if "partner" in payload:
+        partner = clean_taste_profile(payload["partner"], named=True)
+        if partner is None:
+            return jsonify(error="Choose someone from Connect to plan a meal with."), 400
+    tastes = combine_tastes(clean_taste_profile(payload.get("taste_profile")), partner)
+    if tastes:
+        search_options["tastes"] = tastes
     place = f"{neighborhood}, {city}" if neighborhood else city
+    echo = {"neighborhood": neighborhood} if neighborhood else {}
     if more and provider != "gemini_tavily":
         return jsonify(error="More dishes are available with online menu search."), 400
 
@@ -482,16 +493,16 @@ def discover_chat():
                 if previous["cuisine"] != "Chinese":
                     previous.pop("region", None)
                 results = search_tavily(previous, city, select_picks=select_gemini_picks,
-                                        exclude_restaurants=excluded, **area)
-                return jsonify(results=results, provider=provider, city=city, **area)
+                                        exclude_restaurants=excluded, **search_options)
+                return jsonify(results=results, provider=provider, city=city, **echo)
             result = discover_turn(
                 message, previous, infer=infer_gemini, online_city=place,
-                recommend=lambda prefs: search_tavily(prefs, city, select_picks=select_gemini_picks, **area),
+                recommend=lambda prefs: search_tavily(prefs, city, select_picks=select_gemini_picks, **search_options),
                 chinese_regions=True,
             )
         else:
             result = discover_turn(message, previous, infer=infer_preferences, recommend=local_discover_picks)
-        return jsonify(**result, provider=provider, city=city, **area)
+        return jsonify(**result, provider=provider, city=city, **echo)
     except (OnlineDiscoverError, FirecrawlDiscoverError, GeminiDiscoverError, TavilyDiscoverError) as exc:
         return jsonify(error=str(exc)), 503
     except Exception:
