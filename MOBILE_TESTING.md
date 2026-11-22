@@ -164,6 +164,10 @@ and notes. Changing an address removes its old pin, while keeping older logged
 meals in Passport. The existing browser-storage keys and network-first PWA
 behavior are retained.
 
+Passport now uses the shared top bar with a Back button and `Passport.` brand,
+followed by a separate page title and meal count. The header was checked at
+320x568, 390x844 and 844x390 with no horizontal overflow; Back returns to Home.
+
 Verification for this integration:
 
 - **125 automated checks passed**, including a regression that executes the real

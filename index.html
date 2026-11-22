@@ -147,9 +147,6 @@
       .home-hero .hero-cta{font-size:11px;padding:11px 14px}
     }
     .passport-card{padding:15px;margin:16px 0;background:#fff;border:1px solid #e8e3ed;border-radius:22px}
-    .passport-collection-top{margin-bottom:17px;align-items:center}
-    .passport-collection-top h1{margin:5px 0 4px;font-size:34px;letter-spacing:-.8px}
-    .passport-collection-top p{margin:0;color:#686172;font-size:12px;line-height:1.5}
     .passport-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
     .passport-head h2,.passport-head h3{margin:0;letter-spacing:-.55px}
     .passport-head h2{font-size:23px}.passport-head h3{font-size:17px}
@@ -1007,10 +1004,10 @@
     </div>
   </section>
 
-  <section class="screen hidden" id="collectionScreen">
-    <div class="top passport-collection-top">
-      <div><div class="eyebrow">Choob · Meal history</div><h1>Food Passport</h1><p id="liveCollectionTotal">0 meals logged</p></div>
-    </div>
+  <section class="screen hidden" id="collectionScreen" aria-labelledby="passportTitle">
+    <div class="top"><button class="back" data-back aria-label="Back">&larr;</button><div class="brand">Passport<span class="brand-dot">.</span></div><span aria-hidden="true" style="width:42px"></span></div>
+    <h1 id="passportTitle">Food Passport</h1>
+    <p class="pitch" id="liveCollectionTotal">0 meals logged</p>
     <div class="passport-card hidden" id="snapSaveSuccess" role="status">
       <strong>Meal logged!</strong>
       <p class="passport-note" id="snapSaveSuccessMessage">Your reviewed dishes are together in Food Passport.</p>
