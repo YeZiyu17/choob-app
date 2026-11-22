@@ -559,3 +559,61 @@ class DiscoverChatTests(TestCase):
             })
         search.assert_called_once_with({"cuisine": "Thai", "taste": "Spicy", "dish": ""}, "Los Angeles",
                                        select_picks=backend.select_gemini_picks)
+
+    def test_neighborhood_search_tries_the_areas_towns_when_it_finds_too_few_dishes(self):
+        from discover_tavily import search_tavily
+
+        def menu(index, restaurant, dish, address):
+            return {"title": f"{restaurant} Menu", "url": f"https://sgv-{index}.example/menu",
+                    "content": f"{address}\n## {dish}\nTossed in house chili oil, spicy"}
+
+        first = [menu(1, "Dumpling House", "Chili Oil Wontons", "220 Valley Blvd, San Gabriel, CA 91776")]
+        by_town = {
+            "San Gabriel Alhambra": [menu(2, "Mala Kitchen", "Mala Beef", "88 Main St, Alhambra, CA 91801")],
+            "Monterey Park Rosemead": [menu(3, "Chongqing Noodle", "Spicy Dan Dan Noodles",
+                                            "500 Atlantic Blvd, Monterey Park, CA 91754"),
+                                       menu(4, "Westside Hot Pot", "Spicy Hot Pot", "10 Pico Blvd, Los Angeles, CA 90035")],
+            "Arcadia Temple City": [menu(5, "Arcadia Sichuan", "Fish in Chili Oil", "1 Baldwin Ave, Arcadia, CA 91007")],
+        }
+        queries = []
+
+        def fetch(query, **_options):
+            queries.append(query)
+            return next((pages for towns, pages in by_town.items() if query.startswith(towns)), first)
+
+        def select(preferences, city, sources):
+            pages = {page["url"]: page for pages in (first, *by_town.values()) for page in pages}
+            picks = []
+            for source in sources:
+                page = pages[source["url"]]
+                dish = page["content"].split("## ")[1].split("\n")[0]
+                picks.append({"source_id": source["id"], "dish_name": dish,
+                              "restaurant_name": page["title"].removesuffix(" Menu"), "cuisine": "Chinese",
+                              "location": "San Gabriel Valley", "taste_evidence": "Tossed in house chili oil, spicy"})
+            return picks
+
+        preferences = {"cuisine": "Chinese", "taste": "Spicy", "dish": ""}
+        with patch("discover_tavily._fetch_results", side_effect=fetch):
+            cards = search_tavily(preferences, "Los Angeles", select_picks=select, neighborhood="San Gabriel Valley")
+        self.assertEqual({card["restaurant_name"] for card in cards},
+                         {"Dumpling House", "Mala Kitchen", "Chongqing Noodle"})
+        self.assertNotIn("Westside Hot Pot", {card["restaurant_name"] for card in cards})  # Outside the area.
+        town_queries = queries[2:]
+        self.assertEqual(town_queries, ["San Gabriel Alhambra CA restaurant menus Chinese Spicy",
+                                        "Monterey Park Rosemead CA restaurant menus Chinese Spicy"])
+
+        # "Show more" skips restaurants already shown and starts with the later towns.
+        queries.clear()
+        with patch("discover_tavily._fetch_results", side_effect=fetch):
+            more = search_tavily(preferences, "Los Angeles", select_picks=select, neighborhood="San Gabriel Valley",
+                                 exclude_restaurants=[card["restaurant_name"] for card in cards])
+        self.assertEqual([card["restaurant_name"] for card in more], ["Arcadia Sichuan"])
+        self.assertTrue(queries[2].startswith("Monterey Park Rosemead"))
+
+        # Whole-city searches and areas without listed towns make no extra searches.
+        for neighborhood in ("", "Koreatown"):
+            with self.subTest(neighborhood=neighborhood):
+                queries.clear()
+                with patch("discover_tavily._fetch_results", side_effect=fetch):
+                    search_tavily(preferences, "Los Angeles", select_picks=select, neighborhood=neighborhood)
+                self.assertEqual(len(queries), 2)
