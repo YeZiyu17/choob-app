@@ -324,3 +324,238 @@ class DiscoverChatTests(TestCase):
         result = response.get_json()
         self.assertEqual([(row["restaurant_name"], row["dish_name"]) for row in result["results"]],
                          [("Osteria One", "Crispy Mozzarella"), ("Osteria Two", "Chicken Milanese")])
+
+    def test_flavor_is_asked_once_then_any_flavor_is_searched(self):
+        from discover_chat import discover_turn
+
+        searched = []
+
+        def recommend(preferences):
+            searched.append(dict(preferences))
+            return [{"dish_name": "Pho Tai", "restaurant_name": "Pho Fixture"}]
+
+        def infer(message, previous, **_options):
+            # Gemini reads "just pho" and "pho please" as the dish again, with no flavor.
+            return {"dish": "pho"} if "pho" in message else {}
+
+        first = discover_turn("pho", {}, infer=infer, recommend=recommend, online_city="Philadelphia")
+        self.assertEqual(first["stage"], "taste")
+        self.assertEqual(searched, [])
+        for answer in ("just pho", "pho please", "no preference", "随便", "whatever", "idk"):
+            with self.subTest(answer=answer):
+                searched.clear()
+                reply = discover_turn(answer, first["preferences"], infer=infer, recommend=recommend,
+                                      online_city="Philadelphia")
+                self.assertNotEqual(reply["stage"], "taste")
+                self.assertEqual(searched[0]["taste"], "Any flavor")
+                self.assertEqual(searched[0]["dish"], "pho")
+
+    def test_a_flavor_named_in_the_follow_up_is_still_used(self):
+        from discover_chat import discover_turn
+
+        searched = []
+        first = discover_turn("pho", {}, infer=lambda *_a, **_k: {"dish": "pho"},
+                              recommend=lambda p: searched.append(dict(p)) or [], online_city="Philadelphia")
+        discover_turn("just spicy", first["preferences"], infer=lambda *_a, **_k: {"taste": "Spicy"},
+                      recommend=lambda p: searched.append(dict(p)) or [], online_city="Philadelphia")
+        self.assertEqual(searched[0]["taste"], "Spicy")
+
+    def test_gemini_busy_responses_are_retried_before_giving_up(self):
+        import discover_gemini
+
+        def reply(status, body=None):
+            response = Mock(status_code=status)
+            response.json.return_value = body or {}
+            return response
+
+        ok = reply(200, {"candidates": [{"finishReason": "STOP", "content": {"parts": [{"text": '{"taste": "Spicy"}'}]}}]})
+        with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), \
+             patch.object(discover_gemini, "sleep") as pause, \
+             patch("requests.post", side_effect=[reply(503), reply(503), ok]) as post:
+            result = discover_gemini._generate_json("x", {}, {}, phase="test", max_tokens=10, read_timeout=5)
+        self.assertEqual(result, {"taste": "Spicy"})
+        self.assertEqual(post.call_count, 3)
+        self.assertEqual(pause.call_count, 2)
+
+        with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), \
+             patch.object(discover_gemini, "sleep"), \
+             patch("requests.post", side_effect=[reply(503)] * 3) as post:
+            with self.assertRaisesRegex(discover_gemini.GeminiDiscoverError, "temporarily busy"):
+                discover_gemini._generate_json("x", {}, {}, phase="test", max_tokens=10, read_timeout=5)
+        self.assertEqual(post.call_count, 3)
+
+        with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), \
+             patch.object(discover_gemini, "sleep") as pause, \
+             patch("requests.post", side_effect=[reply(429)]) as post:
+            with self.assertRaisesRegex(discover_gemini.GeminiDiscoverError, "quota"):
+                discover_gemini._generate_json("x", {}, {}, phase="test", max_tokens=10, read_timeout=5)
+        self.assertEqual((post.call_count, pause.call_count), (1, 0))
+
+    def test_neighborhood_search_keeps_picks_inside_the_area(self):
+        # Each menu: (restaurant, dish, address line). Only the first two are in Koreatown.
+        fixtures = [
+            ("Seoul Kitchen", "Kimchi Fried Rice", "3600 Wilshire Blvd, Los Angeles, CA 90010"),
+            ("Ktown Pocha", "Spicy Rice Cakes", "Located in the heart of Koreatown"),
+            ("Santa Monica Grill", "Spicy Bulgogi", "1200 Main St, Los Angeles, CA 90401"),
+            ("Valley Tofu House", "Spicy Soft Tofu", "500 Valley Blvd, Alhambra, CA 91801"),
+        ]
+        menus, picks = [], {}
+        for index, (restaurant, dish, address) in enumerate(fixtures, 1):
+            url = f"https://korean-{index}.example/menu"
+            menus.append({"title": f"{restaurant} Menu", "url": url,
+                          "content": f"{address}\n## {dish}\nSpicy gochujang sauce"})
+            picks[url] = {"dish_name": dish, "restaurant_name": restaurant, "cuisine": "Korean",
+                          "location": "Los Angeles", "taste_evidence": "Spicy gochujang sauce"}
+        queries, gemini_cities = [], []
+
+        def provider_reply(url, **options):
+            payload = options["json"]
+            if url == "https://api.tavily.com/search":
+                queries.append(payload["query"])
+                return Mock(status_code=200, **{"json.return_value": {"results": menus}})
+            message = json.loads(payload["contents"][0]["parts"][0]["text"])
+            gemini_cities.append(message["city"])
+            selected = [{"source_id": source["id"], **picks[source["url"]]} for source in message["menu_sources"]]
+            return Mock(status_code=200, **{"json.return_value": {"candidates": [{
+                "finishReason": "STOP", "content": {"parts": [{"text": json.dumps({"results": selected})}]},
+            }]}})
+
+        with patch.dict(backend.app.config, DISCOVER_PROVIDER="gemini_tavily", DISCOVER_CITY="Los Angeles"), \
+             patch.dict("os.environ", {"GEMINI_API_KEY": "test-key", "TAVILY_API_KEY": "test-key"}), \
+             patch("requests.post", side_effect=provider_reply):
+            config = self.client.get("/api/discover/config").get_json()
+            self.assertEqual(config["neighborhoods"]["Los Angeles"],
+                             ["Downtown", "Koreatown", "San Gabriel Valley"])
+            self.assertIn("Flushing", config["neighborhoods"]["New York"])
+            self.assertNotIn("Chicago", config["neighborhoods"])
+            response = self.client.post("/api/discover/chat", json={
+                "message": "Spicy", "preferences": {"cuisine": "Korean"},
+                "city": "Los Angeles", "neighborhood": "Koreatown",
+            })
+            self.assertEqual(response.status_code, 200)
+            data = response.get_json()
+            self.assertEqual(data["neighborhood"], "Koreatown")
+            self.assertIn("Koreatown, Los Angeles", data["reply"])
+            self.assertEqual({item["restaurant_name"] for item in data["results"]}, {"Seoul Kitchen", "Ktown Pocha"})
+            for item in data["results"]:
+                self.assertEqual((item["neighborhood"], item["location"]), ("Koreatown", "Koreatown, Los Angeles"))
+            self.assertTrue(all(query.startswith("Koreatown Los Angeles") for query in queries))
+            self.assertTrue(all(city == "Koreatown, Los Angeles" for city in gemini_cities))
+
+            # The San Gabriel Valley is outside the city of Los Angeles; its own towns count as the area.
+            queries.clear()
+            valley = self.client.post("/api/discover/chat", json={
+                "message": "Spicy", "preferences": {"cuisine": "Korean"},
+                "city": "Los Angeles", "neighborhood": "San Gabriel Valley",
+            }).get_json()
+            self.assertEqual([item["restaurant_name"] for item in valley["results"]], ["Valley Tofu House"])
+
+            # A whole-city search is unchanged, and an unknown or mismatched area is refused.
+            whole_city = self.client.post("/api/discover/chat", json={
+                "message": "Spicy", "preferences": {"cuisine": "Korean"}, "city": "Los Angeles",
+            }).get_json()
+            self.assertNotIn("neighborhood", whole_city)
+            self.assertNotIn("Valley Tofu House", {item["restaurant_name"] for item in whole_city["results"]})
+            for city, area in (("Los Angeles", "Flushing"), ("Los Angeles", "Beverly Hills"), ("Chicago", "Loop")):
+                with self.subTest(city=city, area=area):
+                    refused = self.client.post("/api/discover/chat", json={
+                        "message": "Spicy", "preferences": {"cuisine": "Korean"}, "city": city, "neighborhood": area,
+                    })
+                    self.assertEqual(refused.status_code, 400)
+
+    def test_neighborhood_zip_codes_do_not_match_prices_or_longer_numbers(self):
+        from discover_areas import area_spec
+
+        koreatown = area_spec("Los Angeles", "Koreatown")
+        self.assertTrue(koreatown["zip"].search("Los Angeles, CA 90010"))
+        self.assertTrue(koreatown["zip"].search("CA 90005-1234"))
+        for text in ("$90010", "Order #900105", "1.90010", "CA 90012"):
+            with self.subTest(text=text):
+                self.assertFalse(koreatown["zip"].search(text))
+        self.assertIsNone(area_spec("Los Angeles", "Flushing"))
+
+    def _menu_search_fixture(self, fixtures, city="Philadelphia"):
+        """Fake Tavily + Gemini: every fixture menu is found, and Gemini picks every dish."""
+        menus, picks, gemini_requests = [], {}, []
+        for index, (restaurant, dish, cuisine) in enumerate(fixtures, 1):
+            url = f"https://menu-{index}.example/menu"
+            menus.append({"title": f"{restaurant} {cuisine} Menu, {city}", "url": url,
+                          "content": f"## {dish}\nA house favorite"})
+            picks[url] = {"dish_name": dish, "restaurant_name": restaurant, "cuisine": cuisine,
+                          "location": city, "taste_evidence": ""}
+
+        def provider_reply(url, **options):
+            payload = options["json"]
+            if url == "https://api.tavily.com/search":
+                return Mock(status_code=200, **{"json.return_value": {"results": menus}})
+            message = json.loads(payload["contents"][0]["parts"][0]["text"])
+            gemini_requests.append({"message": message, "instructions": payload["systemInstruction"]["parts"][0]["text"]})
+            selected = [{"source_id": source["id"], **picks[source["url"]]} for source in message["menu_sources"]]
+            return Mock(status_code=200, **{"json.return_value": {"candidates": [{
+                "finishReason": "STOP", "content": {"parts": [{"text": json.dumps({"results": selected})}]},
+            }]}})
+        return provider_reply, gemini_requests
+
+    def test_ratings_rank_liked_cuisines_first_and_skip_low_rated_dishes(self):
+        provider_reply, gemini_requests = self._menu_search_fixture([
+            ("Taco Spot", "Carne Asada Tacos", "Mexican"),
+            ("Kaze Sushi Bar", "Salmon Nigiri", "Japanese"),
+            ("Golden Wok", "Chicken Fried Rice", "Chinese"),
+        ])
+        with patch.dict(backend.app.config, DISCOVER_PROVIDER="gemini_tavily", DISCOVER_CITY="Philadelphia"), \
+             patch.dict("os.environ", {"GEMINI_API_KEY": "test-key", "TAVILY_API_KEY": "test-key"}), \
+             patch("requests.post", side_effect=provider_reply):
+            response = self.client.post("/api/discover/chat", json={
+                "message": "Any flavor", "preferences": {"cuisine": "Any cuisine"},
+                "taste_profile": {"liked_cuisines": ["japanese", "Klingon"], "disliked_dishes": ["fried rice"]},
+            })
+        self.assertEqual(response.status_code, 200)
+        results = response.get_json()["results"]
+        self.assertEqual([item["restaurant_name"] for item in results], ["Kaze Sushi Bar", "Taco Spot"])
+        self.assertEqual(results[0]["taste_match"], "You rated Japanese highly")
+        self.assertNotIn("taste_match", results[1])
+        self.assertEqual(gemini_requests[0]["message"]["preferences"]["favored_cuisines"], ["Japanese"])
+        self.assertIn("favored_cuisines", gemini_requests[0]["instructions"])
+
+    def test_planning_with_a_partner_explains_shared_tastes_and_skips_their_low_ratings(self):
+        provider_reply, _ = self._menu_search_fixture([
+            ("Lemongrass Corner", "Shrimp Pad Thai", "Thai"),
+            ("Kaze Sushi Bar", "Salmon Nigiri", "Japanese"),
+            ("Forno Nove", "Margherita Pizza", "Italian"),
+        ])
+        with patch.dict(backend.app.config, DISCOVER_PROVIDER="gemini_tavily", DISCOVER_CITY="Philadelphia"), \
+             patch.dict("os.environ", {"GEMINI_API_KEY": "test-key", "TAVILY_API_KEY": "test-key"}), \
+             patch("requests.post", side_effect=provider_reply):
+            response = self.client.post("/api/discover/chat", json={
+                "message": "Any flavor", "preferences": {"cuisine": "Any cuisine"},
+                "taste_profile": {"liked_cuisines": ["Japanese", "Italian"], "disliked_dishes": []},
+                "partner": {"name": "Amelia", "liked_cuisines": ["Thai", "Japanese"],
+                            "disliked_dishes": ["Margherita pizza"]},
+            })
+            self.assertEqual(response.status_code, 200)
+            results = response.get_json()["results"]
+            self.assertEqual([(item["restaurant_name"], item.get("taste_match")) for item in results], [
+                ("Kaze Sushi Bar", "You and Amelia both like Japanese"),
+                ("Lemongrass Corner", "Amelia likes Thai"),
+            ])
+            for partner in ({"liked_cuisines": ["Thai"]}, {"name": "<script>", "liked_cuisines": ["Thai"]}, "Amelia"):
+                with self.subTest(partner=partner):
+                    refused = self.client.post("/api/discover/chat", json={
+                        "message": "Any flavor", "preferences": {"cuisine": "Any cuisine"}, "partner": partner,
+                    })
+                    self.assertEqual(refused.status_code, 400)
+
+    def test_searches_without_ratings_are_unchanged(self):
+        from discover_tastes import clean_taste_profile, combine_tastes
+
+        self.assertIsNone(clean_taste_profile({"liked_cuisines": ["Martian"], "disliked_dishes": ["", 5]}))
+        self.assertIsNone(combine_tastes(None, None))
+        with patch.dict(backend.app.config, DISCOVER_PROVIDER="gemini_tavily", DISCOVER_CITY="Seattle"), \
+             patch.dict("os.environ", {"GEMINI_API_KEY": "test-key", "TAVILY_API_KEY": "test-key"}), \
+             patch.object(backend, "search_tavily", return_value=[]) as search:
+            self.client.post("/api/discover/chat", json={
+                "message": "Spicy", "preferences": {"cuisine": "Thai"}, "city": "Los Angeles",
+                "taste_profile": {"liked_cuisines": [], "disliked_dishes": []},
+            })
+        search.assert_called_once_with({"cuisine": "Thai", "taste": "Spicy", "dish": ""}, "Los Angeles",
+                                       select_picks=backend.select_gemini_picks)

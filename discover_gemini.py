@@ -6,7 +6,7 @@ import json
 import logging
 import os
 import re
-from time import perf_counter
+from time import perf_counter, sleep
 
 import requests
 
@@ -15,6 +15,8 @@ from discover_chat import CHINESE_REGIONS
 
 _MODELS_URL = "https://generativelanguage.googleapis.com/v1beta/models"
 _DEFAULT_MODEL = "gemini-3.5-flash-lite"
+_RETRY_STATUSES = frozenset({500, 502, 503, 504})
+_RETRY_DELAYS = (1.0, 2.5)
 _PREFERENCE_FIELDS = ("cuisine", "taste", "dish")
 _REGION_IN_MESSAGE = {
     "Sichuan": re.compile(r"\b(?:Sichuan|Szechuan|Szechwan)\b|川菜|川式|四川风味", re.I),
@@ -105,31 +107,38 @@ def _generate_json(instructions: str, data: dict, schema: dict, *, phase: str, m
     elif model.startswith("gemini-3"):
         generation["thinkingConfig"] = {"thinkingLevel": "low"}
 
-    started = perf_counter()
-    try:
-        response = requests.post(
-            f"{_MODELS_URL}/{model}:generateContent",
-            headers={"x-goog-api-key": key},
-            json={
-                "systemInstruction": {"parts": [{"text": instructions}]},
-                "contents": [{"role": "user", "parts": [{"text": json.dumps(data, ensure_ascii=False)}]}],
-                "generationConfig": generation,
-            },
-            timeout=(5, read_timeout),
-            allow_redirects=False,
-        )
-    except requests.ConnectTimeout:
-        _LOGGER.warning("Gemini phase=%s model=%s elapsed=%.2fs status=connect_timeout", phase, model, perf_counter() - started)
-        raise GeminiDiscoverError("Connecting to Gemini timed out. Check your connection and try again.") from None
-    except requests.Timeout:
-        _LOGGER.warning("Gemini phase=%s model=%s elapsed=%.2fs status=read_timeout", phase, model, perf_counter() - started)
-        raise GeminiDiscoverError("Gemini took too long to answer. Try again in a moment.") from None
-    except requests.RequestException:
-        _LOGGER.warning("Gemini phase=%s model=%s elapsed=%.2fs status=connection_error", phase, model, perf_counter() - started)
-        raise GeminiDiscoverError("Discover could not reach Gemini. Try again in a moment.") from None
+    # Gemini answers 503 (and occasionally 500/502/504) when the model is briefly overloaded.
+    # Retry those a couple of times with a short pause before showing the busy message.
+    for attempt in range(len(_RETRY_DELAYS) + 1):
+        started = perf_counter()
+        try:
+            response = requests.post(
+                f"{_MODELS_URL}/{model}:generateContent",
+                headers={"x-goog-api-key": key},
+                json={
+                    "systemInstruction": {"parts": [{"text": instructions}]},
+                    "contents": [{"role": "user", "parts": [{"text": json.dumps(data, ensure_ascii=False)}]}],
+                    "generationConfig": generation,
+                },
+                timeout=(5, read_timeout),
+                allow_redirects=False,
+            )
+        except requests.ConnectTimeout:
+            _LOGGER.warning("Gemini phase=%s model=%s elapsed=%.2fs status=connect_timeout", phase, model, perf_counter() - started)
+            raise GeminiDiscoverError("Connecting to Gemini timed out. Check your connection and try again.") from None
+        except requests.Timeout:
+            _LOGGER.warning("Gemini phase=%s model=%s elapsed=%.2fs status=read_timeout", phase, model, perf_counter() - started)
+            raise GeminiDiscoverError("Gemini took too long to answer. Try again in a moment.") from None
+        except requests.RequestException:
+            _LOGGER.warning("Gemini phase=%s model=%s elapsed=%.2fs status=connection_error", phase, model, perf_counter() - started)
+            raise GeminiDiscoverError("Discover could not reach Gemini. Try again in a moment.") from None
 
-    level = logging.INFO if response.status_code == 200 else logging.WARNING
-    _LOGGER.log(level, "Gemini phase=%s model=%s elapsed=%.2fs status=%d", phase, model, perf_counter() - started, response.status_code)
+        level = logging.INFO if response.status_code == 200 else logging.WARNING
+        _LOGGER.log(level, "Gemini phase=%s model=%s elapsed=%.2fs status=%d", phase, model, perf_counter() - started, response.status_code)
+        if response.status_code in _RETRY_STATUSES and attempt < len(_RETRY_DELAYS):
+            sleep(_RETRY_DELAYS[attempt])
+            continue
+        break
     if response.status_code in {401, 403}:
         raise GeminiDiscoverError("Gemini denied access. Check the API key and project permissions.")
     if response.status_code == 402:
@@ -215,6 +224,13 @@ def select_gemini_picks(preferences: dict, city: str, sources: list[dict]) -> li
             "the dish is listed there and quote the regional declaration without assigning that style to the dish "
             "itself. Keep any requested flavor proof in taste_evidence from the selected item. A brand name alone, "
             "another menu item, a general mention, or a known recipe is insufficient. Skip dishes without either proof."
+        )
+    favored = [_text(value, 40) for value in preferences.get("favored_cuisines") or () if isinstance(value, str)]
+    if favored and menu_preferences["cuisine"] in ("", "Any cuisine"):
+        menu_preferences["favored_cuisines"] = favored[:5]
+        instructions += (
+            "\nThe diner rated these cuisines highly: favored_cuisines, best first. When several dishes match "
+            "equally well, prefer ones from those cuisines, but still include other cuisines that match better."
         )
     if menu_preferences["cuisine"] == "Chinese" and menu_preferences["taste"] == "Spicy":
         instructions += (

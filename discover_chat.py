@@ -54,6 +54,12 @@ DIETARY_MESSAGE = (
 )
 
 _KEYS = ("cuisine", "taste", "dish")
+_NO_FLAVOR_PREFERENCE = re.compile(
+    r"^\s*(?:no(?:t really)?|nope|none|nothing(?: specific| in particular)?|no preference|any|anything|"
+    r"whatever|either|doesn'?t matter|don'?t care|i don'?t mind|not sure|idk|skip|"
+    r"都行|都可以|随便|无所谓|没有|不挑)\s*[.!。！]?\s*$",
+    re.IGNORECASE,
+)
 _EXACT_CHOICES = {
     **{label.casefold(): ("cuisine", label) for label in CUISINES},
     **{label.casefold(): ("taste", label) for label in TASTES},
@@ -92,8 +98,14 @@ def discover_turn(message, previous, *, infer, recommend, online_city=None, chin
         preferences.pop("region", None)
     exact = _EXACT_CHOICES.get(message.casefold())
     region_choice = _REGION_CHOICES.get(message.casefold()) if chinese_regions else None
+    # The flavor question was already asked when a cuisine or dish is known but no flavor is.
+    # Answering it with anything that is not a flavor ("just pho", "no preference") means any flavor,
+    # so Discover searches instead of asking the same question again.
+    flavor_already_asked = bool((preferences["cuisine"] or preferences["dish"]) and not preferences["taste"])
     ai_used = False
-    if exact:
+    if flavor_already_asked and _NO_FLAVOR_PREFERENCE.match(message):
+        changes = {"taste": "Any flavor"}
+    elif exact:
         key, label = exact
         changes = {key: label}
     elif region_choice:
@@ -115,6 +127,9 @@ def discover_turn(message, previous, *, infer, recommend, online_city=None, chin
             options = TASTE_OPTIONS if stage == "taste" else CUISINE_OPTIONS
             return _response("Free-text AI is temporarily unavailable. You can still choose an option below.",
                              preferences, stage, options=options)
+
+    if flavor_already_asked and not changes.get("taste"):
+        changes["taste"] = "Any flavor"
 
     if not any(changes.values()):
         stage = "taste" if preferences["cuisine"] or preferences["dish"] else "cuisine"
