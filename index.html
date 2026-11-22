@@ -270,7 +270,7 @@
     .dish-rating-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
     .dish-rating-stars{display:flex;gap:3px;border:0;padding:0;margin:0}
     .dish-rating-star{width:38px;height:38px;border:1px solid #ded5e5;border-radius:10px;background:#fff;color:#b0a7b8;font-size:21px;line-height:1}
-    .dish-rating-star[aria-checked="true"]{background:#f3e8ff;border-color:#9e79d0;color:#7750aa}
+    .dish-rating-star.is-filled{background:#f3e8ff;border-color:#9e79d0;color:#7750aa}
     .dish-rating-clear{border:0;background:transparent;color:#6b6176;font-size:11px;text-decoration:underline;padding:8px}
     .dish-guesses{margin:0 0 10px;padding:9px;border-radius:12px;background:#f2edf8}
     .dish-guesses-title{display:block;margin-bottom:6px;color:#5e5668;font-size:10px;font-weight:850;letter-spacing:.35px;text-transform:uppercase}
@@ -915,7 +915,6 @@
         <div class="result-field"><small>CONFIRMATION</small><b>Required</b></div>
       </div>
       <p id="recognitionNote" class="confidence-note">CLIP scores compare only the supplied candidate dish labels. Confirm or correct the result before logging your meal.</p>
-      <p class="snap-model-note"><strong>How Snap works:</strong> Snap uses CLIP to compare your photo with several text descriptions of each dish. It checks whether the image looks like food and also looks at smaller sections of the photo to find multiple dishes. Match scores reflect how closely the image matches each description.</p>
       <div class="dish-guesses hidden" id="overallPhotoGuesses"></div>
       <div class="meal-dish-card" id="primaryMealDishCard">
         <div class="meal-dish-row">
@@ -936,29 +935,8 @@
         <div class="passport-head"><h3>Where did you eat?</h3><span class="passport-count">Optional</span></div>
         <p id="mealLocationSummary" class="passport-note" aria-live="polite">Add a location to turn this meal into a map badge.</p>
         <div class="passport-actions"><button type="button" class="passport-action" id="toggleMealLocation" aria-expanded="false" aria-controls="mealLocationPicker">＋ Choose location</button><button type="button" class="passport-action hidden" id="clearMealLocation">Remove location</button></div>
-        <div class="hidden" id="mealLocationPicker"><label class="passport-location-label" for="mealLocationSearch">
-  Search for a restaurant or address
-</label>
-
-<div class="location-search-wrap">
-  <input
-    class="input-choob"
-    id="mealLocationSearch"
-    type="search"
-    autocomplete="off"
-    placeholder="e.g. Taco Bell near me"
-    aria-label="Search for a restaurant or address"
-  />
-  <div
-    class="location-suggestions hidden"
-    id="mealLocationSuggestions"
-    role="listbox"
-  ></div>
-</div>
-
-<p class="passport-note">
-  Choose a suggestion, use your current location, or tap the map.
-</p><p class="passport-note">Tap a spot on the map, or move the map and pin its center.</p>
+        <div class="hidden" id="mealLocationPicker">
+          <p class="passport-note">Tap a spot on the map, pin the map center, or use your current location. You can edit the restaurant name and address below.</p>
           <div class="passport-map" id="mealPickerMap" aria-label="Choose a meal location"></div>
           <p id="mealPickerStatus" class="passport-status" role="status"></p>
           <div class="passport-actions"><button type="button" class="passport-action" id="pinMealCenter" disabled>Pin map center</button><button type="button" class="passport-action" id="useMealPosition">Use current location</button></div>
@@ -970,7 +948,7 @@
       </div>
       <button class="primary" id="saveRecognizedDish">✓ Log as eaten</button>
     </div>
-    <button class="text-action" data-nav="resultsScreen">View model evaluation report →</button>
+    <p class="snap-model-note"><strong>How Snap works:</strong> Snap uses CLIP to compare your photo with several text descriptions of each dish. It checks whether the image looks like food and also looks at smaller sections of the photo to find multiple dishes. Match scores reflect how closely the image matches each description.</p>
   </section>
 
   <section class="screen hidden" id="recommendScreen" aria-labelledby="discoverTitle">
@@ -1015,7 +993,6 @@
         <p class="confidence-note" id="discoverMoreHint" role="status" tabindex="-1"></p>
       </div>
     </section>
-    <button class="text-action" data-open-restaurant>View sample restaurant page →</button>
   </section>
 
   <section class="screen hidden" id="restaurant">
@@ -1141,6 +1118,40 @@
   Delete meal
 </button>
 </div></div>
+  <dialog id="mealEditDialog" class="meal-edit-dialog" aria-labelledby="mealEditTitle">
+    <form id="passportEditForm" class="passport-edit-form">
+      <h2 id="mealEditTitle">Edit meal</h2>
+      <div class="passport-edit-fields">
+      <label for="mealEditName">Name on your Passport</label>
+      <input class="input-choob" id="mealEditName" maxlength="120" required />
+      <label for="mealEditEmoji">Emoji</label>
+      <input class="input-choob" id="mealEditEmoji" maxlength="24" />
+      <label for="mealEditRestaurant">Restaurant name</label>
+      <input class="input-choob" id="mealEditRestaurant" maxlength="100" />
+      <label for="mealEditAddress">Address</label>
+      <input class="input-choob" id="mealEditAddress" maxlength="240" autocomplete="street-address" aria-describedby="mealEditAddressHint" />
+      <p class="passport-note" id="mealEditAddressHint">Changing the address removes the previous map pin so it cannot point to the wrong place.</p>
+      <fieldset>
+        <legend id="mealEditDishHint">Dish details</legend>
+        <label for="mealEditCuisine">Cuisine</label>
+        <input class="input-choob" id="mealEditCuisine" maxlength="80" />
+        <label for="mealEditCategory">Category</label>
+        <input class="input-choob" id="mealEditCategory" maxlength="80" />
+        <label for="mealEditRating">Your rating</label>
+        <select class="input-choob" id="mealEditRating">
+          <option value="">Not rated</option><option value="1">1 star</option><option value="2">2 stars</option><option value="3">3 stars</option><option value="4">4 stars</option><option value="5">5 stars</option>
+        </select>
+        <label for="mealEditNote">Note</label>
+        <textarea class="input-choob" id="mealEditNote" maxlength="240" rows="3"></textarea>
+      </fieldset>
+      </div>
+      <p class="passport-status" id="mealEditError" role="alert"></p>
+      <div class="passport-edit-actions">
+        <button class="passport-action" id="cancelMealEdit" type="button">Cancel</button>
+        <button class="primary" id="saveMealEdit" type="submit">Save changes</button>
+      </div>
+    </form>
+  </dialog>
   <nav class="nav" aria-label="Main navigation">
     <button type="button" class="active" aria-current="page" data-nav="discover"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v11h5v-6h4v6h5V9"/></svg><span>Home</span></button>
     <button type="button" data-nav="snapScreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6.5 9.5 4h5L16 6.5h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2z"/><circle cx="12" cy="13" r="3.3"/></svg><span>Snap</span></button>
@@ -1292,34 +1303,31 @@ starButtons.replaceChildren();
 starEditor.classList.toggle('hidden',!editable||!ratingItem);
 
 if(editable&&ratingItem){
-  const currentRating=Number(ratingItem.rating)||0;
+  const currentRating=mealRating(ratingItem)||0;
 
   for(let value=1;value<=5;value++){
     const button=document.createElement('button');
     button.type='button';
     button.className='star-choice';
     button.textContent=value<=currentRating?'★':'☆';
+    button.classList.toggle('selected',value<=currentRating);
     button.setAttribute('aria-label',`${value} star${value===1?'':'s'}`);
 
     button.addEventListener('click',()=>{
       const saved=getSaved();
-      const index=saved.findIndex(entry=>
-        entry.saved_at===ratingItem.saved_at&&
-        entry.dish_name===ratingItem.dish_name
-      );
+      const index=findSavedMealIndex(saved,ratingItem);
 
       if(index<0)return;
 
       const ratedDish=saved[index].dishes?.[0]||saved[index];
       ratedDish.rating=value;
-      localStorage.setItem(COLLECTION_KEY,JSON.stringify(saved));
-
-      document.getElementById('detailRating').textContent=`Rating: ${value}/5 ★`;
+      saved[index].rating=value;
+      if(!persistSaved(saved)){
+        showToast('Could not save your rating on this device.');
+        return;
+      }
       renderSaved();
-
-      Array.from(starButtons.children).forEach((star,index)=>{
-        star.textContent=index<value?'★':'☆';
-      });
+      openSavedMeal(saved[index]);
     });
 
     starButtons.append(button);
@@ -1352,11 +1360,17 @@ if(editable&&ratingItem){
 
     const meta=[dish.cuisine,dish.category]
       .filter(value=>value&&value!=='Unknown');
+    if(Number.isInteger(dish.rating)&&dish.rating>=1&&dish.rating<=5)meta.push(`${dish.rating}/5 ★`);
 
     if(meta.length){
       const label=document.createElement('small');
       label.textContent=meta.join(' · ');
       row.append(label);
+    }
+    if(dish.note){
+      const note=document.createElement('small');
+      note.textContent=dish.note;
+      row.append(note);
     }
 
     dishList.append(row);
@@ -1376,7 +1390,6 @@ editMealButton.onclick=()=>{
 deleteMealButton.onclick=()=>{
   if(ratingItem) deleteSavedMeal(ratingItem);
 };
-  editMealButton.classList.toggle('hidden',!editable);
   detail.classList.remove('hidden');
 }
   const sampleRestaurant = 'Sample restaurant (illustrative)';
@@ -1407,24 +1420,13 @@ deleteMealButton.onclick=()=>{
   const COLLECTION_KEY = 'choob.saved.v1';
   function getSaved(){try{const x=JSON.parse(localStorage.getItem(COLLECTION_KEY)||'[]');return Array.isArray(x)?x:[]}catch{return []}}
   function hasMealLocation(item) {
-    function hasRealMealLocation(item) {
-      if (!hasMealLocation(item)) return false;
-
-    const {lat,lng}=item.location;
-
-  // Ignore the default placeholder map center.
-    const isDefaultLocation=
-      Math.abs(lat-39.9526)<0.0001 &&
-      Math.abs(lng-75.1652)<0.0001;
-
-    return !isDefaultLocation;
-  }
     const location = item?.location;
     return Boolean(location && Number.isFinite(location.lat) && Math.abs(location.lat) <= 90 &&
       Number.isFinite(location.lng) && Math.abs(location.lng) <= 180);
   }
   function isWantToTry(item) {
     if (item?.want_to_try === true) return true;
+    if (item?.want_to_try === false) return false;
     if (item?.source === 'snap' || hasMealLocation(item)) return false;
     // Older Discover and sample saves have a restaurant name and no meal location.
     return typeof item?.restaurant_name === 'string' && item.restaurant_name.trim() !== '';
@@ -1479,9 +1481,8 @@ deleteMealButton.onclick=()=>{
       return false;
     }
     const want = isWantToTry(item);
-    editMealButton.onclick=()=>editSavedMeal(item);
     // Each confirmed meal is a separate visit, even when the dish name repeats.
-    const newVisit = !want && (item.source==='snap' || hasRealMealLocation(item));
+    const newVisit = !want && (item.source==='snap' || hasMealLocation(item));
     const list=getSaved().filter(saved=>!newVisit || !movedIdea || !sameSavedIdea(saved,movedIdea));
     // A Snap draft keeps the same id through retries. This makes a repeated
     // submit idempotent without collapsing two genuine visits to the same dish.
@@ -1562,14 +1563,21 @@ function mealDate(item){
     const dishes=Array.isArray(item.dishes)?item.dishes.filter(dish=>isValidDishName(dish?.dish_name)):[];
     return dishes.length?dishes:[item];
   }
+  function mealRating(item) {
+    const primary=mealDishes(item)[0]||item;
+    const value=primary.rating===undefined?item.rating:primary.rating;
+    return Number.isInteger(value)&&value>=1&&value<=5?value:null;
+  }
+  function findSavedMealIndex(list,item) {
+    return list.findIndex(entry=>item.snap_draft_id&&entry.snap_draft_id
+      ?entry.snap_draft_id===item.snap_draft_id
+      :entry.saved_at===item.saved_at&&entry.dish_name===item.dish_name);
+  }
   function mealTitle(item, dishes=mealDishes(item)) {
     const names=dishes.slice(0,2).map(dish=>dish.dish_name).join(' & ');
     return dishes.length>2?`${names} +${dishes.length-2}`:names;
   }
 function openSavedMeal(item) {
-    editMealButton.onclick = function () {
-    editSavedMeal(item);
-  };
   const want = isWantToTry(item);
   const dishes=want?[]:mealDishes(item);
   const multiple=dishes.length>1;
@@ -1578,10 +1586,8 @@ const place=item.address||item.location?.label||'No location added';
   const address=String(item.address||'').trim() ||
     (item.location?.label ? String(item.location.label).trim() : '');
   const primaryDish=dishes[0]||item;
-  const ratingSource=primaryDish.rating ?? item.rating;
-  const rating=ratingSource===undefined||ratingSource===null||ratingSource===''
-    ? ''
-    : String(ratingSource);
+  const ratingValue=mealRating(item);
+  const rating=ratingValue===null?'':String(ratingValue);
   const note=String(primaryDish.note ?? item.note ?? '').trim();
 
   const mapQuery=[restaurant,address].filter(Boolean).join(', ');
@@ -1593,7 +1599,7 @@ const place=item.address||item.location?.label||'No location added';
     .filter(value=>value&&value!=='Unknown');
 
   setDetail({
-  emoji:item.custom_emoji||badgeForMeal(item),    
+  emoji:item.custom_emoji||badgeForMeal(item),
   image:item.image||'',
     title:multiple
   ?`Meal with ${dishes.length} dishes`
@@ -1621,80 +1627,83 @@ twoLabel:'CATEGORY',
     dishes:multiple?dishes:[],
   });
 }
- function editSavedMeal(item){
+const mealEditDialog=document.getElementById('mealEditDialog');
+const passportEditForm=document.getElementById('passportEditForm');
+let editingMeal=null;
+const mealEditInput=id=>document.getElementById(id);
+function editSavedMeal(item){
   const saved=getSaved();
-
-  const index=saved.findIndex(entry=>
-    entry.saved_at===item.saved_at &&
-    entry.dish_name===item.dish_name
-  );
-
+  const index=findSavedMealIndex(saved,item);
   if(index<0)return;
-
   const meal=saved[index];
-
-  const displayName=prompt(
-    'Name shown on your Passport:',
-    meal.display_name||meal.dish_name||''
-  );
-  if(displayName===null)return;
-
-  const suggestedEmoji=meal.custom_emoji||badgeForMeal(meal);
-
-  const emoji=prompt(
-    'Emoji for this dish:',
-    suggestedEmoji
-  );
-  if(emoji===null)return;
-    const cuisine=prompt(
-    'Cuisine:',
-    meal.cuisine||meal.dishes?.[0]?.cuisine||''
-  );
-  if(cuisine===null)return;
-
-  const category=prompt(
-    'Category:',
-    meal.category||meal.dishes?.[0]?.category||''
-  );
-  if(category===null)return;
-
-    const primaryDish=meal.dishes?.[0]||meal;
-  const rating=Number(primaryDish.rating ?? meal.rating)||0;
-  const note=prompt(
-    'Notes?:',
-    primaryDish.note ?? meal.note ?? ''  );
-  if(note===null)return;
-
-  const address=prompt(
-    'Location or address:',
-    meal.address||meal.location?.label||''
-  );
-  if(address===null)return;
-
-  meal.display_name=displayName.trim()||meal.display_name||meal.dish_name;
-  meal.custom_emoji=emoji.trim()||suggestedEmoji;
-  meal.cuisine=cuisine.trim();
-  meal.category=category.trim();
-
-  if(meal.dishes?.[0]){
-    meal.dishes[0].cuisine=cuisine.trim();
-    meal.dishes[0].category=category.trim();
-  }
-  primaryDish.rating=rating;
-  primaryDish.note=note.trim();
-  meal.address=address.trim();
-
-  localStorage.setItem(COLLECTION_KEY,JSON.stringify(saved));
-  renderSaved();
-  detail.classList.add('hidden');
+  const dishes=mealDishes(meal), primaryDish=dishes[0];
+  editingMeal=meal;
+  passportEditForm.reset();
+  mealEditInput('mealEditName').value=meal.display_name||mealTitle(meal,dishes);
+  mealEditInput('mealEditEmoji').value=meal.custom_emoji||badgeForMeal(meal);
+  mealEditInput('mealEditRestaurant').value=meal.restaurant_name||'';
+  mealEditInput('mealEditAddress').value=meal.address||meal.location?.label||'';
+  mealEditInput('mealEditCuisine').value=primaryDish.cuisine||meal.cuisine||'';
+  mealEditInput('mealEditCategory').value=primaryDish.category||meal.category||'';
+  mealEditInput('mealEditRating').value=String(mealRating(meal)||'');
+  mealEditInput('mealEditNote').value=primaryDish.note??meal.note??'';
+  mealEditInput('mealEditDishHint').textContent=dishes.length>1
+    ?`First dish: ${primaryDish.dish_name}`:'Dish details';
+  mealEditInput('mealEditError').textContent='';
+  if(!mealEditDialog.open)mealEditDialog.showModal();
 }
+document.getElementById('cancelMealEdit').addEventListener('click',()=>mealEditDialog.close());
+mealEditDialog.addEventListener('close',()=>{editingMeal=null;});
+mealEditDialog.addEventListener('click',event=>{
+  if(event.target!==mealEditDialog)return;
+  const rect=mealEditDialog.getBoundingClientRect();
+  if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)mealEditDialog.close();
+});
+passportEditForm.addEventListener('submit',event=>{
+  event.preventDefault();
+  if(!editingMeal)return;
+  const saved=getSaved(), index=findSavedMealIndex(saved,editingMeal);
+  if(index<0){
+    mealEditInput('mealEditError').textContent='This meal is no longer saved. Close the editor and try again.';
+    return;
+  }
+  const displayName=mealEditInput('mealEditName').value.trim();
+  const ratingValue=mealEditInput('mealEditRating').value;
+  const rating=ratingValue===''?null:Number(ratingValue);
+  if(!displayName||(rating!==null&&(!Number.isInteger(rating)||rating<1||rating>5))){
+    mealEditInput('mealEditError').textContent='Enter a meal name and choose a rating from 1 to 5, or leave it unrated.';
+    return;
+  }
+  const meal=saved[index], primaryDish=meal.dishes?.[0]||meal;
+  const address=mealEditInput('mealEditAddress').value.trim();
+  const previousAddress=String(meal.address||meal.location?.label||'').trim();
+  const addressChanged=address!==previousAddress;
+  meal.display_name=displayName;
+  meal.custom_emoji=mealEditInput('mealEditEmoji').value.trim()||badgeForMeal(meal);
+  meal.restaurant_name=mealEditInput('mealEditRestaurant').value.trim();
+  meal.address=address;
+  // Legacy logged meals may be identified only by their old map pin.
+  // Keep their eaten status when an address edit removes those coordinates.
+  meal.want_to_try=false;
+  meal.cuisine=primaryDish.cuisine=mealEditInput('mealEditCuisine').value.trim();
+  meal.category=primaryDish.category=mealEditInput('mealEditCategory').value.trim();
+  meal.rating=primaryDish.rating=rating;
+  meal.note=primaryDish.note=mealEditInput('mealEditNote').value.trim();
+  if(addressChanged)delete meal.location;
+  else if(meal.location)meal.location.label=meal.restaurant_name||address||meal.location.label;
+  if(!persistSaved(saved)){
+    mealEditInput('mealEditError').textContent='Could not save these changes on this device. Your previous meal is unchanged.';
+    return;
+  }
+  mealEditDialog.close();
+  renderSaved();
+  if(currentScreen==='collectionScreen')renderPassportMap();
+  openSavedMeal(meal);
+  showToast(addressChanged?'Meal updated. The old map pin was removed.':'Meal updated.');
+});
 function deleteSavedMeal(item){
   const saved=getSaved();
-
-  const index=saved.findIndex(entry=>
-    entry.saved_at===item.saved_at &&
-    entry.dish_name===item.dish_name
-  );
+  const index=findSavedMealIndex(saved,item);
 
   if(index<0)return;
 
@@ -1703,10 +1712,14 @@ function deleteSavedMeal(item){
   if(!confirm(`Delete ${mealName} from your Food Passport?`))return;
 
   saved.splice(index,1);
-  localStorage.setItem(COLLECTION_KEY,JSON.stringify(saved));
-
+  if(!persistSaved(saved)){
+    showToast('Could not delete this meal on this device.');
+    return;
+  }
   renderSaved();
+  if(currentScreen==='collectionScreen')renderPassportMap();
   detail.classList.add('hidden');
+  showToast('Meal deleted.');
 }
 const passportCenter = {lat:39.9526,lng:-75.1652};
 const passportMapNode = document.getElementById('passportMap');
@@ -1824,11 +1837,11 @@ function showMealsAtPin(items) {
       const want = isWantToTry(x);
       if(!want){
   const filter=document.getElementById('passportRatingFilter')?.value||'all';
-  const rating=Number(x.rating);
+  const rating=mealRating(x);
 
   if(filter==='5' && rating!==5) continue;
-  if(filter==='4' && (!Number.isFinite(rating)||rating<4)) continue;
-  if(filter==='3' && (!Number.isFinite(rating)||rating>3)) continue;
+  if(filter==='4' && (rating===null||rating<4)) continue;
+  if(filter==='3' && (rating===null||rating>3)) continue;
 }
     const dishes=want?[]:mealDishes(x);
      const title=want
@@ -1848,7 +1861,7 @@ if(title.length>28){
 b.style.whiteSpace='nowrap';
       const icon=document.createElement('span');
       icon.className='saved-entry-icon';
-      icon.textContent=x.emoji||badgeForMeal(x);
+      icon.textContent=x.custom_emoji||x.emoji||badgeForMeal(x);
       const place=x.address||x.location?.label||'No location added';
       const meta=(dishes.length>1?[place,`${dishes.length} dishes`]:
       [place,x.cuisine,x.category])
@@ -1859,8 +1872,9 @@ if(want){
   small.textContent=trySource(x);
 }else{
   const locationLabel=x.address||x.location?.label||'No location added';
-  const ratingLabel=Number.isFinite(Number(x.rating))
-    ?`${x.rating}/5 ★`
+  const value=mealRating(x);
+  const ratingLabel=value!==null
+    ?`${value}/5 ★`
     :'Not rated';
 
   small.textContent=[
@@ -1891,11 +1905,12 @@ if(want){
         wrap.append(div);
       }
     }
-    const mealCount = wrap.childElementCount;
+    const visibleMealCount = wrap.childElementCount;
+    const mealCount = list.filter(item=>!isWantToTry(item)).length;
     const tryCount = tryList.childElementCount;
     document.getElementById('liveCollectionTotal').textContent=`${mealCount} meal${mealCount===1?'':'s'} logged`;
     document.getElementById('wantToTryCount').textContent=`${tryCount} saved`;
-    if(!mealCount){const p=document.createElement('p');p.className='passport-empty';p.textContent='Log your first meal in Snap.';wrap.append(p);}
+    if(!visibleMealCount){const p=document.createElement('p');p.className='passport-empty';p.textContent=mealCount?'No meals match this rating. Choose All meals to see every visit.':'Log your first meal in Snap.';wrap.append(p);}
     if(!tryCount){const p=document.createElement('p');p.className='passport-empty';p.textContent='Save ideas from Discover or Connect to find them here later.';tryList.append(p);}
   }
   renderSaved();
@@ -2334,6 +2349,7 @@ if(want){
       buttons.forEach((button,index)=>{
         const selected=value===index+1;
         button.setAttribute('aria-checked',String(selected));
+        button.classList.toggle('is-filled',index<Number(value||0));
         button.textContent=index<Number(value||0)?'★':'☆';
         button.tabIndex=selected||value===null&&index===0?0:-1;
       });
