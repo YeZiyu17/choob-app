@@ -54,7 +54,7 @@ Keep the same host/port to retain the same browser storage.
 - **Snap**: Start with the [sample photos](examples/snap/README.md), then try a new photo. Review or correct the dish suggestions and log them as one meal.
 - **Discover**: Select a city and try a request such as `spicy Chinese food`. Check a menu source and its reason, then try **Show more dishes** and save one dish.
 - **Passport**: Open **Saved dishes**, use **I tried this**, and confirm the meal in Snap. If you add a location, open its stamp in Passport. Refresh on the same local URL to check that the meal persists.
-- **Connect**: Create your profile (name + avatar). With no meals logged, check that demo passports still show. Log a meal with several dishes (for example gyoza and a tuna roll, placed in Philadelphia), then check that each match shows a reason, shared tags, their notes on dishes you share, and **Save to try** with the restaurant. Follow a match, refresh, and check the **Following** and **Followers** tabs and counts. A saved dish should show "<name>’s pick" in Saved dishes.
+- **Connect**: Create your profile. In Snap, log a meal at **Kaze Sushi Bar** with an address in Philadelphia, rate the sushi **5★**, and add a second dish rated **2★**. In Connect, check that Amelia's reason mentions the restaurant and the 5★ rating, and that the 2★ dish is listed as not used for matching. Open **Amelia’s map** to see her stamps, tap **Plan a meal together** and check that Discover opens with a request for Philadelphia. Follow a match, refresh, and check the **Following** and **Followers** tabs.
 
 ## Collaborate on the Code
 
