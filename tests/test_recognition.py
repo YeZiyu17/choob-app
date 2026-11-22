@@ -44,6 +44,7 @@ class ScopePolicyTests(unittest.TestCase):
             "suggestion_useful": True,
             "suggestion_top_3": [
                 {"dish_name": "biryani", "similarity": 0.31},
+                {"dish_name": "BIRYANI", "similarity": 0.30},
                 {"dish_name": "pulao", "similarity": 0.28},
             ],
             "review_label": "biryani",
@@ -55,12 +56,24 @@ class ScopePolicyTests(unittest.TestCase):
         self.assertEqual(result["status"], "suggestion")
         self.assertEqual(result["suggestion_mode"], "provisional_food_candidate")
         self.assertIn("not a probability", result["score_note"])
+        self.assertEqual([row["dish_name"] for row in result["ranked_guesses"]], ["Biryani", "Pulao"])
+        self.assertEqual(result["ranked_guesses"][0]["match_score"], 0.31)
+        self.assertEqual(result["score_label"], "Match score")
+        self.assertEqual(result["rank_scope"], "photo")
 
     def test_threshold_boundary_remains_scoped_to_frozen_nine_families(self):
-        result = self.recognizer.predict_from_scores({**self.scores, "support_margin": 0.02})
+        ranked = [
+            {"dish_name": "pizza", "relative_score": 0.8, "match_score": 0.34},
+            {"dish_name": "pasta", "relative_score": 0.15, "match_score": 0.29},
+            {"dish_name": "dumplings", "relative_score": 0.05, "match_score": 0.25},
+        ]
+        result = self.recognizer.predict_from_scores({**self.scores, "top_3": ranked, "support_margin": 0.02})
         self.assertTrue(result["accepted"])
         self.assertEqual(result["dish_name"], "Pizza")
         self.assertEqual(result["suggestion_mode"], "calibrated_supported")
+        self.assertEqual([row["dish_name"] for row in result["ranked_guesses"]],
+                         ["Pizza", "Pasta", "Dumplings"])
+        self.assertEqual(result["alternatives"], result["ranked_guesses"][1:])
 
     def test_configuration_rejects_stale_or_misrepresented_policies(self):
         shipped = json.loads((ROOT / "recognition_config.json").read_text())

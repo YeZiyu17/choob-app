@@ -257,6 +257,24 @@
     .meal-dish-row label{display:block;margin-bottom:4px}
     .meal-dish-row .input-choob{margin:0}
     .meal-dish-remove{min-height:44px;color:#6b6176;background:#fff}
+    .meal-dish-card{margin:0 0 10px;padding:11px;border:1px solid #ebe4ed;border-radius:15px;background:#fcfafc}
+    .meal-dish-card .meal-dish-row{margin-bottom:10px}
+    .dish-feedback{display:grid;gap:9px}
+    .dish-note-label,.dish-rating-label{display:block;margin:0 0 4px;color:#5d5565;font-size:11px;font-weight:850;letter-spacing:.35px}
+    .dish-note{margin:0!important}
+    .dish-rating-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    .dish-rating-stars{display:flex;gap:3px;border:0;padding:0;margin:0}
+    .dish-rating-star{width:38px;height:38px;border:1px solid #ded5e5;border-radius:10px;background:#fff;color:#b0a7b8;font-size:21px;line-height:1}
+    .dish-rating-star[aria-checked="true"]{background:#f3e8ff;border-color:#9e79d0;color:#7750aa}
+    .dish-rating-clear{border:0;background:transparent;color:#6b6176;font-size:11px;text-decoration:underline;padding:8px}
+    .dish-guesses{margin:0 0 10px;padding:9px;border-radius:12px;background:#f2edf8}
+    .dish-guesses-title{display:block;margin-bottom:6px;color:#5e5668;font-size:10px;font-weight:850;letter-spacing:.35px;text-transform:uppercase}
+    .dish-guess-list{display:flex;gap:6px;flex-wrap:wrap}
+    .dish-guess{border:1px solid #d8cae9;border-radius:10px;background:#fff;color:#382e46;padding:7px 9px;text-align:left;font-size:11px;font-weight:800}
+    .dish-guess small{display:block;margin-top:2px;color:#746b7d;font-size:9px;font-weight:650}
+    .snap-model-note{margin:10px 0 12px;padding:10px;border-left:3px solid #9f80ca;background:#f7f2fb;color:#554c5e;font-size:11px;line-height:1.5}
+    .meal-location-fields{display:grid;gap:9px;margin-top:9px}
+    .meal-location-fields .input-choob{margin:0}
     #addMealDish{min-height:40px}
     #mealReviewSummary{margin:8px 0 0;color:#514a5a}
     #mealDishError{margin:8px 0 0;color:#962f45}
@@ -887,9 +905,18 @@
         <div class="result-field"><small>CONFIRMATION</small><b>Required</b></div>
       </div>
       <p id="recognitionNote" class="confidence-note">CLIP scores compare only the supplied candidate dish labels. Confirm or correct the result before logging your meal.</p>
-      <div class="meal-dish-row">
-        <div><label class="eyebrow" id="correctedDishLabel" for="correctedDish">Dish 1</label><input id="correctedDish" class="input-choob" type="text" maxlength="80" placeholder="Dish name" /></div>
-        <button type="button" class="passport-action meal-dish-remove hidden" id="removeFirstMealDish" aria-label="Remove first dish">Remove</button>
+      <p class="snap-model-note"><strong>How Snap works:</strong> Snap uses CLIP to compare your photo with several text descriptions of each dish. It checks whether the image looks like food and also looks at smaller sections of the photo to find multiple dishes. Match scores reflect how closely the image matches each description.</p>
+      <div class="dish-guesses hidden" id="overallPhotoGuesses"></div>
+      <div class="meal-dish-card" id="primaryMealDishCard">
+        <div class="meal-dish-row">
+          <div><label class="eyebrow" id="correctedDishLabel" for="correctedDish">Dish 1</label><input id="correctedDish" class="input-choob" type="text" maxlength="80" placeholder="Dish name" /></div>
+          <button type="button" class="passport-action meal-dish-remove hidden" id="removeFirstMealDish" aria-label="Remove first dish">Remove</button>
+        </div>
+        <div class="dish-guesses hidden" id="primaryDishGuesses"></div>
+        <div class="dish-feedback">
+          <div id="primaryDishRating"></div>
+          <div><label class="dish-note-label" for="primaryDishNote">Note <span style="font-weight:400">(optional)</span></label><input id="primaryDishNote" class="input-choob dish-note" type="text" maxlength="240" placeholder="What stood out about this dish?" /></div>
+        </div>
       </div>
       <div id="extraMealDishes"></div>
       <button type="button" class="passport-action" id="addMealDish">＋ Add another dish</button>
@@ -925,8 +952,10 @@
           <div class="passport-map" id="mealPickerMap" aria-label="Choose a meal location"></div>
           <p id="mealPickerStatus" class="passport-status" role="status"></p>
           <div class="passport-actions"><button type="button" class="passport-action" id="pinMealCenter" disabled>Pin map center</button><button type="button" class="passport-action" id="useMealPosition">Use current location</button></div>
-          <label class="passport-location-label" for="mealPlaceName">Place name <span style="font-weight:400">(optional)</span></label>
-          <input class="input-choob" id="mealPlaceName" type="text" maxlength="100" placeholder="e.g. Lunch near campus" />
+          <div class="meal-location-fields">
+            <div><label class="passport-location-label" for="mealRestaurantName">Restaurant name <span style="font-weight:400">(optional)</span></label><input class="input-choob" id="mealRestaurantName" type="text" maxlength="100" placeholder="e.g. Sakura Kitchen" /></div>
+            <div><label class="passport-location-label" for="mealAddress">Address <span style="font-weight:400">(editable)</span></label><input class="input-choob" id="mealAddress" type="text" maxlength="240" autocomplete="street-address" placeholder="Move the pin to look up an address" /></div>
+          </div>
         </div>
       </div>
       <button class="primary" id="saveRecognizedDish">✓ Log as eaten</button>
@@ -1391,6 +1420,11 @@ deleteMealButton.onclick=()=>{
   function sameSavedIdea(first, second) {
     return isWantToTry(first) && sameDishAndPlace(first,second) && first.saved_at===second.saved_at;
   }
+  function hasValidSnapDishFeedback(dish) {
+    const rating=dish?.rating;
+    return (rating===null||(Number.isInteger(rating)&&rating>=1&&rating<=5)) &&
+      typeof dish?.note==='string' && dish.note.length<=240;
+  }
   function persistSaved(list) {
     try {
       localStorage.setItem(COLLECTION_KEY,JSON.stringify(list));
@@ -1418,6 +1452,11 @@ deleteMealButton.onclick=()=>{
   }
   function addSaved(item,movedIdea=null){
     if(!item || !isValidDishName(item.dish_name))return false;
+    if(item.source==='snap'&&(!Array.isArray(item.dishes)||!item.dishes.length||
+        item.dishes.some(dish=>!hasValidSnapDishFeedback(dish)))){
+      showToast('Check each dish rating and note before saving.');
+      return false;
+    }
     const want = isWantToTry(item);
     editMealButton.onclick=()=>editSavedMeal(item);
     // Each confirmed meal is a separate visit, even when the dish name repeats.
@@ -1480,7 +1519,8 @@ function badgeForMeal(item) {
   return '🍽️';
 }
   function mealPlace(item) {
-    return item.location.label || `${item.location.lat.toFixed(4)}, ${item.location.lng.toFixed(4)}`;
+    return item.restaurant_name || item.address || item.location.label ||
+      `${item.location.lat.toFixed(4)}, ${item.location.lng.toFixed(4)}`;
   }
 function mealDate(item){
   const value=item?.saved_at;
@@ -2123,7 +2163,11 @@ if(want){
   const locationClear = document.getElementById('clearMealLocation');
   const locationSummary = document.getElementById('mealLocationSummary');
   const locationStatus = document.getElementById('mealPickerStatus');
-  const placeName = document.getElementById('mealPlaceName');
+  const restaurantName = document.getElementById('mealRestaurantName');
+  const addressInput = document.getElementById('mealAddress');
+  const primaryDishNote = document.getElementById('primaryDishNote');
+  const primaryDishGuesses = document.getElementById('primaryDishGuesses');
+  const overallPhotoGuesses = document.getElementById('overallPhotoGuesses');
   const usePosition = document.getElementById('useMealPosition');
   const pinMealCenter = document.getElementById('pinMealCenter');
   const MAX_MEAL_DISHES = 12;
@@ -2134,12 +2178,103 @@ if(want){
   let extraMealDishSequence = 0;
   let mealLocation = null;
   let mealPicker, mealPickerRequest, positionVersion = 0;
+  let addressLookupVersion=0,addressEditVersion=0,addressLookupRequest=null,addressAutoFilled=false;
   function createMealDraftId() {
     return globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
   }
   function sameMealDishName(first, second) {
     return first.trim().toLowerCase()===second.trim().toLowerCase();
   }
+  function createRatingControl(container,idPrefix) {
+    let value=null;
+    const label=document.createElement('span');
+    label.className='dish-rating-label';
+    label.id=`${idPrefix}Label`;
+    label.textContent='Your rating (optional)';
+    const row=document.createElement('div');
+    row.className='dish-rating-row';
+    const stars=document.createElement('div');
+    stars.className='dish-rating-stars';
+    stars.setAttribute('role','radiogroup');
+    stars.setAttribute('aria-labelledby',label.id);
+    const buttons=[];
+    function setValue(next,focus=false) {
+      value=next===null?null:Number(next);
+      buttons.forEach((button,index)=>{
+        const selected=value===index+1;
+        button.setAttribute('aria-checked',String(selected));
+        button.textContent=index<Number(value||0)?'★':'☆';
+        button.tabIndex=selected||value===null&&index===0?0:-1;
+      });
+      if(focus&&value)buttons[value-1].focus();
+    }
+    for(let rating=1;rating<=5;rating++){
+      const button=document.createElement('button');
+      button.type='button';
+      button.className='dish-rating-star';
+      button.setAttribute('role','radio');
+      button.setAttribute('aria-label',`${rating} ${rating===1?'star':'stars'}`);
+      button.addEventListener('click',()=>setValue(rating));
+      button.addEventListener('keydown',event=>{
+        let next;
+        if(event.key==='ArrowRight'||event.key==='ArrowUp')next=rating===5?1:rating+1;
+        else if(event.key==='ArrowLeft'||event.key==='ArrowDown')next=rating===1?5:rating-1;
+        else if(event.key==='Home')next=1;
+        else if(event.key==='End')next=5;
+        else return;
+        event.preventDefault();setValue(next,true);
+      });
+      buttons.push(button);stars.append(button);
+    }
+    const clear=document.createElement('button');
+    clear.type='button';clear.className='dish-rating-clear';clear.textContent='Clear rating';
+    clear.addEventListener('click',()=>setValue(null,true));
+    row.append(stars,clear);container.append(label,row);setValue(null);
+    return {getValue:()=>value,setValue};
+  }
+  function matchScoreText(guess) {
+    return Number.isFinite(guess?.match_score)?`Match score ${Number(guess.match_score).toFixed(3)}`:'';
+  }
+  function rankedGuessesFor(suggestion) {
+    const source=Array.isArray(suggestion?.ranked_guesses)&&suggestion.ranked_guesses.length
+      ? suggestion.ranked_guesses
+      : [suggestion,...(Array.isArray(suggestion?.alternatives)?suggestion.alternatives:[])];
+    const seen=new Set();
+    return source.filter(guess=>{
+      const key=typeof guess?.dish_name==='string'?guess.dish_name.trim().toLowerCase():'';
+      if(!key||seen.has(key))return false;
+      seen.add(key);return true;
+    }).slice(0,3);
+  }
+  function renderDishGuesses(entry,title='Guesses for this dish',container=entry.guesses) {
+    const guesses=rankedGuessesFor(entry.suggestion);
+    container.replaceChildren();
+    container.classList.toggle('hidden',!guesses.length);
+    if(!guesses.length)return;
+    const heading=document.createElement('span');heading.className='dish-guesses-title';heading.textContent=title;
+    const list=document.createElement('div');list.className='dish-guess-list';
+    for(const guess of guesses){
+      const button=document.createElement('button');button.type='button';button.className='dish-guess';
+      button.textContent=guess.dish_name;
+      const score=matchScoreText(guess);
+      if(score){const small=document.createElement('small');small.textContent=score;button.append(small);}
+      button.addEventListener('click',()=>{
+        entry.input.value=guess.dish_name;
+        entry.suggestion={...entry.suggestion,...guess,dish_name:guess.dish_name};
+        entry.edited=true;
+        if(entry.input===correctedDish){
+          primaryMealSuggestion=entry.suggestion;primaryDishEntry.suggestion=entry.suggestion;
+          primaryDishEdited=true;primaryDishEntry.edited=true;
+        }
+        mealDishError.textContent='';updateMealDishActions();
+      });
+      list.append(button);
+    }
+    container.append(heading,list);
+  }
+  const primaryDishRating=createRatingControl(document.getElementById('primaryDishRating'),'primaryDishRating');
+  const primaryDishEntry={input:correctedDish,note:primaryDishNote,rating:primaryDishRating,
+    guesses:primaryDishGuesses,suggestion:null,edited:false};
   function updateMealDishActions() {
     removeFirstMealDishButton.classList.toggle('hidden',Boolean(pendingWish) || extraMealDishes.length===0);
     addMealDishButton.disabled=extraMealDishes.length>=MAX_MEAL_DISHES-1;
@@ -2155,6 +2290,9 @@ if(want){
     correctedDish.value=name;
     primaryMealSuggestion=suggestion;
     primaryDishEdited=edited;
+    primaryDishEntry.suggestion=suggestion;
+    primaryDishEntry.edited=edited;
+    renderDishGuesses(primaryDishEntry);
     mealDishError.textContent='';
     updateMealDishActions();
   }
@@ -2166,8 +2304,9 @@ if(want){
     updateMealDishActions();
   }
   function addExtraMealDish(name='',suggestion=null) {
-    const row=document.createElement('div');
-    row.className='meal-dish-row';
+    const card=document.createElement('div');
+    card.className='meal-dish-card';
+    const row=document.createElement('div');row.className='meal-dish-row';
     const field=document.createElement('div');
     const label=document.createElement('label');
     label.className='eyebrow';
@@ -2187,24 +2326,37 @@ if(want){
     remove.className='passport-action meal-dish-remove';
     remove.textContent='Remove';
     remove.setAttribute('aria-label','Remove additional dish');
-    const entry={row,input,label,suggestion,edited:false};
+    const guesses=document.createElement('div');guesses.className='dish-guesses hidden';
+    const feedback=document.createElement('div');feedback.className='dish-feedback';
+    const ratingNode=document.createElement('div');
+    const rating=createRatingControl(ratingNode,`extraMealDish${extraMealDishSequence}Rating`);
+    const noteWrap=document.createElement('div');
+    const noteLabel=document.createElement('label');noteLabel.className='dish-note-label';
+    noteLabel.htmlFor=`extraMealDish${extraMealDishSequence}Note`;noteLabel.textContent='Note (optional)';
+    const note=document.createElement('input');note.id=noteLabel.htmlFor;note.type='text';note.maxLength=240;
+    note.className='input-choob dish-note';note.placeholder='What stood out about this dish?';
+    noteWrap.append(noteLabel,note);feedback.append(ratingNode,noteWrap);
+    const entry={row:card,input,label,suggestion,edited:false,guesses,rating,note};
     remove.addEventListener('click',()=>{
       removeExtraMealDish(entry);
       (addMealDishButton.disabled?correctedDish:addMealDishButton).focus();
     });
-    row.append(field,remove);
+    row.append(field,remove);card.append(row,guesses,feedback);
     extraMealDishes.push(entry);
-    extraMealDishList.append(row);
+    extraMealDishList.append(card);
+    renderDishGuesses(entry);
     updateMealDishActions();
     return input;
   }
   addMealDishButton.addEventListener('click',()=>addExtraMealDish().focus());
-  correctedDish.addEventListener('input',()=>{primaryDishEdited=true;mealDishError.textContent='';updateMealDishActions();});
+  correctedDish.addEventListener('input',()=>{primaryDishEdited=true;primaryDishEntry.edited=true;mealDishError.textContent='';updateMealDishActions();});
   removeFirstMealDishButton.addEventListener('click',()=>{
     const next=extraMealDishes[0];
     if(!next || pendingWish)return;
     if(primaryMealSuggestion)dismissedSuggestions.add(primaryMealSuggestion.dish_name.trim().toLowerCase());
     setPrimaryMealDish(next.input.value,next.suggestion,true);
+    primaryDishRating.setValue(next.rating.getValue());
+    primaryDishNote.value=next.note.value;
     removeExtraMealDish(next,false);
     recognitionFields.classList.add('hidden');
     document.getElementById('identifiedDish').textContent='Review your meal';
@@ -2225,136 +2377,60 @@ if(want){
   }
   function clearMealLocation() {
     positionVersion++;
+    addressLookupVersion++;
+    addressLookupRequest?.abort();
+    addressLookupRequest=null;
     usePosition.disabled = false;
     mealLocation = null;
-    placeName.value = '';
+    restaurantName.value = '';
+    addressInput.value = '';
+    addressAutoFilled=false;
+    addressEditVersion++;
     updateMealLocation();
     toggleLocationPicker(false);
+  }
+  async function lookupMealAddress(location) {
+    const version=++addressLookupVersion;
+    const editVersion=addressEditVersion;
+    addressLookupRequest?.abort();
+    const controller=new AbortController();
+    addressLookupRequest=controller;
+    locationStatus.textContent='Looking up address…';
+    try{
+      const query=new URLSearchParams({lat:String(location.lat),lng:String(location.lng)});
+      const response=await fetch(`/api/reverse-geocode?${query}`,{signal:controller.signal});
+      const data=await response.json().catch(()=>({}));
+      if(version!==addressLookupVersion||editVersion!==addressEditVersion||
+          !mealLocation||mealLocation.lat!==location.lat||mealLocation.lng!==location.lng)return;
+      if(response.ok&&typeof data.address==='string'&&data.address.trim()){
+        addressInput.value=data.address.trim();
+        addressAutoFilled=true;
+        locationStatus.textContent='Address added from the selected pin. You can edit it.';
+      }else{
+        locationStatus.textContent='No address found for this pin. You can enter one manually.';
+      }
+    }catch(error){
+      if(error?.name!=='AbortError'&&version===addressLookupVersion){
+        locationStatus.textContent='Address lookup failed. The pin is still selected; enter an address manually if you want.';
+      }
+    }finally{if(addressLookupRequest===controller)addressLookupRequest=null;}
   }
   function selectMealLocation(location) {
     if (!hasMealLocation({location})) return;
     positionVersion++;
     usePosition.disabled = false;
-    mealLocation = location;
+    mealLocation = {lat:location.lat,lng:location.lng};
+    if(addressAutoFilled){addressInput.value='';addressAutoFilled=false;}
     updateMealLocation();
+    lookupMealAddress(mealLocation);
   }
-  const mealLocationSearch=document.getElementById('mealLocationSearch');
-const mealLocationSuggestions=document.getElementById('mealLocationSuggestions');
-let mealLocationSearchTimer;
-
-function hideMealLocationSuggestions(){
-  mealLocationSuggestions.replaceChildren();
-  mealLocationSuggestions.classList.add('hidden');
-}
-
-function showMealLocationSuggestions(results){
-  mealLocationSuggestions.replaceChildren();
-
-  if(!results.length){
-    hideMealLocationSuggestions();
-    return;
-  }
-
-  for(const result of results){
-    const button=document.createElement('button');
-    button.type='button';
-    button.className='location-suggestion';
-
-    const title=document.createElement('strong');
-    title.textContent=result.display_name.split(',')[0];
-
-    const address=document.createElement('small');
-    address.textContent=result.display_name;
-
-    button.append(title,address);
-
-    button.addEventListener('click',()=>{
-      const location={
-        lat:Number(result.lat),
-        lng:Number(result.lon),
-        label:result.display_name
-      };
-
-      selectMealLocation(location);
-      mealPlaceName.value=result.display_name.split(',')[0];
-      mealLocationSearch.value=result.display_name;
-      hideMealLocationSuggestions();
-
-      if(mealPicker){
-        mealPicker.setView(location,16);
-      }
-    });
-
-    mealLocationSuggestions.append(button);
-  }
-
-  mealLocationSuggestions.classList.remove('hidden');
-}
-
-mealLocationSearch.addEventListener('input',()=>{
-  clearTimeout(mealLocationSearchTimer);
-
-  const query=mealLocationSearch.value.trim();
-
-  if(query.length<3){
-    hideMealLocationSuggestions();
-    return;
-  }
-
-  mealLocationSearchTimer=setTimeout(()=>{
-    const search=async(position=null)=>{
-      try{
-        const params=new URLSearchParams({
-          format:'jsonv2',
-          q:query,
-          limit:'5',
-          addressdetails:'1',
-        countrycodes:'us'
-        });
-
-        if(position){
-          const range=.08;
-
-          params.set(
-            'viewbox',
-            `${position.longitude-range},${position.latitude+range},${position.longitude+range},${position.latitude-range}`
-          );
-
-          params.set('bounded','1');
-        }
-
-        const response=await fetch(
-          `https://nominatim.openstreetmap.org/search?${params}`
-        );
-
-        if(!response.ok)throw new Error('Location search failed');
-
-        const results=await response.json();
-        showMealLocationSuggestions(results);
-      }catch{
-        hideMealLocationSuggestions();
-        locationStatus.textContent=
-          'Location search unavailable. You can still use the map.';
-      }
-    };
-
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(
-        ({coords})=>search(coords),
-        ()=>search(null),
-        {timeout:6000,maximumAge:300000}
-      );
-    }else{
-      search(null);
+  addressInput.addEventListener('input',()=>{
+    addressEditVersion++;addressAutoFilled=false;
+    if(addressLookupRequest){
+      addressLookupVersion++;addressLookupRequest.abort();addressLookupRequest=null;
+      locationStatus.textContent='Using your typed address. Moving the pin can look up a new one.';
     }
-  },350);
-});
-
-document.addEventListener('click',event=>{
-  if(!event.target.closest('.location-search-wrap')){
-    hideMealLocationSuggestions();
-  }
-});
+  });
   locationClear.addEventListener('click',clearMealLocation);
   pinMealCenter.addEventListener('click',()=>selectMealLocation(mealPicker?.getCenter()));
   locationToggle.addEventListener('click',async()=>{
@@ -2425,6 +2501,10 @@ document.addEventListener('click',event=>{
     snapScreen.classList.remove('meal-draft');
     scanResult.classList.remove('show');
     setPrimaryMealDish('');
+    primaryDishRating.setValue(null);
+    primaryDishNote.value='';
+    overallPhotoGuesses.replaceChildren();
+    overallPhotoGuesses.classList.add('hidden');
     extraMealDishes.length=0;
     extraMealDishList.replaceChildren();
     dismissedSuggestions.clear();
@@ -2543,7 +2623,8 @@ document.addEventListener('click',event=>{
 
     // Keep manual rows and user corrections when rescanning the same meal.
     for(const entry of [...extraMealDishes]){
-      if(entry.suggestion&&!entry.edited&&sameMealDishName(entry.input.value,entry.suggestion.dish_name))removeExtraMealDish(entry,false);
+      if(entry.suggestion&&!entry.edited&&!entry.rating.getValue()&&!entry.note.value.trim()&&
+          sameMealDishName(entry.input.value,entry.suggestion.dish_name))removeExtraMealDish(entry,false);
     }
     for(const dish of detected){
       if(extraMealDishes.length>=MAX_MEAL_DISHES-1)break;
@@ -2576,6 +2657,12 @@ document.addEventListener('click',event=>{
       const provisional=result.status==='suggestion';
       const suggested=typeof result.suggested_dish==='string'?result.suggested_dish:result.suggested_dish?.dish_name;
       currentPrediction={...result,accepted:!uncertain};
+      overallPhotoGuesses.replaceChildren();
+      overallPhotoGuesses.classList.add('hidden');
+      const detectedHasRankings=Array.isArray(result.dishes)&&result.dishes.some(dish=>rankedGuessesFor(dish).length);
+      if(multiple&&!detectedHasRankings&&rankedGuessesFor(result).length){
+        renderDishGuesses({...primaryDishEntry,suggestion:result},'Guesses for the whole photo',overallPhotoGuesses);
+      }
       recognitionMode.textContent='Dish recognition';
       recognitionFields.classList.toggle('hidden',multiple);
       document.getElementById('identifiedDish').textContent=multiple?'Review your meal':main?.dish_name||'Uncertain / unsupported dish';
@@ -2605,10 +2692,10 @@ document.addEventListener('click',event=>{
   saveRecognizedDish.addEventListener('click',async()=>{
     if(mealSaveInFlight)return;
     if(!currentPrediction){cameraHint.textContent='Scan the photo or enter the dish manually.';return;}
-    const fields=[{input:correctedDish,suggestion:primaryMealSuggestion},...extraMealDishes];
+    const fields=[primaryDishEntry,...extraMealDishes];
     const dishes=[];
     const dishNames=new Set();
-    for(const {input,suggestion} of fields){
+    for(const {input,suggestion,rating,note} of fields){
       const dish_name=input.value.trim();
       if(!dish_name&&input!==correctedDish)continue;
       if(!isValidDishName(dish_name)||dish_name.length>80){
@@ -2623,12 +2710,21 @@ document.addEventListener('click',event=>{
         return;
       }
       dishNames.add(normalized);
+      const dishRating=rating.getValue();
+      if(dishRating!==null&&(!Number.isInteger(dishRating)||dishRating<1||dishRating>5)){
+        mealDishError.textContent='Dish ratings must be whole numbers from 1 through 5, or left unset.';
+        input.focus();
+        return;
+      }
       const match=suggestion&&sameMealDishName(dish_name,suggestion.dish_name)?suggestion:null;
-      dishes.push({dish_name,cuisine:match?.cuisine||'Unknown',category:match?.category||'Unknown'});
+      dishes.push({dish_name,cuisine:match?.cuisine||'Unknown',category:match?.category||'Unknown',
+        rating:dishRating,note:note.value.trim()});
     }
     const version = recognitionVersion;
     const movedIdea = pendingWish;
-    const location = mealLocation ? {...mealLocation,label:placeName.value.trim()} : null;
+    const restaurant_name=restaurantName.value.trim();
+    const address=addressInput.value.trim();
+    const location = mealLocation ? {...mealLocation,label:restaurant_name||address||''} : null;
     mealSaveInFlight = true;
     saveRecognizedDish.disabled = true;
     saveRecognizedDish.textContent='Logging meal…';
@@ -2639,6 +2735,8 @@ document.addEventListener('click',event=>{
         ...dishes[0],
         source:'snap',
         snap_draft_id:mealDraftId,
+        restaurant_name,
+        address,
         dishes,
         image,
         ...(location?{location}:{}),
