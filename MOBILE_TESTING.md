@@ -146,6 +146,59 @@ The original AI models were not re-evaluated for accuracy in this Mobile change.
 
 ## Updating the shared final build
 
+### Team feature integration - November 22, 2026
+
+The updated Mobile build includes Snap's dish ratings, notes and restaurant/address
+fields; Passport PR #11's history, filtering, editing and deletion; Connect's
+rating/place-aware matches and map stamps; and Discover's neighborhoods,
+rating-aware picks and meal-planning handoff.
+
+Phone presentation now lets long Passport names and addresses wrap, enlarges
+rating/action targets, keeps both location menus within the screen, and supports
+the planning banner on narrow screens. Selecting a rating highlights every star
+up to that value while preserving one selected rating for accessibility. The Snap
+explanation sits at the end of its screen; the model-report and sample-restaurant
+shortcuts were removed from Snap and Discover. Passport editing uses one scrollable form
+with Save and Cancel. Editing a primary dish preserves the other dishes' ratings
+and notes. Changing an address removes its old pin, while keeping older logged
+meals in Passport. The existing browser-storage keys and network-first PWA
+behavior are retained.
+
+Passport now uses the shared top bar with a Back button and `Passport.` brand,
+followed by the meal count, without a duplicate page title. The header was checked at
+320x568, 390x844 and 844x390 with no horizontal overflow; Back returns to Home.
+
+Verification for this integration:
+
+- **125 automated checks passed**, including a regression that executes the real
+  meal editor handler with a legacy record and checks storage failure handling.
+- **30 browser screen states passed**: Home, Snap, Passport, Discover and Connect
+  at 320x568, 375x667, 390x844, 430x932, 480x900 and 844x390. No horizontal screen
+  overflow or bottom navigation outside the viewport was found.
+- The meal editor stayed within the viewport at 320x568, 390x844, 844x390 and a
+  390x360 short-viewport check. All editable fields remained 16px. The short
+  viewport approximates reduced keyboard space; it is not a physical-keyboard test.
+- Actual browser interactions covered per-dish ratings/notes, multi-dish meal
+  logging, filtering, editing Save/Cancel, refresh persistence and the
+  Connect-to-Discover planning banner. Other dishes' feedback remained intact.
+  Canceling deletion kept the test meal; confirming deletion removed it.
+- **Live Gemini + Tavily requests passed** on the integrated service at 7873.
+  A Center City / crispy Italian request returned Carciofi Fritti with a linked
+  menu source. Saving it and using I tried this moved it into Passport. Planning
+  with Amelia then choosing Any flavor returned a menu-linked Uchi Philadelphia
+  result. These checks establish live integration for those requests, not overall
+  recommendation accuracy or class-sized concurrent capacity.
+
+The local layout-check service uses port **7874**. Use **Start Mobile
+Online.command** for the integrated Gemini + Tavily phone service on **7873**;
+enter both keys at its hidden prompts and keep its terminal open. Old launchers
+in another project folder can start an earlier build on a different port.
+
+**Physical-phone follow-up, November 22:** the user tested the integrated features
+and reported normal operation. Device and browser details were not recorded.
+The subsequent star-highlighting and screen-cleanup requests were checked again
+in the browser; broader real-device coverage remains pending.
+
 Pull the latest `final` before starting a feature branch and after each merge.
 Restart the local server for backend changes and refresh the phone. With the
 same URL, the existing Home Screen entry can continue opening the updated app.

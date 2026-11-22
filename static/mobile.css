@@ -11,9 +11,28 @@
 .mobile-install-dialog ol{padding-left:22px}.mobile-install-dialog li+li{margin-top:9px}
 .mobile-install-dialog button{width:100%;min-height:48px;margin-top:8px;border:0;border-radius:14px;background:#17151f;color:#fff;font:inherit;font-weight:800;cursor:pointer}
 
+/* One editable meal form keeps related fields together on every screen size. */
+.meal-edit-dialog{width:min(420px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;scroll-padding-block:16px;border:1px solid #e7e0d7;border-radius:24px;padding:22px;background:#fbf8f2;color:#211d2b;font-family:Nunito,system-ui,sans-serif;box-shadow:0 24px 80px #17151f33}
+.meal-edit-dialog::backdrop{background:#17151f80}
+.meal-edit-dialog h2{margin:0 0 8px;font-size:24px;line-height:1.2}
+.meal-edit-dialog p{font-size:13px;line-height:1.5;color:#6f677b;overflow-wrap:anywhere}
+.meal-edit-dialog #mealEditError{color:#962f45}
+.meal-edit-dialog #mealEditError:empty{display:none}
+.passport-edit-form{margin-top:16px}
+.passport-edit-fields{display:grid;gap:12px}
+.passport-edit-fields fieldset{min-inline-size:0;max-width:100%;margin:0;border:1px solid #ded5e5;border-radius:12px;padding:12px}
+.passport-edit-fields legend{max-width:100%;padding:0 5px;font-size:13px;line-height:1.4;overflow-wrap:anywhere}
+.passport-edit-fields label{display:grid;gap:6px;color:#5d5565;font-size:13px;font-weight:800}
+.passport-edit-fields input,.passport-edit-fields textarea,.passport-edit-fields select{width:100%;min-width:0;min-height:44px;padding:11px 12px;border:1px solid #ded5e5;border-radius:12px;background:#fff;color:#211d2b;font:inherit;font-size:16px}
+.meal-edit-dialog :is(input,textarea,select){font-size:16px!important}
+.passport-edit-fields textarea{min-height:88px;resize:vertical}
+.passport-edit-fields :is(input,textarea,select):focus-visible{outline:2px solid #7658ff;outline-offset:2px}
+.passport-edit-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.passport-edit-actions button{flex:1 1 120px;min-height:44px;margin:0}
+
 /* Use the actual screen on phones (including wide/landscape phones) and when
    installed. Desktop browser previews keep the existing decorative frame. */
-@media (max-width:600px), (max-height:500px) and (pointer:coarse), (display-mode:standalone), (display-mode:fullscreen){
+@media (max-width:600px), (max-height:500px) and (pointer:coarse), (max-width:950px) and (max-height:500px), (display-mode:standalone), (display-mode:fullscreen){
   html{height:100%;background:#f7f4ed}
   body{display:block;min-height:100%;background:#f7f4ed;overflow:hidden}
   main.app{position:relative;top:auto;left:auto;width:100%;height:100vh;height:100dvh;height:var(--mobile-viewport-height,100dvh);border:0;border-radius:0;box-shadow:none;transform:none;overflow:hidden}
@@ -23,6 +42,37 @@
   .app input:not([type=file]):not([type=checkbox]):not([type=radio]),.app textarea,.app select{font-size:16px}
   .app .sheet{max-height:92%;overflow-y:auto;overscroll-behavior:contain;padding-bottom:max(24px,calc(env(safe-area-inset-bottom) + 16px))}
   .app .nav{left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right))}
+  .meal-edit-dialog{position:fixed;top:max(16px,env(safe-area-inset-top));bottom:auto;left:50%;right:auto;transform:translateX(-50%);margin:0;max-height:calc(var(--mobile-viewport-height,100dvh) - max(16px,env(safe-area-inset-top)) - max(16px,env(safe-area-inset-bottom)))}
+
+  /* Meal cards grow with long names, addresses and notes instead of clipping. */
+  .app .saved-entry{height:auto!important;min-height:104px!important;grid-template-columns:48px minmax(0,1fr)!important;column-gap:12px!important;padding:14px!important}
+  .app .saved-entry-icon{width:48px!important;height:48px!important;font-size:25px!important}
+  .app .saved-entry> b,.app .saved-entry> small{min-width:0!important;max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere!important;overflow:visible!important;line-height:1.4!important}
+  .app .saved-entry> b{font-size:17px!important}
+  .app .saved-entry> small{font-size:13px!important}
+  .app .passport-filter{flex-wrap:wrap;align-items:center}
+  .app .passport-filter label{flex:1 1 90px}
+  .app .passport-filter select{flex:1 1 140px;min-width:0!important;max-width:100%;min-height:44px}
+
+  .app :is(.passport-action,.connect-tab,.connect-profile summary,.dish-rating-clear,.dish-guess){min-height:44px}
+  .app .dish-rating-stars{min-inline-size:0;max-width:100%;gap:2px}
+  .app .dish-rating-star{flex:0 1 44px;width:44px;min-width:0;min-height:44px;height:44px}
+  .app #starRatingButtons{flex-wrap:wrap;gap:4px}
+  .app .star-choice{width:44px;min-height:44px;padding:5px}
+  .app :is(#editMealBtn,#deleteMealBtn){width:100%;margin-top:10px}
+  .app .sheet :is(h2,p,li){overflow-wrap:anywhere}
+  .app .sheet{scroll-padding-block:16px}
+
+  /* Both city menus anchor to the whole row, including narrow phones. */
+  .app .discover-place-row{position:relative}
+  .app .discover-place-row .discover-city{position:static;min-width:0}
+  .app .discover-place-row .discover-city-menu{left:0;right:0;width:100%;min-width:0;max-width:100%}
+  .app .discover-city-menu button{min-width:0;overflow-wrap:anywhere}
+  .app .discover-plan{flex-wrap:wrap;align-items:center}
+  .app #discoverPlanText{flex:1 1 170px;min-width:0;overflow-wrap:anywhere}
+  .app #discoverPlanEnd{min-height:44px}
+  .app .connect-try-row{align-items:flex-start}
+  .app .connect-dish,.app .connect-profile-name{min-width:0;overflow-wrap:anywhere}
 }
 @media (max-width:390px){
   .app .screen{padding-left:max(17px,env(safe-area-inset-left));padding-right:max(17px,env(safe-area-inset-right))}
