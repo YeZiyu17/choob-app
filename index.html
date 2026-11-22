@@ -211,6 +211,11 @@
     .connect-shared-dishes .connect-try-row:first-of-type{border-top:0}
     .connect-follow[aria-pressed="true"]{background:#1e1b2c;color:#fff}
     .connect-explore-title{margin:14px 0 0}
+    .connect-rating{color:#7750aa;font-size:12px;letter-spacing:1px;font-weight:700;white-space:nowrap}
+    .connect-disliked{display:block;margin:6px 0 0;color:#8a5a2b;font-size:11px;line-height:1.4}
+    .connect-card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .connect-map-wrap{margin-top:10px}
+    .connect-map{height:220px}
     .connect-your-stamps .connect-profile-name h2{margin:0 0 2px;font-size:20px;letter-spacing:-.4px}
     .connect-me-icon{background:#fff;width:48px;height:48px;font-size:26px;border-radius:14px}
     .connect-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}
@@ -1091,8 +1096,15 @@ function badgeForMeal(item) {
   function connectDishRow(dish,{wanted,results,profile,saveable}) {
     const row = connectElement('div','connect-try-row');
     const text = connectElement('div','connect-dish');
-    text.append(connectElement('b','',`${dish.emoji} ${dish.name}`));
-    text.append(connectElement('small','',[dish.restaurant,dish.city].filter(Boolean).join(' · ')));
+    const title = connectElement('b','',`${dish.emoji} ${dish.name}`);
+    if (dish.rating) {
+      const rating = connectElement('span','connect-rating',`${'★'.repeat(dish.rating)}${'☆'.repeat(5-dish.rating)}`);
+      rating.setAttribute('aria-label',`${profile.name} rated it ${dish.rating} out of 5`);
+      title.append(' ',rating);
+    }
+    text.append(title);
+    text.append(connectElement('small','',[dish.restaurant,dish.address||dish.city].filter(Boolean).join(' · ')));
+    if (dish.youDisliked) text.append(connectElement('small','connect-disliked','You rated this kind of dish low'));
     if (dish.note) text.append(connectElement('q','connect-note',dish.note));
     row.append(text);
     if (!saveable) return row;
@@ -1103,7 +1115,7 @@ function badgeForMeal(item) {
     button.dataset.tryDish = key;
     button.setAttribute('aria-label',`${button.textContent}: ${dish.name} at ${dish.restaurant}`);
     button.addEventListener('click',()=>{
-      if (!addSaved({dish_name:dish.name,restaurant_name:dish.restaurant,city:dish.city,shared_by:profile.name,source:'connect',want_to_try:true})) return;
+      if (!addSaved({dish_name:dish.name,restaurant_name:dish.restaurant,address:dish.address,city:dish.city,shared_by:profile.name,source:'connect',want_to_try:true})) return;
       wanted.add(key);
       for (const other of results.querySelectorAll('[data-try-dish]')) {
         if (other.dataset.tryDish !== key) continue;
@@ -1147,7 +1159,15 @@ function badgeForMeal(item) {
     if (meta.childElementCount) card.append(meta);
     if (isMatch) {
       card.append(connectElement('p','connect-reason',match.reason));
-      const chips = [...match.shared.map(({label,emoji})=>`${emoji} ${label}`),...match.sharedCuisines.map(cuisine=>`🌏 ${cuisine}`)];
+      const chips = [
+        ...match.sharedRestaurants.map(name=>`🏪 ${name}`),
+        ...match.shared.map(({key,label,emoji})=>{
+          const loved = match.lovedShared.find(type=>type.key===key);
+          if (!loved) return `${emoji} ${label}`;
+          const low = Math.min(loved.mine,loved.theirs);
+          return `${emoji} ${label} · both ${low}★${low<5?'+':''}`;
+        }),
+        ...match.sharedCuisines.map(cuisine=>`🌏 ${cuisine}`)];
       if (match.sameCity) chips.push(`📍 ${match.city}`);
       const shared = connectElement('div','connect-stamps');
       shared.setAttribute('aria-label','What you have in common');
@@ -1157,6 +1177,27 @@ function badgeForMeal(item) {
       card.append(connectElement('p','connect-reason','No shared stamps yet. Try one of their picks to start a match.'));
     }
     card.append(connectElement('p','connect-bio',match.bio));
+    const actions = connectElement('div','connect-card-actions');
+    const plan = connectElement('button','passport-action connect-primary','🍽️ Plan a meal together');
+    plan.type = 'button';
+    plan.setAttribute('aria-label',`Plan a meal with ${match.name} in Discover`);
+    plan.addEventListener('click',()=>connectPlanMeal(match));
+    actions.append(plan);
+    let mapBox = null;
+    if (match.stamps.length && window.ChoobPassportMap) {
+      const mapToggle = connectElement('button','passport-action',`🗺️ ${match.name}’s map`);
+      mapToggle.type = 'button';
+      mapToggle.setAttribute('aria-expanded','false');
+      mapBox = connectElement('div','connect-map-wrap hidden');
+      mapToggle.addEventListener('click',()=>{
+        const open = mapBox.classList.toggle('hidden') === false;
+        mapToggle.setAttribute('aria-expanded',String(open));
+        if (open) connectShowMap(mapBox,match);
+      });
+      actions.append(mapToggle);
+    }
+    card.append(actions);
+    if (mapBox) card.append(mapBox);
     if (match.sharedDishes.length) {
       const yours = connectElement('div','connect-shared-dishes');
       yours.append(connectElement('p','connect-subhead',`${match.name}’s take on dishes you both have`));
@@ -1240,6 +1281,65 @@ function badgeForMeal(item) {
     stat.append(connectElement('b','',String(value)),connectElement('small','',label));
     return stat;
   }
+  async function connectShowMap(box,match) {
+    if (box.dataset.ready) { box.querySelector('.passport-map')?.__connectMap?.resize(); return; }
+    box.dataset.ready = '1';
+    const node = connectElement('div','passport-map connect-map');
+    node.setAttribute('aria-label',`Map of ${match.name}’s stamps`);
+    const status = connectElement('p','passport-note','Loading map…');
+    status.setAttribute('role','status');
+    box.append(node,status);
+    try {
+      const map = await window.ChoobPassportMap.create(node,{
+        center:{lat:match.stamps[0].lat,lng:match.stamps[0].lng},zoom:13,
+        onStatus:message=>{status.textContent=message;},
+      });
+      node.__connectMap = map;
+      // One pin per restaurant; the pin shows the dish emoji or how many dishes were eaten there.
+      const groups = new Map();
+      for (const stamp of match.stamps) {
+        const key = `${stamp.lat},${stamp.lng}`;
+        if (!groups.has(key)) groups.set(key,[]);
+        groups.get(key).push(stamp);
+      }
+      const markers = Array.from(groups.values(),items=>({
+        lat:items[0].lat,lng:items[0].lng,
+        symbol:items.length===1?items[0].emoji:String(items.length),
+        label:`${items.map(item=>item.name).join(', ')} at ${items[0].restaurant}`,
+      }));
+      map.resize();
+      map.setMarkers(markers);
+      map.fitLocations(markers);
+      if (status.textContent==='Loading map…') {
+        status.textContent = `${match.stamps.length} stamps · ${[...new Set(match.stamps.map(stamp=>stamp.restaurant))].join(', ')}`;
+      }
+    } catch {
+      delete box.dataset.ready;
+      box.replaceChildren(connectElement('p','passport-note','Map unavailable. Check your connection and try again.'));
+    }
+  }
+  // Opens Discover with a request built from what you both like.
+  function connectPlanMeal(match) {
+    const me = getMyProfile();
+    const liked = [...match.lovedShared,...match.shared.filter(type=>!match.lovedShared.some(loved=>loved.key===type.key))]
+      .map(type=>type.label.toLowerCase());
+    const cuisines = [...new Set([...match.shared.map(type=>type.cuisine),...match.sharedCuisines].filter(Boolean))];
+    const theirFavorite = [...match.dishes].sort((a,b)=>(b.rating??0)-(a.rating??0))[0];
+    const wants = liked.length ? `we both love ${liked.slice(0,3).join(' and ')}`
+      : cuisines.length ? `we both like ${cuisines.slice(0,2).join(' and ')} food`
+      : `${match.name}'s favorite is ${theirFavorite.name.toLowerCase()}`;
+    const style = cuisines.length ? ` Suggest a ${cuisines.slice(0,2).join(' or ')} spot` : ' Suggest a spot';
+    const message = `Meal for two with ${match.name}${me?` and ${me.name}`:''}: ${wants}.${style} we'd both like in ${match.city}.`;
+    show('recommendScreen');
+    const cityChoices = [...discoverCityMenu.children].map(button=>button.value);
+    if (cityChoices.includes(match.city) && match.city!==discoverCityValue) {
+      setDiscoverCity(match.city);
+      try{localStorage.setItem(DISCOVER_CITY_KEY,match.city);}catch{}
+    }
+    resetDiscover();
+    document.getElementById('recommendScreen').scrollTop=0;
+    submitDiscoverMessage(message);
+  }
   function renderConnect() {
     const results = document.getElementById('connectResults');
     const me = document.getElementById('connectMe');
@@ -1253,7 +1353,7 @@ function badgeForMeal(item) {
       return;
     }
     const meals = saved.filter(item=>!isWantToTry(item));
-    const {stampTypes,matches,explore} = window.ChoobConnect.matchStamps(meals);
+    const {stampTypes,matches,explore,disliked=[]} = window.ChoobConnect.matchStamps(meals);
     const everyone = [...matches,...explore];
     const following = getFollowing();
     const followed = everyone.filter(profile=>following.has(profile.id));
@@ -1289,11 +1389,14 @@ function badgeForMeal(item) {
     tastesHead.append(connectElement('p','connect-subhead','Your passport tastes'),savedLink);
     tastes.append(tastesHead);
     tastes.append(connectElement('p','passport-note',stampTypes.length
-      ? 'Matches are based on the dishes and cuisines in your Food Passport.'
+      ? 'Matches use the dishes, ratings and places in your Food Passport. Dishes you rate 4–5★ count the most.'
       : 'Log a meal in Snap to add your first stamp and start matching.'));
     const chips = connectElement('div','connect-stamps');
-    chips.append(...stampTypes.map(({label,emoji,count})=>connectElement('span','connect-stamp',`${emoji} ${label}${count>1?` ×${count}`:''}`)));
+    chips.append(...stampTypes.map(({label,emoji,count,rating})=>connectElement('span','connect-stamp',`${emoji} ${label}${count>1?` ×${count}`:''}${rating?` · ${rating}★`:''}`)));
     tastes.append(chips);
+    if (disliked.length) {
+      tastes.append(connectElement('p','connect-disliked',`Not used for matching (you rated them 1–2★): ${disliked.map(({emoji,label})=>`${emoji} ${label}`).join(', ')}`));
+    }
     me.append(tastes);
 
     for (const [id,label,count] of [['matches','Matches',matches.length],['following','Following',followed.length],['followers','Followers',followers.length]]) {

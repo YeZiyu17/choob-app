@@ -66,6 +66,45 @@ class ConnectMatchTests(unittest.TestCase):
         result = run_matches([{"dish_name": "Unknown"}, {"dish_name": "<script>"}])
         self.assertEqual(result["stampTypes"], [])
 
+    def test_low_rated_dishes_do_not_count_as_tastes(self):
+        meal = {"dish_name": "Tonkotsu ramen", "dishes": [{"dish_name": "Tonkotsu ramen", "rating": 2}]}
+        result = run_matches([meal])
+        self.assertEqual(result["stampTypes"], [])
+        self.assertEqual([d["key"] for d in result["disliked"]], ["ramen"])
+        self.assertEqual(result["matches"], [])
+
+    def test_a_good_rating_elsewhere_overrides_a_low_one(self):
+        meals = [{"dish_name": "Ramen", "dishes": [{"dish_name": "Ramen", "rating": 1}]},
+                 {"dish_name": "Ramen", "dishes": [{"dish_name": "Shoyu ramen", "rating": 5}]}]
+        result = run_matches(meals)
+        self.assertEqual(result["disliked"], [])
+        self.assertEqual(result["stampTypes"][0]["rating"], 5)
+
+    def test_both_loved_dish_shows_ratings_in_reason(self):
+        meal = {"dish_name": "Salmon sushi", "dishes": [{"dish_name": "Salmon sushi", "rating": 5}]}
+        amelia = next(m for m in run_matches([meal])["matches"] if m["id"] == "amelia")
+        self.assertEqual(amelia["lovedShared"][0]["key"], "sushi")
+        self.assertIn("rated Sushi 5★", amelia["reason"])
+
+    def test_unrated_dishes_still_match(self):
+        result = run_matches([{"dish_name": "Salmon sushi", "dishes": [{"dish_name": "Salmon sushi", "rating": None}]}])
+        amelia = next(m for m in result["matches"] if m["id"] == "amelia")
+        self.assertEqual(amelia["lovedShared"], [])
+        self.assertIn("Sushi", amelia["reason"])
+
+    def test_same_restaurant_and_address_city(self):
+        meal = {"dish_name": "Pork gyoza", "restaurant_name": "kaze sushi bar",
+                "address": "Rittenhouse, Philadelphia, PA", "dishes": [{"dish_name": "Pork gyoza", "rating": 4}]}
+        top = run_matches([meal])["matches"][0]
+        self.assertEqual(top["id"], "amelia")
+        self.assertEqual(top["sharedRestaurants"], ["Kaze Sushi Bar"])
+        self.assertTrue(top["sameCity"])
+        self.assertTrue(top["reason"].startswith("You’ve both been to Kaze Sushi Bar"))
+
+    def test_every_profile_has_map_stamps(self):
+        for profile in run_matches([])["explore"]:
+            self.assertEqual(len(profile["stamps"]), len(profile["dishes"]))
+
 
 if __name__ == "__main__":
     unittest.main()
