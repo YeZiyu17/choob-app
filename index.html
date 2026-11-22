@@ -1345,15 +1345,8 @@ function badgeForMeal(item) {
       : `${match.name}'s favorite is ${theirFavorite.name.toLowerCase()}`;
     const style = cuisines.length ? ` Suggest a ${cuisines.slice(0,2).join(' or ')} spot` : ' Suggest a spot';
     const message = `Meal for two with ${match.name}${me?` and ${me.name}`:''}: ${wants}.${style} we'd both like in ${match.city}.`;
-    show('recommendScreen');
-    const cityChoices = [...discoverCityMenu.children].map(button=>button.value);
-    if (cityChoices.includes(match.city) && match.city!==discoverCityValue) {
-      setDiscoverCity(match.city);
-      try{localStorage.setItem(DISCOVER_CITY_KEY,match.city);}catch{}
-    }
-    resetDiscover();
-    document.getElementById('recommendScreen').scrollTop=0;
-    submitDiscoverMessage(message);
+    // Discover's planning mode also uses both people's ratings to rank and filter picks.
+    window.ChoobDiscover.planMealWith(match,{message});
   }
   function renderConnect() {
     const results = document.getElementById('connectResults');
@@ -2151,19 +2144,23 @@ function badgeForMeal(item) {
     return items.length<=1?items.join(''):`${items.slice(0,-1).join(', ')} and ${items.at(-1)}`;
   }
   // Called by Connect's "Plan a meal together" button with a passport profile:
-  // {name, city, dishes:[{name or dish_name, cuisine?, rating?}]}.
-  async function planMealWith(profile) {
+  // {name, city, dishes:[{name or dish_name, cuisine?, rating?}]}. An optional message starts the search.
+  async function planMealWith(profile,{message=''}={}) {
     const name=typeof profile?.name==='string'?profile.name.trim().slice(0,40):'';
     if(!name)return false;
-    discoverPartner={name,...discoverTasteSummary(profile.dishes,{countUnrated:true})};
+    const autoStart=typeof message==='string'&&Boolean(message.trim());
+    discoverPartner={name,...discoverTasteSummary(profile.dishes,{countUnrated:true}),autoStart};
     show('recommendScreen');
     if(discoverConfig)await discoverConfig;
     const cities=[...discoverCityMenu.children].map(button=>button.value);
     if(typeof profile.city==='string'&&cities.includes(profile.city)&&profile.city!==discoverCityValue){
       setDiscoverCity(profile.city);
+      try{localStorage.setItem(DISCOVER_CITY_KEY,profile.city);}catch{}
     }
     resetDiscover();
+    discoverPartner.autoStart=false;  // "Start over" later shows the full prompt again.
     document.getElementById('recommendScreen').scrollTop=0;
+    if(autoStart)submitDiscoverMessage(message);
     return true;
   }
   function stopPlanning() {
@@ -2433,7 +2430,8 @@ function badgeForMeal(item) {
       discoverPlanText.textContent=`🍽️ Planning a meal with ${discoverPartner.name}`;
       const opener=shared.length?`You and ${discoverPartner.name} both like ${listWords(shared.slice(0,3))}.`
         :theirs.length?`${discoverPartner.name} likes ${listWords(theirs.slice(0,3))}.`:'';
-      addDiscoverMessage(`${opener} Pick a cuisine or tell me what you’re both craving, and I’ll find a place you’d both like.`.trim());
+      addDiscoverMessage(discoverPartner.autoStart?(opener||`Let’s find a place you and ${discoverPartner.name} would both like.`)
+        :`${opener} Pick a cuisine or tell me what you’re both craving, and I’ll find a place you’d both like.`.trim());
       const choices=[...new Set([...shared,...theirs,...mine,...DISCOVER_DEFAULT_CUISINES])].slice(0,6);
       setDiscoverOptions([...choices,'Any cuisine'],'cuisine');
     }else{
