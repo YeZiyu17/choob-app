@@ -402,6 +402,435 @@
     .app :is(.primary,.hero-cta,.input-choob){font-size:var(--type-body);line-height:1.35}
     .app :is(.passport-action,.text-action,.live-result button,.section-head button,.connect-profile summary){font-size:var(--type-caption);line-height:1.35}
     .app .nav button{font-size:11px;line-height:1.15}
+ #editMealBtn {
+    position: relative;
+    z-index: 20;
+    pointer-events: auto;
+  }
+  .passport-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 14px;
+}
+
+.passport-filter label {
+  color: #6f687b;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.passport-filter select {
+  appearance: none;
+  min-width: 145px;
+  padding: 10px 34px 10px 14px;
+  border: 2px solid #e4d9f7;
+  border-radius: 14px;
+  background: #faf7ff;
+  color: #4d3b91;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.saved-list {
+  display: grid;
+  gap: 14px;
+}
+
+.saved-entry {
+  width: 100%;
+  min-height: 96px;
+  padding: 20px 22px;
+  border: 1.5px solid #e5ddd4;
+  border-radius: 22px;
+  background: #fff;
+  text-align: left;
+  box-shadow: 0 3px 10px #31263d0a;
+}
+
+.saved-entry:hover,
+.saved-entry:focus-visible {
+  border-color: #a98cff;
+  box-shadow: 0 5px 16px #8d6cf22b;
+}
+
+.saved-entry b {
+  display: block;
+  color: #191522;
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.saved-entry small {
+  display: block;
+  margin-top: 9px;
+  color: #746d7d;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+@media (max-width: 480px) {
+  .passport-filter {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .passport-filter select {
+    width: 100%;
+  }
+
+  .saved-entry {
+    padding: 18px;
+  }
+
+  .saved-entry b {
+    font-size: 19px;
+  }
+}
+.passport-filter {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.passport-filter label {
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.passport-filter select {
+  width: auto !important;
+  min-width: 145px;
+  padding: 8px 28px 8px 12px;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.saved-entry {
+  min-height: 0 !important;
+  padding: 16px 18px !important;
+  border-radius: 18px;
+}
+
+.saved-entry b {
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.saved-entry small {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.3;
+}
+.saved-entry::before {
+  display: none !important;
+  content: none !important;
+}
+
+.saved-entry {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 14px;
+  align-items: start;
+  min-height: 0 !important;
+  padding: 18px !important;
+  border-radius: 18px;
+}
+
+.saved-entry-icon {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #efffc6;
+  font-size: 24px;
+}
+
+.saved-entry b {
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.saved-entry small {
+  margin-top: 7px;
+  color: #746d7d;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.star-rating {
+  margin: 16px 0;
+  padding: 14px;
+  border: 1px solid #eadff8;
+  border-radius: 16px;
+  background: #faf7ff;
+}
+
+.star-rating > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #746d7d;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+#starRatingButtons {
+  display: flex;
+  gap: 4px;
+}
+
+.star-choice {
+  padding: 0 3px;
+  border: 0;
+  background: transparent;
+  color: #cfc5da;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.star-choice.selected {
+  color: #f5b83d;
+}
+/* Final Food Passport card design */
+.saved-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.saved-entry {
+  width: 100% !important;
+  min-height: 116px !important;
+  height: auto !important;
+  display: grid !important;
+  grid-template-columns: 52px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 15px !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  padding: 16px 18px !important;
+  border: 2px solid #e8dfd7 !important;
+  border-radius: 24px !important;
+  background: #ffffff !important;
+  color: #211d2b !important;
+  text-align: left !important;
+  cursor: pointer;
+}
+
+.saved-entry:hover,
+.saved-entry:focus {
+  border-color: #c6b2ff !important;
+  outline: none !important;
+}
+
+.saved-entry-icon {
+  grid-row: 1 / span 2 !important;
+  width: 52px !important;
+  height: 52px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 17px !important;
+  background: #efffc7 !important;
+  font-size: 25px !important;
+  line-height: 1 !important;
+}
+
+.saved-entry b {
+  display: block !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  color: #211d2b !important;
+  font-size: 20px;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+  text-align: left !important;
+}
+
+.saved-entry > small {
+  display: block !important;
+  min-width: 0 !important;
+  margin: 5px 0 0 !important;
+  color: #807889 !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.2px !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+/* Clean aesthetic Food Passport cards */
+.saved-list {
+  display: grid !important;
+  gap: 14px !important;
+  margin-top: 18px !important;
+}
+
+.saved-entry {
+  width: 100% !important;
+  height: 128px !important;
+  min-height: 128px !important;
+  display: grid !important;
+  grid-template-columns: 56px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 16px !important;
+  row-gap: 7px !important;
+  align-content: center !important;
+  box-sizing: border-box !important;
+  padding: 16px 20px !important;
+  border: 2px solid #e9e1da !important;
+  border-radius: 26px !important;
+  background: #ffffff !important;
+  color: #211d2b !important;
+  text-align: left !important;
+  box-shadow: 0 5px 14px rgba(45, 35, 55, .05) !important;
+  transition: border-color .2s, box-shadow .2s, transform .2s !important;
+}
+
+.saved-entry:hover,
+.saved-entry:focus-visible {
+  border-color: #c7b2ff !important;
+  outline: none !important;
+  box-shadow: 0 8px 20px rgba(108, 78, 190, .12) !important;
+  transform: translateY(-1px) !important;
+}
+
+.saved-entry-icon {
+  grid-row: 1 / span 2 !important;
+  width: 56px !important;
+  height: 56px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 18px !important;
+  background: #efffc7 !important;
+  font-size: 27px !important;
+  line-height: 1 !important;
+}
+
+.saved-entry > b {
+  display: block !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  align-self: end !important;
+  color: #211d2b !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+  text-align: left !important;
+}
+
+.saved-entry > small {
+  display: block !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  align-self: start !important;
+  color: #827989 !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  text-align: left !important;
+}
+
+@media (max-width: 420px) {
+  .saved-entry {
+    height: 120px !important;
+    min-height: 120px !important;
+    grid-template-columns: 52px minmax(0, 1fr) !important;
+    column-gap: 14px !important;
+    padding: 14px 16px !important;
+    border-radius: 23px !important;
+  }
+
+  .saved-entry-icon {
+    width: 52px !important;
+    height: 52px !important;
+    font-size: 25px !important;
+  }
+
+  .saved-entry > b {
+    font-size: 19px !important;
+  }
+
+  .saved-entry > small {
+    font-size: 13px !important;
+  }
+}
+.location-search-wrap {
+  position: relative;
+  margin: 12px 0 16px;
+}
+
+.location-search-wrap .input-choob {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.location-suggestions {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  border: 1px solid #e5d9f4;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(40, 30, 60, .14);
+}
+
+.location-suggestion {
+  display: block;
+  width: 100%;
+  padding: 13px 15px;
+  border: 0;
+  border-bottom: 1px solid #f0eaf6;
+  background: #ffffff;
+  color: #302846;
+  text-align: left;
+  cursor: pointer;
+}
+
+.location-suggestion:last-child {
+  border-bottom: 0;
+}
+
+.location-suggestion:hover,
+.location-suggestion:focus {
+  background: #f7f1ff;
+  outline: none;
+}
+
+.location-suggestion strong,
+.location-suggestion small {
+  display: block;
+}
+
+.location-suggestion strong {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.location-suggestion small {
+  margin-top: 3px;
+  color: #766d80;
+  font-size: 12px;
+}
   </style>
   <link rel="stylesheet" href="/static/mobile.css" />
   <script src="/static/mobile.js" defer></script>
@@ -507,8 +936,29 @@
         <div class="passport-head"><h3>Where did you eat?</h3><span class="passport-count">Optional</span></div>
         <p id="mealLocationSummary" class="passport-note" aria-live="polite">Add a location to turn this meal into a map badge.</p>
         <div class="passport-actions"><button type="button" class="passport-action" id="toggleMealLocation" aria-expanded="false" aria-controls="mealLocationPicker">＋ Choose location</button><button type="button" class="passport-action hidden" id="clearMealLocation">Remove location</button></div>
-        <div class="hidden" id="mealLocationPicker">
-          <p class="passport-note">Tap a spot on the map, or move the map and pin its center.</p>
+        <div class="hidden" id="mealLocationPicker"><label class="passport-location-label" for="mealLocationSearch">
+  Search for a restaurant or address
+</label>
+
+<div class="location-search-wrap">
+  <input
+    class="input-choob"
+    id="mealLocationSearch"
+    type="search"
+    autocomplete="off"
+    placeholder="e.g. Taco Bell near me"
+    aria-label="Search for a restaurant or address"
+  />
+  <div
+    class="location-suggestions hidden"
+    id="mealLocationSuggestions"
+    role="listbox"
+  ></div>
+</div>
+
+<p class="passport-note">
+  Choose a suggestion, use your current location, or tap the map.
+</p><p class="passport-note">Tap a spot on the map, or move the map and pin its center.</p>
           <div class="passport-map" id="mealPickerMap" aria-label="Choose a meal location"></div>
           <p id="mealPickerStatus" class="passport-status" role="status"></p>
           <div class="passport-actions"><button type="button" class="passport-action" id="pinMealCenter" disabled>Pin map center</button><button type="button" class="passport-action" id="useMealPosition">Use current location</button></div>
@@ -598,6 +1048,15 @@
       <div id="passportMapMeals" class="passport-meals hidden" aria-live="polite"></div>
     </section>
     <div class="section-head"><h2>Meals I’ve logged</h2><button type="button" data-nav="snapScreen">Log a meal</button></div>
+    <div class="passport-filter">
+  <label for="passportRatingFilter">Show meals</label>
+  <select id="passportRatingFilter">
+<option value="all">All meals</option>
+<option value="5">5-star meals</option>
+<option value="4">4+ star meals</option>
+<option value="3">3 stars or less</option>
+  </select>
+</div>
     <div class="saved-list" id="savedDishList"><p class="pitch">Log your first meal in Snap.</p></div>
   </section>
 
@@ -660,7 +1119,28 @@
     <button class="primary" id="replayDemo">↻ Try a new photo</button>
   </section>
 
-  <div class="detail-overlay hidden" id="dishDetail"><div class="sheet"><div class="handle"></div><div class="sheet-hero"><span id="detailEmoji">🍜</span><button class="close" id="closeDetail" aria-label="Close dish details">×</button></div><h2 id="detailTitle">Blaze Ramen</h2><p id="detailDescription">Spicy tonkotsu broth, pork belly, egg and garlic. Reviewers with a taste profile like yours call it “creamy, warming, and worth the heat.”</p><ul class="meal-detail-dishes hidden" id="detailMealDishes" aria-label="Dishes in this meal"></ul><div class="scores" id="detailScores"><div class="score"><b id="detailScoreOne">94%</b><span id="detailLabelOne">TASTE MATCH</span></div><div class="score"><b id="detailScoreTwo">🌶🌶</b><span id="detailLabelTwo">MEDIUM HEAT</span></div><div class="score"><b id="detailScoreThree">4.9</b><span id="detailLabelThree">DISH RATING</span></div></div><button class="primary" id="collectBtn">Save to try</button></div></div>
+  <div class="detail-overlay hidden" id="dishDetail"><div class="sheet"><div class="handle"></div><div class="sheet-hero"><span id="detailEmoji">🍜</span><button class="close" id="closeDetail" aria-label="Close dish details">×</button></div><h2 id="detailTitle">Blaze Ramen</h2><p id="detailDescription">Spicy tonkotsu broth, pork belly, egg and garlic. Reviewers with a taste profile like yours call it “creamy, warming, and worth the heat.”</p><ul class="meal-detail-dishes hidden" id="detailMealDishes" aria-label="Dishes in this meal"></ul>
+  <div class="meal-detail-meta hidden" id="detailMealMeta">
+  <p><strong id="detailRestaurant"></strong></p>
+  <p id="detailAddress"></p>
+  <p id="detailRating"></p>
+  <p id="detailNote"></p>
+  <a id="detailMapsLink" class="passport-action hidden"
+     target="_blank" rel="noopener">Open in Maps</a>
+</div>
+<div class="star-rating hidden" id="starRatingEditor">
+  <span>YOUR RATING</span>
+  <div id="starRatingButtons" role="group" aria-label="Choose a rating"></div>
+</div>
+<div class="scores" id="detailScores"><div class="score"><b id="detailScoreOne">94%</b><span id="detailLabelOne">TASTE MATCH</span></div><div class="score"><b id="detailScoreTwo">🌶🌶</b><span id="detailLabelTwo">MEDIUM HEAT</span></div><div class="score"><b id="detailScoreThree">4.9</b><span id="detailLabelThree">DISH RATING</span></div></div>
+<button class="primary" id="collectBtn">Save to try</button>
+<button class="passport-action hidden" id="editMealBtn" type="button">
+  Edit meal
+</button>
+<button class="passport-action hidden" id="deleteMealBtn" type="button">
+  Delete meal
+</button>
+</div></div>
   <nav class="nav" aria-label="Main navigation">
     <button type="button" class="active" aria-current="page" data-nav="discover"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v11h5v-6h4v6h5V9"/></svg><span>Home</span></button>
     <button type="button" data-nav="snapScreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6.5 9.5 4h5L16 6.5h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2z"/><circle cx="12" cy="13" r="3.3"/></svg><span>Snap</span></button>
@@ -766,41 +1246,139 @@
   }));
   document.querySelectorAll('.taste').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.taste').forEach(x=>x.classList.remove('active'));t.classList.add('active')}));
   document.querySelectorAll('.save').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('saved');b.textContent=b.classList.contains('saved')?'♥':'♡'}));
-  const detail=document.getElementById('dishDetail'),collectDetailButton=document.getElementById('collectBtn');
-  function setDetail({emoji='🍽️',image='',title,description,one='—',oneLabel='CUISINE',two='—',twoLabel='CATEGORY',three='Saved',threeLabel='STATUS',collectable=false,dishes=[]}){
-    const hero=detail.querySelector('.sheet-hero');
-    hero.classList.toggle('has-image',!!image);
-    hero.style.backgroundImage=image?`linear-gradient(#00000014,#00000014),url(${JSON.stringify(image)})`:'';
-    document.getElementById('detailEmoji').textContent=emoji;
-    document.getElementById('detailTitle').textContent=title;
-    document.getElementById('detailDescription').textContent=description;
-    document.getElementById('detailScoreOne').textContent=one;
-    document.getElementById('detailLabelOne').textContent=oneLabel;
-    document.getElementById('detailScoreTwo').textContent=two;
-    document.getElementById('detailLabelTwo').textContent=twoLabel;
-    document.getElementById('detailScoreThree').textContent=three;
-    document.getElementById('detailLabelThree').textContent=threeLabel;
-    const dishList=document.getElementById('detailMealDishes');
-    dishList.replaceChildren();
-    for(const dish of dishes){
-      const row=document.createElement('li');
-      const name=document.createElement('strong');
-      name.textContent=dish.dish_name;
-      row.append(name);
-      const meta=[dish.cuisine,dish.category].filter(value=>value&&value!=='Unknown');
-      if(meta.length){
-        const label=document.createElement('small');
-        label.textContent=meta.join(' · ');
-        row.append(label);
-      }
-      dishList.append(row);
-    }
-    dishList.classList.toggle('hidden',!dishes.length);
-    document.getElementById('detailScores').classList.toggle('hidden',Boolean(dishes.length));
-    detail.classList.toggle('multi-meal-detail',Boolean(dishes.length));
-    collectDetailButton.classList.toggle('hidden',!collectable);
-    detail.classList.remove('hidden');
+const detail=document.getElementById('dishDetail');
+const collectDetailButton=document.getElementById('collectBtn');
+const editMealButton=document.getElementById('editMealBtn');
+const deleteMealButton=document.getElementById('deleteMealBtn');
+function setDetail({
+  emoji='🍽️',
+  image='',
+  title,
+  description,
+  one='—',
+  oneLabel='CUISINE',
+  two='—',
+  twoLabel='CATEGORY',
+  three='Saved',
+  threeLabel='STATUS',
+  restaurant='',
+  address='',
+  rating='',
+  note='',
+  mapsUrl='',
+  collectable=false,
+  editable=false,
+  ratingItem=null,
+  dishes=[]
+}){
+  const hero=detail.querySelector('.sheet-hero');
+  hero.classList.toggle('has-image',!!image);
+  hero.style.backgroundImage=image
+    ?`linear-gradient(#00000014,#00000014),url(${JSON.stringify(image)})`
+    :'';
+
+  document.getElementById('detailEmoji').textContent=emoji;
+  document.getElementById('detailTitle').textContent=title;
+  document.getElementById('detailDescription').textContent=description;
+
+  document.getElementById('detailRestaurant').textContent=restaurant;
+  document.getElementById('detailAddress').textContent=address;
+  document.getElementById('detailRating').textContent=rating ? `Rating: ${rating}/5 ★` : '';
+  document.getElementById('detailNote').textContent=note ? `Notes: ${note}` : '';
+  const starEditor=document.getElementById('starRatingEditor');
+const starButtons=document.getElementById('starRatingButtons');
+
+starButtons.replaceChildren();
+starEditor.classList.toggle('hidden',!editable||!ratingItem);
+
+if(editable&&ratingItem){
+  const currentRating=Number(ratingItem.rating)||0;
+
+  for(let value=1;value<=5;value++){
+    const button=document.createElement('button');
+    button.type='button';
+    button.className='star-choice';
+    button.textContent=value<=currentRating?'★':'☆';
+    button.setAttribute('aria-label',`${value} star${value===1?'':'s'}`);
+
+    button.addEventListener('click',()=>{
+      const saved=getSaved();
+      const index=saved.findIndex(entry=>
+        entry.saved_at===ratingItem.saved_at&&
+        entry.dish_name===ratingItem.dish_name
+      );
+
+      if(index<0)return;
+
+      const ratedDish=saved[index].dishes?.[0]||saved[index];
+      ratedDish.rating=value;
+      localStorage.setItem(COLLECTION_KEY,JSON.stringify(saved));
+
+      document.getElementById('detailRating').textContent=`Rating: ${value}/5 ★`;
+      renderSaved();
+
+      Array.from(starButtons.children).forEach((star,index)=>{
+        star.textContent=index<value?'★':'☆';
+      });
+    });
+
+    starButtons.append(button);
   }
+}
+
+  const mealMeta=document.getElementById('detailMealMeta');
+  const hasMeta=Boolean(restaurant||address||rating||note||mapsUrl);
+  mealMeta.classList.toggle('hidden',!hasMeta);
+
+  const mapsLink=document.getElementById('detailMapsLink');
+  mapsLink.classList.toggle('hidden',!mapsUrl);
+  mapsLink.href=mapsUrl||'#';
+
+  document.getElementById('detailScoreOne').textContent=one;
+  document.getElementById('detailLabelOne').textContent=oneLabel;
+  document.getElementById('detailScoreTwo').textContent=two;
+  document.getElementById('detailLabelTwo').textContent=twoLabel;
+  document.getElementById('detailScoreThree').textContent=three;
+  document.getElementById('detailLabelThree').textContent=threeLabel;
+
+  const dishList=document.getElementById('detailMealDishes');
+  dishList.replaceChildren();
+
+  for(const dish of dishes){
+    const row=document.createElement('li');
+    const name=document.createElement('strong');
+    name.textContent=dish.dish_name;
+    row.append(name);
+
+    const meta=[dish.cuisine,dish.category]
+      .filter(value=>value&&value!=='Unknown');
+
+    if(meta.length){
+      const label=document.createElement('small');
+      label.textContent=meta.join(' · ');
+      row.append(label);
+    }
+
+    dishList.append(row);
+  }
+
+  dishList.classList.toggle('hidden',!dishes.length);
+  document.getElementById('detailScores').classList.toggle('hidden',Boolean(dishes.length));
+  detail.classList.toggle('multi-meal-detail',Boolean(dishes.length));
+  collectDetailButton.classList.toggle('hidden',!collectable);
+  editMealButton.classList.toggle('hidden',!editable);
+deleteMealButton.classList.toggle('hidden',!editable);
+
+editMealButton.onclick=()=>{
+  if(ratingItem) editSavedMeal(ratingItem);
+};
+
+deleteMealButton.onclick=()=>{
+  if(ratingItem) deleteSavedMeal(ratingItem);
+};
+  editMealButton.classList.toggle('hidden',!editable);
+  detail.classList.remove('hidden');
+}
   const sampleRestaurant = 'Sample restaurant (illustrative)';
   let selectedSampleDish;
   function openSampleDetail(event){
@@ -829,6 +1407,18 @@
   const COLLECTION_KEY = 'choob.saved.v1';
   function getSaved(){try{const x=JSON.parse(localStorage.getItem(COLLECTION_KEY)||'[]');return Array.isArray(x)?x:[]}catch{return []}}
   function hasMealLocation(item) {
+    function hasRealMealLocation(item) {
+      if (!hasMealLocation(item)) return false;
+
+    const {lat,lng}=item.location;
+
+  // Ignore the default placeholder map center.
+    const isDefaultLocation=
+      Math.abs(lat-39.9526)<0.0001 &&
+      Math.abs(lng-75.1652)<0.0001;
+
+    return !isDefaultLocation;
+  }
     const location = item?.location;
     return Boolean(location && Number.isFinite(location.lat) && Math.abs(location.lat) <= 90 &&
       Number.isFinite(location.lng) && Math.abs(location.lng) <= 180);
@@ -889,8 +1479,9 @@
       return false;
     }
     const want = isWantToTry(item);
+    editMealButton.onclick=()=>editSavedMeal(item);
     // Each confirmed meal is a separate visit, even when the dish name repeats.
-    const newVisit = !want && (item.source==='snap' || hasMealLocation(item));
+    const newVisit = !want && (item.source==='snap' || hasRealMealLocation(item));
     const list=getSaved().filter(saved=>!newVisit || !movedIdea || !sameSavedIdea(saved,movedIdea));
     // A Snap draft keeps the same id through retries. This makes a repeated
     // submit idempotent without collapsing two genuine visits to the same dish.
@@ -952,9 +1543,21 @@ function badgeForMeal(item) {
     return item.restaurant_name || item.address || item.location.label ||
       `${item.location.lat.toFixed(4)}, ${item.location.lng.toFixed(4)}`;
   }
-  function mealDate(item) {
-    return item.saved_at && Number.isFinite(Date.parse(item.saved_at)) ? new Date(item.saved_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : 'Saved';
+function mealDate(item){
+  const value=item?.saved_at;
+  if(!value)return 'Date not recorded';
+
+  const date=new Date(value);
+  if(Number.isNaN(date.getTime())){
+    return 'Date not recorded';
   }
+
+  return date.toLocaleDateString('en-US',{
+    month:'2-digit',
+    day:'2-digit',
+    year:'2-digit'
+  });
+}
   function mealDishes(item) {
     const dishes=Array.isArray(item.dishes)?item.dishes.filter(dish=>isValidDishName(dish?.dish_name)):[];
     return dishes.length?dishes:[item];
@@ -963,32 +1566,159 @@ function badgeForMeal(item) {
     const names=dishes.slice(0,2).map(dish=>dish.dish_name).join(' & ');
     return dishes.length>2?`${names} +${dishes.length-2}`:names;
   }
-  function openSavedMeal(item) {
-    const want = isWantToTry(item);
-    const dishes=want?[]:mealDishes(item);
-    const multiple=dishes.length>1;
-    const place=hasMealLocation(item)?mealPlace(item):item.restaurant_name;
-    const meta = (multiple?[place,mealDate(item)]:[place,item.cuisine,item.category])
-      .filter(value=>value&&value!=='Unknown');
-    setDetail({
-      emoji:badgeForMeal(item),image:item.image||'',title:multiple?`Meal with ${dishes.length} dishes`:item.dish_name,
-      description:want?`Saved dish · ${trySource(item)}`:meta.length?`Food Passport · ${meta.join(' · ')}`:'Logged in your Food Passport.',
-      one:item.cuisine&&item.cuisine!=='Unknown'?item.cuisine:'—',oneLabel:'CUISINE',
-      two:item.category&&item.category!=='Unknown'?item.category:'—',twoLabel:'CATEGORY',
-      three:mealDate(item),threeLabel:want?'SAVED':'LOGGED',
-      dishes:multiple?dishes:[],
-    });
+function openSavedMeal(item) {
+    editMealButton.onclick = function () {
+    editSavedMeal(item);
+  };
+  const want = isWantToTry(item);
+  const dishes=want?[]:mealDishes(item);
+  const multiple=dishes.length>1;
+const place=item.address||item.location?.label||'No location added';
+  const restaurant=String(item.restaurant_name||'').trim();
+  const address=String(item.address||'').trim() ||
+    (item.location?.label ? String(item.location.label).trim() : '');
+  const primaryDish=dishes[0]||item;
+  const ratingSource=primaryDish.rating ?? item.rating;
+  const rating=ratingSource===undefined||ratingSource===null||ratingSource===''
+    ? ''
+    : String(ratingSource);
+  const note=String(primaryDish.note ?? item.note ?? '').trim();
+
+  const mapQuery=[restaurant,address].filter(Boolean).join(', ');
+  const mapsUrl=mapQuery
+    ?`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`
+    :'';
+
+  const meta=(multiple?[place,mealDate(item)]:[place,item.cuisine,item.category])
+    .filter(value=>value&&value!=='Unknown');
+
+  setDetail({
+  emoji:item.custom_emoji||badgeForMeal(item),    
+  image:item.image||'',
+    title:multiple
+  ?`Meal with ${dishes.length} dishes`
+  :(dishes[0]?.dish_name||item.dish_name),
+    description:want
+      ?`Saved dish · ${trySource(item)}`
+      :meta.length
+        ?`Food Passport · ${meta.join(' · ')}`
+        :'Logged in your Food Passport.',
+one:[item.cuisine,dishes[0]?.cuisine]
+  .find(value=>value&&value!=='Unknown')||'—',
+oneLabel:'CUISINE',
+two:[item.category,dishes[0]?.category]
+  .find(value=>value&&value!=='Unknown')||'—',
+twoLabel:'CATEGORY',
+    three:mealDate(item),
+    threeLabel:want?'SAVED':'LOGGED',
+    editable:!want,
+    ratingItem:item,
+    restaurant,
+    address,
+    rating,
+    note,
+    mapsUrl,
+    dishes:multiple?dishes:[],
+  });
+}
+ function editSavedMeal(item){
+  const saved=getSaved();
+
+  const index=saved.findIndex(entry=>
+    entry.saved_at===item.saved_at &&
+    entry.dish_name===item.dish_name
+  );
+
+  if(index<0)return;
+
+  const meal=saved[index];
+
+  const displayName=prompt(
+    'Name shown on your Passport:',
+    meal.display_name||meal.dish_name||''
+  );
+  if(displayName===null)return;
+
+  const suggestedEmoji=meal.custom_emoji||badgeForMeal(meal);
+
+  const emoji=prompt(
+    'Emoji for this dish:',
+    suggestedEmoji
+  );
+  if(emoji===null)return;
+    const cuisine=prompt(
+    'Cuisine:',
+    meal.cuisine||meal.dishes?.[0]?.cuisine||''
+  );
+  if(cuisine===null)return;
+
+  const category=prompt(
+    'Category:',
+    meal.category||meal.dishes?.[0]?.category||''
+  );
+  if(category===null)return;
+
+    const primaryDish=meal.dishes?.[0]||meal;
+  const rating=Number(primaryDish.rating ?? meal.rating)||0;
+  const note=prompt(
+    'Notes?:',
+    primaryDish.note ?? meal.note ?? ''  );
+  if(note===null)return;
+
+  const address=prompt(
+    'Location or address:',
+    meal.address||meal.location?.label||''
+  );
+  if(address===null)return;
+
+  meal.display_name=displayName.trim()||meal.display_name||meal.dish_name;
+  meal.custom_emoji=emoji.trim()||suggestedEmoji;
+  meal.cuisine=cuisine.trim();
+  meal.category=category.trim();
+
+  if(meal.dishes?.[0]){
+    meal.dishes[0].cuisine=cuisine.trim();
+    meal.dishes[0].category=category.trim();
   }
-  const passportCenter = {lat:39.9526,lng:-75.1652};
-  const passportMapNode = document.getElementById('passportMap');
-  const passportMapStatus = document.getElementById('passportMapStatus');
-  const passportMapMeals = document.getElementById('passportMapMeals');
-  let passportMapRequest;
-  function showMealsAtPin(items) {
-    if (items.length === 1) {
-      openSavedMeal(items[0]);
-      return;
-    }
+  primaryDish.rating=rating;
+  primaryDish.note=note.trim();
+  meal.address=address.trim();
+
+  localStorage.setItem(COLLECTION_KEY,JSON.stringify(saved));
+  renderSaved();
+  detail.classList.add('hidden');
+}
+function deleteSavedMeal(item){
+  const saved=getSaved();
+
+  const index=saved.findIndex(entry=>
+    entry.saved_at===item.saved_at &&
+    entry.dish_name===item.dish_name
+  );
+
+  if(index<0)return;
+
+  const mealName=item.display_name||item.dish_name||'this meal';
+
+  if(!confirm(`Delete ${mealName} from your Food Passport?`))return;
+
+  saved.splice(index,1);
+  localStorage.setItem(COLLECTION_KEY,JSON.stringify(saved));
+
+  renderSaved();
+  detail.classList.add('hidden');
+}
+const passportCenter = {lat:39.9526,lng:-75.1652};
+const passportMapNode = document.getElementById('passportMap');
+const passportMapStatus = document.getElementById('passportMapStatus');
+const passportMapMeals = document.getElementById('passportMapMeals');
+let passportMapRequest;
+
+function showMealsAtPin(items) {
+  if (items.length === 1) {
+    openSavedMeal(items[0]);
+    return;
+  }
     const title = document.createElement('strong');
     title.textContent = `${items.length} meals at this spot`;
     passportMapMeals.replaceChildren(title);
@@ -1003,45 +1733,87 @@ function badgeForMeal(item) {
     passportMapMeals.classList.remove('hidden');
   }
   async function renderPassportMap() {
-    const meals = getSaved().filter(item=>!isWantToTry(item) && hasMealLocation(item)).reverse();
-    document.getElementById('passportMapCount').textContent = `${meals.length} ${meals.length===1?'stamp':'stamps'}`;
-    document.getElementById('passportMapEmpty').classList.toggle('hidden',meals.length > 0);
-    passportMapMeals.classList.add('hidden');
-    passportMapNode.classList.toggle('hidden',!meals.length);
-    if (!meals.length) return;
-    try {
-      if (!passportMapRequest) {
-        passportMapStatus.textContent = 'Loading your map…';
-        passportMapRequest = window.ChoobPassportMap.create(passportMapNode,{
-          center:meals[0].location,zoom:16,
-          onStatus:message=>{passportMapStatus.textContent=message;},
-        });
-      }
-      const map = await passportMapRequest;
-      if (currentScreen !== 'collectionScreen') return;
-      const groups = new Map();
-      for (const item of meals) {
-        const {lat,lng} = item.location;
-        const key = `${lat},${lng}`;
-        if (!groups.has(key)) groups.set(key,[]);
-        groups.get(key).push(item);
-      }
-      const markers = Array.from(groups.values(), items => ({
-        ...items[0].location,
-        symbol:items.length===1?badgeForMeal(items[0]):String(items.length),
-        label:items.length===1?`${mealTitle(items[0])} at ${mealPlace(items[0])}`:`${items.length} meals at ${mealPlace(items[0])}`,
-        onClick:()=>showMealsAtPin(items),
-      }));
-      map.resize();
-      map.setMarkers(markers);
-      map.fitLocations(markers);
-      if (passportMapStatus.textContent === 'Loading your map…') passportMapStatus.textContent = '';
-    } catch {
-      passportMapRequest = undefined;
-      passportMapNode.classList.add('hidden');
-      passportMapStatus.textContent = 'Map unavailable. Your meals are still saved in the list below.';
-    }
+  const meals=getSaved().filter(item=>{
+    if(isWantToTry(item)||!hasMealLocation(item))return false;
+
+    const {lat,lng}=item.location;
+
+    // Ignore the fake default Philadelphia location.
+    return !(
+      Math.abs(lat-39.9526)<0.0001 &&
+      Math.abs(lng+75.1652)<0.0001
+    );
+  }).reverse();
+
+  document.getElementById('passportMapCount').textContent=
+    `${meals.length} ${meals.length===1?'location':'locations'}`;
+
+  document.getElementById('passportMapEmpty')
+    .classList.toggle('hidden',meals.length>0);
+
+  passportMapMeals.classList.add('hidden');
+  passportMapNode.classList.toggle('hidden',!meals.length);
+
+  if(!meals.length){
+    passportMapStatus.textContent='';
+    return;
   }
+
+  try{
+    if(!passportMapRequest){
+      passportMapStatus.textContent='Loading your map…';
+
+      passportMapRequest=window.ChoobPassportMap.create(
+        passportMapNode,
+        {
+          center:meals[0].location,
+          zoom:15,
+          onStatus:message=>{
+            passportMapStatus.textContent=message;
+          },
+        }
+      );
+    }
+
+    const map=await passportMapRequest;
+
+    if(currentScreen!=='collectionScreen')return;
+
+    const groups=new Map();
+
+    for(const item of meals){
+      const {lat,lng}=item.location;
+      const key=`${lat},${lng}`;
+
+      if(!groups.has(key))groups.set(key,[]);
+      groups.get(key).push(item);
+    }
+
+    const markers=Array.from(groups.values(),items=>({
+      ...items[0].location,
+      symbol:items.length===1
+        ?badgeForMeal(items[0])
+        :String(items.length),
+      label:items.length===1
+        ?`${mealTitle(items[0])} at ${mealPlace(items[0])}`
+        :`${items.length} meals at ${mealPlace(items[0])}`,
+      onClick:()=>showMealsAtPin(items),
+    }));
+
+    map.resize();
+    map.setMarkers(markers);
+    map.fitLocations(markers);
+    passportMapStatus.textContent='';
+  }catch{
+    passportMapRequest=undefined;
+    passportMapNode.classList.add('hidden');
+    passportMapStatus.textContent=
+      'Map unavailable. Your meals are still saved in the list below.';
+  }
+}
+  document.getElementById('passportRatingFilter')?.addEventListener('change',()=>{
+  renderSaved();
+});
   function renderSaved(){
     const list=getSaved();
     const wrap=document.getElementById('savedDishList');
@@ -1050,14 +1822,55 @@ function badgeForMeal(item) {
     tryList.replaceChildren();
     for(const x of [...list].reverse()){
       const want = isWantToTry(x);
-      const dishes=want?[]:mealDishes(x);
-      const title=want?x.dish_name:mealTitle(x,dishes);
-      const div=document.createElement('button');div.type='button';div.className=want?'saved-entry try-entry':'saved-entry';div.setAttribute('aria-label',`View details for ${title}`);const b=document.createElement('b');b.textContent=title;
-      const place=hasMealLocation(x)?mealPlace(x):x.restaurant_name;
-      const meta=(dishes.length>1?[place,`${dishes.length} dishes`]:[place,x.cuisine,x.category]).filter(value=>value&&value!=='Unknown');
-      const small=document.createElement('small');small.textContent=want?trySource(x):meta.join(' · ')||mealDate(x);
+      if(!want){
+  const filter=document.getElementById('passportRatingFilter')?.value||'all';
+  const rating=Number(x.rating);
+
+  if(filter==='5' && rating!==5) continue;
+  if(filter==='4' && (!Number.isFinite(rating)||rating<4)) continue;
+  if(filter==='3' && (!Number.isFinite(rating)||rating>3)) continue;
+}
+    const dishes=want?[]:mealDishes(x);
+     const title=want
+      ?x.dish_name
+      :(x.display_name||mealTitle(x,dishes));
+      const div=document.createElement('button');div.type='button';div.className=want?'saved-entry try-entry':'saved-entry';div.setAttribute('aria-label',`View details for ${title}`);const b=document.createElement('b');
+b.textContent=title;
+
+if(title.length>28){
+  b.style.fontSize='16px';
+}else if(title.length>20){
+  b.style.fontSize='18px';
+}else{
+  b.style.fontSize='20px';
+}
+
+b.style.whiteSpace='nowrap';
+      const icon=document.createElement('span');
+      icon.className='saved-entry-icon';
+      icon.textContent=x.emoji||badgeForMeal(x);
+      const place=x.address||x.location?.label||'No location added';
+      const meta=(dishes.length>1?[place,`${dishes.length} dishes`]:
+      [place,x.cuisine,x.category])
+        .filter(value=>value&&value!=='Unknown');
+const small=document.createElement('small');
+
+if(want){
+  small.textContent=trySource(x);
+}else{
+  const locationLabel=x.address||x.location?.label||'No location added';
+  const ratingLabel=Number.isFinite(Number(x.rating))
+    ?`${x.rating}/5 ★`
+    :'Not rated';
+
+  small.textContent=[
+    locationLabel,
+    ratingLabel,
+    mealDate(x)
+  ].join(' · ');
+}
       div.addEventListener('click',()=>openSavedMeal(x));
-      div.append(b,small);
+      div.append(icon,b,small);
       if(want){
         const item=document.createElement('article');
         item.className='try-idea';
