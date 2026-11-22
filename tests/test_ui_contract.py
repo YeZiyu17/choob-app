@@ -39,7 +39,7 @@ class UIContractTests(unittest.TestCase):
         self.assertTrue(expected.issubset(set(self.parser.nav_targets)))
 
     def test_live_ui_keeps_backend_contracts(self):
-        for endpoint in ("/api/recognize", "/api/discover/chat", "/api/recommendation-summary"):
+        for endpoint in ("/api/recognize", "/api/reverse-geocode", "/api/discover/chat", "/api/recommendation-summary"):
             self.assertIn(endpoint, self.html)
         for element_id in (
             "photoUpload", "shutter", "scanResult", "correctedDish",
@@ -79,6 +79,34 @@ class UIContractTests(unittest.TestCase):
         self.assertIn("submittedDraftIndex", self.html)
         self.assertIn("source:'snap'", self.html)
         self.assertIn("want_to_try", self.html)
+
+    def test_snap_persists_meal_location_and_per_dish_feedback(self):
+        ids = set(self.parser.ids)
+        self.assertTrue({
+            "mealRestaurantName", "mealAddress", "primaryDishRating", "primaryDishNote",
+        }.issubset(ids))
+        for key in ("restaurant_name,", "address,", "rating:dishRating", "note:note.value.trim()"):
+            self.assertIn(key, self.html)
+        self.assertIn("item.location.label", self.html)
+        self.assertIn("dishRating!==null", self.html)
+        self.assertIn("dishRating<1||dishRating>5", self.html)
+        self.assertIn("hasValidSnapDishFeedback", self.html)
+
+    def test_snap_address_lookup_preserves_manual_edits_and_latest_pin(self):
+        self.assertIn("addressLookupVersion", self.html)
+        self.assertIn("addressEditVersion", self.html)
+        self.assertIn("addressLookupRequest?.abort()", self.html)
+        self.assertIn("editVersion!==addressEditVersion", self.html)
+        self.assertIn("Address lookup failed. The pin is still selected", self.html)
+
+    def test_snap_ranked_guesses_and_star_controls_are_accessible(self):
+        self.assertIn("How Snap works", self.html)
+        self.assertIn("Guesses for the whole photo", self.html)
+        self.assertIn("Match score", self.html)
+        self.assertIn("role','radiogroup", self.html)
+        self.assertIn("role','radio", self.html)
+        self.assertIn("ArrowRight", self.html)
+        self.assertIn("Clear rating", self.html)
 
 
 if __name__ == "__main__":

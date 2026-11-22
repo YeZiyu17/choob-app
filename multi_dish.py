@@ -187,6 +187,8 @@ def _dish(prediction, region=None):
         key: prediction[key]
         for key in ("dish_name", "cuisine", "category", "relative_score")
     }
+    result["ranked_guesses"] = prediction.get("ranked_guesses", [])
+    result["rank_scope"] = "region" if region is not None else prediction.get("rank_scope", "photo")
     if region is not None:
         result["region"] = list(region)
     return result
