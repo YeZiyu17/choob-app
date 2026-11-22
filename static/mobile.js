@@ -83,6 +83,7 @@
     }
     window.visualViewport.addEventListener('resize', fitVisibleViewport);
     window.addEventListener('orientationchange', fitVisibleViewport);
+    window.addEventListener('pageshow', fitVisibleViewport);
     fitVisibleViewport();
   }
 
