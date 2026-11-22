@@ -1290,7 +1290,8 @@ if(editable&&ratingItem){
 
       if(index<0)return;
 
-      saved[index].rating=value;
+      const ratedDish=saved[index].dishes?.[0]||saved[index];
+      ratedDish.rating=value;
       localStorage.setItem(COLLECTION_KEY,JSON.stringify(saved));
 
       document.getElementById('detailRating').textContent=`Rating: ${value}/5 ★`;
@@ -1556,10 +1557,12 @@ const place=item.address||item.location?.label||'No location added';
   const restaurant=String(item.restaurant_name||'').trim();
   const address=String(item.address||'').trim() ||
     (item.location?.label ? String(item.location.label).trim() : '');
-  const rating=item.rating===undefined||item.rating===null||item.rating===''
+  const primaryDish=dishes[0]||item;
+  const ratingSource=primaryDish.rating ?? item.rating;
+  const rating=ratingSource===undefined||ratingSource===null||ratingSource===''
     ? ''
-    : String(item.rating);
-  const note=String(item.note||'').trim();
+    : String(ratingSource);
+  const note=String(primaryDish.note ?? item.note ?? '').trim();
 
   const mapQuery=[restaurant,address].filter(Boolean).join(', ');
   const mapsUrl=mapQuery
@@ -1623,13 +1626,23 @@ twoLabel:'CATEGORY',
     suggestedEmoji
   );
   if(emoji===null)return;
+    const cuisine=prompt(
+    'Cuisine:',
+    meal.cuisine||meal.dishes?.[0]?.cuisine||''
+  );
+  if(cuisine===null)return;
 
-  const rating=Number(meal.rating)||0;
+  const category=prompt(
+    'Category:',
+    meal.category||meal.dishes?.[0]?.category||''
+  );
+  if(category===null)return;
 
+    const primaryDish=meal.dishes?.[0]||meal;
+  const rating=Number(primaryDish.rating ?? meal.rating)||0;
   const note=prompt(
     'Notes?:',
-    meal.note||''
-  );
+    primaryDish.note ?? meal.note ?? ''  );
   if(note===null)return;
 
   const address=prompt(
@@ -1640,8 +1653,15 @@ twoLabel:'CATEGORY',
 
   meal.display_name=displayName.trim()||meal.display_name||meal.dish_name;
   meal.custom_emoji=emoji.trim()||suggestedEmoji;
-  meal.rating=rating;
-  meal.note=note.trim();
+  meal.cuisine=cuisine.trim();
+  meal.category=category.trim();
+
+  if(meal.dishes?.[0]){
+    meal.dishes[0].cuisine=cuisine.trim();
+    meal.dishes[0].category=category.trim();
+  }
+  primaryDish.rating=rating;
+  primaryDish.note=note.trim();
   meal.address=address.trim();
 
   localStorage.setItem(COLLECTION_KEY,JSON.stringify(saved));
