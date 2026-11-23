@@ -82,6 +82,9 @@ _MENU_SECTION = re.compile(
     re.I | re.M,
 )
 _MENU_PRICE = re.compile(r"\$\s*\d+\.\d{2}\b")
+# A restaurant's own homepage often lists signature dishes as headings and links to its full menu.
+_MENU_LINK = re.compile(r"\b(?:view|explore|see|browse|full|our)\s+(?:the\s+|our\s+)?menus?\b", re.I)
+_SHORT_HEADING = re.compile(r"^#{2,4}\s+\S.{1,68}$", re.M)
 _TASTE_WORDS = {
     "Spicy": "spicy",
     "Crispy": "crispy",
@@ -173,7 +176,10 @@ def _chinese_region(preferences):
 
 
 def _restaurant_key(name):
-    return _normalized(name.replace("'", "").replace("’", ""))
+    key = _normalized(name.replace("'", "").replace("’", ""))
+    # "Danbi 단비" and "Danbi" are one restaurant: when a name mixes scripts, compare its Latin words only.
+    latin = " ".join(word for word in key.split() if re.search(r"[a-z0-9]", word))
+    return latin or key
 
 
 def _menu_key(value):
@@ -196,6 +202,10 @@ def _looks_like_menu(page_label, hostname, raw, snippets):
         return True
     if _MENU_SECTION.search(raw) and any(_contains(label, f"{page_label} {raw}")
                                          for label in ("menu", "dinner", "lunch", "brunch")):
+        return True
+    # Homepages like "Explore the Menu" plus dish headings (Galbi, Abalone Porridge) show real dishes.
+    # Guides and lists of many restaurants have no menu link of their own, so they stay out.
+    if _MENU_LINK.search(raw) and len(_SHORT_HEADING.findall(raw)) >= 4:
         return True
     # Some ordering and reservation pages expose actual menu items only in the search excerpt.
     ordering_page = _contains("order", page_label) or any(
