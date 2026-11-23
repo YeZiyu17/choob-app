@@ -3201,6 +3201,14 @@ if(want){
     }));
     syncDiscoverSaves();
   }
+  // The menu page a card came from; Show more never adds a second card from a page already shown,
+  // however the model spells the restaurant's name.
+  function discoverMenuKey(item) {
+    try{
+      const url=new URL(item.source_url);
+      return `${url.hostname.replace(/^www\./,'')}${url.pathname.replace(/\/+$/,'')}`;
+    }catch{return '';}
+  }
   async function showMoreDiscover() {
     if(discoverPending||discoverMore.classList.contains('hidden'))return;
     const existing=discoverCards.map(({item})=>item);
@@ -3219,6 +3227,8 @@ if(want){
         discoverMoreHint.textContent=data.error||'Could not find more dishes right now. Try again.';
         return;
       }
+      const shownMenus=new Set(existing.map(discoverMenuKey).filter(Boolean));
+      data.results=(Array.isArray(data.results)?data.results:[]).filter(item=>!shownMenus.has(discoverMenuKey(item)));
       if(!data.results.length){
         discoverMore.classList.add('hidden');
         discoverMoreHint.textContent='No more matches found for this search.';

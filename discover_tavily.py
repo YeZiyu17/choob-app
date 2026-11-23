@@ -177,8 +177,9 @@ def _chinese_region(preferences):
 
 def _restaurant_key(name):
     key = _normalized(name.replace("'", "").replace("’", ""))
-    # "Danbi 단비" and "Danbi" are one restaurant: when a name mixes scripts, compare its Latin words only.
-    latin = " ".join(word for word in key.split() if re.search(r"[a-z0-9]", word))
+    # "Danbi", "Danbi 단비" and "danbi단비" are one restaurant: when a name mixes scripts,
+    # compare its Latin letters and digits only, with or without a space before the other script.
+    latin = " ".join(re.sub(r"[^a-z0-9 ]", " ", key).split())
     return latin or key
 
 

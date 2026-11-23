@@ -705,6 +705,7 @@ class DiscoverChatTests(TestCase):
         from discover_tavily import _restaurant_key, search_tavily
 
         self.assertEqual(_restaurant_key("Danbi 단비"), _restaurant_key("Danbi"))
+        self.assertEqual(_restaurant_key("danbi단비"), _restaurant_key("Danbi"))  # As written on Danbi's site.
         self.assertEqual(_restaurant_key("Mountain San BBQ 산 식당"), _restaurant_key("Mountain San BBQ"))
         self.assertNotEqual(_restaurant_key("海底捞"), _restaurant_key("小龙坎"))  # All-Chinese names still differ.
 
