@@ -678,3 +678,25 @@ class DiscoverChatTests(TestCase):
             cards = search_tavily({"cuisine": "Chinese", "taste": "Spicy", "dish": ""}, "Los Angeles",
                                   select_picks=select, neighborhood="San Gabriel Valley")
         self.assertEqual([card["dish_name"] for card in cards], ["Mapo Tofu"])
+
+    def test_restaurant_homepages_with_dishes_and_a_menu_link_count_as_menus_but_guides_do_not(self):
+        from discover_tavily import _looks_like_menu
+
+        homepage = ("[Reserve a table](https://example.com) [View the menu](menu.html)\n"
+                    "## What we're known for.\n### Uni bibimbap\nCold uni over warm rice.\n### Galbi\n"
+                    "Reserve wagyu over Yukon mash.\n### Spicy sashimi noodle\nBuckwheat noodles.\n"
+                    "### Scallop pancake\nLacy and crisp.")
+        guide = ("## THE SPOTS\n## Jun Won Dak\nFried chicken.\n## Chunju Han-il Kwan\nStews.\n"
+                 "## Hojokban\nBanchan.\n## Soban\nGalbi jjim.")
+        self.assertTrue(_looks_like_menu("Danbi · Modern Korean in Koreatown, LA /", "danbi-la.com", homepage, ""))
+        self.assertFalse(_looks_like_menu("The 25 Best Korean Restaurants In Los Angeles /guides",
+                                          "www.theinfatuation.com", guide, ""))
+        # A menu link alone, with no dishes shown, is not enough.
+        self.assertFalse(_looks_like_menu("Gabin Korean Grill /", "gabin.example",
+                                          "## Our Story\n## Explore Our Menu\n## Contact", ""))
+
+    def test_korea_town_spelled_with_a_space_is_in_koreatown(self):
+        from discover_areas import area_spec
+        from discover_tavily import _in_area
+
+        self.assertTrue(_in_area(area_spec("Los Angeles", "Koreatown"), "Best Korean Restaurant in Korea Town"))

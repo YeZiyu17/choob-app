@@ -20,7 +20,7 @@ NEIGHBORHOODS = {
             "towns": ("Little Tokyo", "Chinatown", "Arts District", "Historic Core"),
         },
         "Koreatown": {
-            "places": ("Koreatown", "K-Town", "Ktown"),
+            "places": ("Koreatown", "Korea Town", "K-Town", "Ktown"),
             "zip": r"900(?:05|06|10|20)",
         },
         "San Gabriel Valley": {
