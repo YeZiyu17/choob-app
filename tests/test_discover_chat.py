@@ -700,3 +700,23 @@ class DiscoverChatTests(TestCase):
         from discover_tavily import _in_area
 
         self.assertTrue(_in_area(area_spec("Los Angeles", "Koreatown"), "Best Korean Restaurant in Korea Town"))
+
+    def test_show_more_skips_a_restaurant_already_shown_under_a_bilingual_name(self):
+        from discover_tavily import _restaurant_key, search_tavily
+
+        self.assertEqual(_restaurant_key("Danbi 단비"), _restaurant_key("Danbi"))
+        self.assertEqual(_restaurant_key("Mountain San BBQ 산 식당"), _restaurant_key("Mountain San BBQ"))
+        self.assertNotEqual(_restaurant_key("海底捞"), _restaurant_key("小龙坎"))  # All-Chinese names still differ.
+
+        page = {"title": "Danbi 단비 · Modern Korean in Koreatown, LA", "url": "https://danbi.example/",
+                "content": "## Uni bibimbap\nCold uni over warm rice",
+                "raw_content": "[View the menu](menu.html)\n## Uni bibimbap\n## Galbi\n## Scallop pancake\n## Tuna ssambap"}
+
+        def select(preferences, city, sources):
+            return [{"source_id": source["id"], "dish_name": "Uni bibimbap", "restaurant_name": "Danbi 단비",
+                     "cuisine": "Korean", "location": "Koreatown", "taste_evidence": ""} for source in sources]
+
+        with patch("discover_tavily._fetch_results", return_value=[page]):
+            more = search_tavily({"cuisine": "Korean", "taste": "Any flavor", "dish": ""}, "Los Angeles",
+                                 select_picks=select, neighborhood="Koreatown", exclude_restaurants=["Danbi"])
+        self.assertEqual(more, [])

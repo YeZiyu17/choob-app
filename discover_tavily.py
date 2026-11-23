@@ -176,7 +176,10 @@ def _chinese_region(preferences):
 
 
 def _restaurant_key(name):
-    return _normalized(name.replace("'", "").replace("’", ""))
+    key = _normalized(name.replace("'", "").replace("’", ""))
+    # "Danbi 단비" and "Danbi" are one restaurant: when a name mixes scripts, compare its Latin words only.
+    latin = " ".join(word for word in key.split() if re.search(r"[a-z0-9]", word))
+    return latin or key
 
 
 def _menu_key(value):
