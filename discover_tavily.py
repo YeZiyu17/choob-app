@@ -10,7 +10,7 @@ from urllib.parse import unquote, urldefrag, urlsplit
 
 import requests
 
-from discover_areas import area_spec
+from discover_areas import area_spec, town_rounds
 from discover_chat import TASTE_TERMS
 from discover_tastes import favored_rank, taste_note
 from discover_gemini import GeminiDiscoverError
@@ -611,6 +611,7 @@ def search_tavily(preferences, city, *, select_picks, exclude_restaurants=(), ne
         followup_query = f"{place} {menu_type} restaurant dinner menus with {' or '.join(terms[:2])}"
     else:
         followup_query = f"{query} with dinner dishes and restaurant ordering pages"
+    more_pages = []
     try:
         more_pages = _fetch_results(followup_query, read_timeout=12)
         fresh_pages = _followup_pages(more_pages, pages, cards)
@@ -620,6 +621,23 @@ def search_tavily(preferences, city, *, select_picks, exclude_restaurants=(), ne
     except (TavilyDiscoverError, GeminiDiscoverError):
         if not cards:
             raise
+
+    # A neighborhood-wide search can miss menus that only name their own town (Alhambra, Little Tokyo).
+    # Search a couple of the area's towns by name; the same menu and area checks still apply.
+    seen_pages = [*pages, *more_pages]
+    for towns in town_rounds(area, start_late=bool(excluded)):
+        if len(cards) >= _CARD_LIMIT:
+            break
+        town_query = " ".join([*towns, area["state"], "restaurant menus", *choices])
+        try:
+            town_pages = _fetch_results(town_query, read_timeout=12)
+            fresh_pages = _followup_pages(town_pages, seen_pages, cards)
+            seen_pages.extend(town_pages)
+            cards.extend(_pick_results(fresh_pages, preferences, city, select_picks, cards,
+                                       source_limit=_FOLLOWUP_SOURCE_LIMIT, excluded=excluded, area=area,
+                                       tastes=tastes))
+        except (TavilyDiscoverError, GeminiDiscoverError):
+            break  # Keep what was already found rather than failing the whole search.
     if cuisine == "Chinese" and taste == "Spicy":
         cards.sort(key=_explicit_heat, reverse=True)
     return cards
