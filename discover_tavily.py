@@ -31,6 +31,9 @@ _REGION_ALIASES = {
     "Hunan": ("Hunan",),
     "Cantonese": ("Cantonese",),
 }
+# Labels Gemini may give a Chinese dish instead of plain "Chinese".
+_CHINESE_STYLES = ("Sichuan", "Szechuan", "Szechwan", "Hunan", "Cantonese", "Shanghainese", "Dongbei",
+                   "Yunnan", "Xinjiang", "Hong Kong", "Dim Sum")
 _FOLLOWUP_DISH_TERMS = {
     ("Italian", "Crispy"): ("fried calamari", "arancini", "fritto misto", "chicken Milanese"),
     ("Japanese", "Crispy"): ("tempura", "karaage", "katsu"),
@@ -151,6 +154,14 @@ def _contains(phrase, text):
     return bool(words and f" {words} " in f" {_normalized(text)} ")
 
 
+def _cuisine_matches(chosen, label):
+    """True when the model's cuisine label belongs to the chosen cuisine, e.g. Korean BBQ for Korean
+    or Sichuan for Chinese, but not Japanese for Korean."""
+    if _normalized(label) == _normalized(chosen) or _contains(chosen, label):
+        return True
+    return _normalized(chosen) == "chinese" and any(_contains(style, label) for style in _CHINESE_STYLES)
+
+
 def _in_area(area, text):
     """True when the text names one of the neighborhood's places or carries one of its ZIP codes."""
     return any(_contains(place, text) for place in area["places"]) or bool(area["zip"].search(text))
@@ -205,6 +216,25 @@ def _focused_passage(value, limit, terms):
     return value[start:start + limit].strip()
 
 
+def _area_passage(value, area, limit):
+    """Cut a short excerpt around the place name or ZIP code that puts the menu in the area.
+
+    Koreatown addresses usually read "Los Angeles, CA 90005", so the ZIP code can be the only evidence;
+    centering on place names alone could cut it off and drop the menu.
+    """
+    if len(value) <= limit:
+        return value.strip()
+    matches = [match for match in (
+        *(re.search(rf"(?<!\w){re.escape(place)}(?!\w)", value, re.I) for place in area["places"]),
+        area["zip"].search(value),
+    ) if match]
+    if not matches:
+        return value[:limit].strip()
+    first = min(matches, key=lambda match: match.start())
+    start = max(0, min(first.start() - limit // 2, len(value) - limit))
+    return value[start:start + limit].strip()
+
+
 def _menu_passages(raw, snippets, page_label, city, terms, area=None):
     chunks = [part.strip() for part in re.split(r"\[\s*\.\.\.\s*\]", snippets) if part.strip()][:3]
     chunks.sort(key=lambda part: any(_contains(term, part) for term in terms), reverse=True)
@@ -223,7 +253,7 @@ def _menu_passages(raw, snippets, page_label, city, terms, area=None):
     if area and not _in_area(area, f"{page_label} {' '.join(passages)}"):
         nearby = next((part for part in [*chunks, *raw.splitlines()] if _in_area(area, part)), "")
         if nearby:
-            passages.insert(0, _focused_passage(nearby, 170, area["places"]))
+            passages.insert(0, _area_passage(nearby, area, 170))
 
     remaining = _EXCERPT_LIMIT - sum(len(part) + 2 for part in passages)
     if raw and remaining >= 160:
@@ -475,10 +505,10 @@ def _pick_results(pages, preferences, city, select_picks, existing=(), *,
                           for disliked in tastes["disliked_dishes"]):
             continue  # Someone rated this dish low in their Passport.
         cuisine = _text(pick.get("cuisine"), 60)
-        if (region or chinese_spicy) and _normalized(cuisine) != "chinese":
+        if (region or chinese_spicy) and not _cuisine_matches("Chinese", cuisine):
             continue
         if chosen_cuisine and chosen_cuisine.casefold() not in _FLEXIBLE and cuisine:
-            if _normalized(cuisine) != _normalized(chosen_cuisine):
+            if not _cuisine_matches(chosen_cuisine, cuisine):
                 continue
         region_scope = ""
         if region:

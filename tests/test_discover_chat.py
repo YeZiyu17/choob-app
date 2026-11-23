@@ -617,3 +617,64 @@ class DiscoverChatTests(TestCase):
                 with patch("discover_tavily._fetch_results", side_effect=fetch):
                     search_tavily(preferences, "Los Angeles", select_picks=select, neighborhood=neighborhood)
                 self.assertEqual(len(queries), 2)
+
+    def test_koreatown_menus_whose_only_evidence_is_a_zip_code_late_in_a_long_line_are_kept(self):
+        from discover_tavily import search_tavily
+
+        footer = ("Hours: Monday to Sunday 11am to 10pm · Reservations recommended for groups · Free parking "
+                  "in the lot behind the building · Catering available for parties of ten or more · {address} "
+                  "· Call us any time")
+        restaurants = [("Seoul Kitchen", "Galbi Jjim", "3600 Wilshire Blvd, Los Angeles, CA 90010"),
+                       ("Hanok Table", "Kimchi Jjigae", "621 S Western Ave, Los Angeles, CA 90005"),
+                       ("Mid City Grill", "Bulgogi Bowl", "5900 Pico Blvd, Los Angeles, CA 90035")]
+        # A real menu page is long, with the address in the footer at the end.
+        menu_body = "\n".join(f"## Side dish {number}\nSeasonal vegetables with sesame" for number in range(80))
+        # Restaurant sites often name the city in the title, so only the ZIP code places them in Koreatown.
+        pages = [{"title": f"{name} | Korean Restaurant in Los Angeles", "url": f"https://ktown-{index}.example/menu",
+                  "content": f"## {dish}\nBraised and served with rice",
+                  "raw_content": f"# {name}\n## {dish}\nBraised and served with rice\n{menu_body}\n"
+                                 f"{footer.format(address=address)}"}
+                 for index, (name, dish, address) in enumerate(restaurants, 1)]
+        for page in pages:  # Long, realistic footers put the ZIP code well past the first 170 characters.
+            self.assertGreater(page["raw_content"].split("\n")[-1].index("CA 900"), 170)
+
+        def select(preferences, city, sources):
+            by_url = {page["url"]: page for page in pages}
+            return [{"source_id": source["id"], "dish_name": by_url[source["url"]]["content"][3:].split("\n")[0],
+                     "restaurant_name": by_url[source["url"]]["title"].split(" |")[0], "cuisine": "Korean",
+                     "location": "Koreatown", "taste_evidence": ""} for source in sources]
+
+        with patch("discover_tavily._fetch_results", return_value=pages):
+            cards = search_tavily({"cuisine": "Korean", "taste": "Any flavor", "dish": ""}, "Los Angeles",
+                                  select_picks=select, neighborhood="Koreatown")
+        self.assertEqual({card["restaurant_name"] for card in cards}, {"Seoul Kitchen", "Hanok Table"})
+        self.assertTrue(all(card["location"] == "Koreatown, Los Angeles" for card in cards))
+
+    def test_cuisine_labels_from_the_same_family_count_as_the_chosen_cuisine(self):
+        from discover_tavily import _cuisine_matches
+
+        for chosen, label in (("Korean", "Korean"), ("Korean", "Korean BBQ"), ("Chinese", "Sichuan"),
+                              ("Chinese", "Szechuan Chinese"), ("Chinese", "Cantonese"), ("Chinese", "Hunan cuisine"),
+                              ("Japanese", "japanese")):
+            with self.subTest(chosen=chosen, label=label):
+                self.assertTrue(_cuisine_matches(chosen, label))
+        for chosen, label in (("Korean", "Japanese"), ("Chinese", "Thai"), ("Japanese", "Korean BBQ"),
+                              ("Italian", "Sichuan")):
+            with self.subTest(chosen=chosen, label=label):
+                self.assertFalse(_cuisine_matches(chosen, label))
+
+    def test_spicy_chinese_picks_labeled_by_regional_style_are_kept(self):
+        from discover_tavily import search_tavily
+
+        page = {"title": "Chongqing House Menu, San Gabriel, CA", "url": "https://chongqing.example/menu",
+                "content": "## Mapo Tofu\nSilken tofu in spicy chili bean sauce"}
+
+        def select(preferences, city, sources):
+            return [{"source_id": sources[0]["id"], "dish_name": "Mapo Tofu", "restaurant_name": "Chongqing House",
+                     "cuisine": "Sichuan", "location": "San Gabriel",
+                     "taste_evidence": "Silken tofu in spicy chili bean sauce"}]
+
+        with patch("discover_tavily._fetch_results", return_value=[page]):
+            cards = search_tavily({"cuisine": "Chinese", "taste": "Spicy", "dish": ""}, "Los Angeles",
+                                  select_picks=select, neighborhood="San Gabriel Valley")
+        self.assertEqual([card["dish_name"] for card in cards], ["Mapo Tofu"])
