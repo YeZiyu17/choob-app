@@ -1,0 +1,736 @@
+{
+  "run": {
+    "started_utc": "2026-11-24T21:28:48.047444+00:00",
+    "base_url": "http://127.0.0.1:7873",
+    "protocol_sha256": "6627a1cace7583ee9f09fe1243756ae4e0a5dd7e614620f3a84fc21e030a25eb",
+    "runner_repository_commit": "4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+    "operator_declared_server_commit": "4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+    "operator_declared_gemini_model": "gemini-3.5-flash-lite (submitted default; runtime override not introspected)",
+    "server_config": {
+      "provider": "gemini_tavily",
+      "city": "Philadelphia",
+      "online_ready": true,
+      "cities": [
+        "Philadelphia",
+        "Los Angeles",
+        "New York",
+        "Chicago",
+        "San Francisco"
+      ],
+      "neighborhoods": {
+        "Los Angeles": [
+          "Downtown",
+          "Koreatown",
+          "San Gabriel Valley"
+        ],
+        "New York": [
+          "Manhattan",
+          "Flushing",
+          "Brooklyn"
+        ],
+        "Philadelphia": [
+          "Center City",
+          "South Philly",
+          "University City"
+        ]
+      }
+    },
+    "concurrency": 1,
+    "client_timeout_seconds": 300.0,
+    "client_retries": 0,
+    "server_internal_retries": "Included in each request; log server retry/model information separately.",
+    "purpose": "New final-build rerun; not a reconstruction of historical presentation percentages."
+  },
+  "results": [
+    {
+      "id": "D01",
+      "expected": {
+        "city": "Philadelphia",
+        "cuisine": "Italian",
+        "taste": "Crispy",
+        "region": "",
+        "dish": ""
+      },
+      "request": {
+        "city": "Philadelphia",
+        "message": "Crispy",
+        "preferences": {
+          "cuisine": "Italian"
+        }
+      },
+      "requested_utc": "2026-11-24T21:28:48.075593+00:00",
+      "status": 200,
+      "seconds": 10.3009,
+      "response": {
+        "ai_used": false,
+        "city": "Philadelphia",
+        "options": [],
+        "preferences": {
+          "cuisine": "Italian",
+          "dish": "",
+          "taste": "Crispy"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found 2 dishes matching your picks in online menu sources in Philadelphia.",
+        "results": [
+          {
+            "cuisine": "",
+            "dish_name": "Crispy Gnocchi",
+            "location": "Philadelphia",
+            "note": "Menu mentions “Crispy Gnocchi”",
+            "restaurant_name": "Ambrosia Ristorante BYOB",
+            "source_title": "Menus | Ambrosia Ristorante BYOB in Philadelphia, PA",
+            "source_url": "https://www.ambrosiaphilly.com/menus",
+            "why": "Its name on the menu, “Crispy Gnocchi”, fits the crispy Italian food you asked for."
+          },
+          {
+            "cuisine": "Italian",
+            "dish_name": "Fried Calamari",
+            "location": "34 S Front Street Philadelphia, PA 19106",
+            "note": "Menu mentions “Fried Calamari”",
+            "restaurant_name": "Spasso Italian Grill",
+            "source_title": "Philadelphia Dinner Menu — Spasso Italian Grill",
+            "source_url": "https://www.spassoitaliangrill.com/philadelphia-dinner",
+            "why": "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for."
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "id": "D02",
+      "expected": {
+        "city": "Philadelphia",
+        "cuisine": "Mexican",
+        "taste": "Any flavor",
+        "region": "",
+        "dish": ""
+      },
+      "request": {
+        "city": "Philadelphia",
+        "message": "Any flavor",
+        "preferences": {
+          "cuisine": "Mexican"
+        }
+      },
+      "requested_utc": "2026-11-24T21:28:58.377336+00:00",
+      "status": 200,
+      "seconds": 6.176,
+      "response": {
+        "ai_used": false,
+        "city": "Philadelphia",
+        "options": [],
+        "preferences": {
+          "cuisine": "Mexican",
+          "dish": "",
+          "taste": "Any flavor"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found one dish matching your picks in online menu sources in Philadelphia.",
+        "results": [
+          {
+            "cuisine": "Mexican",
+            "dish_name": "Carne Asada $31",
+            "location": "Philadelphia",
+            "note": "",
+            "restaurant_name": "El Vez Philadelphia",
+            "source_title": "El Vez Philadelphia - Mexican Cuisine & Tequila",
+            "source_url": "https://elvezrestaurant.com",
+            "why": "You asked for Mexican food, and this menu lists “Carne Asada $31”."
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "id": "D03",
+      "expected": {
+        "city": "Los Angeles",
+        "cuisine": "Chinese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "request": {
+        "city": "Los Angeles",
+        "message": "Spicy",
+        "preferences": {
+          "cuisine": "Chinese"
+        }
+      },
+      "requested_utc": "2026-11-24T21:29:04.557765+00:00",
+      "status": 200,
+      "seconds": 3.8719,
+      "response": {
+        "ai_used": false,
+        "city": "Los Angeles",
+        "options": [
+          "Sichuan",
+          "Hunan",
+          "Cantonese"
+        ],
+        "preferences": {
+          "cuisine": "Chinese",
+          "dish": "",
+          "taste": "Spicy"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found 3 dishes matching your picks in online menu sources in Los Angeles. Menus that describe the heat directly come first. You can narrow by regional style below.",
+        "results": [
+          {
+            "cuisine": "Chinese",
+            "dish_name": "Szechwan Pork",
+            "location": "Los Angeles",
+            "note": "Menu mentions “Sliced pork with green bell peppers, carrots, onions and mushrooms in a spicy Szechwan sauce.”",
+            "restaurant_name": "Chi's Chinese Cuisine",
+            "source_title": "Our Menu - Chi's Chinese Cuisine | 818-886-6928 | Chinese Food | Chinese, Dim Sum, Healthy Menu | Los Angeles, Northridge, California",
+            "source_url": "https://www.chischinese.net/menu",
+            "why": "You asked for spicy Chinese food, and its menu listing says “Sliced pork with green bell peppers, carrots, onions and mushrooms in a spicy Szechwan sauce”."
+          },
+          {
+            "cuisine": "Chinese",
+            "dish_name": "Spicy Szechuan Wings",
+            "location": "Los Angeles",
+            "note": "Menu mentions “spicy jalapeno and green onion rub”",
+            "restaurant_name": "New Moon",
+            "source_title": "Menu | New Moon in Montrose & Los Angeles",
+            "source_url": "https://newmoonrestaurants.com/menu",
+            "why": "You asked for spicy Chinese food, and its menu listing says “spicy jalapeno and green onion rub”."
+          },
+          {
+            "cuisine": "Chinese",
+            "dish_name": "Spicy Garlic Pepper Chicken Wings",
+            "location": "Los Angeles",
+            "note": "Menu mentions “Spicy Garlic Pepper Chicken Wings”",
+            "restaurant_name": "Wok On Fire",
+            "source_title": "Best Chinese in Los Angeles, CA | Wok On Fire | Order Online",
+            "source_url": "https://www.wokonfireonline.com/93hg0j4y/wok-on-fire-los-angeles-90035/order-online",
+            "why": "Its name on the menu, “Spicy Garlic Pepper Chicken Wings”, fits the spicy Chinese food you asked for."
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "id": "D04",
+      "expected": {
+        "city": "Los Angeles",
+        "cuisine": "Chinese",
+        "taste": "Spicy",
+        "region": "Sichuan",
+        "dish": ""
+      },
+      "request": {
+        "city": "Los Angeles",
+        "message": "Spicy",
+        "preferences": {
+          "cuisine": "Chinese",
+          "region": "Sichuan"
+        }
+      },
+      "requested_utc": "2026-11-24T21:29:08.431041+00:00",
+      "status": 200,
+      "seconds": 4.9274,
+      "response": {
+        "ai_used": false,
+        "city": "Los Angeles",
+        "options": [
+          "Hunan",
+          "Cantonese",
+          "Any Chinese style"
+        ],
+        "preferences": {
+          "cuisine": "Chinese",
+          "dish": "",
+          "region": "Sichuan",
+          "taste": "Spicy"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found one dish matching your picks in online menu sources in Los Angeles. Try another Chinese style below.",
+        "results": [
+          {
+            "cuisine": "Chinese",
+            "dish_name": "Szechwan Pork (S)",
+            "location": "Los Angeles",
+            "note": "Menu mentions “spicy Szechwan sauce”",
+            "region": "Sichuan",
+            "restaurant_name": "Chi's Chinese Cuisine",
+            "source_title": "Our Menu - Chi's Chinese Cuisine | 818-886-6928 | Chinese Food | Chinese, Dim Sum, Healthy Menu | Los Angeles, Northridge, California",
+            "source_url": "https://www.chischinese.net/menu",
+            "why": "You asked for spicy Sichuan food, and its menu listing says “spicy Szechwan sauce”."
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "id": "D05",
+      "expected": {
+        "city": "Los Angeles",
+        "cuisine": "Chinese",
+        "taste": "Spicy",
+        "region": "Hunan",
+        "dish": ""
+      },
+      "request": {
+        "city": "Los Angeles",
+        "message": "Spicy",
+        "preferences": {
+          "cuisine": "Chinese",
+          "region": "Hunan"
+        }
+      },
+      "requested_utc": "2026-11-24T21:29:13.359524+00:00",
+      "status": 200,
+      "seconds": 8.5408,
+      "response": {
+        "ai_used": false,
+        "city": "Los Angeles",
+        "options": [
+          "Sichuan",
+          "Cantonese",
+          "Any Chinese style"
+        ],
+        "preferences": {
+          "cuisine": "Chinese",
+          "dish": "",
+          "region": "Hunan",
+          "taste": "Spicy"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found one dish matching your picks in online menu sources in Los Angeles. Try another Chinese style below.",
+        "results": [
+          {
+            "cuisine": "Chinese",
+            "dish_name": "Spicy Hengdong Crispy Tripe / 衡东香脆麻辣毛肚",
+            "location": "Los Angeles",
+            "menu_region": "Hunan",
+            "note": "Menu mentions “Spicy Hengdong Crispy Tripe / 衡东香脆麻辣毛肚”",
+            "restaurant_name": "Hunan Cuisine 湘辣楼",
+            "source_title": "Hunan Cuisine 湘辣楼 | Menu | Los Angeles | Uber Eats",
+            "source_url": "https://www.ubereats.com/store/hunan-cuisine-%E6%B9%98%E8%BE%A3%E6%A5%BC/q4pVRE0hWRm8geRv3sc9RA",
+            "why": "Its name on the menu, “Spicy Hengdong Crispy Tripe / 衡东香脆麻辣毛肚”, fits the spicy Hunan food you asked for."
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "id": "D06",
+      "expected": {
+        "city": "Chicago",
+        "cuisine": "Japanese",
+        "taste": "Fresh & light",
+        "region": "",
+        "dish": ""
+      },
+      "request": {
+        "city": "Chicago",
+        "message": "Fresh & light",
+        "preferences": {
+          "cuisine": "Japanese"
+        }
+      },
+      "requested_utc": "2026-11-24T21:29:21.909544+00:00",
+      "status": 200,
+      "seconds": 7.6917,
+      "response": {
+        "ai_used": false,
+        "city": "Chicago",
+        "options": [],
+        "preferences": {
+          "cuisine": "Japanese",
+          "dish": "",
+          "taste": "Fresh & light"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found 2 dishes matching your picks in online menu sources in Chicago.",
+        "results": [
+          {
+            "cuisine": "Japanese",
+            "dish_name": "Salmon Avocado",
+            "location": "Chicago",
+            "note": "Menu mentions “Salmon Avocado”",
+            "restaurant_name": "Nobu Chicago",
+            "source_title": "Menus - Nobu Chicago",
+            "source_url": "https://noburestaurants.com/chicago/menus",
+            "why": "Its name on the menu, “Salmon Avocado”, fits the fresh, light Japanese food you asked for."
+          },
+          {
+            "cuisine": "Japanese",
+            "dish_name": "Slices of raw salmon over a bowl of sushi rice.",
+            "location": "Chicago",
+            "note": "Menu mentions “raw salmon”",
+            "restaurant_name": "Wabi Sabi",
+            "source_title": "Best Japanese in Chicago, IL | Wabi Sabi | Menu",
+            "source_url": "https://www.wabisabiil.com/px3hzrdx/wabi-sabi-chicago-60625/menu",
+            "why": "You asked for fresh, light Japanese food, and its menu listing says “raw salmon”."
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "id": "D07",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Korean",
+        "taste": "Crispy",
+        "region": "",
+        "dish": ""
+      },
+      "request": {
+        "city": "New York",
+        "message": "Crispy",
+        "preferences": {
+          "cuisine": "Korean"
+        }
+      },
+      "requested_utc": "2026-11-24T21:29:29.602594+00:00",
+      "status": 200,
+      "seconds": 8.714,
+      "response": {
+        "ai_used": false,
+        "city": "New York",
+        "options": [],
+        "preferences": {
+          "cuisine": "Korean",
+          "dish": "",
+          "taste": "Crispy"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found 2 dishes matching your picks in online menu sources in New York.",
+        "results": [
+          {
+            "cuisine": "Korean",
+            "dish_name": "HONEY FRIED CHICKEN",
+            "location": "New York",
+            "note": "Menu mentions “fried chicken”",
+            "restaurant_name": "HOJOKBAN",
+            "source_title": "Menus | Modern Korean Restaurant in NYC — HOJOKBAN",
+            "source_url": "https://hojokban.com/new-york/menus",
+            "why": "You asked for crispy Korean food, and its menu listing says “fried chicken”."
+          },
+          {
+            "cuisine": "Korean",
+            "dish_name": "Korean Fried Chicken Rice Bowls",
+            "location": "New York",
+            "note": "Menu mentions “crispy Korean Fried Chicken”",
+            "restaurant_name": "K-street food",
+            "source_title": "K-street food | Korean Restaurant in New York, NY",
+            "source_url": "https://kstreetfood2ndave.com",
+            "why": "You asked for crispy Korean food, and its menu listing says “crispy Korean Fried Chicken”."
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "id": "D08",
+      "expected": {
+        "city": "Philadelphia",
+        "cuisine": "Thai",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "request": {
+        "city": "Philadelphia",
+        "message": "Spicy",
+        "preferences": {
+          "cuisine": "Thai"
+        }
+      },
+      "requested_utc": "2026-11-24T21:29:38.324280+00:00",
+      "status": 200,
+      "seconds": 12.2828,
+      "response": {
+        "ai_used": false,
+        "city": "Philadelphia",
+        "options": [],
+        "preferences": {
+          "cuisine": "Thai",
+          "dish": "",
+          "taste": "Spicy"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found 2 dishes matching your picks in online menu sources in Philadelphia.",
+        "results": [
+          {
+            "cuisine": "Thai",
+            "dish_name": "Thai Wings (Spicy)",
+            "location": "4040 Locust St, Philadelphia, PA 19104",
+            "note": "Menu mentions “Spicy”",
+            "restaurant_name": "Pattaya Thai Cuisine",
+            "source_title": "Pattaya Thai Cuisine Menu - Philadelphia, PA Restaurant",
+            "source_url": "https://menupages.com/pattaya-thai-cuisine/4040-locust-st-philadelphia",
+            "why": "You asked for spicy Thai food, and its menu listing says “Spicy”."
+          },
+          {
+            "cuisine": "Thai",
+            "dish_name": "Thai drunken noodle with spaghetti, chilies, garlic, peppercorn",
+            "location": "Philadelphia",
+            "note": "Menu mentions “Hot”",
+            "restaurant_name": "Erawan Thai Cuisine",
+            "source_title": "Best Thai Food in ... - Erawan Thai Cuisine (Philadelphia) Online Menu",
+            "source_url": "https://erawanphiladelphia.com/menu",
+            "why": "You asked for spicy Thai food, and its menu listing says “Hot”."
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "id": "D09",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Japanese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": "ramen"
+      },
+      "request": {
+        "city": "New York",
+        "message": "I'd like spicy ramen.",
+        "preferences": {}
+      },
+      "requested_utc": "2026-11-24T21:29:50.608729+00:00",
+      "status": 200,
+      "seconds": 12.5074,
+      "response": {
+        "ai_used": true,
+        "city": "New York",
+        "options": [],
+        "preferences": {
+          "cuisine": "Japanese",
+          "dish": "ramen",
+          "taste": "Spicy"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found 3 dishes matching your picks in online menu sources in New York.",
+        "results": [
+          {
+            "cuisine": "Japanese",
+            "dish_name": "Spicy Miso Ramen",
+            "location": "New York",
+            "note": "Menu mentions “Spicy shredded pork”",
+            "restaurant_name": "Meijin Ramen and Dessert Bar",
+            "source_title": "Meijin Ramen and Dessert Bar Menu in New York, NY | Order Delivery & Reviews",
+            "source_url": "https://www.menupix.com/nyc/restaurants/380265916/Meijin-Ramen-and-Dessert-Bar-New-York-NY",
+            "why": "You asked for spicy ramen, and its menu listing says “Spicy shredded pork”."
+          },
+          {
+            "cuisine": "",
+            "dish_name": "Spicy Miso Ramen",
+            "location": "New York City",
+            "note": "Menu mentions “Spicy Miso Ramen”",
+            "restaurant_name": "Yamitsuki Ramen",
+            "source_title": "Order Yamitsuki Ramen Menu Delivery & Prices | New York City",
+            "source_url": "https://www.ubereats.com/store/yamitsuki-ramen/cwuzL-IjXUik5oCGutPQ5g",
+            "why": "Its name on the menu, “Spicy Miso Ramen”, fits the spicy ramen you asked for."
+          },
+          {
+            "cuisine": "Japanese",
+            "dish_name": "miso tare with chashu pork, kakuni, bean sprouts seasoned with roasted chili oil",
+            "location": "New York",
+            "note": "Menu mentions “roasted chili oil”",
+            "restaurant_name": "Ani Ramen",
+            "source_title": "Lunch | Dinner | Ani Ramen | Japanese Restaurant in New Jersey and New York",
+            "source_url": "https://www.aniramen.com/menu/food-jersey-city",
+            "why": "You asked for spicy ramen, and its menu listing says “roasted chili oil”."
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "id": "D10",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Italian",
+        "taste": "Crispy",
+        "region": "",
+        "dish": ""
+      },
+      "request": {
+        "city": "San Francisco",
+        "message": "Crispy",
+        "preferences": {
+          "cuisine": "Italian"
+        }
+      },
+      "requested_utc": "2026-11-24T21:30:03.117886+00:00",
+      "status": 200,
+      "seconds": 13.7137,
+      "response": {
+        "ai_used": false,
+        "city": "San Francisco",
+        "options": [],
+        "preferences": {
+          "cuisine": "Italian",
+          "dish": "",
+          "taste": "Crispy"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found 2 dishes matching your picks in online menu sources in San Francisco.",
+        "results": [
+          {
+            "cuisine": "",
+            "dish_name": "FRITTURA DI MISTO",
+            "location": "San Francisco",
+            "note": "Menu mentions “crispy”",
+            "restaurant_name": "The Tailor’s Son",
+            "source_title": "Menus | The Tailor’s Son in San Francisco, CA",
+            "source_url": "https://www.thetailorssonsf.com/menus",
+            "why": "You asked for crispy Italian food, and its menu listing says “crispy”."
+          },
+          {
+            "cuisine": "Italian",
+            "dish_name": "Lightly battered prawns, squid, and seasonal vegetables, fried crisp.",
+            "location": "San Francisco",
+            "note": "Menu mentions “fried crisp”",
+            "restaurant_name": "CIAORIGATO Restaurant & Bar",
+            "source_title": "Menu - CIAORIGATO Restaurant & Bar | Italian Japanese Fusion",
+            "source_url": "https://www.ciaorigato.com/menu",
+            "why": "You asked for crispy Italian food, and its menu listing says “fried crisp”."
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "id": "D11",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Chinese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "request": {
+        "city": "San Francisco",
+        "message": "Spicy",
+        "preferences": {
+          "cuisine": "Chinese"
+        }
+      },
+      "requested_utc": "2026-11-24T21:30:16.832245+00:00",
+      "status": 200,
+      "seconds": 11.3768,
+      "response": {
+        "ai_used": false,
+        "city": "San Francisco",
+        "options": [
+          "Sichuan",
+          "Hunan",
+          "Cantonese"
+        ],
+        "preferences": {
+          "cuisine": "Chinese",
+          "dish": "",
+          "taste": "Spicy"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found 3 dishes matching your picks in online menu sources in San Francisco. Menus that describe the heat directly come first. You can narrow by regional style below.",
+        "results": [
+          {
+            "cuisine": "Chinese",
+            "dish_name": "Jumbo Prawns in a Spicy Szechuan Sauce",
+            "location": "San Francisco",
+            "note": "Menu mentions “Jumbo Prawns in a Spicy Szechuan Sauce”",
+            "restaurant_name": "New Red Jade Restaurant",
+            "source_title": "Best Chinese in San Francisco, CA | New Red Jade Restaurant | Menu",
+            "source_url": "https://www.redjaderestaurantsf.com/d41jxihz/new-red-jade-restaurant-san-francisco-94114/menu",
+            "why": "Its name on the menu, “Jumbo Prawns in a Spicy Szechuan Sauce”, fits the spicy Chinese food you asked for."
+          },
+          {
+            "cuisine": "Chinese",
+            "dish_name": "Hot Spicy Sesame Prawns",
+            "location": "San Francisco",
+            "note": "Menu mentions “Hot Spicy Sesame Prawns”",
+            "restaurant_name": "Tsing Tao Restaurant",
+            "source_title": "Best Chinese in San Francisco, CA | Tsing Tao Restaurant | Menu",
+            "source_url": "https://www.tsingtaohouseca.com/mdcuj1op/tsing-tao-restaurant-san-francisco-94121/menu",
+            "why": "Its name on the menu, “Hot Spicy Sesame Prawns”, fits the spicy Chinese food you asked for."
+          },
+          {
+            "cuisine": "",
+            "dish_name": "Spicy Pork Wontons (6pcs)",
+            "location": "San Francisco",
+            "note": "Menu mentions “Spicy Pork Wontons (6pcs)”",
+            "restaurant_name": "Harborview Restaurant & Bar",
+            "source_title": "Menus | Harborview Restaurant & Bar in San Francisco, CA",
+            "source_url": "https://www.harborviewsf.com/menus",
+            "why": "Its name on the menu, “Spicy Pork Wontons (6pcs)”, fits the spicy Chinese food you asked for."
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "id": "D12",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Japanese",
+        "taste": "Fresh & light",
+        "region": "",
+        "dish": ""
+      },
+      "request": {
+        "city": "San Francisco",
+        "message": "Fresh & light",
+        "preferences": {
+          "cuisine": "Japanese"
+        }
+      },
+      "requested_utc": "2026-11-24T21:30:28.209664+00:00",
+      "status": 200,
+      "seconds": 13.7896,
+      "response": {
+        "ai_used": false,
+        "city": "San Francisco",
+        "options": [],
+        "preferences": {
+          "cuisine": "Japanese",
+          "dish": "",
+          "taste": "Fresh & light"
+        },
+        "provider": "gemini_tavily",
+        "reply": "I found 3 dishes matching your picks in online menu sources in San Francisco.",
+        "results": [
+          {
+            "cuisine": "Japanese",
+            "dish_name": "Seaweed Salad",
+            "location": "San Francisco",
+            "note": "Menu mentions “Crisp seaweed mix, topped with toasted sesame seeds and a light vinaigrette.”",
+            "restaurant_name": "Toyama Japanese Restaurant",
+            "source_title": "Best Japanese in San Francisco, CA | Toyama Japanese Restaurant | Menu",
+            "source_url": "https://www.toyamasf.com/owhwrpzv/toyama-japanese-restaurant-san-francisco-94118/menu",
+            "why": "You asked for fresh, light Japanese food, and its menu listing says “Crisp seaweed mix, topped with toasted sesame seeds and a light vinaigrette”."
+          },
+          {
+            "cuisine": "Japanese",
+            "dish_name": "Seafood Salad",
+            "location": "San Francisco",
+            "note": "Menu mentions “Sliced fish, seafood assortment and mixed greens with a soy vinaigrette dressing.”",
+            "restaurant_name": "Tanuki Restaurant",
+            "source_title": "Best Japanese in San Francisco, CA | Tanuki Restaurant | Menu",
+            "source_url": "https://www.tanukisf.com/l3rh2w01/tanuki-restaurant-san-francisco-94118/menu",
+            "why": "You asked for fresh, light Japanese food, and its menu listing says “Sliced fish, seafood assortment and mixed greens with a soy vinaigrette dressing”."
+          },
+          {
+            "cuisine": "Italian Japanese Fusion",
+            "dish_name": "Japan's milk bread",
+            "location": "San Francisco, CA",
+            "note": "Menu mentions “Fresh-baked”",
+            "restaurant_name": "CIAORIGATO Restaurant & Bar",
+            "source_title": "Menu - CIAORIGATO Restaurant & Bar | Italian Japanese Fusion",
+            "source_url": "https://www.ciaorigato.com/menu",
+            "why": "You asked for fresh, light Japanese food, and its menu listing says “Fresh-baked”."
+          }
+        ],
+        "stage": "results"
+      }
+    }
+  ]
+}

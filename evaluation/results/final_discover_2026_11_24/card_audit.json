@@ -1,0 +1,1016 @@
+{
+  "review_date": "2026-11-24",
+  "method": "AI-assisted post-generation desk source audit; not a human user study or blind evaluation",
+  "denominator": "Every returned card, including repeated restaurants across the frozen 12 requests",
+  "rubric": {
+    "pass": "All applicable checks supported by separate merchant/source review",
+    "fail": "At least one demonstrated contradiction",
+    "insufficient": "No demonstrated failing check but some required evidence absent or ambiguous",
+    "city": "Strict requested municipality; Greater Los Angeles metro fit recorded separately",
+    "crispy": "Dish-specific crisp/crispy/crunchy evidence; frying alone is insufficient",
+    "fresh_light": "Preparation-style proxy such as raw fish/salad; not actual freshness/nutrition",
+    "descriptive_names": "Allow unique semantic mapping; record display-name defects separately"
+  },
+  "source_hashes": {
+    "requests.json": "93bbe66fbe04745475cc682d4bed450a6172ea97ccf724818bc724f146e275ca",
+    "summary.json": "a8dbacf37df211292af4474bdd791005a26934a3ba19e28c647365f6f5f4d3d1",
+    "card_audit_D01_D06.json": "e177c8c9b6a0f177e2b72969035cea4b60ec2b32bb832736653e0828561f6f62",
+    "card_audit_D07_D12.json": "6d2d9e4d4af54552cef4e84d94262ce005f32712d48ccbc1fdb4e78f39ac1608",
+    "timing_summary.json": "080dce0dd697d8321280442c26e2d181cd3fa53de0aa65e8adfaaca7114acbdc",
+    "model_provenance.json": "fe735343a3b293f7ec62c2f77ca33299e5c06b620986c5ee9763396813f08a7e"
+  },
+  "counts": {
+    "pass": 20,
+    "insufficient": 3,
+    "fail": 2
+  },
+  "total_cards": 25,
+  "records": [
+    {
+      "request_id": "D01",
+      "rank": 1,
+      "dish": "Crispy Gnocchi",
+      "restaurant": "Ambrosia Ristorante BYOB",
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_source_ids": [
+        "AMB_MENU",
+        "AMB_ABOUT"
+      ],
+      "evidence_urls": [
+        "https://www.ambrosiaphilly.com/menus/",
+        "https://www.ambrosiaphilly.com/about/"
+      ],
+      "basis": "The exact dish is on the active Philadelphia merchant menu; the item title explicitly supports crispy texture and the merchant explicitly identifies Italian cuisine.",
+      "notes": "The merchant about page changes the old BYOB arrangement; the card makes no alcohol-policy claim."
+    },
+    {
+      "request_id": "D01",
+      "rank": 2,
+      "dish": "Fried Calamari",
+      "restaurant": "Spasso Italian Grill",
+      "verdict": "insufficient",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "insufficient",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_source_ids": [
+        "SPASSO"
+      ],
+      "evidence_urls": [
+        "https://www.spassoitaliangrill.com/philadelphia-dinner"
+      ],
+      "basis": "The item and Philadelphia Italian venue are supported. The accessible item listing only establishes that it is fried, with no dish-specific crisp/crunch texture description. Under the shared strict flavor rubric, frying alone is insufficient to verify crispy texture."
+    },
+    {
+      "request_id": "D02",
+      "rank": 1,
+      "dish": "Carne Asada $31",
+      "restaurant": "El Vez Philadelphia",
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "not_applicable_any_flavor",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_source_ids": [
+        "ELVEZ"
+      ],
+      "evidence_urls": [
+        "https://elvezrestaurant.com/"
+      ],
+      "basis": "The returned item and price appear in the dinner entree section of the merchant site; the same site identifies Mexican dining in Philadelphia. The request imposes no flavor restriction.",
+      "display_name_issue": "The price was included in dish_name; this is a presentation-format issue, not an unsupported menu item."
+    },
+    {
+      "request_id": "D03",
+      "rank": 1,
+      "dish": "Szechwan Pork",
+      "restaurant": "Chi's Chinese Cuisine",
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_source_ids": [
+        "CHI_MENU",
+        "CHI_CONTACT",
+        "NORTHRIDGE_CITY"
+      ],
+      "evidence_urls": [
+        "https://www.chischinese.net/menu/",
+        "https://www.chischinese.net/contact-us/",
+        "https://planning.lacity.gov/plans-policies/community-plan-area/northridge"
+      ],
+      "basis": "The merchant menu identifies this pork dish and its spicy sauce. The venue is in Northridge, a neighborhood within the City of Los Angeles, so it meets strict municipal-city scope."
+    },
+    {
+      "request_id": "D03",
+      "rank": 2,
+      "dish": "Spicy Szechuan Wings",
+      "restaurant": "New Moon",
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_source_ids": [
+        "NEWMOON_MENU",
+        "NEWMOON_LOCATION"
+      ],
+      "evidence_urls": [
+        "https://newmoonrestaurants.com/menu",
+        "https://newmoonrestaurants.com/locations"
+      ],
+      "basis": "The shared merchant menu contains the exact wings item, identifies Chinese cuisine and describes a spicy jalapeno rub. The merchant location page documents its Downtown Los Angeles branch.",
+      "notes": "The source is the merchant's shared menu, not a branch-specific order confirmation."
+    },
+    {
+      "request_id": "D03",
+      "rank": 3,
+      "dish": "Spicy Garlic Pepper Chicken Wings",
+      "restaurant": "Wok On Fire",
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_source_ids": [
+        "WOK_BEYONDMENU",
+        "WOK_UBER"
+      ],
+      "evidence_urls": [
+        "https://www.beyondmenu.com/20362/los-angeles/wok-on-fire-los-angeles-90035.aspx",
+        "https://www.ubereats.com/store/wok-on-fire/wmfcjbUgRYqtr8G9mGl-Qg"
+      ],
+      "basis": "An alternative merchant ordering menu lists the exact spicy wings at the matching Los Angeles venue; the matching Uber listing identifies Chinese cuisine. The original card URL was blocked to this audit browser, so this pass uses disclosed corroborating merchant menu evidence.",
+      "original_source_url": "https://www.wokonfireonline.com/93hg0j4y/wok-on-fire-los-angeles-90035/order-online",
+      "original_source_access": "HTTP403"
+    },
+    {
+      "request_id": "D04",
+      "rank": 1,
+      "dish": "Szechwan Pork (S)",
+      "restaurant": "Chi's Chinese Cuisine",
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "pass"
+      },
+      "evidence_source_ids": [
+        "CHI_MENU",
+        "CHI_CONTACT",
+        "NORTHRIDGE_CITY"
+      ],
+      "evidence_urls": [
+        "https://www.chischinese.net/menu/",
+        "https://www.chischinese.net/contact-us/",
+        "https://planning.lacity.gov/plans-policies/community-plan-area/northridge"
+      ],
+      "basis": "The menu item explicitly identifies Szechwan style and its spicy sauce, satisfying the requested Sichuan regional style. Northridge is within the requested Los Angeles municipality.",
+      "notes": "This repeats the same restaurant/dish family as D03; cards remain separate observations because they answer separate requests, not independent restaurants."
+    },
+    {
+      "request_id": "D05",
+      "rank": 1,
+      "dish": "Spicy Hengdong Crispy Tripe / 衡东香脆麻辣毛肚",
+      "restaurant": "Hunan Cuisine 湘辣楼",
+      "verdict": "fail",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "fail",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "pass_menu_level"
+      },
+      "current_venue_status": "insufficient",
+      "evidence_source_ids": [
+        "HUNAN_UBER"
+      ],
+      "evidence_urls": [
+        "https://www.ubereats.com/store/hunan-cuisine-%E6%B9%98%E8%BE%A3%E6%A5%BC/q4pVRE0hWRm8geRv3sc9RA"
+      ],
+      "basis": "The menu lists the named spicy tripe under the Hunan-cuisine venue, but its address is Alhambra, a separate municipality from the requested City of Los Angeles. This is a strict-city mismatch. Platform closure is an additional unresolved currency concern, not proof of physical restaurant closure.",
+      "geographic_scope_note": "Alhambra could fit an intended Greater Los Angeles/San Gabriel Valley scope; that alternative interpretation is recorded separately and is not silently used to change the strict-city verdict.",
+      "venue_currency_note": "The page says it was closed on Uber Eats as of September 2, 2025; current physical operation and menu availability were not independently established."
+    },
+    {
+      "request_id": "D06",
+      "rank": 1,
+      "dish": "Salmon Avocado",
+      "restaurant": "Nobu Chicago",
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass_style_proxy",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_source_ids": [
+        "NOBU_MENU",
+        "NOBU_HOME"
+      ],
+      "evidence_urls": [
+        "https://noburestaurants.com/chicago/menus",
+        "https://noburestaurants.com/chicago/home"
+      ],
+      "basis": "The Chicago merchant menu lists the exact sushi-maki item and raw-ingredient footnote. This audit accepts the explicit sushi/raw-fish presentation as a fresh-and-light style proxy; it does not verify nutritional lightness or actual ingredient freshness."
+    },
+    {
+      "request_id": "D06",
+      "rank": 2,
+      "dish": "Slices of raw salmon over a bowl of sushi rice.",
+      "restaurant": "Wabi Sabi",
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass_unique_description_mapping",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass_style_proxy",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_source_ids": [
+        "WABI_ORIGINAL",
+        "WABI_HOME",
+        "WABI_PDF"
+      ],
+      "evidence_urls": [
+        "https://www.wabisabiil.com/px3hzrdx/wabi-sabi-chicago-60625/menu",
+        "https://www.wabisabiramen.com/",
+        "https://www.wabisabiramen.com/Wabi-Sab-menu2025.pdf"
+      ],
+      "basis": "The same-address merchant homepage links a PDF whose Salmon Sashimi Don description uniquely matches the returned sentence. The explicit raw-salmon preparation supports the fresh/light style proxy. This is a supported item with an incorrect display-name format, not a newly invented dish.",
+      "display_name_issue": "The response returned the description sentence instead of the actual menu title Salmon Sashimi Don.",
+      "canonical_menu_item": "Salmon Sashimi Don",
+      "original_source_access": "Original menu only partially readable; corroborated against the same merchant's currently linked PDF."
+    },
+    {
+      "request_id": "D07",
+      "rank": 1,
+      "dish": "HONEY FRIED CHICKEN",
+      "restaurant": "HOJOKBAN",
+      "returned_source_url": "https://hojokban.com/new-york/menus",
+      "request_record_sha256": "3ca28d41bfa06bfc74451dcd9b37995ebe0de74863ca020fa1617b4757b7a4b1",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Korean",
+        "taste": "Crispy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "insufficient",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "insufficient",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://hojokban.com/new-york/menus",
+        "https://hojokban.com/new-york/hours-location"
+      ],
+      "concise_paraphrased_basis": "The official NYC Korean menu identifies Honey Fried Chicken and the venue at 128 Madison Avenue. Its dish description establishes frying and glaze, but not an explicit crisp texture. The menu applies crisp descriptors to other dishes; these were not transferred to this item.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://hojokban.com/new-york/menus",
+          "excerpt": "HONEY FRIED CHICKEN; fried chicken, gangjeong glaze, pumpkin seed, red chili"
+        }
+      ],
+      "source_retrieval_notes": null,
+      "basis": "The official NYC Korean menu identifies Honey Fried Chicken and the venue at 128 Madison Avenue. Its dish description establishes frying and glaze, but not an explicit crisp texture. The menu applies crisp descriptors to other dishes; these were not transferred to this item."
+    },
+    {
+      "request_id": "D07",
+      "rank": 2,
+      "dish": "Korean Fried Chicken Rice Bowls",
+      "restaurant": "K-street food",
+      "returned_source_url": "https://kstreetfood2ndave.com",
+      "request_record_sha256": "3ca28d41bfa06bfc74451dcd9b37995ebe0de74863ca020fa1617b4757b7a4b1",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Korean",
+        "taste": "Crispy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://kstreetfood2ndave.com/"
+      ],
+      "concise_paraphrased_basis": "The merchant lists a Korean fried-chicken rice bowl and explicitly offers an extra-crispy preparation without sauce. It identifies East Harlem addresses in NYC. This supports the crispy Korean request; it does not guarantee the texture of every sauce option.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://kstreetfood2ndave.com/",
+          "excerpt": "If you like your chicken extra crispy please choose no sauce."
+        }
+      ],
+      "source_retrieval_notes": null,
+      "basis": "The merchant lists a Korean fried-chicken rice bowl and explicitly offers an extra-crispy preparation without sauce. It identifies East Harlem addresses in NYC. This supports the crispy Korean request; it does not guarantee the texture of every sauce option."
+    },
+    {
+      "request_id": "D08",
+      "rank": 1,
+      "dish": "Thai Wings (Spicy)",
+      "restaurant": "Pattaya Thai Cuisine",
+      "returned_source_url": "https://menupages.com/pattaya-thai-cuisine/4040-locust-st-philadelphia",
+      "request_record_sha256": "31429bba45d6342f06ade33382ed2c5b0bd507546037589a76e9ffd6fa3d923b",
+      "expected": {
+        "city": "Philadelphia",
+        "cuisine": "Thai",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://pattayarestaurant.com/contact/",
+        "https://order.toasttab.com/online/pattaya/item-thai-wings-spicy_fb4ece97-4ff9-464e-81ff-20dc48ebb9f4",
+        "https://menupages.com/pattaya-thai-cuisine/4040-locust-st-philadelphia"
+      ],
+      "concise_paraphrased_basis": "The official merchant contact page confirms Pattaya Thai Cuisine at 4040 Locust Street in Philadelphia. The merchant Toast item and linked menu both identify Thai Wings (Spicy) with a sweet and spicy sauce.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://order.toasttab.com/online/pattaya/item-thai-wings-spicy_fb4ece97-4ff9-464e-81ff-20dc48ebb9f4",
+          "excerpt": "Thai Wings (Spicy); Marinated Wings, Sweet & Spicy Sauce"
+        }
+      ],
+      "source_retrieval_notes": "Toast item text was available in search-index results; direct web fetch returned a cache miss. The official merchant contact and linked MenuPages page were readable.",
+      "basis": "The official merchant contact page confirms Pattaya Thai Cuisine at 4040 Locust Street in Philadelphia. The merchant Toast item and linked menu both identify Thai Wings (Spicy) with a sweet and spicy sauce."
+    },
+    {
+      "request_id": "D08",
+      "rank": 2,
+      "dish": "Thai drunken noodle with spaghetti, chilies, garlic, peppercorn",
+      "restaurant": "Erawan Thai Cuisine",
+      "returned_source_url": "https://erawanphiladelphia.com/menu",
+      "request_record_sha256": "31429bba45d6342f06ade33382ed2c5b0bd507546037589a76e9ffd6fa3d923b",
+      "expected": {
+        "city": "Philadelphia",
+        "cuisine": "Thai",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://erawanphiladelphia.com/menu"
+      ],
+      "concise_paraphrased_basis": "The official Philadelphia menu uniquely maps the returned description to Pasta Kee Mow. That entry is labeled hot and contains chilies. The description identifies a Thai drunken-noodle adaptation using spaghetti.",
+      "display_name_issue": "The card presents the item description instead of the canonical name Pasta Kee Mow; mapping is unambiguous.",
+      "short_source_excerpts": [
+        {
+          "url": "https://erawanphiladelphia.com/menu",
+          "excerpt": "Pasta Kee Mow Hot. Thai drunken noodle with spaghetti, chilies, garlic, peppercorn"
+        }
+      ],
+      "source_retrieval_notes": null,
+      "basis": "The official Philadelphia menu uniquely maps the returned description to Pasta Kee Mow. That entry is labeled hot and contains chilies. The description identifies a Thai drunken-noodle adaptation using spaghetti."
+    },
+    {
+      "request_id": "D09",
+      "rank": 1,
+      "dish": "Spicy Miso Ramen",
+      "restaurant": "Meijin Ramen and Dessert Bar",
+      "returned_source_url": "https://www.menupix.com/nyc/restaurants/380265916/Meijin-Ramen-and-Dessert-Bar-New-York-NY",
+      "request_record_sha256": "2ee797a5f22798a185a56beb9f28db0fa9c2feff3bc10279d58e6df445ab5f49",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Japanese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": "ramen"
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "pass"
+      },
+      "evidence_urls": [
+        "https://www.meijinramen.com/",
+        "https://www.meijinramen.com/menu",
+        "https://www.doordash.com/en/store/mei-jin-ramen-new-york-29848"
+      ],
+      "concise_paraphrased_basis": "The official restaurant identifies traditional Japanese ramen at 1574 Second Avenue in NYC. Its merchant delivery menu lists Spicy Miso Ramen (creamy), corroborating the returned spicy-ramen item.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.doordash.com/en/store/mei-jin-ramen-new-york-29848",
+          "excerpt": "Spicy Miso Ramen (creamy)"
+        }
+      ],
+      "source_retrieval_notes": null,
+      "basis": "The official restaurant identifies traditional Japanese ramen at 1574 Second Avenue in NYC. Its merchant delivery menu lists Spicy Miso Ramen (creamy), corroborating the returned spicy-ramen item."
+    },
+    {
+      "request_id": "D09",
+      "rank": 2,
+      "dish": "Spicy Miso Ramen",
+      "restaurant": "Yamitsuki Ramen",
+      "returned_source_url": "https://www.ubereats.com/store/yamitsuki-ramen/cwuzL-IjXUik5oCGutPQ5g",
+      "request_record_sha256": "2ee797a5f22798a185a56beb9f28db0fa9c2feff3bc10279d58e6df445ab5f49",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Japanese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": "ramen"
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "pass"
+      },
+      "evidence_urls": [
+        "https://www.ubereats.com/store/yamitsuki-ramen/cwuzL-IjXUik5oCGutPQ5g"
+      ],
+      "concise_paraphrased_basis": "The merchant ordering listing identifies Japanese ramen, a Queens address within NYC, and Spicy Miso Ramen. Delivery-unavailable status is not interpreted as permanent venue closure.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.ubereats.com/store/yamitsuki-ramen/cwuzL-IjXUik5oCGutPQ5g",
+          "excerpt": "Spicy Miso Ramen; 24-26 47th Street, Queens, NY 11103"
+        }
+      ],
+      "source_retrieval_notes": null,
+      "basis": "The merchant ordering listing identifies Japanese ramen, a Queens address within NYC, and Spicy Miso Ramen. Delivery-unavailable status is not interpreted as permanent venue closure."
+    },
+    {
+      "request_id": "D09",
+      "rank": 3,
+      "dish": "miso tare with chashu pork, kakuni, bean sprouts seasoned with roasted chili oil",
+      "restaurant": "Ani Ramen",
+      "returned_source_url": "https://www.aniramen.com/menu/food-jersey-city",
+      "request_record_sha256": "2ee797a5f22798a185a56beb9f28db0fa9c2feff3bc10279d58e6df445ab5f49",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Japanese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": "ramen"
+      },
+      "verdict": "fail",
+      "checks": {
+        "dish": "insufficient",
+        "venue_city": "fail",
+        "cuisine": "pass",
+        "taste": "insufficient",
+        "region_or_named_dish": "insufficient"
+      },
+      "evidence_urls": [
+        "https://aniramen.com/jersey-city",
+        "https://aniramen.com/page/our-locations"
+      ],
+      "concise_paraphrased_basis": "The returned source is explicitly the Jersey City menu. The current official location page confirms 218 Newark Avenue, Jersey City, New Jersey, outside New York City. The old menu URL was not retrievable, so its exact description-to-item mapping and heat level were not independently established. The location conflict alone fails the strict-city criterion.",
+      "display_name_issue": "The card uses an ingredient description rather than a clear canonical menu-item title.",
+      "short_source_excerpts": [
+        {
+          "url": "https://aniramen.com/jersey-city",
+          "excerpt": "218 Newark Ave Jersey City, NJ 07302"
+        }
+      ],
+      "source_retrieval_notes": "A metro-area recommendation may be useful, but this campaign did not request metro expansion; strict municipal-city scoring is reported.",
+      "basis": "The returned source is explicitly the Jersey City menu. The current official location page confirms 218 Newark Avenue, Jersey City, New Jersey, outside New York City. The old menu URL was not retrievable, so its exact description-to-item mapping and heat level were not independently established. The location conflict alone fails the strict-city criterion."
+    },
+    {
+      "request_id": "D10",
+      "rank": 1,
+      "dish": "FRITTURA DI MISTO",
+      "restaurant": "The Tailor’s Son",
+      "returned_source_url": "https://www.thetailorssonsf.com/menus",
+      "request_record_sha256": "5b30a97f7d429285a83034433ccc9db2eae8f5ef915f67c29f9665a43efcf5af",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Italian",
+        "taste": "Crispy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.thetailorssonsf.com/menus/",
+        "https://www.thetailorssonsf.com/"
+      ],
+      "concise_paraphrased_basis": "The current official dinner menu lists Frittura di Misto with explicitly crispy vegetables. The merchant describes itself as Northern Italian and lists 2049 Fillmore Street in San Francisco.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.thetailorssonsf.com/menus/",
+          "excerpt": "FRITTURA DI MISTO; crispy yellow wax beans, fennel, delicata squash, scallion, tarragon aioli"
+        }
+      ],
+      "source_retrieval_notes": null,
+      "basis": "The current official dinner menu lists Frittura di Misto with explicitly crispy vegetables. The merchant describes itself as Northern Italian and lists 2049 Fillmore Street in San Francisco."
+    },
+    {
+      "request_id": "D10",
+      "rank": 2,
+      "dish": "Lightly battered prawns, squid, and seasonal vegetables, fried crisp.",
+      "restaurant": "CIAORIGATO Restaurant & Bar",
+      "returned_source_url": "https://www.ciaorigato.com/menu",
+      "request_record_sha256": "5b30a97f7d429285a83034433ccc9db2eae8f5ef915f67c29f9665a43efcf5af",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Italian",
+        "taste": "Crispy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.ciaorigato.com/menu",
+        "https://www.ciaorigato.com/contact"
+      ],
+      "concise_paraphrased_basis": "The exact returned description uniquely maps to Tempura Misto Mediterraneo on the official menu, which explicitly describes a crisp preparation. The appetizer section is Italian-inspired Japanese fusion, and the official contact page lists 111 Mason Street, San Francisco.",
+      "display_name_issue": "The card uses the item description instead of the canonical title Tempura Misto Mediterraneo; mapping is unambiguous.",
+      "short_source_excerpts": [
+        {
+          "url": "https://www.ciaorigato.com/menu",
+          "excerpt": "Tempura Misto Mediterraneo; fried crisp."
+        }
+      ],
+      "source_retrieval_notes": null,
+      "basis": "The exact returned description uniquely maps to Tempura Misto Mediterraneo on the official menu, which explicitly describes a crisp preparation. The appetizer section is Italian-inspired Japanese fusion, and the official contact page lists 111 Mason Street, San Francisco."
+    },
+    {
+      "request_id": "D11",
+      "rank": 1,
+      "dish": "Jumbo Prawns in a Spicy Szechuan Sauce",
+      "restaurant": "New Red Jade Restaurant",
+      "returned_source_url": "https://www.redjaderestaurantsf.com/d41jxihz/new-red-jade-restaurant-san-francisco-94114/menu",
+      "request_record_sha256": "d2fe4e39acc0e7dc4faeed1d47906abe83edaa2c9f0379aef3fb2142660e79e2",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Chinese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.redjaderestaurantsf.com/menu",
+        "https://www.redjaderestaurantsf.com/d41jxihz/new-red-jade-restaurant-san-francisco-94114/order-online"
+      ],
+      "concise_paraphrased_basis": "The merchant menu identifies New Red Jade at 245 Church Street, San Francisco, and lists Jumbo Prawns in a Spicy Szechuan Sauce with an explicit spicy marker. The menu and merchant category support Chinese cuisine.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.redjaderestaurantsf.com/menu",
+          "excerpt": "C1. Jumbo Prawns in a Spicy Szechuan Sauce; Spicy."
+        }
+      ],
+      "source_retrieval_notes": "The returned slugged menu URL initially returned HTTP 403; the merchant canonical menu and indexed ordering content supplied corroboration.",
+      "basis": "The merchant menu identifies New Red Jade at 245 Church Street, San Francisco, and lists Jumbo Prawns in a Spicy Szechuan Sauce with an explicit spicy marker. The menu and merchant category support Chinese cuisine."
+    },
+    {
+      "request_id": "D11",
+      "rank": 2,
+      "dish": "Hot Spicy Sesame Prawns",
+      "restaurant": "Tsing Tao Restaurant",
+      "returned_source_url": "https://www.tsingtaohouseca.com/mdcuj1op/tsing-tao-restaurant-san-francisco-94121/menu",
+      "request_record_sha256": "d2fe4e39acc0e7dc4faeed1d47906abe83edaa2c9f0379aef3fb2142660e79e2",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Chinese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.tsingtaosf.com/Location-TSC-TsingTao-Clement-Street-SanFrancisco/Menu.aspx?category=Seafood"
+      ],
+      "concise_paraphrased_basis": "The primary Tsing Tao Clement Street ordering menu lists Hot Spicy Sesame Prawns and identifies 3107 Clement Street, San Francisco 94121, matching the returned venue name and postal area. The item name supplies explicit heat and the merchant menu supports Chinese cuisine.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.tsingtaosf.com/Location-TSC-TsingTao-Clement-Street-SanFrancisco/Menu.aspx?category=Seafood",
+          "excerpt": "YPD 311. Hot Spicy Sesame Prawns"
+        }
+      ],
+      "source_retrieval_notes": "Primary menu text was retrieved through search-index output; direct fetch reported 400. The returned tsingtaohouseca.com URL reported 403. Venue corroboration uses the matching-name Clement Street merchant, not an unverified Fillmore Street branch.",
+      "basis": "The primary Tsing Tao Clement Street ordering menu lists Hot Spicy Sesame Prawns and identifies 3107 Clement Street, San Francisco 94121, matching the returned venue name and postal area. The item name supplies explicit heat and the merchant menu supports Chinese cuisine."
+    },
+    {
+      "request_id": "D11",
+      "rank": 3,
+      "dish": "Spicy Pork Wontons (6pcs)",
+      "restaurant": "Harborview Restaurant & Bar",
+      "returned_source_url": "https://www.harborviewsf.com/menus",
+      "request_record_sha256": "d2fe4e39acc0e7dc4faeed1d47906abe83edaa2c9f0379aef3fb2142660e79e2",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Chinese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.harborviewsf.com/menus/",
+        "https://www.harborviewsf.com/location/harborview-restaurant-bar/"
+      ],
+      "concise_paraphrased_basis": "The official Chinese/dim-sum menu lists Spicy Pork Wontons (six pieces) with chili sauce. Its official location page identifies Four Embarcadero Center, San Francisco. Happy-hour serving restrictions remain relevant to availability.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.harborviewsf.com/menus/",
+          "excerpt": "Spicy Pork Wontons (6pcs); Kurobuta pork wontons in our signature chili sauce."
+        }
+      ],
+      "source_retrieval_notes": null,
+      "basis": "The official Chinese/dim-sum menu lists Spicy Pork Wontons (six pieces) with chili sauce. Its official location page identifies Four Embarcadero Center, San Francisco. Happy-hour serving restrictions remain relevant to availability."
+    },
+    {
+      "request_id": "D12",
+      "rank": 1,
+      "dish": "Seaweed Salad",
+      "restaurant": "Toyama Japanese Restaurant",
+      "returned_source_url": "https://www.toyamasf.com/owhwrpzv/toyama-japanese-restaurant-san-francisco-94118/menu",
+      "request_record_sha256": "e0045aea14942058365e65c238a8adf9df6d9f4f25f771757fd4821c53fa3d8a",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Japanese",
+        "taste": "Fresh & light",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.toyamasf.com/owhwrpzv/toyama-japanese-restaurant-san-francisco-94118/menu"
+      ],
+      "concise_paraphrased_basis": "The primary menu identifies the Japanese restaurant at 3727 Geary Boulevard, San Francisco, and Seaweed Salad with crisp seaweed and a light vinaigrette. This is a menu-style proxy for fresh-and-light, not verification of ingredient freshness or nutrition.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.toyamasf.com/owhwrpzv/toyama-japanese-restaurant-san-francisco-94118/menu",
+          "excerpt": "Crisp seaweed mix, topped with toasted sesame seeds and a light vinaigrette."
+        }
+      ],
+      "source_retrieval_notes": null,
+      "basis": "The primary menu identifies the Japanese restaurant at 3727 Geary Boulevard, San Francisco, and Seaweed Salad with crisp seaweed and a light vinaigrette. This is a menu-style proxy for fresh-and-light, not verification of ingredient freshness or nutrition."
+    },
+    {
+      "request_id": "D12",
+      "rank": 2,
+      "dish": "Seafood Salad",
+      "restaurant": "Tanuki Restaurant",
+      "returned_source_url": "https://www.tanukisf.com/l3rh2w01/tanuki-restaurant-san-francisco-94118/menu",
+      "request_record_sha256": "e0045aea14942058365e65c238a8adf9df6d9f4f25f771757fd4821c53fa3d8a",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Japanese",
+        "taste": "Fresh & light",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.tanukisf.com/",
+        "https://www.beyondmenu.com/52917/san-francisco/tanuki-restaurant-san-francisco-94118.aspx"
+      ],
+      "concise_paraphrased_basis": "The official site identifies Japanese cuisine at 4419 California Street, San Francisco. The matching-address merchant ordering menu lists Seafood Salad with sliced fish, mixed greens, and soy vinaigrette. The salad composition supplies the declared style proxy; actual freshness and calories were not measured.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.beyondmenu.com/52917/san-francisco/tanuki-restaurant-san-francisco-94118.aspx",
+          "excerpt": "Seafood Salad; Sliced fish, seafood assortment and mixed greens with a soy vinaigrette dressing."
+        }
+      ],
+      "source_retrieval_notes": "The returned branded menu URL reported 403, so the matching-address merchant ordering menu was used as corroboration.",
+      "basis": "The official site identifies Japanese cuisine at 4419 California Street, San Francisco. The matching-address merchant ordering menu lists Seafood Salad with sliced fish, mixed greens, and soy vinaigrette. The salad composition supplies the declared style proxy; actual freshness and calories were not measured."
+    },
+    {
+      "request_id": "D12",
+      "rank": 3,
+      "dish": "Japan's milk bread",
+      "restaurant": "CIAORIGATO Restaurant & Bar",
+      "returned_source_url": "https://www.ciaorigato.com/menu",
+      "request_record_sha256": "e0045aea14942058365e65c238a8adf9df6d9f4f25f771757fd4821c53fa3d8a",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Japanese",
+        "taste": "Fresh & light",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "insufficient",
+      "checks": {
+        "dish": "insufficient",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "insufficient",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.ciaorigato.com/menu",
+        "https://www.ciaorigato.com/contact"
+      ],
+      "concise_paraphrased_basis": "The official San Francisco fusion menu uses the milk-bread phrase in descriptions, including Focacciapan and a grilled-shokupan entry. The returned phrase does not uniquely name an item. Fresh-baked bread with butter and honey does not establish the declared fresh-and-light style proxy.",
+      "display_name_issue": "The card extracts a cuisine-comparison phrase rather than a unique menu-item name.",
+      "short_source_excerpts": [
+        {
+          "url": "https://www.ciaorigato.com/menu",
+          "excerpt": "Focacciapan; Fresh-baked; Japan's milk bread"
+        }
+      ],
+      "source_retrieval_notes": null,
+      "basis": "The official San Francisco fusion menu uses the milk-bread phrase in descriptions, including Focacciapan and a grilled-shokupan entry. The returned phrase does not uniquely name an item. Fresh-baked bread with butter and honey does not establish the declared fresh-and-light style proxy."
+    }
+  ],
+  "first_half_source_catalog": [
+    {
+      "id": "AMB_MENU",
+      "url": "https://www.ambrosiaphilly.com/menus/",
+      "type": "merchant menu",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "Crispy Gnocchi",
+        "231 S 24th St, Philadelphia, PA 19103"
+      ],
+      "basis": "The merchant lists this item among pasta dishes and identifies its Philadelphia street address."
+    },
+    {
+      "id": "AMB_ABOUT",
+      "url": "https://www.ambrosiaphilly.com/about/",
+      "type": "merchant about page",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "casual Italian restaurant"
+      ],
+      "basis": "The merchant explicitly identifies Italian cuisine. Its text says BYOB arrangements have changed; the old BYOB suffix does not change the restaurant identity."
+    },
+    {
+      "id": "SPASSO",
+      "url": "https://www.spassoitaliangrill.com/philadelphia-dinner",
+      "type": "merchant menu",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "Fried Calamari",
+        "34 S Front Street",
+        "Philadelphia, PA 19106"
+      ],
+      "basis": "Item, Italian merchant identity, Philadelphia address and current published service hours are visible. This item has no dish-specific crisp/crunch texture description in the accessible menu."
+    },
+    {
+      "id": "ELVEZ",
+      "url": "https://elvezrestaurant.com/",
+      "type": "merchant menu and overview",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "Carne Asada $31",
+        "Mexican dining",
+        "Philadelphia"
+      ],
+      "basis": "The exact returned item-plus-price appears in the dinner entree section; the merchant overview identifies its cuisine and Philadelphia venue."
+    },
+    {
+      "id": "CHI_MENU",
+      "url": "https://www.chischinese.net/menu/",
+      "type": "merchant menu",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "Szechwan Pork (S)",
+        "spicy Szechwan sauce"
+      ],
+      "basis": "Both returned variants map to the same pork menu item. Its description supports spicy preparation and specifically Szechwan style."
+    },
+    {
+      "id": "CHI_CONTACT",
+      "url": "https://www.chischinese.net/contact-us/",
+      "type": "merchant contact page",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "9635 Reseda Blvd.",
+        "Northridge, CA 91324"
+      ],
+      "basis": "Current merchant contact page supplies the Northridge address, ordering/contact options and published operating hours."
+    },
+    {
+      "id": "NORTHRIDGE_CITY",
+      "url": "https://planning.lacity.gov/plans-policies/community-plan-area/northridge",
+      "type": "City of Los Angeles planning",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "neighborhoods of Northridge and Sherwood Forest"
+      ],
+      "basis": "Official City of Los Angeles planning identifies Northridge as one of its community-plan neighborhoods; Northridge is not an out-of-city municipality like Alhambra."
+    },
+    {
+      "id": "NEWMOON_MENU",
+      "url": "https://newmoonrestaurants.com/menu",
+      "type": "merchant menu",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "Spicy Szechuan Wings",
+        "spicy jalapeno and green onion rub",
+        "Traditional and modern Chinese dishes"
+      ],
+      "basis": "The shared merchant menu names the wings, explicitly describes heat in that item and identifies Chinese cuisine."
+    },
+    {
+      "id": "NEWMOON_LOCATION",
+      "url": "https://newmoonrestaurants.com/locations",
+      "type": "merchant location page",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "102 W.9th St",
+        "Los Angeles, CA 90015"
+      ],
+      "basis": "The merchant lists an active Downtown LA location with ordering link and service hours. Its separate Figat7th ownership-change notice should not be confused with this branch."
+    },
+    {
+      "id": "WOK_BEYONDMENU",
+      "url": "https://www.beyondmenu.com/20362/los-angeles/wok-on-fire-los-angeles-90035.aspx",
+      "type": "merchant transactional ordering menu",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "Spicy Garlic Pepper Chicken Wings",
+        "1447 S. La Cienga Blvd, Los Angeles, CA 90035"
+      ],
+      "basis": "This corroborating merchant ordering menu lists the exact hot-appetizer item and Los Angeles street address. The originally linked merchant website returned HTTP403 to the audit browser."
+    },
+    {
+      "id": "WOK_UBER",
+      "url": "https://www.ubereats.com/store/wok-on-fire/wmfcjbUgRYqtr8G9mGl-Qg",
+      "type": "merchant transactional ordering page",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "Chinese",
+        "1447 S La Cienega Blvd, Los Angeles, CA 90035"
+      ],
+      "basis": "The matching merchant listing independently confirms cuisine and address. A delivery-unavailable banner without an entered delivery address does not establish permanent restaurant closure."
+    },
+    {
+      "id": "HUNAN_UBER",
+      "url": "https://www.ubereats.com/store/hunan-cuisine-%E6%B9%98%E8%BE%A3%E6%A5%BC/q4pVRE0hWRm8geRv3sc9RA",
+      "type": "merchant ordering menu with platform closure notice",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "Alhambra, CA 91803",
+        "Closed on Uber Eats as of Sep 2, 2025.",
+        "Spicy Hengdong Crispy Tripe"
+      ],
+      "basis": "The dish is listed, but the venue is explicitly in Alhambra, not the requested municipality of Los Angeles. The platform-closure notice does not prove that the physical restaurant permanently closed."
+    },
+    {
+      "id": "NOBU_MENU",
+      "url": "https://noburestaurants.com/chicago/menus",
+      "type": "merchant menu",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "SUSHI MAKI",
+        "Salmon Avocado",
+        "This food item contains raw ingredients or can be cooked to order."
+      ],
+      "basis": "The exact item is listed as a sushi-maki option with the raw-ingredient footnote. This supports a sushi-style fresh/light proxy, not food freshness, calories or nutritional lightness."
+    },
+    {
+      "id": "NOBU_HOME",
+      "url": "https://noburestaurants.com/chicago/home",
+      "type": "merchant venue homepage",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "Nobu Chicago",
+        "Japanese"
+      ],
+      "basis": "Current merchant Chicago page identifies Japanese dining and publishes reservations, seasonal offerings and hours/menu access."
+    },
+    {
+      "id": "WABI_ORIGINAL",
+      "url": "https://www.wabisabiil.com/px3hzrdx/wabi-sabi-chicago-60625/menu",
+      "type": "original merchant ordering menu",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "4720 N. Kedzie Ave., Chicago, IL 60625"
+      ],
+      "basis": "This page confirms the Chicago merchant/address and Japanese menu, but its readable extraction did not show the returned raw-salmon sentence; ordering page retrieval returned HTTP403."
+    },
+    {
+      "id": "WABI_HOME",
+      "url": "https://www.wabisabiramen.com/",
+      "type": "corroborating merchant homepage",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "4720 N Kedzie Ave, Chicago, IL 60625",
+        "ramen and sushi"
+      ],
+      "basis": "The same-address, same-phone merchant homepage links its current View Menu control directly to the 2025 PDF and publishes operating hours."
+    },
+    {
+      "id": "WABI_PDF",
+      "url": "https://www.wabisabiramen.com/Wabi-Sab-menu2025.pdf",
+      "type": "merchant PDF linked from current homepage",
+      "accessed_date": "2026-11-24",
+      "excerpts": [
+        "Salmon Sashimi Don",
+        "Slices of raw salmon over a bowl of sushi rice"
+      ],
+      "basis": "The merchant PDF uniquely maps the returned description to Salmon Sashimi Don in its over-rice section. The returned text is a description, not the item title. The raw-fish description supports the fresh/light style proxy."
+    }
+  ],
+  "second_half_sources": "Inline in each second-half row and retained in its original partial file"
+}

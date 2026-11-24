@@ -1,0 +1,559 @@
+{
+  "reviewed_utc": "2026-11-24T21:33:29.603976+00:00",
+  "review_date_local": "2026-11-24",
+  "reviewer": "Codex source-review agent D07-D12",
+  "review_type": "AI-assisted desk source audit, not a human user study or phone/inventory verification",
+  "scope": "All fifteen returned cards in D07-D12 from the single frozen 12-query campaign. No additional app requests made.",
+  "rubric_notes": [
+    "Dish-level flavor evidence required; frying alone does not prove crispy texture.",
+    "Municipal city is strict; metro-area exceptions are noted but not silently accepted.",
+    "Fresh-and-light is a menu-description or salad/raw/steamed-style proxy, not assurance of actual freshness, safety or nutrition.",
+    "Description-as-title is a presentation defect; semantic dish support can pass only when the corresponding item is unambiguous.",
+    "Operational judgments were applied after generation and are not a blinded, preregistered human annotation protocol.",
+    "Active public merchant pages/menus support venue identity; current operating status was not verified by telephone or field visit."
+  ],
+  "counts": {
+    "pass": 12,
+    "fail": 1,
+    "insufficient": 2
+  },
+  "cards": [
+    {
+      "request_id": "D07",
+      "rank": 1,
+      "dish": "HONEY FRIED CHICKEN",
+      "restaurant": "HOJOKBAN",
+      "returned_source_url": "https://hojokban.com/new-york/menus",
+      "request_record_sha256": "3ca28d41bfa06bfc74451dcd9b37995ebe0de74863ca020fa1617b4757b7a4b1",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Korean",
+        "taste": "Crispy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "insufficient",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "insufficient",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://hojokban.com/new-york/menus",
+        "https://hojokban.com/new-york/hours-location"
+      ],
+      "concise_paraphrased_basis": "The official NYC Korean menu identifies Honey Fried Chicken and the venue at 128 Madison Avenue. Its dish description establishes frying and glaze, but not an explicit crisp texture. The menu applies crisp descriptors to other dishes; these were not transferred to this item.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://hojokban.com/new-york/menus",
+          "excerpt": "HONEY FRIED CHICKEN; fried chicken, gangjeong glaze, pumpkin seed, red chili"
+        }
+      ],
+      "source_retrieval_notes": null
+    },
+    {
+      "request_id": "D07",
+      "rank": 2,
+      "dish": "Korean Fried Chicken Rice Bowls",
+      "restaurant": "K-street food",
+      "returned_source_url": "https://kstreetfood2ndave.com",
+      "request_record_sha256": "3ca28d41bfa06bfc74451dcd9b37995ebe0de74863ca020fa1617b4757b7a4b1",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Korean",
+        "taste": "Crispy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://kstreetfood2ndave.com/"
+      ],
+      "concise_paraphrased_basis": "The merchant lists a Korean fried-chicken rice bowl and explicitly offers an extra-crispy preparation without sauce. It identifies East Harlem addresses in NYC. This supports the crispy Korean request; it does not guarantee the texture of every sauce option.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://kstreetfood2ndave.com/",
+          "excerpt": "If you like your chicken extra crispy please choose no sauce."
+        }
+      ],
+      "source_retrieval_notes": null
+    },
+    {
+      "request_id": "D08",
+      "rank": 1,
+      "dish": "Thai Wings (Spicy)",
+      "restaurant": "Pattaya Thai Cuisine",
+      "returned_source_url": "https://menupages.com/pattaya-thai-cuisine/4040-locust-st-philadelphia",
+      "request_record_sha256": "31429bba45d6342f06ade33382ed2c5b0bd507546037589a76e9ffd6fa3d923b",
+      "expected": {
+        "city": "Philadelphia",
+        "cuisine": "Thai",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://pattayarestaurant.com/contact/",
+        "https://order.toasttab.com/online/pattaya/item-thai-wings-spicy_fb4ece97-4ff9-464e-81ff-20dc48ebb9f4",
+        "https://menupages.com/pattaya-thai-cuisine/4040-locust-st-philadelphia"
+      ],
+      "concise_paraphrased_basis": "The official merchant contact page confirms Pattaya Thai Cuisine at 4040 Locust Street in Philadelphia. The merchant Toast item and linked menu both identify Thai Wings (Spicy) with a sweet and spicy sauce.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://order.toasttab.com/online/pattaya/item-thai-wings-spicy_fb4ece97-4ff9-464e-81ff-20dc48ebb9f4",
+          "excerpt": "Thai Wings (Spicy); Marinated Wings, Sweet & Spicy Sauce"
+        }
+      ],
+      "source_retrieval_notes": "Toast item text was available in search-index results; direct web fetch returned a cache miss. The official merchant contact and linked MenuPages page were readable."
+    },
+    {
+      "request_id": "D08",
+      "rank": 2,
+      "dish": "Thai drunken noodle with spaghetti, chilies, garlic, peppercorn",
+      "restaurant": "Erawan Thai Cuisine",
+      "returned_source_url": "https://erawanphiladelphia.com/menu",
+      "request_record_sha256": "31429bba45d6342f06ade33382ed2c5b0bd507546037589a76e9ffd6fa3d923b",
+      "expected": {
+        "city": "Philadelphia",
+        "cuisine": "Thai",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://erawanphiladelphia.com/menu"
+      ],
+      "concise_paraphrased_basis": "The official Philadelphia menu uniquely maps the returned description to Pasta Kee Mow. That entry is labeled hot and contains chilies. The description identifies a Thai drunken-noodle adaptation using spaghetti.",
+      "display_name_issue": "The card presents the item description instead of the canonical name Pasta Kee Mow; mapping is unambiguous.",
+      "short_source_excerpts": [
+        {
+          "url": "https://erawanphiladelphia.com/menu",
+          "excerpt": "Pasta Kee Mow Hot. Thai drunken noodle with spaghetti, chilies, garlic, peppercorn"
+        }
+      ],
+      "source_retrieval_notes": null
+    },
+    {
+      "request_id": "D09",
+      "rank": 1,
+      "dish": "Spicy Miso Ramen",
+      "restaurant": "Meijin Ramen and Dessert Bar",
+      "returned_source_url": "https://www.menupix.com/nyc/restaurants/380265916/Meijin-Ramen-and-Dessert-Bar-New-York-NY",
+      "request_record_sha256": "2ee797a5f22798a185a56beb9f28db0fa9c2feff3bc10279d58e6df445ab5f49",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Japanese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": "ramen"
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "pass"
+      },
+      "evidence_urls": [
+        "https://www.meijinramen.com/",
+        "https://www.meijinramen.com/menu",
+        "https://www.doordash.com/en/store/mei-jin-ramen-new-york-29848"
+      ],
+      "concise_paraphrased_basis": "The official restaurant identifies traditional Japanese ramen at 1574 Second Avenue in NYC. Its merchant delivery menu lists Spicy Miso Ramen (creamy), corroborating the returned spicy-ramen item.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.doordash.com/en/store/mei-jin-ramen-new-york-29848",
+          "excerpt": "Spicy Miso Ramen (creamy)"
+        }
+      ],
+      "source_retrieval_notes": null
+    },
+    {
+      "request_id": "D09",
+      "rank": 2,
+      "dish": "Spicy Miso Ramen",
+      "restaurant": "Yamitsuki Ramen",
+      "returned_source_url": "https://www.ubereats.com/store/yamitsuki-ramen/cwuzL-IjXUik5oCGutPQ5g",
+      "request_record_sha256": "2ee797a5f22798a185a56beb9f28db0fa9c2feff3bc10279d58e6df445ab5f49",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Japanese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": "ramen"
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "pass"
+      },
+      "evidence_urls": [
+        "https://www.ubereats.com/store/yamitsuki-ramen/cwuzL-IjXUik5oCGutPQ5g"
+      ],
+      "concise_paraphrased_basis": "The merchant ordering listing identifies Japanese ramen, a Queens address within NYC, and Spicy Miso Ramen. Delivery-unavailable status is not interpreted as permanent venue closure.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.ubereats.com/store/yamitsuki-ramen/cwuzL-IjXUik5oCGutPQ5g",
+          "excerpt": "Spicy Miso Ramen; 24-26 47th Street, Queens, NY 11103"
+        }
+      ],
+      "source_retrieval_notes": null
+    },
+    {
+      "request_id": "D09",
+      "rank": 3,
+      "dish": "miso tare with chashu pork, kakuni, bean sprouts seasoned with roasted chili oil",
+      "restaurant": "Ani Ramen",
+      "returned_source_url": "https://www.aniramen.com/menu/food-jersey-city",
+      "request_record_sha256": "2ee797a5f22798a185a56beb9f28db0fa9c2feff3bc10279d58e6df445ab5f49",
+      "expected": {
+        "city": "New York",
+        "cuisine": "Japanese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": "ramen"
+      },
+      "verdict": "fail",
+      "checks": {
+        "dish": "insufficient",
+        "venue_city": "fail",
+        "cuisine": "pass",
+        "taste": "insufficient",
+        "region_or_named_dish": "insufficient"
+      },
+      "evidence_urls": [
+        "https://aniramen.com/jersey-city",
+        "https://aniramen.com/page/our-locations"
+      ],
+      "concise_paraphrased_basis": "The returned source is explicitly the Jersey City menu. The current official location page confirms 218 Newark Avenue, Jersey City, New Jersey, outside New York City. The old menu URL was not retrievable, so its exact description-to-item mapping and heat level were not independently established. The location conflict alone fails the strict-city criterion.",
+      "display_name_issue": "The card uses an ingredient description rather than a clear canonical menu-item title.",
+      "short_source_excerpts": [
+        {
+          "url": "https://aniramen.com/jersey-city",
+          "excerpt": "218 Newark Ave Jersey City, NJ 07302"
+        }
+      ],
+      "source_retrieval_notes": "A metro-area recommendation may be useful, but this campaign did not request metro expansion; strict municipal-city scoring is reported."
+    },
+    {
+      "request_id": "D10",
+      "rank": 1,
+      "dish": "FRITTURA DI MISTO",
+      "restaurant": "The Tailor’s Son",
+      "returned_source_url": "https://www.thetailorssonsf.com/menus",
+      "request_record_sha256": "5b30a97f7d429285a83034433ccc9db2eae8f5ef915f67c29f9665a43efcf5af",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Italian",
+        "taste": "Crispy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.thetailorssonsf.com/menus/",
+        "https://www.thetailorssonsf.com/"
+      ],
+      "concise_paraphrased_basis": "The current official dinner menu lists Frittura di Misto with explicitly crispy vegetables. The merchant describes itself as Northern Italian and lists 2049 Fillmore Street in San Francisco.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.thetailorssonsf.com/menus/",
+          "excerpt": "FRITTURA DI MISTO; crispy yellow wax beans, fennel, delicata squash, scallion, tarragon aioli"
+        }
+      ],
+      "source_retrieval_notes": null
+    },
+    {
+      "request_id": "D10",
+      "rank": 2,
+      "dish": "Lightly battered prawns, squid, and seasonal vegetables, fried crisp.",
+      "restaurant": "CIAORIGATO Restaurant & Bar",
+      "returned_source_url": "https://www.ciaorigato.com/menu",
+      "request_record_sha256": "5b30a97f7d429285a83034433ccc9db2eae8f5ef915f67c29f9665a43efcf5af",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Italian",
+        "taste": "Crispy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.ciaorigato.com/menu",
+        "https://www.ciaorigato.com/contact"
+      ],
+      "concise_paraphrased_basis": "The exact returned description uniquely maps to Tempura Misto Mediterraneo on the official menu, which explicitly describes a crisp preparation. The appetizer section is Italian-inspired Japanese fusion, and the official contact page lists 111 Mason Street, San Francisco.",
+      "display_name_issue": "The card uses the item description instead of the canonical title Tempura Misto Mediterraneo; mapping is unambiguous.",
+      "short_source_excerpts": [
+        {
+          "url": "https://www.ciaorigato.com/menu",
+          "excerpt": "Tempura Misto Mediterraneo; fried crisp."
+        }
+      ],
+      "source_retrieval_notes": null
+    },
+    {
+      "request_id": "D11",
+      "rank": 1,
+      "dish": "Jumbo Prawns in a Spicy Szechuan Sauce",
+      "restaurant": "New Red Jade Restaurant",
+      "returned_source_url": "https://www.redjaderestaurantsf.com/d41jxihz/new-red-jade-restaurant-san-francisco-94114/menu",
+      "request_record_sha256": "d2fe4e39acc0e7dc4faeed1d47906abe83edaa2c9f0379aef3fb2142660e79e2",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Chinese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.redjaderestaurantsf.com/menu",
+        "https://www.redjaderestaurantsf.com/d41jxihz/new-red-jade-restaurant-san-francisco-94114/order-online"
+      ],
+      "concise_paraphrased_basis": "The merchant menu identifies New Red Jade at 245 Church Street, San Francisco, and lists Jumbo Prawns in a Spicy Szechuan Sauce with an explicit spicy marker. The menu and merchant category support Chinese cuisine.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.redjaderestaurantsf.com/menu",
+          "excerpt": "C1. Jumbo Prawns in a Spicy Szechuan Sauce; Spicy."
+        }
+      ],
+      "source_retrieval_notes": "The returned slugged menu URL initially returned HTTP 403; the merchant canonical menu and indexed ordering content supplied corroboration."
+    },
+    {
+      "request_id": "D11",
+      "rank": 2,
+      "dish": "Hot Spicy Sesame Prawns",
+      "restaurant": "Tsing Tao Restaurant",
+      "returned_source_url": "https://www.tsingtaohouseca.com/mdcuj1op/tsing-tao-restaurant-san-francisco-94121/menu",
+      "request_record_sha256": "d2fe4e39acc0e7dc4faeed1d47906abe83edaa2c9f0379aef3fb2142660e79e2",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Chinese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.tsingtaosf.com/Location-TSC-TsingTao-Clement-Street-SanFrancisco/Menu.aspx?category=Seafood"
+      ],
+      "concise_paraphrased_basis": "The primary Tsing Tao Clement Street ordering menu lists Hot Spicy Sesame Prawns and identifies 3107 Clement Street, San Francisco 94121, matching the returned venue name and postal area. The item name supplies explicit heat and the merchant menu supports Chinese cuisine.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.tsingtaosf.com/Location-TSC-TsingTao-Clement-Street-SanFrancisco/Menu.aspx?category=Seafood",
+          "excerpt": "YPD 311. Hot Spicy Sesame Prawns"
+        }
+      ],
+      "source_retrieval_notes": "Primary menu text was retrieved through search-index output; direct fetch reported 400. The returned tsingtaohouseca.com URL reported 403. Venue corroboration uses the matching-name Clement Street merchant, not an unverified Fillmore Street branch."
+    },
+    {
+      "request_id": "D11",
+      "rank": 3,
+      "dish": "Spicy Pork Wontons (6pcs)",
+      "restaurant": "Harborview Restaurant & Bar",
+      "returned_source_url": "https://www.harborviewsf.com/menus",
+      "request_record_sha256": "d2fe4e39acc0e7dc4faeed1d47906abe83edaa2c9f0379aef3fb2142660e79e2",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Chinese",
+        "taste": "Spicy",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.harborviewsf.com/menus/",
+        "https://www.harborviewsf.com/location/harborview-restaurant-bar/"
+      ],
+      "concise_paraphrased_basis": "The official Chinese/dim-sum menu lists Spicy Pork Wontons (six pieces) with chili sauce. Its official location page identifies Four Embarcadero Center, San Francisco. Happy-hour serving restrictions remain relevant to availability.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.harborviewsf.com/menus/",
+          "excerpt": "Spicy Pork Wontons (6pcs); Kurobuta pork wontons in our signature chili sauce."
+        }
+      ],
+      "source_retrieval_notes": null
+    },
+    {
+      "request_id": "D12",
+      "rank": 1,
+      "dish": "Seaweed Salad",
+      "restaurant": "Toyama Japanese Restaurant",
+      "returned_source_url": "https://www.toyamasf.com/owhwrpzv/toyama-japanese-restaurant-san-francisco-94118/menu",
+      "request_record_sha256": "e0045aea14942058365e65c238a8adf9df6d9f4f25f771757fd4821c53fa3d8a",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Japanese",
+        "taste": "Fresh & light",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.toyamasf.com/owhwrpzv/toyama-japanese-restaurant-san-francisco-94118/menu"
+      ],
+      "concise_paraphrased_basis": "The primary menu identifies the Japanese restaurant at 3727 Geary Boulevard, San Francisco, and Seaweed Salad with crisp seaweed and a light vinaigrette. This is a menu-style proxy for fresh-and-light, not verification of ingredient freshness or nutrition.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.toyamasf.com/owhwrpzv/toyama-japanese-restaurant-san-francisco-94118/menu",
+          "excerpt": "Crisp seaweed mix, topped with toasted sesame seeds and a light vinaigrette."
+        }
+      ],
+      "source_retrieval_notes": null
+    },
+    {
+      "request_id": "D12",
+      "rank": 2,
+      "dish": "Seafood Salad",
+      "restaurant": "Tanuki Restaurant",
+      "returned_source_url": "https://www.tanukisf.com/l3rh2w01/tanuki-restaurant-san-francisco-94118/menu",
+      "request_record_sha256": "e0045aea14942058365e65c238a8adf9df6d9f4f25f771757fd4821c53fa3d8a",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Japanese",
+        "taste": "Fresh & light",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "pass",
+      "checks": {
+        "dish": "pass",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "pass",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.tanukisf.com/",
+        "https://www.beyondmenu.com/52917/san-francisco/tanuki-restaurant-san-francisco-94118.aspx"
+      ],
+      "concise_paraphrased_basis": "The official site identifies Japanese cuisine at 4419 California Street, San Francisco. The matching-address merchant ordering menu lists Seafood Salad with sliced fish, mixed greens, and soy vinaigrette. The salad composition supplies the declared style proxy; actual freshness and calories were not measured.",
+      "display_name_issue": null,
+      "short_source_excerpts": [
+        {
+          "url": "https://www.beyondmenu.com/52917/san-francisco/tanuki-restaurant-san-francisco-94118.aspx",
+          "excerpt": "Seafood Salad; Sliced fish, seafood assortment and mixed greens with a soy vinaigrette dressing."
+        }
+      ],
+      "source_retrieval_notes": "The returned branded menu URL reported 403, so the matching-address merchant ordering menu was used as corroboration."
+    },
+    {
+      "request_id": "D12",
+      "rank": 3,
+      "dish": "Japan's milk bread",
+      "restaurant": "CIAORIGATO Restaurant & Bar",
+      "returned_source_url": "https://www.ciaorigato.com/menu",
+      "request_record_sha256": "e0045aea14942058365e65c238a8adf9df6d9f4f25f771757fd4821c53fa3d8a",
+      "expected": {
+        "city": "San Francisco",
+        "cuisine": "Japanese",
+        "taste": "Fresh & light",
+        "region": "",
+        "dish": ""
+      },
+      "verdict": "insufficient",
+      "checks": {
+        "dish": "insufficient",
+        "venue_city": "pass",
+        "cuisine": "pass",
+        "taste": "insufficient",
+        "region_or_named_dish": "not_applicable"
+      },
+      "evidence_urls": [
+        "https://www.ciaorigato.com/menu",
+        "https://www.ciaorigato.com/contact"
+      ],
+      "concise_paraphrased_basis": "The official San Francisco fusion menu uses the milk-bread phrase in descriptions, including Focacciapan and a grilled-shokupan entry. The returned phrase does not uniquely name an item. Fresh-baked bread with butter and honey does not establish the declared fresh-and-light style proxy.",
+      "display_name_issue": "The card extracts a cuisine-comparison phrase rather than a unique menu-item name.",
+      "short_source_excerpts": [
+        {
+          "url": "https://www.ciaorigato.com/menu",
+          "excerpt": "Focacciapan; Fresh-baked; Japan's milk bread"
+        }
+      ],
+      "source_retrieval_notes": null
+    }
+  ]
+}

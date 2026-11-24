@@ -1,0 +1,55 @@
+{
+  "id": "D07",
+  "expected": {
+    "city": "New York",
+    "cuisine": "Korean",
+    "taste": "Crispy",
+    "region": "",
+    "dish": ""
+  },
+  "request": {
+    "city": "New York",
+    "message": "Crispy",
+    "preferences": {
+      "cuisine": "Korean"
+    }
+  },
+  "requested_utc": "2026-11-24T21:29:29.602594+00:00",
+  "status": 200,
+  "seconds": 8.714,
+  "response": {
+    "ai_used": false,
+    "city": "New York",
+    "options": [],
+    "preferences": {
+      "cuisine": "Korean",
+      "dish": "",
+      "taste": "Crispy"
+    },
+    "provider": "gemini_tavily",
+    "reply": "I found 2 dishes matching your picks in online menu sources in New York.",
+    "results": [
+      {
+        "cuisine": "Korean",
+        "dish_name": "HONEY FRIED CHICKEN",
+        "location": "New York",
+        "note": "Menu mentions “fried chicken”",
+        "restaurant_name": "HOJOKBAN",
+        "source_title": "Menus | Modern Korean Restaurant in NYC — HOJOKBAN",
+        "source_url": "https://hojokban.com/new-york/menus",
+        "why": "You asked for crispy Korean food, and its menu listing says “fried chicken”."
+      },
+      {
+        "cuisine": "Korean",
+        "dish_name": "Korean Fried Chicken Rice Bowls",
+        "location": "New York",
+        "note": "Menu mentions “crispy Korean Fried Chicken”",
+        "restaurant_name": "K-street food",
+        "source_title": "K-street food | Korean Restaurant in New York, NY",
+        "source_url": "https://kstreetfood2ndave.com",
+        "why": "You asked for crispy Korean food, and its menu listing says “crispy Korean Fried Chicken”."
+      }
+    ],
+    "stage": "results"
+  }
+}

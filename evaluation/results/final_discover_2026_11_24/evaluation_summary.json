@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-24",
+  "campaign_complete": true,
+  "requests": 12,
+  "requests_with_cards": {
+    "numerator": 12,
+    "denominator": 12,
+    "rate": 1.0
+  },
+  "requests_empty": 0,
+  "requests_ending_in_http_error": 0,
+  "requests_ending_in_gemini_busy_error": 0,
+  "requests_ending_in_gemini_timeout_error": 0,
+  "provider_internal_attempt_failures": "Not instrumented; a successful request may contain a recovered failure",
+  "cards": 25,
+  "cards_supported": {
+    "numerator": 20,
+    "denominator": 25,
+    "rate": 0.8
+  },
+  "cards_failed": {
+    "numerator": 2,
+    "denominator": 25,
+    "rate": 0.08
+  },
+  "cards_insufficient": {
+    "numerator": 3,
+    "denominator": 25,
+    "rate": 0.12
+  },
+  "audit_method": "AI-assisted post-generation desk source audit; not a human user study or blind evaluation",
+  "timings": {
+    "n": 12,
+    "mean_seconds": 9.491083333333334,
+    "median_seconds": 9.50745,
+    "min_seconds": 3.8719,
+    "max_seconds": 13.7896,
+    "scope": "Sequential client-observed HTTP request time, including application/model/search processing and server internal retries if any. Excludes browser rendering, manual menu review and app startup. No retry-attempt log or cold/warm instrumentation; not a production latency benchmark."
+  },
+  "scope": "New frozen convenience suite: nine historical cases plus three San Francisco cases; not reconstruction of slides. Audit operationalization documented during review.",
+  "immutable_sources": {
+    "requests.json": "93bbe66fbe04745475cc682d4bed450a6172ea97ccf724818bc724f146e275ca",
+    "summary.json": "a8dbacf37df211292af4474bdd791005a26934a3ba19e28c647365f6f5f4d3d1",
+    "card_audit_D01_D06.json": "e177c8c9b6a0f177e2b72969035cea4b60ec2b32bb832736653e0828561f6f62",
+    "card_audit_D07_D12.json": "6d2d9e4d4af54552cef4e84d94262ce005f32712d48ccbc1fdb4e78f39ac1608",
+    "timing_summary.json": "080dce0dd697d8321280442c26e2d181cd3fa53de0aa65e8adfaaca7114acbdc",
+    "model_provenance.json": "fe735343a3b293f7ec62c2f77ca33299e5c06b620986c5ee9763396813f08a7e"
+  },
+  "verification": "All 25 audit keys and dish/restaurant strings match raw cards; pass rows contain only pass or not-applicable checks; counts recomputed."
+}

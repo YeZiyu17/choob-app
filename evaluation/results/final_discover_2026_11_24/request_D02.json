@@ -1,0 +1,45 @@
+{
+  "id": "D02",
+  "expected": {
+    "city": "Philadelphia",
+    "cuisine": "Mexican",
+    "taste": "Any flavor",
+    "region": "",
+    "dish": ""
+  },
+  "request": {
+    "city": "Philadelphia",
+    "message": "Any flavor",
+    "preferences": {
+      "cuisine": "Mexican"
+    }
+  },
+  "requested_utc": "2026-11-24T21:28:58.377336+00:00",
+  "status": 200,
+  "seconds": 6.176,
+  "response": {
+    "ai_used": false,
+    "city": "Philadelphia",
+    "options": [],
+    "preferences": {
+      "cuisine": "Mexican",
+      "dish": "",
+      "taste": "Any flavor"
+    },
+    "provider": "gemini_tavily",
+    "reply": "I found one dish matching your picks in online menu sources in Philadelphia.",
+    "results": [
+      {
+        "cuisine": "Mexican",
+        "dish_name": "Carne Asada $31",
+        "location": "Philadelphia",
+        "note": "",
+        "restaurant_name": "El Vez Philadelphia",
+        "source_title": "El Vez Philadelphia - Mexican Cuisine & Tequila",
+        "source_url": "https://elvezrestaurant.com",
+        "why": "You asked for Mexican food, and this menu lists “Carne Asada $31”."
+      }
+    ],
+    "stage": "results"
+  }
+}

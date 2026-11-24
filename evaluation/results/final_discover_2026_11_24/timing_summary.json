@@ -1,0 +1,90 @@
+{
+  "generated_utc": "2026-11-24T21:30:50.895172+00:00",
+  "n": 12,
+  "mean_seconds": 9.491083333333334,
+  "median_seconds": 9.50745,
+  "min_seconds": 3.8719,
+  "max_seconds": 13.7896,
+  "sum_request_seconds": 113.893,
+  "by_request": [
+    {
+      "id": "D01",
+      "status": 200,
+      "seconds": 10.3009,
+      "cards": 2
+    },
+    {
+      "id": "D02",
+      "status": 200,
+      "seconds": 6.176,
+      "cards": 1
+    },
+    {
+      "id": "D03",
+      "status": 200,
+      "seconds": 3.8719,
+      "cards": 3
+    },
+    {
+      "id": "D04",
+      "status": 200,
+      "seconds": 4.9274,
+      "cards": 1
+    },
+    {
+      "id": "D05",
+      "status": 200,
+      "seconds": 8.5408,
+      "cards": 1
+    },
+    {
+      "id": "D06",
+      "status": 200,
+      "seconds": 7.6917,
+      "cards": 2
+    },
+    {
+      "id": "D07",
+      "status": 200,
+      "seconds": 8.714,
+      "cards": 2
+    },
+    {
+      "id": "D08",
+      "status": 200,
+      "seconds": 12.2828,
+      "cards": 2
+    },
+    {
+      "id": "D09",
+      "status": 200,
+      "seconds": 12.5074,
+      "cards": 3
+    },
+    {
+      "id": "D10",
+      "status": 200,
+      "seconds": 13.7137,
+      "cards": 2
+    },
+    {
+      "id": "D11",
+      "status": 200,
+      "seconds": 11.3768,
+      "cards": 3
+    },
+    {
+      "id": "D12",
+      "status": 200,
+      "seconds": 13.7896,
+      "cards": 3
+    }
+  ],
+  "scope": "Sequential client-observed HTTP request time, including application/model/search processing and server internal retries if any. Excludes browser rendering, manual menu review and app startup. No retry-attempt log or cold/warm instrumentation; not a production latency benchmark.",
+  "serving_commit": "4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+  "model": "gemini-3.5-flash-lite (submitted default; runtime override not introspected)",
+  "sources": {
+    "requests.json_sha256": "93bbe66fbe04745475cc682d4bed450a6172ea97ccf724818bc724f146e275ca",
+    "summary.json_sha256": "a8dbacf37df211292af4474bdd791005a26934a3ba19e28c647365f6f5f4d3d1"
+  }
+}

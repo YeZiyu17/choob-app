@@ -1,0 +1,55 @@
+{
+  "id": "D01",
+  "expected": {
+    "city": "Philadelphia",
+    "cuisine": "Italian",
+    "taste": "Crispy",
+    "region": "",
+    "dish": ""
+  },
+  "request": {
+    "city": "Philadelphia",
+    "message": "Crispy",
+    "preferences": {
+      "cuisine": "Italian"
+    }
+  },
+  "requested_utc": "2026-11-24T21:28:48.075593+00:00",
+  "status": 200,
+  "seconds": 10.3009,
+  "response": {
+    "ai_used": false,
+    "city": "Philadelphia",
+    "options": [],
+    "preferences": {
+      "cuisine": "Italian",
+      "dish": "",
+      "taste": "Crispy"
+    },
+    "provider": "gemini_tavily",
+    "reply": "I found 2 dishes matching your picks in online menu sources in Philadelphia.",
+    "results": [
+      {
+        "cuisine": "",
+        "dish_name": "Crispy Gnocchi",
+        "location": "Philadelphia",
+        "note": "Menu mentions “Crispy Gnocchi”",
+        "restaurant_name": "Ambrosia Ristorante BYOB",
+        "source_title": "Menus | Ambrosia Ristorante BYOB in Philadelphia, PA",
+        "source_url": "https://www.ambrosiaphilly.com/menus",
+        "why": "Its name on the menu, “Crispy Gnocchi”, fits the crispy Italian food you asked for."
+      },
+      {
+        "cuisine": "Italian",
+        "dish_name": "Fried Calamari",
+        "location": "34 S Front Street Philadelphia, PA 19106",
+        "note": "Menu mentions “Fried Calamari”",
+        "restaurant_name": "Spasso Italian Grill",
+        "source_title": "Philadelphia Dinner Menu — Spasso Italian Grill",
+        "source_url": "https://www.spassoitaliangrill.com/philadelphia-dinner",
+        "why": "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for."
+      }
+    ],
+    "stage": "results"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "completed_utc": "2026-11-24T21:30:42.002954+00:00",
+  "planned_requests": 12,
+  "campaign_complete": true,
+  "requests": 12,
+  "requests_returning_recommendations": 12,
+  "request_success_rate": 1.0,
+  "empty_without_http_error": 0,
+  "errors": 0,
+  "outcomes": {
+    "returned_recommendations": 12
+  },
+  "returned_cards": 25,
+  "card_audit_status": "pending_separate_manual_source_review",
+  "verified_cards": null,
+  "verified_card_rate": null,
+  "definitions": {
+    "request_success": "HTTP 200 with at least one returned recommendation card.",
+    "busy": "HTTP 503 and the explicit Gemini temporarily-busy error message.",
+    "timeout": "HTTP 503 and an explicit Gemini timeout message; separate from busy.",
+    "card_quality": "Never inferred from request success or the app's own evidence checks."
+  }
+}

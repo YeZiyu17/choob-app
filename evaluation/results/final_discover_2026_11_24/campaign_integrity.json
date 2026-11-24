@@ -1,0 +1,38 @@
+{
+  "verified_date": "2026-11-24",
+  "request_records": 12,
+  "cities": 5,
+  "cards": 25,
+  "raw_records_equal_combined_log": true,
+  "request_order_and_payloads_equal_frozen_protocol": true,
+  "request_ids": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D10",
+    "D11",
+    "D12"
+  ],
+  "files_sha256": {
+    "request_D08.json": "31429bba45d6342f06ade33382ed2c5b0bd507546037589a76e9ffd6fa3d923b",
+    "request_D04.json": "748f67174a5a3c172de6ade858f103c8719893442751814b3bef98262e1ad810",
+    "request_D12.json": "e0045aea14942058365e65c238a8adf9df6d9f4f25f771757fd4821c53fa3d8a",
+    "request_D05.json": "746395ac6fa9a174bdd2d42846bfd7bb77b53a0ffaee44110f6cf4163995d3be",
+    "request_D09.json": "2ee797a5f22798a185a56beb9f28db0fa9c2feff3bc10279d58e6df445ab5f49",
+    "request_D02.json": "4b3af110a3e84dc7a564668c5bf153a58c548c863fadf9082d14d247e77ffff9",
+    "request_D03.json": "e7ce2ff7d525b305ddedc73bcaec986f6d5c2922961977d9028d449265aac2fc",
+    "request_D01.json": "cd242fedd5738fe70383e7f8947c52d8e5f513ebe93eeae01357bdddf6a9b978",
+    "request_D10.json": "5b30a97f7d429285a83034433ccc9db2eae8f5ef915f67c29f9665a43efcf5af",
+    "request_D06.json": "68cc3547a76bdbcc62a3524488247f3af163aef69543817718dfc2376763aa70",
+    "request_D07.json": "3ca28d41bfa06bfc74451dcd9b37995ebe0de74863ca020fa1617b4757b7a4b1",
+    "request_D11.json": "d2fe4e39acc0e7dc4faeed1d47906abe83edaa2c9f0379aef3fb2142660e79e2"
+  },
+  "protocol_sha256": "8f9d6515f0805100306657437721bb5d498f394148b8727e9112c9a8d14ff156",
+  "model_and_server_identity_limitation": "Commit operator-declared from launcher/working-tree checks; no live model-override introspection"
+}

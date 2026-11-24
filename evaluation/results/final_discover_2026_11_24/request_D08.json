@@ -1,0 +1,55 @@
+{
+  "id": "D08",
+  "expected": {
+    "city": "Philadelphia",
+    "cuisine": "Thai",
+    "taste": "Spicy",
+    "region": "",
+    "dish": ""
+  },
+  "request": {
+    "city": "Philadelphia",
+    "message": "Spicy",
+    "preferences": {
+      "cuisine": "Thai"
+    }
+  },
+  "requested_utc": "2026-11-24T21:29:38.324280+00:00",
+  "status": 200,
+  "seconds": 12.2828,
+  "response": {
+    "ai_used": false,
+    "city": "Philadelphia",
+    "options": [],
+    "preferences": {
+      "cuisine": "Thai",
+      "dish": "",
+      "taste": "Spicy"
+    },
+    "provider": "gemini_tavily",
+    "reply": "I found 2 dishes matching your picks in online menu sources in Philadelphia.",
+    "results": [
+      {
+        "cuisine": "Thai",
+        "dish_name": "Thai Wings (Spicy)",
+        "location": "4040 Locust St, Philadelphia, PA 19104",
+        "note": "Menu mentions “Spicy”",
+        "restaurant_name": "Pattaya Thai Cuisine",
+        "source_title": "Pattaya Thai Cuisine Menu - Philadelphia, PA Restaurant",
+        "source_url": "https://menupages.com/pattaya-thai-cuisine/4040-locust-st-philadelphia",
+        "why": "You asked for spicy Thai food, and its menu listing says “Spicy”."
+      },
+      {
+        "cuisine": "Thai",
+        "dish_name": "Thai drunken noodle with spaghetti, chilies, garlic, peppercorn",
+        "location": "Philadelphia",
+        "note": "Menu mentions “Hot”",
+        "restaurant_name": "Erawan Thai Cuisine",
+        "source_title": "Best Thai Food in ... - Erawan Thai Cuisine (Philadelphia) Online Menu",
+        "source_url": "https://erawanphiladelphia.com/menu",
+        "why": "You asked for spicy Thai food, and its menu listing says “Hot”."
+      }
+    ],
+    "stage": "results"
+  }
+}

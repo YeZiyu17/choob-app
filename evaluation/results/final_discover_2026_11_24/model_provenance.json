@@ -1,0 +1,22 @@
+{
+  "generated_utc": "2026-11-24T21:31:21.381934+00:00",
+  "provider_observed_in_service_config": "gemini_tavily",
+  "submitted_default_model": "gemini-3.5-flash-lite",
+  "source_file": "discover_gemini.py",
+  "source_sha256": "b1b64602c77d3c643f1419f0b7bee0bb5165b07abe1bbb5144245b50f47bdce5",
+  "runtime_model_override_not_introspected": true,
+  "actual_runtime_model_independently_verified": false,
+  "actual_runtime_model": null,
+  "process_environment_or_secret_values_read": false,
+  "reason": "The app config and response records expose provider/readiness but no runtime model identifier. The submitted default is evidence about code, not proof that CHOOB_GEMINI_MODEL was unset in the serving process.",
+  "output_integrity": {
+    "all_12_individual_responses_match_combined_log": true,
+    "protocol_order_preserved": true,
+    "blank_manual_card_audit_rows": 25,
+    "all_verdict_fields_blank": true
+  },
+  "sources": {
+    "requests.json_sha256": "93bbe66fbe04745475cc682d4bed450a6172ea97ccf724818bc724f146e275ca",
+    "protocol.json_sha256": "8f9d6515f0805100306657437721bb5d498f394148b8727e9112c9a8d14ff156"
+  }
+}

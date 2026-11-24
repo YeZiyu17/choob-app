@@ -1,0 +1,65 @@
+{
+  "id": "D12",
+  "expected": {
+    "city": "San Francisco",
+    "cuisine": "Japanese",
+    "taste": "Fresh & light",
+    "region": "",
+    "dish": ""
+  },
+  "request": {
+    "city": "San Francisco",
+    "message": "Fresh & light",
+    "preferences": {
+      "cuisine": "Japanese"
+    }
+  },
+  "requested_utc": "2026-11-24T21:30:28.209664+00:00",
+  "status": 200,
+  "seconds": 13.7896,
+  "response": {
+    "ai_used": false,
+    "city": "San Francisco",
+    "options": [],
+    "preferences": {
+      "cuisine": "Japanese",
+      "dish": "",
+      "taste": "Fresh & light"
+    },
+    "provider": "gemini_tavily",
+    "reply": "I found 3 dishes matching your picks in online menu sources in San Francisco.",
+    "results": [
+      {
+        "cuisine": "Japanese",
+        "dish_name": "Seaweed Salad",
+        "location": "San Francisco",
+        "note": "Menu mentions “Crisp seaweed mix, topped with toasted sesame seeds and a light vinaigrette.”",
+        "restaurant_name": "Toyama Japanese Restaurant",
+        "source_title": "Best Japanese in San Francisco, CA | Toyama Japanese Restaurant | Menu",
+        "source_url": "https://www.toyamasf.com/owhwrpzv/toyama-japanese-restaurant-san-francisco-94118/menu",
+        "why": "You asked for fresh, light Japanese food, and its menu listing says “Crisp seaweed mix, topped with toasted sesame seeds and a light vinaigrette”."
+      },
+      {
+        "cuisine": "Japanese",
+        "dish_name": "Seafood Salad",
+        "location": "San Francisco",
+        "note": "Menu mentions “Sliced fish, seafood assortment and mixed greens with a soy vinaigrette dressing.”",
+        "restaurant_name": "Tanuki Restaurant",
+        "source_title": "Best Japanese in San Francisco, CA | Tanuki Restaurant | Menu",
+        "source_url": "https://www.tanukisf.com/l3rh2w01/tanuki-restaurant-san-francisco-94118/menu",
+        "why": "You asked for fresh, light Japanese food, and its menu listing says “Sliced fish, seafood assortment and mixed greens with a soy vinaigrette dressing”."
+      },
+      {
+        "cuisine": "Italian Japanese Fusion",
+        "dish_name": "Japan's milk bread",
+        "location": "San Francisco, CA",
+        "note": "Menu mentions “Fresh-baked”",
+        "restaurant_name": "CIAORIGATO Restaurant & Bar",
+        "source_title": "Menu - CIAORIGATO Restaurant & Bar | Italian Japanese Fusion",
+        "source_url": "https://www.ciaorigato.com/menu",
+        "why": "You asked for fresh, light Japanese food, and its menu listing says “Fresh-baked”."
+      }
+    ],
+    "stage": "results"
+  }
+}

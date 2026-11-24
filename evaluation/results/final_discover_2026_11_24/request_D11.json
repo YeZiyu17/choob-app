@@ -1,0 +1,69 @@
+{
+  "id": "D11",
+  "expected": {
+    "city": "San Francisco",
+    "cuisine": "Chinese",
+    "taste": "Spicy",
+    "region": "",
+    "dish": ""
+  },
+  "request": {
+    "city": "San Francisco",
+    "message": "Spicy",
+    "preferences": {
+      "cuisine": "Chinese"
+    }
+  },
+  "requested_utc": "2026-11-24T21:30:16.832245+00:00",
+  "status": 200,
+  "seconds": 11.3768,
+  "response": {
+    "ai_used": false,
+    "city": "San Francisco",
+    "options": [
+      "Sichuan",
+      "Hunan",
+      "Cantonese"
+    ],
+    "preferences": {
+      "cuisine": "Chinese",
+      "dish": "",
+      "taste": "Spicy"
+    },
+    "provider": "gemini_tavily",
+    "reply": "I found 3 dishes matching your picks in online menu sources in San Francisco. Menus that describe the heat directly come first. You can narrow by regional style below.",
+    "results": [
+      {
+        "cuisine": "Chinese",
+        "dish_name": "Jumbo Prawns in a Spicy Szechuan Sauce",
+        "location": "San Francisco",
+        "note": "Menu mentions “Jumbo Prawns in a Spicy Szechuan Sauce”",
+        "restaurant_name": "New Red Jade Restaurant",
+        "source_title": "Best Chinese in San Francisco, CA | New Red Jade Restaurant | Menu",
+        "source_url": "https://www.redjaderestaurantsf.com/d41jxihz/new-red-jade-restaurant-san-francisco-94114/menu",
+        "why": "Its name on the menu, “Jumbo Prawns in a Spicy Szechuan Sauce”, fits the spicy Chinese food you asked for."
+      },
+      {
+        "cuisine": "Chinese",
+        "dish_name": "Hot Spicy Sesame Prawns",
+        "location": "San Francisco",
+        "note": "Menu mentions “Hot Spicy Sesame Prawns”",
+        "restaurant_name": "Tsing Tao Restaurant",
+        "source_title": "Best Chinese in San Francisco, CA | Tsing Tao Restaurant | Menu",
+        "source_url": "https://www.tsingtaohouseca.com/mdcuj1op/tsing-tao-restaurant-san-francisco-94121/menu",
+        "why": "Its name on the menu, “Hot Spicy Sesame Prawns”, fits the spicy Chinese food you asked for."
+      },
+      {
+        "cuisine": "",
+        "dish_name": "Spicy Pork Wontons (6pcs)",
+        "location": "San Francisco",
+        "note": "Menu mentions “Spicy Pork Wontons (6pcs)”",
+        "restaurant_name": "Harborview Restaurant & Bar",
+        "source_title": "Menus | Harborview Restaurant & Bar in San Francisco, CA",
+        "source_url": "https://www.harborviewsf.com/menus",
+        "why": "Its name on the menu, “Spicy Pork Wontons (6pcs)”, fits the spicy Chinese food you asked for."
+      }
+    ],
+    "stage": "results"
+  }
+}

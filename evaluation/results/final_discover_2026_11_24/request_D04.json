@@ -1,0 +1,52 @@
+{
+  "id": "D04",
+  "expected": {
+    "city": "Los Angeles",
+    "cuisine": "Chinese",
+    "taste": "Spicy",
+    "region": "Sichuan",
+    "dish": ""
+  },
+  "request": {
+    "city": "Los Angeles",
+    "message": "Spicy",
+    "preferences": {
+      "cuisine": "Chinese",
+      "region": "Sichuan"
+    }
+  },
+  "requested_utc": "2026-11-24T21:29:08.431041+00:00",
+  "status": 200,
+  "seconds": 4.9274,
+  "response": {
+    "ai_used": false,
+    "city": "Los Angeles",
+    "options": [
+      "Hunan",
+      "Cantonese",
+      "Any Chinese style"
+    ],
+    "preferences": {
+      "cuisine": "Chinese",
+      "dish": "",
+      "region": "Sichuan",
+      "taste": "Spicy"
+    },
+    "provider": "gemini_tavily",
+    "reply": "I found one dish matching your picks in online menu sources in Los Angeles. Try another Chinese style below.",
+    "results": [
+      {
+        "cuisine": "Chinese",
+        "dish_name": "Szechwan Pork (S)",
+        "location": "Los Angeles",
+        "note": "Menu mentions “spicy Szechwan sauce”",
+        "region": "Sichuan",
+        "restaurant_name": "Chi's Chinese Cuisine",
+        "source_title": "Our Menu - Chi's Chinese Cuisine | 818-886-6928 | Chinese Food | Chinese, Dim Sum, Healthy Menu | Los Angeles, Northridge, California",
+        "source_url": "https://www.chischinese.net/menu",
+        "why": "You asked for spicy Sichuan food, and its menu listing says “spicy Szechwan sauce”."
+      }
+    ],
+    "stage": "results"
+  }
+}

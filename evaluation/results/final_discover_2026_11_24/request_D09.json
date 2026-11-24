@@ -1,0 +1,63 @@
+{
+  "id": "D09",
+  "expected": {
+    "city": "New York",
+    "cuisine": "Japanese",
+    "taste": "Spicy",
+    "region": "",
+    "dish": "ramen"
+  },
+  "request": {
+    "city": "New York",
+    "message": "I'd like spicy ramen.",
+    "preferences": {}
+  },
+  "requested_utc": "2026-11-24T21:29:50.608729+00:00",
+  "status": 200,
+  "seconds": 12.5074,
+  "response": {
+    "ai_used": true,
+    "city": "New York",
+    "options": [],
+    "preferences": {
+      "cuisine": "Japanese",
+      "dish": "ramen",
+      "taste": "Spicy"
+    },
+    "provider": "gemini_tavily",
+    "reply": "I found 3 dishes matching your picks in online menu sources in New York.",
+    "results": [
+      {
+        "cuisine": "Japanese",
+        "dish_name": "Spicy Miso Ramen",
+        "location": "New York",
+        "note": "Menu mentions “Spicy shredded pork”",
+        "restaurant_name": "Meijin Ramen and Dessert Bar",
+        "source_title": "Meijin Ramen and Dessert Bar Menu in New York, NY | Order Delivery & Reviews",
+        "source_url": "https://www.menupix.com/nyc/restaurants/380265916/Meijin-Ramen-and-Dessert-Bar-New-York-NY",
+        "why": "You asked for spicy ramen, and its menu listing says “Spicy shredded pork”."
+      },
+      {
+        "cuisine": "",
+        "dish_name": "Spicy Miso Ramen",
+        "location": "New York City",
+        "note": "Menu mentions “Spicy Miso Ramen”",
+        "restaurant_name": "Yamitsuki Ramen",
+        "source_title": "Order Yamitsuki Ramen Menu Delivery & Prices | New York City",
+        "source_url": "https://www.ubereats.com/store/yamitsuki-ramen/cwuzL-IjXUik5oCGutPQ5g",
+        "why": "Its name on the menu, “Spicy Miso Ramen”, fits the spicy ramen you asked for."
+      },
+      {
+        "cuisine": "Japanese",
+        "dish_name": "miso tare with chashu pork, kakuni, bean sprouts seasoned with roasted chili oil",
+        "location": "New York",
+        "note": "Menu mentions “roasted chili oil”",
+        "restaurant_name": "Ani Ramen",
+        "source_title": "Lunch | Dinner | Ani Ramen | Japanese Restaurant in New Jersey and New York",
+        "source_url": "https://www.aniramen.com/menu/food-jersey-city",
+        "why": "You asked for spicy ramen, and its menu listing says “roasted chili oil”."
+      }
+    ],
+    "stage": "results"
+  }
+}

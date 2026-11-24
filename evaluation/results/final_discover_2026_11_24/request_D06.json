@@ -1,0 +1,55 @@
+{
+  "id": "D06",
+  "expected": {
+    "city": "Chicago",
+    "cuisine": "Japanese",
+    "taste": "Fresh & light",
+    "region": "",
+    "dish": ""
+  },
+  "request": {
+    "city": "Chicago",
+    "message": "Fresh & light",
+    "preferences": {
+      "cuisine": "Japanese"
+    }
+  },
+  "requested_utc": "2026-11-24T21:29:21.909544+00:00",
+  "status": 200,
+  "seconds": 7.6917,
+  "response": {
+    "ai_used": false,
+    "city": "Chicago",
+    "options": [],
+    "preferences": {
+      "cuisine": "Japanese",
+      "dish": "",
+      "taste": "Fresh & light"
+    },
+    "provider": "gemini_tavily",
+    "reply": "I found 2 dishes matching your picks in online menu sources in Chicago.",
+    "results": [
+      {
+        "cuisine": "Japanese",
+        "dish_name": "Salmon Avocado",
+        "location": "Chicago",
+        "note": "Menu mentions “Salmon Avocado”",
+        "restaurant_name": "Nobu Chicago",
+        "source_title": "Menus - Nobu Chicago",
+        "source_url": "https://noburestaurants.com/chicago/menus",
+        "why": "Its name on the menu, “Salmon Avocado”, fits the fresh, light Japanese food you asked for."
+      },
+      {
+        "cuisine": "Japanese",
+        "dish_name": "Slices of raw salmon over a bowl of sushi rice.",
+        "location": "Chicago",
+        "note": "Menu mentions “raw salmon”",
+        "restaurant_name": "Wabi Sabi",
+        "source_title": "Best Japanese in Chicago, IL | Wabi Sabi | Menu",
+        "source_url": "https://www.wabisabiil.com/px3hzrdx/wabi-sabi-chicago-60625/menu",
+        "why": "You asked for fresh, light Japanese food, and its menu listing says “raw salmon”."
+      }
+    ],
+    "stage": "results"
+  }
+}

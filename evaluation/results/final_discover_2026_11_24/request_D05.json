@@ -1,0 +1,52 @@
+{
+  "id": "D05",
+  "expected": {
+    "city": "Los Angeles",
+    "cuisine": "Chinese",
+    "taste": "Spicy",
+    "region": "Hunan",
+    "dish": ""
+  },
+  "request": {
+    "city": "Los Angeles",
+    "message": "Spicy",
+    "preferences": {
+      "cuisine": "Chinese",
+      "region": "Hunan"
+    }
+  },
+  "requested_utc": "2026-11-24T21:29:13.359524+00:00",
+  "status": 200,
+  "seconds": 8.5408,
+  "response": {
+    "ai_used": false,
+    "city": "Los Angeles",
+    "options": [
+      "Sichuan",
+      "Cantonese",
+      "Any Chinese style"
+    ],
+    "preferences": {
+      "cuisine": "Chinese",
+      "dish": "",
+      "region": "Hunan",
+      "taste": "Spicy"
+    },
+    "provider": "gemini_tavily",
+    "reply": "I found one dish matching your picks in online menu sources in Los Angeles. Try another Chinese style below.",
+    "results": [
+      {
+        "cuisine": "Chinese",
+        "dish_name": "Spicy Hengdong Crispy Tripe / 衡东香脆麻辣毛肚",
+        "location": "Los Angeles",
+        "menu_region": "Hunan",
+        "note": "Menu mentions “Spicy Hengdong Crispy Tripe / 衡东香脆麻辣毛肚”",
+        "restaurant_name": "Hunan Cuisine 湘辣楼",
+        "source_title": "Hunan Cuisine 湘辣楼 | Menu | Los Angeles | Uber Eats",
+        "source_url": "https://www.ubereats.com/store/hunan-cuisine-%E6%B9%98%E8%BE%A3%E6%A5%BC/q4pVRE0hWRm8geRv3sc9RA",
+        "why": "Its name on the menu, “Spicy Hengdong Crispy Tripe / 衡东香脆麻辣毛肚”, fits the spicy Hunan food you asked for."
+      }
+    ],
+    "stage": "results"
+  }
+}

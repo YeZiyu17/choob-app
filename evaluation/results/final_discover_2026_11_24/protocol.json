@@ -1,0 +1,264 @@
+{
+  "run": {
+    "started_utc": "2026-11-24T21:28:48.047444+00:00",
+    "base_url": "http://127.0.0.1:7873",
+    "protocol_sha256": "6627a1cace7583ee9f09fe1243756ae4e0a5dd7e614620f3a84fc21e030a25eb",
+    "runner_repository_commit": "4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+    "operator_declared_server_commit": "4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+    "operator_declared_gemini_model": "gemini-3.5-flash-lite (submitted default; runtime override not introspected)",
+    "server_config": {
+      "provider": "gemini_tavily",
+      "city": "Philadelphia",
+      "online_ready": true,
+      "cities": [
+        "Philadelphia",
+        "Los Angeles",
+        "New York",
+        "Chicago",
+        "San Francisco"
+      ],
+      "neighborhoods": {
+        "Los Angeles": [
+          "Downtown",
+          "Koreatown",
+          "San Gabriel Valley"
+        ],
+        "New York": [
+          "Manhattan",
+          "Flushing",
+          "Brooklyn"
+        ],
+        "Philadelphia": [
+          "Center City",
+          "South Philly",
+          "University City"
+        ]
+      }
+    },
+    "concurrency": 1,
+    "client_timeout_seconds": 300.0,
+    "client_retries": 0,
+    "server_internal_retries": "Included in each request; log server retry/model information separately.",
+    "purpose": "New final-build rerun; not a reconstruction of historical presentation percentages."
+  },
+  "frozen_protocol": {
+    "schema_version": 1,
+    "id": "choob-discover-fresh-twelve-five-cities-2026-11-24-v1",
+    "frozen_date": "2026-11-24",
+    "scope": "A NEW twelve-request final-build campaign in five cities. Preserve the historical nine cases and add three San Francisco cases before any inference.",
+    "historical_source_commit": "37259485b5eff73143f71c72eb5917f6a8a2af52",
+    "source_protocol_sha256": "0794bbabdfd254a3d7ed9d64bb9051284aa26db0aeed6c7b7d0d16040b8fd8ad",
+    "source_request_log_sha256": "d8f3b2e85dec5a5f023e036f979d74e143a25946be01ebecc28eb35a4eef426d",
+    "not_the_unavailable_final_twelve_request_protocol": true,
+    "request_policy": "One sequential client request per case, no client retries; preserve the server internal retry policy and record its model/commit separately.",
+    "manual_card_audit_rule": "Review every returned card against menu/current venue/city/cuisine and applicable flavor, region or named-dish constraints. Record pass, fail or insufficient evidence with dated source support. No automatic menu-verification score.",
+    "cases": [
+      {
+        "id": "D01",
+        "expected": {
+          "city": "Philadelphia",
+          "cuisine": "Italian",
+          "taste": "Crispy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Philadelphia",
+          "message": "Crispy",
+          "preferences": {
+            "cuisine": "Italian"
+          }
+        }
+      },
+      {
+        "id": "D02",
+        "expected": {
+          "city": "Philadelphia",
+          "cuisine": "Mexican",
+          "taste": "Any flavor",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Philadelphia",
+          "message": "Any flavor",
+          "preferences": {
+            "cuisine": "Mexican"
+          }
+        }
+      },
+      {
+        "id": "D03",
+        "expected": {
+          "city": "Los Angeles",
+          "cuisine": "Chinese",
+          "taste": "Spicy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Los Angeles",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Chinese"
+          }
+        }
+      },
+      {
+        "id": "D04",
+        "expected": {
+          "city": "Los Angeles",
+          "cuisine": "Chinese",
+          "taste": "Spicy",
+          "region": "Sichuan",
+          "dish": ""
+        },
+        "request": {
+          "city": "Los Angeles",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Chinese",
+            "region": "Sichuan"
+          }
+        }
+      },
+      {
+        "id": "D05",
+        "expected": {
+          "city": "Los Angeles",
+          "cuisine": "Chinese",
+          "taste": "Spicy",
+          "region": "Hunan",
+          "dish": ""
+        },
+        "request": {
+          "city": "Los Angeles",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Chinese",
+            "region": "Hunan"
+          }
+        }
+      },
+      {
+        "id": "D06",
+        "expected": {
+          "city": "Chicago",
+          "cuisine": "Japanese",
+          "taste": "Fresh & light",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Chicago",
+          "message": "Fresh & light",
+          "preferences": {
+            "cuisine": "Japanese"
+          }
+        }
+      },
+      {
+        "id": "D07",
+        "expected": {
+          "city": "New York",
+          "cuisine": "Korean",
+          "taste": "Crispy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "New York",
+          "message": "Crispy",
+          "preferences": {
+            "cuisine": "Korean"
+          }
+        }
+      },
+      {
+        "id": "D08",
+        "expected": {
+          "city": "Philadelphia",
+          "cuisine": "Thai",
+          "taste": "Spicy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Philadelphia",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Thai"
+          }
+        }
+      },
+      {
+        "id": "D09",
+        "expected": {
+          "city": "New York",
+          "cuisine": "Japanese",
+          "taste": "Spicy",
+          "region": "",
+          "dish": "ramen"
+        },
+        "request": {
+          "city": "New York",
+          "message": "I'd like spicy ramen.",
+          "preferences": {}
+        }
+      },
+      {
+        "id": "D10",
+        "expected": {
+          "city": "San Francisco",
+          "cuisine": "Italian",
+          "taste": "Crispy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "San Francisco",
+          "message": "Crispy",
+          "preferences": {
+            "cuisine": "Italian"
+          }
+        }
+      },
+      {
+        "id": "D11",
+        "expected": {
+          "city": "San Francisco",
+          "cuisine": "Chinese",
+          "taste": "Spicy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "San Francisco",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Chinese"
+          }
+        }
+      },
+      {
+        "id": "D12",
+        "expected": {
+          "city": "San Francisco",
+          "cuisine": "Japanese",
+          "taste": "Fresh & light",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "San Francisco",
+          "message": "Fresh & light",
+          "preferences": {
+            "cuisine": "Japanese"
+          }
+        }
+      }
+    ],
+    "frozen_utc": "2026-11-24T21:21:36.770330+00:00",
+    "sampling_limitation": "Small convenience query suite, not representative of all cuisines, cities or users. The historical nine-case subset can be reported separately; the extra three queries were not in the old evaluation."
+  }
+}

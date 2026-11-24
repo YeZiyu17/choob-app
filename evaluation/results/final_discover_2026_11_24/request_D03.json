@@ -1,0 +1,69 @@
+{
+  "id": "D03",
+  "expected": {
+    "city": "Los Angeles",
+    "cuisine": "Chinese",
+    "taste": "Spicy",
+    "region": "",
+    "dish": ""
+  },
+  "request": {
+    "city": "Los Angeles",
+    "message": "Spicy",
+    "preferences": {
+      "cuisine": "Chinese"
+    }
+  },
+  "requested_utc": "2026-11-24T21:29:04.557765+00:00",
+  "status": 200,
+  "seconds": 3.8719,
+  "response": {
+    "ai_used": false,
+    "city": "Los Angeles",
+    "options": [
+      "Sichuan",
+      "Hunan",
+      "Cantonese"
+    ],
+    "preferences": {
+      "cuisine": "Chinese",
+      "dish": "",
+      "taste": "Spicy"
+    },
+    "provider": "gemini_tavily",
+    "reply": "I found 3 dishes matching your picks in online menu sources in Los Angeles. Menus that describe the heat directly come first. You can narrow by regional style below.",
+    "results": [
+      {
+        "cuisine": "Chinese",
+        "dish_name": "Szechwan Pork",
+        "location": "Los Angeles",
+        "note": "Menu mentions “Sliced pork with green bell peppers, carrots, onions and mushrooms in a spicy Szechwan sauce.”",
+        "restaurant_name": "Chi's Chinese Cuisine",
+        "source_title": "Our Menu - Chi's Chinese Cuisine | 818-886-6928 | Chinese Food | Chinese, Dim Sum, Healthy Menu | Los Angeles, Northridge, California",
+        "source_url": "https://www.chischinese.net/menu",
+        "why": "You asked for spicy Chinese food, and its menu listing says “Sliced pork with green bell peppers, carrots, onions and mushrooms in a spicy Szechwan sauce”."
+      },
+      {
+        "cuisine": "Chinese",
+        "dish_name": "Spicy Szechuan Wings",
+        "location": "Los Angeles",
+        "note": "Menu mentions “spicy jalapeno and green onion rub”",
+        "restaurant_name": "New Moon",
+        "source_title": "Menu | New Moon in Montrose & Los Angeles",
+        "source_url": "https://newmoonrestaurants.com/menu",
+        "why": "You asked for spicy Chinese food, and its menu listing says “spicy jalapeno and green onion rub”."
+      },
+      {
+        "cuisine": "Chinese",
+        "dish_name": "Spicy Garlic Pepper Chicken Wings",
+        "location": "Los Angeles",
+        "note": "Menu mentions “Spicy Garlic Pepper Chicken Wings”",
+        "restaurant_name": "Wok On Fire",
+        "source_title": "Best Chinese in Los Angeles, CA | Wok On Fire | Order Online",
+        "source_url": "https://www.wokonfireonline.com/93hg0j4y/wok-on-fire-los-angeles-90035/order-online",
+        "why": "Its name on the menu, “Spicy Garlic Pepper Chicken Wings”, fits the spicy Chinese food you asked for."
+      }
+    ],
+    "stage": "results"
+  }
+}
