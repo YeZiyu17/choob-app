@@ -11,26 +11,34 @@ app_port: 7860
 
 Choob helps you remember a dish you loved and decide what to eat next. Scan a meal photo in Snap, save it to your Passport, or tell Discover what you’re craving. The repository opens on `final`, the version used for the final presentation. The earlier versions are preserved in [rehearsal](https://github.com/YeZiyu17/choob-app/tree/rehearsal) and [archive](https://github.com/YeZiyu17/choob-app/tree/archive).
 
+## Final documentation submission
+
+- [English technical report](docs/Choob_Technical_Report_Final.docx): seven pages including references.
+- [Submission verification and resource register](docs/SUBMISSION.md): requirement mapping, tested setup, evidence links and remaining limitations.
+- [Final Snap regression](evaluation/results/final_snap_2026_11_24/README.md): 40/60 single-dish Top 1; 55/60 target-in-Top-3. The 72 images are a known regression set.
+- [Fresh Discover evaluation](evaluation/results/final_discover_2026_11_24/README.md): 12/12 requests returned cards; AI-assisted source audit passed 20/25 cards. This is not a human usability study.
+- [Clean-environment setup checks](evaluation/results/submission_check_2026_11_24/README.md): independent dependency installation and application smoke checks, with public model-cache reuse.
+
 ## Quick start for final
 
-1. Install **Python 3.11**. On this GitHub page, choose **Code → Download ZIP**, extract the ZIP, and open a terminal in the folder containing `start_choob.py` and `requirements.txt`.
+1. Install **Python 3.12**. The recorded setup verification used macOS ARM64 and Python 3.12.14; Windows commands below are provided but were not tested in that run. On this GitHub page, choose **Code → Download ZIP**, extract the ZIP, and open a terminal in the folder containing `start_choob.py` and `requirements.txt`.
 2. Create and activate a virtual environment using the commands for your computer.
 
    **macOS (Terminal)**
 
    ```bash
-   python3.11 -m venv .venv
+   python3.12 -m venv .venv
    source .venv/bin/activate
    ```
 
    **Windows (Command Prompt)**
 
    ```bat
-   py -3.11 -m venv .venv
+   py -3.12 -m venv .venv
    .venv\Scripts\activate.bat
    ```
 
-3. Install the dependencies with `python -m pip install -r requirements.txt`. On an **Intel Mac**, use `python -m pip install -r requirements-intel-py311.txt` instead.
+3. Install with `python -m pip install -r requirements.txt`. For the exact tested **macOS ARM64 / Python 3.12** dependency set, use `python -m pip install -r requirements-macos-arm64-py312-verified.txt` instead. Run `python -m pip check` to check dependency consistency.
 4. Choose how to start Choob in that same terminal.
 
    | What you want to try | Command |
@@ -40,7 +48,7 @@ Choob helps you remember a dish you loved and decide what to eat next. Scan a me
 
 5. Keep the terminal open and visit **[Choob on your computer](http://127.0.0.1:7861/)**. To stop the app, press `Ctrl+C` in the terminal.
 
-**Try your first meal.** In Snap, choose `examples/snap/pizza.jpg` from the extracted folder and select **Scan dish**. The first scan downloads the recognition model, so keep your internet connection on. Review the suggested name, choose **Log as eaten**, and open Passport to see the entry. In online Discover, select a city and area and try “I’d like spicy Chinese food.” Open a result’s menu link to check the suggestion.
+**Try your first meal.** In Snap, choose `examples/snap/pizza.jpg` from the extracted folder and select **Scan dish**. Keep the internet connection on: the first scan may download the public model, and later model loading may resolve provider metadata. The recorded clean-environment check reused existing public assets; it did not test a first download. Review the suggested name, choose **Log as eaten**, and open Passport to see the entry. In online Discover, select a city and area and try “I’d like spicy Chinese food.” Open a result’s menu link to check the suggestion.
 
 [Detailed setup and API key links](TEAM_GUIDE.md#run-the-final-build) · [More sample photos](examples/snap/README.md)
 
@@ -103,7 +111,7 @@ The local map uses OpenStreetMap by default and needs an internet connection for
 
 Keep `recognition.py`, `food_vocabulary.py`, and `recognition_config.json` with `app.py`. The original nine-family acceptance threshold remains tied to its frozen vocabulary fingerprint. The broader vocabulary contains 387 candidate labels and aliases for editable suggestions; it is explicitly provisional and is not covered by the old calibration. Changing either vocabulary invalidates the configuration fingerprint instead of silently reusing a threshold. Text prototypes are batched once and cached under the platform cache directory; set `CHOOB_TEXT_CACHE` to choose another location.
 
-On an Intel Mac with Python 3.11 and PyTorch 2.2.2, install `requirements-intel-py311.txt`. It keeps NumPy below 2 for compatibility and does not add another recognition provider or require credentials.
+The older `requirements-intel-py311.txt` is retained for earlier Intel Mac / Python 3.11 environments. It was not validated in the final setup audit; the tested submission route is the macOS ARM64 / Python 3.12 profile above. Windows, Intel Mac and Docker should be checked separately before relying on those platforms.
 
 ## Recognition evaluation
 
@@ -111,16 +119,9 @@ The original 50-photo baseline remains in `evaluation/results/README.md`. The si
 
 See `evaluation/results/optimization_report.md` and `evaluation/results/clip_comparison.json` for results, individual predictions, limitations and sampling details. These are fixed dataset subsets; do not present them as overall real-world accuracy.
 
-`Choob_Recognition_Optimized.ipynb` is a clean Colab entry point containing the same recognizer and comparison runner. Use a fresh CPU runtime and run its cells in order. Its opening summary records the completed run; code outputs are deliberately empty until it is executed again.
+`Choob_Recognition_Optimized.ipynb` preserves the historical October 23 nine-family experiment. It is not a reproduction of the final 387-label or multi-dish application. Its embedded historical implementation and runner must be used together; do not substitute the current recognizer when reproducing that frozen experiment.
 
-To reproduce in Colab with `recognition.py` in the current directory and the original `model` / `processor` loaded:
-
-```python
-exec(open("evaluation/run_clip_comparison.py").read())
-summary, records = run_comparison(model, processor)
-```
-
-Use a fresh output directory for an intentional new experiment. A completed comparison is protected against accidental overwrite. Source photos are downloaded to that runtime and are not bundled with this project.
+For the final application's 72-image regression, use [run_final_snap.py and its instructions](evaluation/results/final_snap_2026_11_24/README.md). For a fresh live Discover campaign, use [run_final_discover.py and the 12-query protocol](evaluation/results/final_discover_2026_11_24/README.md). These evaluation runners require a Git checkout, their documented assets, and a new output directory. A ZIP download is sufficient to run the application itself.
 
 Regression checks use synthetic fixtures and do not download weights:
 
@@ -146,20 +147,24 @@ This is **Flask + HTML, not a Streamlit app**. Streamlit Community Cloud is not 
 
 **Shared hosted URL: pending deployment and verification.**
 
-The bundled `Dockerfile` listens on `$PORT` (default 7860), installs CPU PyTorch and runs as user ID 1000. During image construction, `cache_models.py` downloads CLIP and the exact MiniLM revision recorded in the recommendation manifest into a cache owned by the runtime user. The container then uses those cached weights offline. The initial image build needs internet access and may take several minutes; builds fail if required weights cannot be downloaded. No model weights are committed to GitHub.
+The bundled `Dockerfile` listens on `$PORT` (default 7860), installs CPU PyTorch and runs as user ID 1000. During image construction, `cache_models.py` downloads CLIP and the exact MiniLM revision recorded in the recommendation manifest into a cache owned by the runtime user. The runtime may contact Hugging Face for model metadata or additional public assets; keep network access available. The initial image build needs internet access and may take several minutes; builds fail if required weights cannot be downloaded. No model weights are committed to GitHub.
 
 Build and run locally with Docker:
 
 ```bash
 docker build -t choob-app .
+# Local preset choices, Snap and Passport; no MLX free-text worker is bundled.
 docker run --rm -p 7860:7860 choob-app
+
+# Live menus: first set your own keys in the host shell; pass their variable names.
+docker run --rm -p 7860:7860 -e CHOOB_DISCOVER_PROVIDER=gemini_tavily -e GEMINI_API_KEY -e TAVILY_API_KEY choob-app
 ```
 
-For Hugging Face Spaces, create a **Docker** Space and copy the application files, including this README's metadata, the Dockerfile and all three recommendation export files in `data/`. Current HF rules require paid-plan eligibility for a new Docker Space even when selecting CPU Basic; check the account before creation. [Official Spaces hardware rules](https://huggingface.co/docs/hub/spaces-gpus).
+For Hugging Face Spaces, use a **Docker** Space and include the README metadata, Dockerfile and all three recommendation export files in `data/`. Check current account eligibility and memory limits with the host before deployment. [Spaces documentation](https://huggingface.co/docs/hub/spaces-overview).
 
-Hosting services vary in RAM, disk and CPU limits. Render's Free service has only 512 MB RAM, which is insufficient for the full PyTorch + CLIP + MiniLM application; use a host with enough memory and verify both AI endpoints after deployment. CPU hosting may experience slow cold starts. A GPU is not required. [Render compute plans](https://render.com/docs/compute-plans).
+Hosting services vary in RAM, disk and CPU limits. Verify memory capacity, cold starts and both AI endpoints on the selected host. A GPU is not required for the documented CPU route. The final setup audit did not build Docker or verify a hosted deployment. [Render compute plans](https://render.com/docs/compute-plans).
 
-## Before the final presentation
+## Further validation
 
 - Upload **two or more new, unseen photos**, not just the embedded example image.
 - Test recognition across multiple categories, noting label limitations.
@@ -187,7 +192,9 @@ index.html          Original Choob UI (updated, no frameworks required)
 evaluation/         Reproducible comparisons and recorded results
 tests/              Recognition and recommendation regression checks
 data/               Recommendation CSV, embeddings, manifest and input contract
-requirements.txt    Python dependencies
+requirements.txt    Cross-platform dependency ranges
+requirements-macos-arm64-py312-verified.txt  Tested platform-specific dependency lock
+docs/SUBMISSION.md  Submission scope, evidence and resource references
 requirements-intel-py311.txt  Intel Mac / Python 3.11 / PyTorch 2.2.2 profile
 Dockerfile          Deployment option
 cache_models.py     Cache public model weights during Docker image construction

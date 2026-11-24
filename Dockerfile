@@ -16,7 +16,6 @@ COPY --chown=appuser:appuser . .
 USER appuser
 # Download into the image as the same user that will run the application.
 RUN python cache_models.py
-ENV HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 
 EXPOSE 7860
 CMD ["sh", "-c", "gunicorn -w 1 -b 0.0.0.0:${PORT:-7860} --timeout 180 app:app"]

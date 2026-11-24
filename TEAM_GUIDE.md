@@ -4,31 +4,31 @@ The [Choob repository](https://github.com/YeZiyu17/choob-app) opens on the `fina
 
 ## Run the Final Build
 
-1. Install **Python 3.11**. On Windows, select **Add Python to PATH** during installation.
+1. Install **Python 3.12**. The verified setup used macOS ARM64 and Python 3.12.14; the Windows commands are not a claim of Windows testing. On Windows, select **Add Python to PATH** during installation.
 2. From the repository homepage, choose **Code → Download ZIP** and extract it. Open Terminal (macOS) or Command Prompt (Windows) in the extracted folder that contains `start_choob.py` and `requirements.txt`.
 3. Create and activate the virtual environment for your operating system.
 
    **macOS (Terminal)**
 
    ```bash
-   python3.11 -m venv .venv
+   python3.12 -m venv .venv
    source .venv/bin/activate
    ```
 
    **Windows (Command Prompt)**
 
    ```bat
-   py -3.11 -m venv .venv
+   py -3.12 -m venv .venv
    .venv\Scripts\activate.bat
    ```
 
-4. Install the dependencies with `python -m pip install -r requirements.txt`. On an **Intel Mac**, run `python -m pip install -r requirements-intel-py311.txt` instead.
+4. Install with `python -m pip install -r requirements.txt`. For the recorded **macOS ARM64 / Python 3.12** package set, use `python -m pip install -r requirements-macos-arm64-py312-verified.txt` instead, then run `python -m pip check`. The older Intel/Python 3.11 profile remains unverified by this audit.
 5. Choose one startup command in the same terminal.
 
    - **Start without API keys** with `python start_choob.py --local`. You can scan a photo, log it in Passport and use the preset choices in Discover with the bundled Philadelphia data.
    - **Run Discover with live menus** with `python start_choob.py`. Enter your own [Gemini key](https://aistudio.google.com/app/apikey) and [Tavily key](https://app.tavily.com/home) when prompted. Input is hidden.
 
-6. Keep the terminal running and open [http://127.0.0.1:7861/](http://127.0.0.1:7861/) in a browser on the same computer. Use the [checklist below](#final-checklist) to try Snap and Discover. The first scan downloads the recognition model and takes longer. Later scans reuse the cached model.
+6. Keep the terminal running and open [http://127.0.0.1:7861/](http://127.0.0.1:7861/) in a browser on the same computer. Use the [checklist below](#final-checklist) to try Snap and Discover. Keep an internet connection for public model downloads and metadata lookup. The recorded clean-environment check reused public model assets and did not test a first download.
 
 Press `Ctrl+C` in the terminal to stop Choob. For later sessions, activate the same virtual environment and run your chosen startup command again. If port 7861 is busy, add `--port 7863` to that command and open the address printed in the terminal.
 
@@ -45,6 +45,10 @@ See [Mobile instructions and recorded tests](MOBILE_TESTING.md) for Home Screen
 steps and HTTPS requirements. An updated final build appears after updating the
 computer's code, restarting the service when needed, and refreshing the phone.
 Keep the same host/port to retain the same browser storage.
+
+## Final documentation handoff
+
+Use the [English report](docs/Choob_Technical_Report_Final.docx), [submission verification and resources](docs/SUBMISSION.md), and the recorded [final evaluations](README.md#final-documentation-submission). A documented, verified local setup is the chosen working-application submission route; no hosted URL is claimed. The raw private Yelp inputs are not needed to run the supplied app exports, but are needed to reproduce the annotation rebuild.
 
 ## Final checklist
 
