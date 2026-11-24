@@ -1,0 +1,100 @@
+{
+  "cases": 72,
+  "http_status_counts": {
+    "200": 72
+  },
+  "strict": {
+    "single_main_result_top1": {
+      "numerator": 40,
+      "denominator": 60,
+      "rate": 0.6666666666666666
+    },
+    "single_main_result_top3": {
+      "numerator": 55,
+      "denominator": 60,
+      "rate": 0.9166666666666666
+    },
+    "single_output_exact_target_set": {
+      "numerator": 40,
+      "denominator": 60,
+      "rate": 0.6666666666666666
+    },
+    "mixed_primary_target_recall": {
+      "numerator": 11,
+      "denominator": 26,
+      "rate": 0.4230769230769231
+    },
+    "mixed_photos_all_targets_found": {
+      "numerator": 2,
+      "denominator": 12,
+      "rate": 0.16666666666666666
+    },
+    "mixed_photos_exact_target_set": {
+      "numerator": 0,
+      "denominator": 12,
+      "rate": 0.0
+    },
+    "mixed_extra_suggestions_relative_to_scored_targets": 9,
+    "mixed_photos_with_extra_suggestions": 7
+  },
+  "alias_aware": {
+    "single_main_result_top1": {
+      "numerator": 40,
+      "denominator": 60,
+      "rate": 0.6666666666666666
+    },
+    "single_main_result_top3": {
+      "numerator": 55,
+      "denominator": 60,
+      "rate": 0.9166666666666666
+    },
+    "single_output_exact_target_set": {
+      "numerator": 40,
+      "denominator": 60,
+      "rate": 0.6666666666666666
+    },
+    "mixed_primary_target_recall": {
+      "numerator": 11,
+      "denominator": 26,
+      "rate": 0.4230769230769231
+    },
+    "mixed_photos_all_targets_found": {
+      "numerator": 2,
+      "denominator": 12,
+      "rate": 0.16666666666666666
+    },
+    "mixed_photos_exact_target_set": {
+      "numerator": 0,
+      "denominator": 12,
+      "rate": 0.0
+    },
+    "mixed_extra_suggestions_relative_to_scored_targets": 9,
+    "mixed_photos_with_extra_suggestions": 7
+  },
+  "descriptive_endpoint_timing": {
+    "n": 72,
+    "first_request_seconds": 10.275944917000743,
+    "mean_seconds": 0.8111385920275198,
+    "median_seconds": 0.6582930624990695,
+    "min_seconds": 0.6133921670007112,
+    "max_seconds": 10.275944917000743,
+    "definition": "Sequential Flask test-client wall time; first request includes recognizer/text-cache setup. Excludes model loading, networking, browser upload/rendering and production concurrency. Descriptive only."
+  },
+  "per_round": {
+    "round1": {
+      "cases": 36,
+      "single_top1_strict": 20,
+      "single_top3_strict": 29,
+      "mixed_targets_found_strict": 6
+    },
+    "round2": {
+      "cases": 36,
+      "single_top1_strict": 20,
+      "single_top3_strict": 26,
+      "mixed_targets_found_strict": 5
+    }
+  },
+  "created_utc": "2026-11-24T21:22:12.386086+00:00",
+  "executed_local_commit": "4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+  "manifest_sha256": "747ca025899b992ad739279cb97386dc885ba3b037b0db57512befed462e7fe4"
+}

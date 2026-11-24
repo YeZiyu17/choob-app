@@ -1,0 +1,41 @@
+{
+  "source": "GitHub compare_commits connector; stable named commit comparison",
+  "comparison_url": "https://github.com/YeZiyu17/choob-app/compare/4be1cda19a19f2e4f893ff6ee6b75f945eb358c4...97c44fde4a4cc9f03dea77f18dd111f2313e68f8",
+  "interpretation": "Inference executed the local 4be1cda commit. The named remote revision 97c44fd changes README.md and TEAM_GUIDE.md only; executable runtime files are unchanged between these two commits. This does not claim that the evaluator checked out 97c44fd.",
+  "repository_full_name": "YeZiyu17/choob-app",
+  "base": "4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+  "head": "97c44fde4a4cc9f03dea77f18dd111f2313e68f8",
+  "status": "ahead",
+  "ahead_by": 1,
+  "behind_by": 0,
+  "total_commits": 1,
+  "too_large": null,
+  "base_commit": {
+    "sha": "4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+    "url": "https://api.github.com/repos/YeZiyu17/choob-app/commits/4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+    "html_url": "https://github.com/YeZiyu17/choob-app/commit/4be1cda19a19f2e4f893ff6ee6b75f945eb358c4"
+  },
+  "merge_base_commit": {
+    "sha": "4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+    "url": "https://api.github.com/repos/YeZiyu17/choob-app/commits/4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+    "html_url": "https://github.com/YeZiyu17/choob-app/commit/4be1cda19a19f2e4f893ff6ee6b75f945eb358c4"
+  },
+  "files": [
+    {
+      "filename": "README.md",
+      "status": "modified",
+      "additions": 35,
+      "deletions": 18,
+      "changes": 53,
+      "previous_filename": null
+    },
+    {
+      "filename": "TEAM_GUIDE.md",
+      "status": "modified",
+      "additions": 22,
+      "deletions": 25,
+      "changes": 47,
+      "previous_filename": null
+    }
+  ]
+}

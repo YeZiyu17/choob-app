@@ -1,0 +1,49 @@
+[
+  {
+    "check": "missing image directory",
+    "exit_code": 2,
+    "expected_error_observed": "No image directory",
+    "passed": true
+  },
+  {
+    "check": "hash mismatch stops before model import",
+    "exit_code": 2,
+    "expected_error_observed": "Image hash mismatch",
+    "passed": true
+  },
+  {
+    "check": "existing output preserved",
+    "exit_code": 2,
+    "expected_error_observed": "previous results/protocol are never overwritten",
+    "passed": true
+  },
+  {
+    "check": "independent recomputation from full raw API responses",
+    "passed": true,
+    "single_top1": [
+      40,
+      60
+    ],
+    "single_top3": [
+      55,
+      60
+    ],
+    "mixed_targets": [
+      11,
+      26
+    ],
+    "mixed_extra_suggestions": 9,
+    "mixed_all_targets_photos": [
+      2,
+      12
+    ],
+    "mixed_exact_target_photos": [
+      0,
+      12
+    ]
+  },
+  {
+    "check": "complete distinct inputs, protocol-before-inference ordering, frozen runner and manifest fingerprints",
+    "passed": true
+  }
+]
