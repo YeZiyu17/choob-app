@@ -1,6 +1,6 @@
 # Final documentation submission
 
-Submit the seven-page [English technical report](Choob_Technical_Report_Final.docx), this public `final` repository, and the documented local application route. The verified platform is macOS ARM64 with Python 3.12.14. Keep a network connection available; live Discover requires your own Gemini and Tavily keys. A hosted application is not claimed for this chosen local route.
+Submit the English technical report separately through the course's designated channel, alongside this public `final` repository and the documented local application route. The report is not stored in this repository. The verified platform is macOS ARM64 with Python 3.12.14. Keep a network connection available; live Discover requires your own Gemini and Tavily keys. A hosted application is not claimed for this chosen local route.
 
 ## Requirement mapping
 
