@@ -13,7 +13,7 @@ Choob helps you remember a dish you loved and decide what to eat next. Scan a me
 
 ## Final documentation submission
 
-- [English technical report](docs/Choob_Technical_Report_Final.docx): seven pages including references.
+- The English technical report is submitted separately through the course's designated channel.
 - [Submission verification and resource register](docs/SUBMISSION.md): requirement mapping, tested setup, evidence links and remaining limitations.
 - [Final Snap regression](evaluation/results/final_snap_2026_11_24/README.md): 40/60 single-dish Top 1; 55/60 target-in-Top-3. The 72 images are a known regression set.
 - [Fresh Discover evaluation](evaluation/results/final_discover_2026_11_24/README.md): 12/12 requests returned cards; AI-assisted source audit passed 20/25 cards. This is not a human usability study.

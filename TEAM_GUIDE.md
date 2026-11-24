@@ -48,7 +48,7 @@ Keep the same host/port to retain the same browser storage.
 
 ## Final documentation handoff
 
-Use the [English report](docs/Choob_Technical_Report_Final.docx), [submission verification and resources](docs/SUBMISSION.md), and the recorded [final evaluations](README.md#final-documentation-submission). A documented, verified local setup is the chosen working-application submission route; no hosted URL is claimed. The raw private Yelp inputs are not needed to run the supplied app exports, but are needed to reproduce the annotation rebuild.
+Submit the English technical report separately through the course's designated channel. Use the [submission verification and resources](docs/SUBMISSION.md) and the recorded [final evaluations](README.md#final-documentation-submission) alongside it. A documented, verified local setup is the chosen working-application submission route; no hosted URL is claimed. The raw private Yelp inputs are not needed to run the supplied app exports, but are needed to reproduce the annotation rebuild.
 
 ## Final checklist
 
