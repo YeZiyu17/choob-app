@@ -1,0 +1,1113 @@
+{
+  "audit_date": "2026-11-24",
+  "source": "/Users/yeziyu/Documents/ChatGPT/COMM 586/tmp/submission-audit-2026-11-24/source",
+  "baseline_commit_before_submission_check": "4ebda3596cc6898f698912df553d87346e9fe5d2",
+  "app_sha256": "8952aae6549bf867f45adf511eb9b17a0a23a14c1b745051e41aef6bfade9509",
+  "source_sha256": {
+    "app.py": "8952aae6549bf867f45adf511eb9b17a0a23a14c1b745051e41aef6bfade9509",
+    "cache_models.py": "a10adecc722dd202f40632bc66e19dcd1c2e968aaa2b0e8788dba158d86d15fe",
+    "recognition.py": "8b0ce3d037dc38cdc53b91f5107652b3c33a4606369569c0a50ff4d9daa27eba",
+    "multi_dish.py": "4e49622fff3d92024efcaa7f3645119a669d2b8d5bd9555214aafa2090878f06",
+    "food_vocabulary.py": "d95702ae4fdf9e0e45f9653bf4649b1ecd01ea5ebe2b0305742d6c4248b4ba31",
+    "recognition_config.json": "f495348b28082af9bc8284e25f28e80da6f603e352b23b74ee54c54de50a6a1a"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "platform": "macOS-15.5-arm64-arm-64bit",
+  "environment_isolation": {
+    "is_venv": true,
+    "include_system_site_packages": false,
+    "user_site_enabled": false,
+    "pass": true
+  },
+  "first_model_download_test": false,
+  "model_cache_reused": "/Users/yeziyu/.cache/huggingface/hub",
+  "model_access": "Public Hugging Face model metadata and file access allowed; existing cache reused.",
+  "online_discover_requests": 0,
+  "public_model_requests": [
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/adapter_config.json",
+      "status": 404
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/processor_config.json",
+      "status": 404
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json",
+      "status": 404
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/video_preprocessor_config.json",
+      "status": 404
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json",
+      "status": 404
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json",
+      "status": 307
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/additional_chat_templates",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "url": "https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2",
+      "status": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/config.json",
+      "status": 307
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/config.json",
+      "status": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/config.json",
+      "status": 307
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/config.json",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://huggingface.co/api/models/openai/clip-vit-base-patch32",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://huggingface.co/api/models/openai/clip-vit-base-patch32/commits/main",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://huggingface.co/api/models/openai/clip-vit-base-patch32/discussions",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://huggingface.co/api/models/openai/clip-vit-base-patch32/commits/refs%2Fpr%2F66",
+      "status": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/refs%2Fpr%2F66/model.safetensors.index.json",
+      "status": 404
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/refs%2Fpr%2F66/model.safetensors",
+      "status": 302
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json",
+      "status": 307
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json",
+      "status": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json",
+      "status": 404
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/tokenizer_config.json",
+      "status": 307
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/tokenizer_config.json",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://huggingface.co/api/models/openai/clip-vit-base-patch32/tree/main/additional_chat_templates",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "url": "https://huggingface.co/api/models/openai/clip-vit-base-patch32/tree/main",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://huggingface.co/api/models/openai/clip-vit-base-patch32/tree/main/additional_chat_templates",
+      "status": 404
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json",
+      "status": 404
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/chat_template.json",
+      "status": 404
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/chat_template.jinja",
+      "status": 404
+    },
+    {
+      "method": "HEAD",
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/audio_tokenizer_config.json",
+      "status": 404
+    }
+  ],
+  "blocked_external_request_attempts": [],
+  "checks": [
+    {
+      "name": "GET /",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "content_type": "text/html; charset=utf-8",
+      "body_bytes": 197229
+    },
+    {
+      "name": "GET /api/status",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "response": {
+        "api": "running",
+        "recognition": "CLIP calibrated legacy gate + provisional broad food suggestions",
+        "recognition_config_present": true,
+        "recommendation_data_present": true,
+        "recommendation_embeddings_present": true
+      }
+    },
+    {
+      "name": "GET /api/recommendation-summary",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "response": {
+        "build_version": "5a7c04c0a5f0",
+        "created_utc": "2026-10-29T08:24:35.975357+00:00",
+        "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "extracted_review_dish_records": 8667,
+        "extraction_model": "Codex assistant annotation (exact runtime version not recorded)",
+        "extraction_route": "supplied_codex_annotations",
+        "failed_reviews": 0,
+        "human_evaluation_completed": false,
+        "input_restaurants": 123,
+        "input_reviews": 3526,
+        "manifest_sha256": "e27a685839eee9a64de449f22e5513b69ef1807fe4b954d6c06273db58e83fcb",
+        "recommendation_rows": 5993,
+        "restaurant_catalog_size": 5855,
+        "restaurants_with_recommendations": 123,
+        "selected_restaurants": 123,
+        "selected_reviews": 3526,
+        "source_version": "4c539c2a290d",
+        "zero_dish_reviews": 361
+      }
+    },
+    {
+      "name": "GET /service-worker.js",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "content_type": "text/javascript; charset=utf-8",
+      "body_bytes": 1439
+    },
+    {
+      "name": "GET /offline.html",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "content_type": "text/html; charset=utf-8",
+      "body_bytes": 1309
+    },
+    {
+      "name": "GET /static/manifest.webmanifest",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "response": {
+        "id": "/",
+        "name": "Choob \u2014 Food Passport",
+        "short_name": "Choob",
+        "description": "Snap a dish, keep your food passport, and discover your next meal.",
+        "lang": "en",
+        "start_url": "/",
+        "scope": "/",
+        "display": "standalone",
+        "background_color": "#f7f4ed",
+        "theme_color": "#f7f4ed",
+        "prefer_related_applications": false,
+        "icons": [
+          {
+            "src": "/static/icons/choob-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+          },
+          {
+            "src": "/static/icons/choob-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+          },
+          {
+            "src": "/static/icons/choob-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GET /api/passport-map-config",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "response": {
+        "googleMapsKey": "",
+        "googleMapsMapId": "DEMO_MAP_ID"
+      }
+    },
+    {
+      "name": "Snap missing upload",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "response": {
+        "error": "Upload a JPG, PNG or WebP food photo."
+      }
+    },
+    {
+      "name": "Snap empty",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "response": {
+        "error": "The uploaded file is empty."
+      }
+    },
+    {
+      "name": "Snap corrupt",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "response": {
+        "error": "The file is not a valid image."
+      }
+    },
+    {
+      "name": "Snap pixel limit",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "response": {
+        "error": "Please use an image smaller than 16 megapixels."
+      }
+    },
+    {
+      "name": "Snap byte limit",
+      "status": 413,
+      "expected_status": 413,
+      "pass": true,
+      "response": {
+        "error": "Photo must be smaller than 8 MB."
+      }
+    },
+    {
+      "name": "Discover Gemini config without keys",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "response": {
+        "cities": [
+          "Philadelphia",
+          "Los Angeles",
+          "New York",
+          "Chicago",
+          "San Francisco"
+        ],
+        "city": "Philadelphia",
+        "neighborhoods": {
+          "Los Angeles": [
+            "Downtown",
+            "Koreatown",
+            "San Gabriel Valley"
+          ],
+          "New York": [
+            "Manhattan",
+            "Flushing",
+            "Brooklyn"
+          ],
+          "Philadelphia": [
+            "Center City",
+            "South Philly",
+            "University City"
+          ]
+        },
+        "online_ready": false,
+        "provider": "gemini_tavily"
+      }
+    },
+    {
+      "name": "Discover invalid schema 1",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "response": {
+        "error": "Send a message to start Discover."
+      }
+    },
+    {
+      "name": "Discover invalid schema 2",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "request": [],
+      "response": {
+        "error": "Send a message to start Discover."
+      }
+    },
+    {
+      "name": "Discover invalid schema 3",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "request": {},
+      "response": {
+        "error": "Send a message of 1\u2013400 characters and valid preferences."
+      }
+    },
+    {
+      "name": "Discover invalid schema 4",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "request": {
+        "message": ""
+      },
+      "response": {
+        "error": "Send a message of 1\u2013400 characters and valid preferences."
+      }
+    },
+    {
+      "name": "Discover invalid schema 5",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "request": {
+        "message": 1
+      },
+      "response": {
+        "error": "Send a message of 1\u2013400 characters and valid preferences."
+      }
+    },
+    {
+      "name": "Discover invalid schema 6",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "request": {
+        "message": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "response": {
+        "error": "Send a message of 1\u2013400 characters and valid preferences."
+      }
+    },
+    {
+      "name": "Discover invalid schema 7",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "request": {
+        "message": "Japanese",
+        "preferences": []
+      },
+      "response": {
+        "error": "Send a message of 1\u2013400 characters and valid preferences."
+      }
+    },
+    {
+      "name": "Discover invalid schema 8",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "request": {
+        "message": "Japanese",
+        "city": "Not a city"
+      },
+      "response": {
+        "error": "Choose a city from the Discover city list."
+      }
+    },
+    {
+      "name": "Discover invalid schema 9",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "request": {
+        "message": "Japanese",
+        "neighborhood": "Not a neighborhood"
+      },
+      "response": {
+        "error": "Choose a neighborhood from the list for this city."
+      }
+    },
+    {
+      "name": "Discover invalid schema 10",
+      "status": 400,
+      "expected_status": 400,
+      "pass": true,
+      "request": {
+        "message": "Japanese",
+        "partner": []
+      },
+      "response": {
+        "error": "Choose someone from Connect to plan a meal with."
+      }
+    },
+    {
+      "name": "Discover unsupported dietary request",
+      "status": 422,
+      "expected_status": 422,
+      "pass": true,
+      "response": {
+        "error": "This version matches taste, but cannot verify dietary or allergy requirements from reviews. Try a dish or flavor preference."
+      }
+    },
+    {
+      "name": "Discover Gemini request without keys",
+      "status": 503,
+      "expected_status": 503,
+      "pass": true,
+      "response": {
+        "error": "Gemini + Tavily needs both API keys configured on the local server."
+      }
+    },
+    {
+      "name": "Discover OpenAI request without key",
+      "status": 503,
+      "expected_status": 503,
+      "pass": true,
+      "response": {
+        "error": "Online Discover needs an OpenAI API key configured on the local server."
+      }
+    },
+    {
+      "name": "Discover local cuisine turn",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "response": {
+        "ai_used": false,
+        "city": "Philadelphia",
+        "options": [
+          "Spicy",
+          "Crispy",
+          "Fresh & light",
+          "Rich & creamy",
+          "Sweet",
+          "Any flavor"
+        ],
+        "preferences": {
+          "cuisine": "Japanese",
+          "dish": "",
+          "taste": ""
+        },
+        "provider": "local",
+        "reply": "Sounds like Japanese. What kind of flavor are you in the mood for?",
+        "results": [],
+        "stage": "taste"
+      }
+    },
+    {
+      "name": "Discover local taste turn",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "response": {
+        "ai_used": false,
+        "city": "Philadelphia",
+        "options": [],
+        "preferences": {
+          "cuisine": "Japanese",
+          "dish": "",
+          "taste": "Spicy"
+        },
+        "provider": "local",
+        "reply": "I found 3 dishes matching your picks in Philadelphia reviews.",
+        "results": [
+          {
+            "cuisine": "Japanese",
+            "dish_name": "Spicy Tuna Roll",
+            "restaurant_name": "Crazy Sushi",
+            "review_count": 2,
+            "taste_match": "spicy"
+          },
+          {
+            "cuisine": "Japanese",
+            "dish_name": "Philly Steak Dumplings",
+            "restaurant_name": "Noobar",
+            "review_count": 1,
+            "taste_match": "spicy"
+          },
+          {
+            "cuisine": "Japanese",
+            "dish_name": "Crunchy Spicy Tuna Roll",
+            "restaurant_name": "Engimono Sushi",
+            "review_count": 1,
+            "taste_match": "spicy"
+          }
+        ],
+        "stage": "results"
+      }
+    },
+    {
+      "name": "Snap real cached CLIP pizza",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "response": {
+        "accepted": true,
+        "alternatives": [
+          {
+            "category": "Pasta",
+            "cuisine": "Italian",
+            "dish_name": "Pasta",
+            "match_score": 0.26771
+          },
+          {
+            "category": "Sandwiches & Burgers",
+            "cuisine": "American",
+            "dish_name": "Hamburger",
+            "match_score": 0.23079
+          }
+        ],
+        "candidate_label_count": 387,
+        "category": "Pizza",
+        "cuisine": "Italian",
+        "dish_name": "Pizza",
+        "dishes": [
+          {
+            "category": "Pizza",
+            "cuisine": "Italian",
+            "dish_name": "Pizza",
+            "rank_scope": "photo",
+            "ranked_guesses": [
+              {
+                "category": "Pizza",
+                "cuisine": "Italian",
+                "dish_name": "Pizza",
+                "match_score": 0.31942
+              },
+              {
+                "category": "Pasta",
+                "cuisine": "Italian",
+                "dish_name": "Pasta",
+                "match_score": 0.26771
+              },
+              {
+                "category": "Sandwiches & Burgers",
+                "cuisine": "American",
+                "dish_name": "Hamburger",
+                "match_score": 0.23079
+              }
+            ],
+            "relative_score": 0.99419
+          }
+        ],
+        "message": "Confirm or correct this suggested dish before logging.",
+        "model": "CLIP ViT-B/32 \u00b7 prompt ensembles",
+        "needs_user_confirmation": true,
+        "rank_scope": "photo",
+        "ranked_guesses": [
+          {
+            "category": "Pizza",
+            "cuisine": "Italian",
+            "dish_name": "Pizza",
+            "match_score": 0.31942
+          },
+          {
+            "category": "Pasta",
+            "cuisine": "Italian",
+            "dish_name": "Pasta",
+            "match_score": 0.26771
+          },
+          {
+            "category": "Sandwiches & Burgers",
+            "cuisine": "American",
+            "dish_name": "Hamburger",
+            "match_score": 0.23079
+          }
+        ],
+        "recognition_mode": "single",
+        "relative_score": 0.99419,
+        "reviewable": true,
+        "score_label": "Match score",
+        "score_note": "Calibrated only for the original nine-family scope gate; confirm or rename the dish.",
+        "status": "supported",
+        "suggested_dish": "Pizza",
+        "suggestion_mode": "calibrated_supported",
+        "supported_labels": [
+          "ramen",
+          "sushi",
+          "dumplings",
+          "fried rice",
+          "pad thai",
+          "pizza",
+          "pasta",
+          "hamburger",
+          "tacos"
+        ]
+      },
+      "image_sha256": "0ab969c6728501b468bcde32b77b25c9bd86c0f6342c4772065c6f4efa5549f0",
+      "elapsed_seconds": 11.502,
+      "expected_label": "pizza",
+      "returned_labels": [
+        "Pizza"
+      ],
+      "expected_label_observed": true
+    },
+    {
+      "name": "Snap real cached CLIP sushi",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "response": {
+        "accepted": true,
+        "alternatives": [
+          {
+            "category": "Dumplings",
+            "cuisine": "Chinese / Asian",
+            "dish_name": "Dumplings",
+            "match_score": 0.26177
+          },
+          {
+            "category": "Noodles",
+            "cuisine": "Japanese",
+            "dish_name": "Ramen",
+            "match_score": 0.22502
+          }
+        ],
+        "candidate_label_count": 387,
+        "category": "Seafood",
+        "cuisine": "Japanese",
+        "dish_name": "Sushi",
+        "dishes": [
+          {
+            "category": "Seafood",
+            "cuisine": "Japanese",
+            "dish_name": "Sushi",
+            "rank_scope": "region",
+            "ranked_guesses": [
+              {
+                "category": "Seafood",
+                "cuisine": "Japanese",
+                "dish_name": "Sushi",
+                "match_score": 0.34342
+              },
+              {
+                "category": "Dumplings",
+                "cuisine": "Chinese / Asian",
+                "dish_name": "Dumplings",
+                "match_score": 0.27676
+              },
+              {
+                "category": "Pasta",
+                "cuisine": "Italian",
+                "dish_name": "Pasta",
+                "match_score": 0.24441
+              }
+            ],
+            "region": [
+              0,
+              0.29833333333333334,
+              0.3683333333333333,
+              0.7016666666666667
+            ],
+            "relative_score": 0.9986
+          },
+          {
+            "category": "Rice & noodles",
+            "cuisine": "Korean",
+            "dish_name": "Kimbap",
+            "rank_scope": "region",
+            "ranked_guesses": [
+              {
+                "category": "Rice & noodles",
+                "cuisine": "Korean",
+                "dish_name": "Kimbap",
+                "match_score": 0.34461
+              },
+              {
+                "category": "Seafood",
+                "cuisine": "Japanese",
+                "dish_name": "Sushi",
+                "match_score": 0.3244
+              },
+              {
+                "category": "Rice & noodles",
+                "cuisine": "Japanese",
+                "dish_name": "Onigiri",
+                "match_score": 0.3094
+              }
+            ],
+            "region": [
+              0.51,
+              0,
+              1,
+              0.49
+            ],
+            "relative_score": null
+          }
+        ],
+        "message": "Review the dishes suggested from different areas of this photo.",
+        "model": "CLIP ViT-B/32 \u00b7 prompt ensembles",
+        "needs_user_confirmation": true,
+        "rank_scope": "photo",
+        "ranked_guesses": [
+          {
+            "category": "Seafood",
+            "cuisine": "Japanese",
+            "dish_name": "Sushi",
+            "match_score": 0.30728
+          },
+          {
+            "category": "Dumplings",
+            "cuisine": "Chinese / Asian",
+            "dish_name": "Dumplings",
+            "match_score": 0.26177
+          },
+          {
+            "category": "Noodles",
+            "cuisine": "Japanese",
+            "dish_name": "Ramen",
+            "match_score": 0.22502
+          }
+        ],
+        "recognition_mode": "multi",
+        "relative_score": 0.98878,
+        "reviewable": true,
+        "score_label": "Match score",
+        "score_note": "Calibrated only for the original nine-family scope gate; confirm or rename the dish.",
+        "status": "supported",
+        "suggested_dish": "Sushi",
+        "suggestion_mode": "calibrated_supported",
+        "supported_labels": [
+          "ramen",
+          "sushi",
+          "dumplings",
+          "fried rice",
+          "pad thai",
+          "pizza",
+          "pasta",
+          "hamburger",
+          "tacos"
+        ]
+      },
+      "image_sha256": "ca7b3ba1b60c7125de70d7fc6ed87138461f99d1005ab4dfa968a9cf86c5b612",
+      "elapsed_seconds": 0.75,
+      "expected_label": "sushi",
+      "returned_labels": [
+        "Sushi",
+        "Kimbap"
+      ],
+      "expected_label_observed": true
+    },
+    {
+      "name": "Snap real cached CLIP hamburger",
+      "status": 200,
+      "expected_status": 200,
+      "pass": true,
+      "response": {
+        "accepted": true,
+        "alternatives": [
+          {
+            "category": "Other",
+            "cuisine": "Mexican",
+            "dish_name": "Tacos",
+            "match_score": 0.24263
+          },
+          {
+            "category": "Pasta",
+            "cuisine": "Italian",
+            "dish_name": "Pasta",
+            "match_score": 0.23745
+          }
+        ],
+        "candidate_label_count": 387,
+        "category": "Sandwiches & Burgers",
+        "cuisine": "American",
+        "dish_name": "Hamburger",
+        "dishes": [
+          {
+            "category": "Sandwiches & Burgers",
+            "cuisine": "American",
+            "dish_name": "Hamburger",
+            "rank_scope": "region",
+            "ranked_guesses": [
+              {
+                "category": "Sandwiches & Burgers",
+                "cuisine": "American",
+                "dish_name": "Hamburger",
+                "match_score": 0.33645
+              },
+              {
+                "category": "Other",
+                "cuisine": "Mexican",
+                "dish_name": "Tacos",
+                "match_score": 0.26713
+              },
+              {
+                "category": "Pasta",
+                "cuisine": "Italian",
+                "dish_name": "Pasta",
+                "match_score": 0.24349
+              }
+            ],
+            "region": [
+              0.29833333333333334,
+              0.29833333333333334,
+              0.7016666666666667,
+              0.7016666666666667
+            ],
+            "relative_score": 0.99877
+          },
+          {
+            "category": "Mains",
+            "cuisine": "Middle Eastern & North African",
+            "dish_name": "Kofta",
+            "rank_scope": "region",
+            "ranked_guesses": [
+              {
+                "category": "Mains",
+                "cuisine": "Middle Eastern & North African",
+                "dish_name": "Kofta",
+                "match_score": 0.33877
+              },
+              {
+                "category": "Breads & small plates",
+                "cuisine": "Middle Eastern & North African",
+                "dish_name": "Kibbeh",
+                "match_score": 0.31633
+              },
+              {
+                "category": "Mains",
+                "cuisine": "Middle Eastern & North African",
+                "dish_name": "Kebab",
+                "match_score": 0.31538
+              }
+            ],
+            "region": [
+              0.6316666666666666,
+              0,
+              1,
+              0.3683333333333333
+            ],
+            "relative_score": null
+          },
+          {
+            "category": "Soups & salads",
+            "cuisine": "General",
+            "dish_name": "Caesar Salad",
+            "rank_scope": "region",
+            "ranked_guesses": [
+              {
+                "category": "Soups & salads",
+                "cuisine": "General",
+                "dish_name": "Caesar Salad",
+                "match_score": 0.32618
+              },
+              {
+                "category": "Soups & salads",
+                "cuisine": "General",
+                "dish_name": "Salad",
+                "match_score": 0.31836
+              },
+              {
+                "category": "Sides & snacks",
+                "cuisine": "Latin American & Caribbean",
+                "dish_name": "Guacamole",
+                "match_score": 0.31762
+              }
+            ],
+            "region": [
+              0,
+              0.6316666666666666,
+              0.3683333333333333,
+              1
+            ],
+            "relative_score": null
+          },
+          {
+            "category": "Breads & snacks",
+            "cuisine": "General",
+            "dish_name": "Cheese Plate",
+            "rank_scope": "region",
+            "ranked_guesses": [
+              {
+                "category": "Breads & snacks",
+                "cuisine": "General",
+                "dish_name": "Cheese Plate",
+                "match_score": 0.30865
+              },
+              {
+                "category": "Mains & soups",
+                "cuisine": "Italian & European",
+                "dish_name": "Eggplant Parmesan",
+                "match_score": 0.29181
+              },
+              {
+                "category": "Mains & snacks",
+                "cuisine": "Japanese",
+                "dish_name": "Chawanmushi",
+                "match_score": 0.29089
+              }
+            ],
+            "region": [
+              0.6666666666666666,
+              0.6666666666666666,
+              1.0,
+              1.0
+            ],
+            "relative_score": null
+          }
+        ],
+        "message": "Review the dishes suggested from different areas of this photo.",
+        "model": "CLIP ViT-B/32 \u00b7 prompt ensembles",
+        "needs_user_confirmation": true,
+        "rank_scope": "photo",
+        "ranked_guesses": [
+          {
+            "category": "Sandwiches & Burgers",
+            "cuisine": "American",
+            "dish_name": "Hamburger",
+            "match_score": 0.34178
+          },
+          {
+            "category": "Other",
+            "cuisine": "Mexican",
+            "dish_name": "Tacos",
+            "match_score": 0.24263
+          },
+          {
+            "category": "Pasta",
+            "cuisine": "Italian",
+            "dish_name": "Pasta",
+            "match_score": 0.23745
+          }
+        ],
+        "recognition_mode": "multi",
+        "relative_score": 0.9999,
+        "reviewable": true,
+        "score_label": "Match score",
+        "score_note": "Calibrated only for the original nine-family scope gate; confirm or rename the dish.",
+        "status": "supported",
+        "suggested_dish": "Hamburger",
+        "suggestion_mode": "calibrated_supported",
+        "supported_labels": [
+          "ramen",
+          "sushi",
+          "dumplings",
+          "fried rice",
+          "pad thai",
+          "pizza",
+          "pasta",
+          "hamburger",
+          "tacos"
+        ]
+      },
+      "image_sha256": "0d49568672f2f27eb76605adf9090b8067f6cf840038e88446357d485a53acb1",
+      "elapsed_seconds": 0.651,
+      "expected_label": "hamburger",
+      "returned_labels": [
+        "Hamburger",
+        "Kofta",
+        "Caesar Salad",
+        "Cheese Plate"
+      ],
+      "expected_label_observed": true
+    }
+  ],
+  "limits": [
+    "Verified macOS ARM64 Python 3.12 only; Python 3.11 and Intel/Windows profiles were not tested.",
+    "Public pre-trained model cache is reused; first model download is not tested.",
+    "No online Discover inference or real keys are used.",
+    "Backend integration checks do not establish browser, phone, or UX behavior.",
+    "Bundled Snap photos are illustrative smoke tests, not independent accuracy data.",
+    "Public Hugging Face metadata/file requests are allowed and recorded; other external requests are blocked."
+  ],
+  "import": "pass",
+  "routes": [
+    "/",
+    "/api/discover/chat",
+    "/api/discover/config",
+    "/api/passport-map-config",
+    "/api/recognize",
+    "/api/recommend",
+    "/api/recommendation-summary",
+    "/api/reverse-geocode",
+    "/api/status",
+    "/offline.html",
+    "/service-worker.js",
+    "/static/<path:filename>"
+  ],
+  "installed_versions": {
+    "flask": "3.1.3",
+    "gunicorn": "23.0.0",
+    "numpy": "2.5.5",
+    "pandas": "2.3.3",
+    "pillow": "12.3.0",
+    "torch": "2.15.0",
+    "transformers": "4.57.6",
+    "sentence-transformers": "5.7.0",
+    "requests": "2.34.2",
+    "huggingface-hub": "0.36.2"
+  },
+  "http_startup": {
+    "pass": true,
+    "status": 200,
+    "response": {
+      "api": "running",
+      "recognition": "CLIP calibrated legacy gate + provisional broad food suggestions",
+      "recognition_config_present": true,
+      "recommendation_data_present": true,
+      "recommendation_embeddings_present": true
+    }
+  },
+  "discover_no_keys_ready_false": true,
+  "cache_info": "CacheInfo(hits=0, misses=1, maxsize=1, currsize=1)",
+  "pass_count": 31,
+  "check_count": 31,
+  "all_passed": true
+}

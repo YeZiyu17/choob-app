@@ -1,0 +1,35 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "base_executable": "/Users/yeziyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "platform": "macOS-15.5-arm64-arm-64bit",
+  "machine": "arm64",
+  "venv_command": [
+    "/Users/yeziyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "-m",
+    "venv",
+    "/Users/yeziyu/Documents/ChatGPT/COMM 586/tmp/submission-audit-2026-11-24/clean-venv"
+  ],
+  "system_site_packages": false,
+  "source_repo": "/Users/yeziyu/Documents/ChatGPT/COMM 586/choob-final",
+  "key_policy": "Known provider-key environment variables are masked; no key files or values are read. Hugging Face implicit tokens disabled.",
+  "model_cache": "Existing public Hugging Face model cache reused, with public metadata/file networking permitted. Not a first-time model download test.",
+  "source_snapshot": "/Users/yeziyu/Documents/ChatGPT/COMM 586/tmp/submission-audit-2026-11-24/source",
+  "source_commit": "4ebda3596cc6898f698912df553d87346e9fe5d2",
+  "requirements_sha256": "499a36dd521b154cd5e7136d38f22a4f2dba594734590485201e85dfe4be3864",
+  "requirements_same_as_local": true,
+  "pip_install_command": [
+    "clean-venv/bin/python",
+    "-m",
+    "pip",
+    "--isolated",
+    "install",
+    "--no-cache-dir",
+    "--log",
+    "pip-install.log",
+    "-r",
+    "/Users/yeziyu/Documents/ChatGPT/COMM 586/choob-final/requirements.txt"
+  ],
+  "pip_install_exit_code": 0,
+  "pip_check": "No broken requirements found.",
+  "baseline_documentation_python": "The baseline 4ebda35 guide recommended Python 3.11; the new verified route uses Python 3.12.14."
+}

@@ -1,0 +1,63 @@
+{
+  "audit_date": "2026-11-24",
+  "application_baseline": "4ebda3596cc6898f698912df553d87346e9fe5d2",
+  "application_loading_code_changed": false,
+  "dependency_install": "pass",
+  "pip_check": "No broken requirements found.",
+  "resolved_package_count": 43,
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "platform": "macOS-15.5-arm64-arm-64bit",
+  "environment_isolation": {
+    "is_venv": true,
+    "include_system_site_packages": false,
+    "user_site_enabled": false,
+    "pass": true
+  },
+  "route_checks_passed": 31,
+  "route_checks_total": 31,
+  "loopback_http_startup": true,
+  "public_model_network_requests": 32,
+  "blocked_external_request_attempts": 0,
+  "online_discover_requests": 0,
+  "first_model_download_test": false,
+  "model_cache_reused": true,
+  "explicit_model_override": false,
+  "asset_overlay_used": false,
+  "snap_outputs": [
+    {
+      "photo": "pizza",
+      "labels": [
+        "Pizza"
+      ],
+      "expected_label_observed": true
+    },
+    {
+      "photo": "sushi",
+      "labels": [
+        "Sushi",
+        "Kimbap"
+      ],
+      "expected_label_observed": true
+    },
+    {
+      "photo": "hamburger",
+      "labels": [
+        "Hamburger",
+        "Kofta",
+        "Caesar Salad",
+        "Cheese Plate"
+      ],
+      "expected_label_observed": true
+    }
+  ],
+  "limits": [
+    "Verified macOS ARM64 Python 3.12 only; Python 3.11 and Intel/Windows profiles were not tested.",
+    "Public pre-trained model cache is reused; first model download is not tested.",
+    "No online Discover inference or real keys are used.",
+    "Backend integration checks do not establish browser, phone, or UX behavior.",
+    "Bundled Snap photos are illustrative smoke tests, not independent accuracy data.",
+    "Public Hugging Face metadata/file requests are allowed and recorded; other external requests are blocked."
+  ],
+  "runner_sha256": "a2ce904b11c02cc27a653e090a1f38614a7b29b96e970cd0344cbe8117c2103c",
+  "platform_lock_sha256": "c6e70498ed30609bf5fccc70e91a65bc92b86590eca0232294fdb2eb62b12d4c"
+}

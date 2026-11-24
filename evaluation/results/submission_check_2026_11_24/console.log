@@ -1,0 +1,34 @@
+GET / 200 PASS
+GET /api/status 200 PASS
+GET /api/recommendation-summary 200 PASS
+GET /service-worker.js 200 PASS
+GET /offline.html 200 PASS
+GET /static/manifest.webmanifest 200 PASS
+GET /api/passport-map-config 200 PASS
+127.0.0.1 - - [24/Nov/2026 14:19:21] "GET /api/status HTTP/1.1" 200 -
+Snap missing upload 400 PASS
+Snap empty 400 PASS
+Snap corrupt 400 PASS
+Snap pixel limit 400 PASS
+Snap byte limit 413 PASS
+Discover Gemini config without keys 200 PASS
+Discover invalid schema 1 400 PASS
+Discover invalid schema 2 400 PASS
+Discover invalid schema 3 400 PASS
+Discover invalid schema 4 400 PASS
+Discover invalid schema 5 400 PASS
+Discover invalid schema 6 400 PASS
+Discover invalid schema 7 400 PASS
+Discover invalid schema 8 400 PASS
+Discover invalid schema 9 400 PASS
+Discover invalid schema 10 400 PASS
+Discover unsupported dietary request 422 PASS
+Discover Gemini request without keys 503 PASS
+Discover OpenAI request without key 503 PASS
+Discover local cuisine turn 200 PASS
+Discover local taste turn 200 PASS
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Snap real cached CLIP pizza 200 PASS
+Snap real cached CLIP sushi 200 PASS
+Snap real cached CLIP hamburger 200 PASS
+Saved /Users/yeziyu/Documents/ChatGPT/COMM 586/tmp/submission-audit-2026-11-24/source/evaluation/results/submission_check_2026_11_24/submission_smoke.json all_passed= True
