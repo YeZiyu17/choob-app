@@ -7,11 +7,42 @@ sdk: docker
 app_port: 7860
 ---
 
-# Choob — Shared Working AI Prototype
+# Choob — Food Passport
 
-Use the **`final` branch** for this round's shared application. Start with the [Team collaboration and local setup guide](TEAM_GUIDE.md). We collaborate through GitHub and run the app on our own computers. The earlier `main` and `choob-rehearsal` branches remain available.
+Choob helps you remember a dish you loved and decide what to eat next. Scan a meal photo in Snap, save it to your Passport, or tell Discover what you’re craving. The repository opens on `final`, the version used for the final presentation. The earlier versions are preserved in [rehearsal](https://github.com/YeZiyu17/choob-app/tree/rehearsal) and [archive](https://github.com/YeZiyu17/choob-app/tree/archive).
 
-This project preserves the group's **original Choob HTML UI**, connects food-photo upload and Discover to Python AI endpoints, and supports a phone layout and Home Screen entry through its PWA configuration.
+## Quick start for final
+
+1. Install **Python 3.11**. On this GitHub page, choose **Code → Download ZIP**, extract the ZIP, and open a terminal in the folder containing `start_choob.py` and `requirements.txt`.
+2. Create and activate a virtual environment using the commands for your computer.
+
+   **macOS (Terminal)**
+
+   ```bash
+   python3.11 -m venv .venv
+   source .venv/bin/activate
+   ```
+
+   **Windows (Command Prompt)**
+
+   ```bat
+   py -3.11 -m venv .venv
+   .venv\Scripts\activate.bat
+   ```
+
+3. Install the dependencies with `python -m pip install -r requirements.txt`. On an **Intel Mac**, use `python -m pip install -r requirements-intel-py311.txt` instead.
+4. Choose how to start Choob in that same terminal.
+
+   | What you want to try | Command |
+   | --- | --- |
+   | Snap, Passport and the preset Discover choices for Philadelphia | `python start_choob.py --local` (no API keys needed) |
+   | The live Discover demo using current restaurant menus | `python start_choob.py` (enter your own Gemini and Tavily API keys when prompted) |
+
+5. Keep the terminal open and visit **[Choob on your computer](http://127.0.0.1:7861/)**. To stop the app, press `Ctrl+C` in the terminal.
+
+**Try your first meal.** In Snap, choose `examples/snap/pizza.jpg` from the extracted folder and select **Scan dish**. The first scan downloads the recognition model, so keep your internet connection on. Review the suggested name, choose **Log as eaten**, and open Passport to see the entry. In online Discover, select a city and area and try “I’d like spicy Chinese food.” Open a result’s menu link to check the suggestion.
+
+[Detailed setup and API key links](TEAM_GUIDE.md#run-the-final-build) · [More sample photos](examples/snap/README.md)
 
 ## UI flow
 
@@ -23,21 +54,7 @@ The bottom navigation links to **Home, Snap, Passport, Discover, and Connect**. 
 - **Discover**: Choose a cuisine and flavor or type what you’re craving. Local mode uses Qwen and an export of **5,993 restaurant–dish pairs from 3,526 sampled reviews across 123 Philadelphia restaurants**. In Gemini + Tavily mode, Gemini understands the chat input and recommends dishes based on public menus Tavily finds. Each result links to its source. The original `/api/recommend` endpoint still ranks the local embeddings with MiniLM and smoothed review sentiment.
 - **Passport**: Shows meals logged in Snap and map stamps for meals with a location. Browser storage retains the meal history on the same device.
 - **Connect**: Compares distinct dish types in your Passport stamps with three demo passports. Open a match to add a dish to **Saved dishes**.
-- **Evaluation**: Open **View model evaluation report** from Snap to see recorded recognition tests and build metadata for the local recommendation data.
 - The notebook's GPU-intensive **Qwen2.5-VL-3B** is **not integrated**. Snap uses CLIP with application inference improvements; its weights have not been fine-tuned. Scope checking is a best-effort comparison against a fixed background vocabulary, not reliable identification of every food or non-food object.
-
-## Quick start for final
-
-On macOS, run the commands below from the project folder. See the [team guide](TEAM_GUIDE.md#run-the-final-build) for the Windows steps and Intel Mac dependency profile.
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-python start_choob.py
-```
-
-Enter your Gemini and Tavily keys when prompted, then open **http://127.0.0.1:7861/**. The first image scan downloads CLIP weights. To practice with the bundled Philadelphia data, run `python start_choob.py --local`.
 
 ### Mobile and Home Screen testing
 
@@ -121,7 +138,7 @@ The bundled dish records use **Codex-assisted annotations with exact source quot
 
 ## Collaboration
 
-Pull the latest **`final`**, create a feature branch such as `final-snap` or `final-mobile`, and open a pull request with **base `final`**. Review and merge one shared-page change at a time, then pull `final` before starting the next change. See the [team workflow](TEAM_GUIDE.md#collaborate-on-the-code). The final branch includes the rehearsal baseline and Mobile work; teammates' subsequent features arrive when their PRs are merged.
+Pull the latest **`final`**, create a feature branch for your change, and open a pull request with **base `final`**. Review and merge one shared-page change at a time, then pull `final` before starting the next change. See the [team workflow](TEAM_GUIDE.md#collaborate-on-the-code). The final branch includes the rehearsal baseline and Mobile work; teammates' subsequent features arrive when their PRs are merged.
 
 ## Deployment
 
