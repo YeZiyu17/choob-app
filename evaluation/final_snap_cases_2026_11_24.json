@@ -1,0 +1,1628 @@
+{
+  "schema_version": 1,
+  "frozen_manifest_date": "2026-11-24",
+  "design": "Final-build same-image regression rerun of all 72 distinct photographs preselected and labeled for the November 16 rehearsal rounds. Ten Food-101 categories outside the original nine, three images per class per round, class offsets 173-175 then 176-178; 12 separate Commons meal photographs with targets frozen before the original inference. No images added, removed or substituted after final predictions.",
+  "baseline_commit": "37259485b5eff73143f71c72eb5917f6a8a2af52",
+  "source_notes": "Sources, hashes, image transformations, scored targets and expressly unscored accompaniments are preserved from the original private evaluation manifests. Source images and model weights are not included in the repository.",
+  "case_counts": {
+    "food101_expanded": 60,
+    "commons_multi_real": 12,
+    "total": 72
+  },
+  "cases": [
+    {
+      "case_id": "food101-3923",
+      "file": "snap_images/apple_pie_3923.jpg",
+      "expected": [
+        "apple pie"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=3923",
+      "row_idx": 3923,
+      "sha256": "a0088c485ea59a6d347d962ab7c5f34a89d87ce5e5d210a0ac20163d0fac02e0",
+      "group": "food101_expanded",
+      "id": "round1-food101-3923",
+      "round": "round1",
+      "dataset_label": "apple_pie",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-3924",
+      "file": "snap_images/apple_pie_3924.jpg",
+      "expected": [
+        "apple pie"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=3924",
+      "row_idx": 3924,
+      "sha256": "4b4f6883614cbfe346aa0e69ed95865d4d43814cfad9f45947ff8abca8505779",
+      "group": "food101_expanded",
+      "id": "round1-food101-3924",
+      "round": "round1",
+      "dataset_label": "apple_pie",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-3925",
+      "file": "snap_images/apple_pie_3925.jpg",
+      "expected": [
+        "apple pie"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=3925",
+      "row_idx": 3925,
+      "sha256": "2c111bdaa58201ebb1271768ef3d55536bae2990ec3dbee5eee503b6c33bb895",
+      "group": "food101_expanded",
+      "id": "round1-food101-3925",
+      "round": "round1",
+      "dataset_label": "apple_pie",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8673",
+      "file": "snap_images/baklava_8673.jpg",
+      "expected": [
+        "baklava"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8673",
+      "row_idx": 8673,
+      "sha256": "02bd6a62d8dbe91b0cfcef7e7df74ec0b2a9693e123c86c3628a154f9212bf78",
+      "group": "food101_expanded",
+      "id": "round1-food101-8673",
+      "round": "round1",
+      "dataset_label": "baklava",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8674",
+      "file": "snap_images/baklava_8674.jpg",
+      "expected": [
+        "baklava"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8674",
+      "row_idx": 8674,
+      "sha256": "16ee1622b0c084c45c895166d35087fb84675741d921065424a924f725e35708",
+      "group": "food101_expanded",
+      "id": "round1-food101-8674",
+      "round": "round1",
+      "dataset_label": "baklava",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8675",
+      "file": "snap_images/baklava_8675.jpg",
+      "expected": [
+        "baklava"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8675",
+      "row_idx": 8675,
+      "sha256": "4c7a5f62884223732a771cab681547feb628dcaebac578905e40e55ccbf00726",
+      "group": "food101_expanded",
+      "id": "round1-food101-8675",
+      "round": "round1",
+      "dataset_label": "baklava",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-6923",
+      "file": "snap_images/caesar_salad_6923.jpg",
+      "expected": [
+        "caesar salad"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=6923",
+      "row_idx": 6923,
+      "sha256": "0d8860ecc7f0bc0680ba832bdd27f6dc53f3d771423bd59983bb7049908f3465",
+      "group": "food101_expanded",
+      "id": "round1-food101-6923",
+      "round": "round1",
+      "dataset_label": "caesar_salad",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-6924",
+      "file": "snap_images/caesar_salad_6924.jpg",
+      "expected": [
+        "caesar salad"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=6924",
+      "row_idx": 6924,
+      "sha256": "29fbc71f301858a1488971ce80b519424e9bef9cc4f2bc34e0b71efbe1680ce5",
+      "group": "food101_expanded",
+      "id": "round1-food101-6924",
+      "round": "round1",
+      "dataset_label": "caesar_salad",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-6925",
+      "file": "snap_images/caesar_salad_6925.jpg",
+      "expected": [
+        "caesar salad"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=6925",
+      "row_idx": 6925,
+      "sha256": "ef8c2c7517e007d721d9da3403517dc5f2506e46ae9d1bea047643d2854ce8ff",
+      "group": "food101_expanded",
+      "id": "round1-food101-6925",
+      "round": "round1",
+      "dataset_label": "caesar_salad",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8423",
+      "file": "snap_images/cheesecake_8423.jpg",
+      "expected": [
+        "cheesecake"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8423",
+      "row_idx": 8423,
+      "sha256": "cb00a182391ec594a5c962dcada9878814300af1ae7f26541ec0652e8e0db939",
+      "group": "food101_expanded",
+      "id": "round1-food101-8423",
+      "round": "round1",
+      "dataset_label": "cheesecake",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8424",
+      "file": "snap_images/cheesecake_8424.jpg",
+      "expected": [
+        "cheesecake"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8424",
+      "row_idx": 8424,
+      "sha256": "a382cae72d198d986864ccc3850c5fc39c0b4fe2a0859a53a30fb328b39a01b1",
+      "group": "food101_expanded",
+      "id": "round1-food101-8424",
+      "round": "round1",
+      "dataset_label": "cheesecake",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8425",
+      "file": "snap_images/cheesecake_8425.jpg",
+      "expected": [
+        "cheesecake"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8425",
+      "row_idx": 8425,
+      "sha256": "6dafcf8734f07f3aabf6575ccd483358e9a700f62748a52f98d88a53b6dba07f",
+      "group": "food101_expanded",
+      "id": "round1-food101-8425",
+      "round": "round1",
+      "dataset_label": "cheesecake",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-1423",
+      "file": "snap_images/chicken_wings_1423.jpg",
+      "expected": [
+        "chicken wings"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=1423",
+      "row_idx": 1423,
+      "sha256": "3ed7628211adef0310085ea20c8a5aae2b0ce7c5f0d54cad0fda39d459f75888",
+      "group": "food101_expanded",
+      "id": "round1-food101-1423",
+      "round": "round1",
+      "dataset_label": "chicken_wings",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-1424",
+      "file": "snap_images/chicken_wings_1424.jpg",
+      "expected": [
+        "chicken wings"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=1424",
+      "row_idx": 1424,
+      "sha256": "02c64e8f9981dbbea74febbc627697a02f73caf4a4a986499889a2146b4f95a7",
+      "group": "food101_expanded",
+      "id": "round1-food101-1424",
+      "round": "round1",
+      "dataset_label": "chicken_wings",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-1425",
+      "file": "snap_images/chicken_wings_1425.jpg",
+      "expected": [
+        "chicken wings"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=1425",
+      "row_idx": 1425,
+      "sha256": "882fc043d9fe7f53bce102ac99a7c1c3c8a7b1604a129e8dbc18aa3dc8ea44e6",
+      "group": "food101_expanded",
+      "id": "round1-food101-1425",
+      "round": "round1",
+      "dataset_label": "chicken_wings",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-13423",
+      "file": "snap_images/club_sandwich_13423.jpg",
+      "expected": [
+        "club sandwich"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=13423",
+      "row_idx": 13423,
+      "sha256": "ac90aa5e12984963c57eb6dd1aceafd237b2499e93a9f6a488fa1d55fcfd6e95",
+      "group": "food101_expanded",
+      "id": "round1-food101-13423",
+      "round": "round1",
+      "dataset_label": "club_sandwich",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-13424",
+      "file": "snap_images/club_sandwich_13424.jpg",
+      "expected": [
+        "club sandwich"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=13424",
+      "row_idx": 13424,
+      "sha256": "87ba5379dafce0ef404748481bbc487b14d37802af59332d20de8af2397249be",
+      "group": "food101_expanded",
+      "id": "round1-food101-13424",
+      "round": "round1",
+      "dataset_label": "club_sandwich",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-13425",
+      "file": "snap_images/club_sandwich_13425.jpg",
+      "expected": [
+        "club sandwich"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=13425",
+      "row_idx": 13425,
+      "sha256": "e47555e5695f51e7d56b60d02a345898d05fb806fb1a82fb42bde947598adcfa",
+      "group": "food101_expanded",
+      "id": "round1-food101-13425",
+      "round": "round1",
+      "dataset_label": "club_sandwich",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-12423",
+      "file": "snap_images/falafel_12423.jpg",
+      "expected": [
+        "falafel"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=12423",
+      "row_idx": 12423,
+      "sha256": "a2d1ee355d6a9cc33f3d889355b8fb7c1bb72fc995615249830bb452d6e51e81",
+      "group": "food101_expanded",
+      "id": "round1-food101-12423",
+      "round": "round1",
+      "dataset_label": "falafel",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-12424",
+      "file": "snap_images/falafel_12424.jpg",
+      "expected": [
+        "falafel"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=12424",
+      "row_idx": 12424,
+      "sha256": "28f7a7a3a5ac3173b9b826135b3948f9ac6b1343590e6c63eb436cfc6607f6e1",
+      "group": "food101_expanded",
+      "id": "round1-food101-12424",
+      "round": "round1",
+      "dataset_label": "falafel",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-12425",
+      "file": "snap_images/falafel_12425.jpg",
+      "expected": [
+        "falafel"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=12425",
+      "row_idx": 12425,
+      "sha256": "1f35e193c49da579250ace411e4344868a99d46439e053deda1b9cabc8ad854b",
+      "group": "food101_expanded",
+      "id": "round1-food101-12425",
+      "round": "round1",
+      "dataset_label": "falafel",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-19173",
+      "file": "snap_images/nachos_19173.jpg",
+      "expected": [
+        "nachos"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=19173",
+      "row_idx": 19173,
+      "sha256": "4d0b5196d906379262492f06803fb78b37de3c6ee25fe0cb19c3982c8ebbba06",
+      "group": "food101_expanded",
+      "id": "round1-food101-19173",
+      "round": "round1",
+      "dataset_label": "nachos",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-19174",
+      "file": "snap_images/nachos_19174.jpg",
+      "expected": [
+        "nachos"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=19174",
+      "row_idx": 19174,
+      "sha256": "bed6c51df790b1d18a12f13527d485aed3cb193195e27a4abb8880dc7814582a",
+      "group": "food101_expanded",
+      "id": "round1-food101-19174",
+      "round": "round1",
+      "dataset_label": "nachos",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-19175",
+      "file": "snap_images/nachos_19175.jpg",
+      "expected": [
+        "nachos"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=19175",
+      "row_idx": 19175,
+      "sha256": "536011428e02e32a78cff0a7911118cbb1c1845e80281f6ae3691d6b36069e0d",
+      "group": "food101_expanded",
+      "id": "round1-food101-19175",
+      "round": "round1",
+      "dataset_label": "nachos",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-15423",
+      "file": "snap_images/waffles_15423.jpg",
+      "expected": [
+        "waffles"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=15423",
+      "row_idx": 15423,
+      "sha256": "598c047d231887ba3a08632125fa208b49e9bef3ac42393b1fd19ddfabcaa4dd",
+      "group": "food101_expanded",
+      "id": "round1-food101-15423",
+      "round": "round1",
+      "dataset_label": "waffles",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-15424",
+      "file": "snap_images/waffles_15424.jpg",
+      "expected": [
+        "waffles"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=15424",
+      "row_idx": 15424,
+      "sha256": "ae8f3ad1b8d569686c33c729a18cde52574a1cd017429bb8ae73a1342ba38bee",
+      "group": "food101_expanded",
+      "id": "round1-food101-15424",
+      "round": "round1",
+      "dataset_label": "waffles",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-15425",
+      "file": "snap_images/waffles_15425.jpg",
+      "expected": [
+        "waffles"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=15425",
+      "row_idx": 15425,
+      "sha256": "4c8fb454c3895fb2547dfbcf44b46313190f154e84866eb33177501fbf8603d9",
+      "group": "food101_expanded",
+      "id": "round1-food101-15425",
+      "round": "round1",
+      "dataset_label": "waffles",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-7423",
+      "file": "snap_images/pancakes_7423.jpg",
+      "expected": [
+        "pancakes"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=7423",
+      "row_idx": 7423,
+      "sha256": "2d8f869f1e31a38f883b20656eb151b47a6d8c8db33190474a72921cbeea2f7f",
+      "group": "food101_expanded",
+      "id": "round1-food101-7423",
+      "round": "round1",
+      "dataset_label": "pancakes",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-7424",
+      "file": "snap_images/pancakes_7424.jpg",
+      "expected": [
+        "pancakes"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=7424",
+      "row_idx": 7424,
+      "sha256": "af935acac784f60e60efdf4ab2c5720843496d3d990609be60eb12f6119d7f49",
+      "group": "food101_expanded",
+      "id": "round1-food101-7424",
+      "round": "round1",
+      "dataset_label": "pancakes",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-7425",
+      "file": "snap_images/pancakes_7425.jpg",
+      "expected": [
+        "pancakes"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=7425",
+      "row_idx": 7425,
+      "sha256": "398a3757ff2ddecee7722a2c43dd27bb836c571151269f1f3123cb0945e3faa5",
+      "group": "food101_expanded",
+      "id": "round1-food101-7425",
+      "round": "round1",
+      "dataset_label": "pancakes",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "snap_multi_burger-fries",
+      "file": "snap_images/snap_multi_burger-fries.jpg",
+      "original_dimensions": [
+        1024,
+        768
+      ],
+      "dimensions": [
+        1024,
+        768
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Burger_and_fries_(1).jpg",
+      "license": "Public domain",
+      "license_url": "",
+      "artist": "The original uploader was Y6y6y6 at English Wikipedia.",
+      "source_description": "Hamburger and fries served in an American dinner.\nSource: http://pdphoto.org/PictureDetail.php?mat=pdef&pg=8657\n\nPhotographer: Jon Sullivan",
+      "sha256": "6eae85c33d384d05f344fc1464a42fd49226bf4a52a1432c81436ebdcf6843d8",
+      "group": "commons_multi_real",
+      "expected": [
+        "hamburger",
+        "french fries"
+      ],
+      "unscored": [],
+      "reference_frozen_utc": "2026-11-16T19:57:13.149548+00:00",
+      "id": "round1-snap_multi_burger-fries",
+      "round": "round1",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    },
+    {
+      "case_id": "snap_multi_breakfast",
+      "file": "snap_images/snap_multi_breakfast.jpg",
+      "original_dimensions": [
+        3264,
+        2448
+      ],
+      "dimensions": [
+        1100,
+        825
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Pancakes,_Bacon_and_Eggs.jpeg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "artist": "User:WikiTryHardDieHard",
+      "source_description": "A photo of a common breakfast served at kerby lane cafe in Austin Texas.",
+      "sha256": "51243ecd301e2254451af884dda090c5e4c2fbd7b0ee2a6bc13733ce7f820cbf",
+      "group": "commons_multi_real",
+      "expected": [
+        "pancakes",
+        "fried eggs"
+      ],
+      "unscored": [
+        "bacon not in candidate vocabulary; syrup and butter are condiments"
+      ],
+      "reference_frozen_utc": "2026-11-16T19:57:13.149548+00:00",
+      "id": "round1-snap_multi_breakfast",
+      "round": "round1",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    },
+    {
+      "case_id": "snap_multi_falafel-hummus",
+      "file": "snap_images/snap_multi_falafel-hummus.jpg",
+      "original_dimensions": [
+        3600,
+        2400
+      ],
+      "dimensions": [
+        1100,
+        733
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Falafel_with_Hummus.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "artist": "Sharvarism",
+      "source_description": "Falafel is a deep-fried ball or patty; it is a Middle Eastern cuisine made from ground chickpeas, broad beans, or both; generally served with hummus; is also a Middle Eastern dip - spread dish made from cooked, mashed chickpeas blended with tahini, lemon juice, garlic, olive oil, parsley and paprika",
+      "sha256": "a61b688a9d1d536a731ef5e45b9d87a22a57a2fc6b176b82942ffd33a7df64ad",
+      "group": "commons_multi_real",
+      "expected": [
+        "falafel",
+        "hummus"
+      ],
+      "unscored": [],
+      "reference_frozen_utc": "2026-11-16T19:57:13.149548+00:00",
+      "id": "round1-snap_multi_falafel-hummus",
+      "round": "round1",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    },
+    {
+      "case_id": "snap_multi_butter-chicken-naan",
+      "file": "snap_images/snap_multi_butter-chicken-naan.jpg",
+      "original_dimensions": [
+        3472,
+        4624
+      ],
+      "dimensions": [
+        826,
+        1100
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Butter_Chicken_%26_Butter_Naan_-_Home_-_Chandigarh_-_India_-_0006.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "artist": "Yuvraj Singh 97",
+      "source_description": "Homemade butter chicken topped with cream.",
+      "sha256": "261682fa652f2c7afa31aebabac4d51b0c0755a60642c54384522366ebfcf012",
+      "group": "commons_multi_real",
+      "expected": [
+        "butter chicken",
+        "naan"
+      ],
+      "unscored": [],
+      "reference_frozen_utc": "2026-11-16T19:57:13.149548+00:00",
+      "id": "round1-snap_multi_butter-chicken-naan",
+      "round": "round1",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    },
+    {
+      "case_id": "snap_multi_tonkatsu",
+      "file": "snap_images/snap_multi_tonkatsu.jpg",
+      "original_dimensions": [
+        4288,
+        2848
+      ],
+      "dimensions": [
+        1100,
+        731
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Tonkatsu_003.jpg",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Ocdp",
+      "source_description": "静岡県浜松市にある「とん唐てん」のヒレかつ定食",
+      "sha256": "91a9c418723e7da538bff17cd67ad1d7b3326fb8fa96056731a7ec049b59953e",
+      "group": "commons_multi_real",
+      "expected": [
+        "tonkatsu",
+        "miso soup",
+        "salad"
+      ],
+      "unscored": [
+        "plain rice not in candidate vocabulary; sliced cabbage and pickles treated as accompaniments"
+      ],
+      "reference_frozen_utc": "2026-11-16T19:57:13.149548+00:00",
+      "id": "round1-snap_multi_tonkatsu",
+      "round": "round1",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    },
+    {
+      "case_id": "snap_multi_pizza-salad",
+      "file": "snap_images/snap_multi_pizza-salad.jpg",
+      "original_dimensions": [
+        5832,
+        4159
+      ],
+      "dimensions": [
+        1100,
+        784
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Cheese_pizza_with_salad_and_coleslaw_(20179430971).jpg",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "artist": "Ruth Hartnup from Vancouver, Canada",
+      "source_description": "Cheese pizza with salad and coleslaw",
+      "sha256": "6e0565e69102913c5ce3054007527a7ba72d17394d6ed0305a0abebb6d11ec1e",
+      "group": "commons_multi_real",
+      "expected": [
+        "pizza",
+        "salad",
+        "coleslaw"
+      ],
+      "unscored": [],
+      "reference_frozen_utc": "2026-11-16T19:57:13.149548+00:00",
+      "id": "round1-snap_multi_pizza-salad",
+      "round": "round1",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    },
+    {
+      "case_id": "food101-3926",
+      "file": "snap_images/apple_pie_3926.jpg",
+      "expected": [
+        "apple pie"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=3926",
+      "row_idx": 3926,
+      "sha256": "ce3695df4bee18b824db4c3e7bc985d224026f0d54e955132679ec6e63a2cd97",
+      "group": "food101_expanded",
+      "id": "round2-food101-3926",
+      "round": "round2",
+      "dataset_label": "apple_pie",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-3927",
+      "file": "snap_images/apple_pie_3927.jpg",
+      "expected": [
+        "apple pie"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=3927",
+      "row_idx": 3927,
+      "sha256": "fd01f3b2de4ab43fc3854f7211127af06175733cb768488fd0d64e3570a2adeb",
+      "group": "food101_expanded",
+      "id": "round2-food101-3927",
+      "round": "round2",
+      "dataset_label": "apple_pie",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-3928",
+      "file": "snap_images/apple_pie_3928.jpg",
+      "expected": [
+        "apple pie"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=3928",
+      "row_idx": 3928,
+      "sha256": "b1c4aeda2671b8d641232002400d59417624815c70a3831b40c2a8ec152850c0",
+      "group": "food101_expanded",
+      "id": "round2-food101-3928",
+      "round": "round2",
+      "dataset_label": "apple_pie",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8676",
+      "file": "snap_images/baklava_8676.jpg",
+      "expected": [
+        "baklava"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8676",
+      "row_idx": 8676,
+      "sha256": "40e668b846ccc63ccbe1e4a0b31028f4002a66e10a7c49a2cd5f5d9763ce2874",
+      "group": "food101_expanded",
+      "id": "round2-food101-8676",
+      "round": "round2",
+      "dataset_label": "baklava",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8677",
+      "file": "snap_images/baklava_8677.jpg",
+      "expected": [
+        "baklava"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8677",
+      "row_idx": 8677,
+      "sha256": "0eee844b7153eb0d91d3a71e113b36e4b0f3a485663a6ad17d9d138465fd9f73",
+      "group": "food101_expanded",
+      "id": "round2-food101-8677",
+      "round": "round2",
+      "dataset_label": "baklava",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8678",
+      "file": "snap_images/baklava_8678.jpg",
+      "expected": [
+        "baklava"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8678",
+      "row_idx": 8678,
+      "sha256": "c7eeab5fb74989b52593c8a1a282affcbde89c60f723e232f3fd9c666f590e0d",
+      "group": "food101_expanded",
+      "id": "round2-food101-8678",
+      "round": "round2",
+      "dataset_label": "baklava",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-6926",
+      "file": "snap_images/caesar_salad_6926.jpg",
+      "expected": [
+        "caesar salad"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=6926",
+      "row_idx": 6926,
+      "sha256": "3c709d7d809fbc0e3b6d6db24874c4f3a4ef54c12263c23b85379eaf7e22857c",
+      "group": "food101_expanded",
+      "id": "round2-food101-6926",
+      "round": "round2",
+      "dataset_label": "caesar_salad",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-6927",
+      "file": "snap_images/caesar_salad_6927.jpg",
+      "expected": [
+        "caesar salad"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=6927",
+      "row_idx": 6927,
+      "sha256": "6b8407041fb0abfe3c358c39abf8d3f365ae0c04de2782d60885c5a736f9bffd",
+      "group": "food101_expanded",
+      "id": "round2-food101-6927",
+      "round": "round2",
+      "dataset_label": "caesar_salad",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-6928",
+      "file": "snap_images/caesar_salad_6928.jpg",
+      "expected": [
+        "caesar salad"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=6928",
+      "row_idx": 6928,
+      "sha256": "b2d6e8075f55330083aa0437b328b303c4de25bce11f62ad4f08f56dc0ca1d57",
+      "group": "food101_expanded",
+      "id": "round2-food101-6928",
+      "round": "round2",
+      "dataset_label": "caesar_salad",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8426",
+      "file": "snap_images/cheesecake_8426.jpg",
+      "expected": [
+        "cheesecake"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8426",
+      "row_idx": 8426,
+      "sha256": "e71139e4ff24bcb965d8e270aba02bdcbccef48a500093af77f989d3b0daab59",
+      "group": "food101_expanded",
+      "id": "round2-food101-8426",
+      "round": "round2",
+      "dataset_label": "cheesecake",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8427",
+      "file": "snap_images/cheesecake_8427.jpg",
+      "expected": [
+        "cheesecake"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8427",
+      "row_idx": 8427,
+      "sha256": "bbbdfa3c76b5da336478eddcf9d823abbfab96d8fc46d8537ed5d48e54ba595b",
+      "group": "food101_expanded",
+      "id": "round2-food101-8427",
+      "round": "round2",
+      "dataset_label": "cheesecake",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-8428",
+      "file": "snap_images/cheesecake_8428.jpg",
+      "expected": [
+        "cheesecake"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=8428",
+      "row_idx": 8428,
+      "sha256": "a316bdce83e9dd852e605795b621b3b7fa2b288344dc719a133fd6c6fcf1bc52",
+      "group": "food101_expanded",
+      "id": "round2-food101-8428",
+      "round": "round2",
+      "dataset_label": "cheesecake",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-1426",
+      "file": "snap_images/chicken_wings_1426.jpg",
+      "expected": [
+        "chicken wings"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=1426",
+      "row_idx": 1426,
+      "sha256": "69fd4fe57d225bf6b06efe4a35b6285439c50d9194eb6702ce1b2391fa7f0b27",
+      "group": "food101_expanded",
+      "id": "round2-food101-1426",
+      "round": "round2",
+      "dataset_label": "chicken_wings",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-1427",
+      "file": "snap_images/chicken_wings_1427.jpg",
+      "expected": [
+        "chicken wings"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=1427",
+      "row_idx": 1427,
+      "sha256": "288d91e1274a0afe7e0bc1a8c93e80d2284ad2b1f24635e856090b357714da88",
+      "group": "food101_expanded",
+      "id": "round2-food101-1427",
+      "round": "round2",
+      "dataset_label": "chicken_wings",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-1428",
+      "file": "snap_images/chicken_wings_1428.jpg",
+      "expected": [
+        "chicken wings"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=1428",
+      "row_idx": 1428,
+      "sha256": "3e694f4181645d6e7cc5800394a32255034ebb4ea30e24028f7fe3e79bd4d0e3",
+      "group": "food101_expanded",
+      "id": "round2-food101-1428",
+      "round": "round2",
+      "dataset_label": "chicken_wings",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-13426",
+      "file": "snap_images/club_sandwich_13426.jpg",
+      "expected": [
+        "club sandwich"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=13426",
+      "row_idx": 13426,
+      "sha256": "f51656149d2ada9e14fc2f9752b08605da3f2d84d6d3f66018480273b28f106d",
+      "group": "food101_expanded",
+      "id": "round2-food101-13426",
+      "round": "round2",
+      "dataset_label": "club_sandwich",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-13427",
+      "file": "snap_images/club_sandwich_13427.jpg",
+      "expected": [
+        "club sandwich"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=13427",
+      "row_idx": 13427,
+      "sha256": "48594a59b5fe865cb6be4c856ea0db66fe0b384a4e0b13792e598ff00be1973c",
+      "group": "food101_expanded",
+      "id": "round2-food101-13427",
+      "round": "round2",
+      "dataset_label": "club_sandwich",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-13428",
+      "file": "snap_images/club_sandwich_13428.jpg",
+      "expected": [
+        "club sandwich"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=13428",
+      "row_idx": 13428,
+      "sha256": "a680ee42c3785ea420cb73968fe8555276dd017172c59fd36bfe37479c61ba5b",
+      "group": "food101_expanded",
+      "id": "round2-food101-13428",
+      "round": "round2",
+      "dataset_label": "club_sandwich",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-12426",
+      "file": "snap_images/falafel_12426.jpg",
+      "expected": [
+        "falafel"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=12426",
+      "row_idx": 12426,
+      "sha256": "c13ebeb4eac60566601cb9581d161edd0919c18c646a6b61d850a3825cf89aef",
+      "group": "food101_expanded",
+      "id": "round2-food101-12426",
+      "round": "round2",
+      "dataset_label": "falafel",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-12427",
+      "file": "snap_images/falafel_12427.jpg",
+      "expected": [
+        "falafel"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=12427",
+      "row_idx": 12427,
+      "sha256": "fc46a989e57be4d7e53a5461de790298e54171dfd94c96fbefa7b57d77bbf3a6",
+      "group": "food101_expanded",
+      "id": "round2-food101-12427",
+      "round": "round2",
+      "dataset_label": "falafel",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-12428",
+      "file": "snap_images/falafel_12428.jpg",
+      "expected": [
+        "falafel"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=12428",
+      "row_idx": 12428,
+      "sha256": "1e3d8530044e77a5f920333f23cee53b20ab91ad553df05941491950b38b7966",
+      "group": "food101_expanded",
+      "id": "round2-food101-12428",
+      "round": "round2",
+      "dataset_label": "falafel",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-19176",
+      "file": "snap_images/nachos_19176.jpg",
+      "expected": [
+        "nachos"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=19176",
+      "row_idx": 19176,
+      "sha256": "e53918351a735b294c46097b37f1ae5289bc17e47f3728e6aaa00e7cadc0dc40",
+      "group": "food101_expanded",
+      "id": "round2-food101-19176",
+      "round": "round2",
+      "dataset_label": "nachos",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-19177",
+      "file": "snap_images/nachos_19177.jpg",
+      "expected": [
+        "nachos"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=19177",
+      "row_idx": 19177,
+      "sha256": "d221be2e56ce50cf80d72fb22444e1d911a7994d491d3d9fc9b36a27a9d04cb9",
+      "group": "food101_expanded",
+      "id": "round2-food101-19177",
+      "round": "round2",
+      "dataset_label": "nachos",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-19178",
+      "file": "snap_images/nachos_19178.jpg",
+      "expected": [
+        "nachos"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=19178",
+      "row_idx": 19178,
+      "sha256": "a5a8f677057479e0c07e9ba294c0c4af6d1d4a389c00089faffdd3927cac96b9",
+      "group": "food101_expanded",
+      "id": "round2-food101-19178",
+      "round": "round2",
+      "dataset_label": "nachos",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-15426",
+      "file": "snap_images/waffles_15426.jpg",
+      "expected": [
+        "waffles"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=15426",
+      "row_idx": 15426,
+      "sha256": "3b11033f6f1446833f25bfc0b2d6b4a016659d1599ddf5a2a7593a90b2e1e5bb",
+      "group": "food101_expanded",
+      "id": "round2-food101-15426",
+      "round": "round2",
+      "dataset_label": "waffles",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-15427",
+      "file": "snap_images/waffles_15427.jpg",
+      "expected": [
+        "waffles"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=15427",
+      "row_idx": 15427,
+      "sha256": "15f2fdd64a52561e45d2b1ad2629b6ede62d3e5e34fdf43b3811d01e499e41b1",
+      "group": "food101_expanded",
+      "id": "round2-food101-15427",
+      "round": "round2",
+      "dataset_label": "waffles",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-15428",
+      "file": "snap_images/waffles_15428.jpg",
+      "expected": [
+        "waffles"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=15428",
+      "row_idx": 15428,
+      "sha256": "23832830778034d32d81957aff37743ce1dce488455487d5143fe8c3cc0559c2",
+      "group": "food101_expanded",
+      "id": "round2-food101-15428",
+      "round": "round2",
+      "dataset_label": "waffles",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-7426",
+      "file": "snap_images/pancakes_7426.jpg",
+      "expected": [
+        "pancakes"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=7426",
+      "row_idx": 7426,
+      "sha256": "e741f9936901f170f40ee3c5947cae0c9f5aa80f323e9fc632859bfdb162642d",
+      "group": "food101_expanded",
+      "id": "round2-food101-7426",
+      "round": "round2",
+      "dataset_label": "pancakes",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-7427",
+      "file": "snap_images/pancakes_7427.jpg",
+      "expected": [
+        "pancakes"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=7427",
+      "row_idx": 7427,
+      "sha256": "ffba55f6a5235f0dddfbdb2d9bfa69ab4a2c7c2821206012e7445cd1ae4ef835",
+      "group": "food101_expanded",
+      "id": "round2-food101-7427",
+      "round": "round2",
+      "dataset_label": "pancakes",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "food101-7428",
+      "file": "snap_images/pancakes_7428.jpg",
+      "expected": [
+        "pancakes"
+      ],
+      "source": "https://huggingface.co/datasets/ethz/food101/viewer/default/validation?row=7428",
+      "row_idx": 7428,
+      "sha256": "07c83c3f9aad86ba4efc47a71abaf56f9e828733907402f5815940f1f468d680",
+      "group": "food101_expanded",
+      "id": "round2-food101-7428",
+      "round": "round2",
+      "dataset_label": "pancakes",
+      "dataset": "ethz/food101",
+      "split": "validation",
+      "artist": "Food-101 dataset; image-level photographer not supplied in the dataset record",
+      "license": "Food-101 dataset terms; individual image rights are not specified by this manifest",
+      "license_url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "input_processing": "Original bytes returned by the Food-101 dataset viewer, saved without transformation",
+      "reference_frozen_date": "2026-11-16"
+    },
+    {
+      "case_id": "snap_multi_burger-fries",
+      "file": "snap_images/snap_multi_burger-fries.jpg",
+      "original_dimensions": [
+        4032,
+        3024
+      ],
+      "dimensions": [
+        1100,
+        825
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:2019-02-15_20_51_38_A_bacon_cheeseburger_and_french_fries_at_the_Applebee%27s_in_Fair_Lakes,_Fairfax_County,_Virginia.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "artist": "Famartin",
+      "source_description": "A bacon cheeseburger and french fries at the Applebee's in Fair Lakes, Fairfax County, Virginia",
+      "sha256": "96cb4d134e4388269f75da2c86d0e0b6bd7416d654882ec47f2927bf03292b17",
+      "group": "commons_multi_real",
+      "expected": [
+        "hamburger",
+        "french fries"
+      ],
+      "unscored": [
+        "burger named bacon cheeseburger in source; indistinct background dish unscored"
+      ],
+      "reference_frozen_utc": "2026-11-16T20:09:31.714277+00:00",
+      "id": "round2-snap_multi_burger-fries",
+      "round": "round2",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    },
+    {
+      "case_id": "snap_multi_breakfast",
+      "file": "snap_images/snap_multi_breakfast.jpg",
+      "original_dimensions": [
+        7360,
+        4912
+      ],
+      "dimensions": [
+        1100,
+        734
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Pancakes,_Eggs,_and_Bacon_(Unsplash).jpg",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Gabriel Gurrola gabrielgurrola",
+      "source_description": "Gabriel Gurrola 2016-08-17",
+      "sha256": "0187b6723b83ab82eec109d320f56cc307c9c407d08166d4fe52adf13ab3426c",
+      "group": "commons_multi_real",
+      "expected": [
+        "pancakes",
+        "scrambled eggs"
+      ],
+      "unscored": [
+        "bacon not in candidate vocabulary; nearby berry garnish/condiments unscored"
+      ],
+      "reference_frozen_utc": "2026-11-16T20:09:31.714277+00:00",
+      "id": "round2-snap_multi_breakfast",
+      "round": "round2",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    },
+    {
+      "case_id": "snap_multi_falafel-hummus",
+      "file": "snap_images/snap_multi_falafel-hummus.jpg",
+      "original_dimensions": [
+        3024,
+        4032
+      ],
+      "dimensions": [
+        825,
+        1100
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Falafel_and_Homemade_Hummus_-_Lavash_2024-09-11.jpg",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Andy Li",
+      "source_description": "Description on menu: \"Dressed with olive oil\"",
+      "sha256": "5135dac9f19784950ed2051da041c59b2a7dfd3efae47047a3f2d8932dd39691",
+      "group": "commons_multi_real",
+      "expected": [
+        "falafel",
+        "hummus"
+      ],
+      "unscored": [
+        "side flatbread is not identified to a type in source"
+      ],
+      "reference_frozen_utc": "2026-11-16T20:09:31.714277+00:00",
+      "id": "round2-snap_multi_falafel-hummus",
+      "round": "round2",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    },
+    {
+      "case_id": "snap_multi_butter-chicken-naan",
+      "file": "snap_images/snap_multi_butter-chicken-naan.jpg",
+      "original_dimensions": [
+        2109,
+        1612
+      ],
+      "dimensions": [
+        1100,
+        841
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Butter_Chicken_with_Naan.JPG",
+      "license": "CC BY-SA 3.0",
+      "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "artist": "Hubie",
+      "source_description": "Butter Chicken with rice and Naan",
+      "sha256": "d0a7612c530c6652a91e988c621b7d326854da4572f2db5def88057453a17df0",
+      "group": "commons_multi_real",
+      "expected": [
+        "butter chicken",
+        "naan"
+      ],
+      "unscored": [
+        "plain rice not in candidate vocabulary"
+      ],
+      "reference_frozen_utc": "2026-11-16T20:09:31.714277+00:00",
+      "id": "round2-snap_multi_butter-chicken-naan",
+      "round": "round2",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    },
+    {
+      "case_id": "snap_multi_tonkatsu",
+      "file": "snap_images/snap_multi_tonkatsu.jpg",
+      "original_dimensions": [
+        3001,
+        2252
+      ],
+      "dimensions": [
+        1100,
+        825
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Pork_fillet_cutlet_teishoku_in_a_Japanese_restaurant_in_Tokyo.jpg",
+      "license": "Public domain",
+      "license_url": "",
+      "artist": "投稿者",
+      "source_description": "Pork fillet cutlet teishoku in a Japanese restaurant in Tokyo. 1458yen (tax icl.)",
+      "sha256": "281ba84283d8486d23f6e53f0a910331c0fec7376d7536e4e8417e9890779fb4",
+      "group": "commons_multi_real",
+      "expected": [
+        "tonkatsu",
+        "miso soup"
+      ],
+      "unscored": [
+        "plain rice not in candidate vocabulary; shredded cabbage and pickles treated as accompaniments"
+      ],
+      "reference_frozen_utc": "2026-11-16T20:09:31.714277+00:00",
+      "id": "round2-snap_multi_tonkatsu",
+      "round": "round2",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    },
+    {
+      "case_id": "snap_multi_pizza-salad",
+      "file": "snap_images/snap_multi_pizza-salad.jpg",
+      "original_dimensions": [
+        4032,
+        3024
+      ],
+      "dimensions": [
+        1100,
+        825
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Fatto_a_Mano_-_Panzanella_Salad_and_Guanciale_Carbonara_Pizza.jpg",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Andy Li",
+      "source_description": "\"Panzanella Salad\" and \"Guanciale Carbonara Pizza\" offered by Fatto a Mano in Hove, UK.",
+      "sha256": "68a155dfbf316b45dd1d5b2d68d48b93f2bf09a27cc561c2d40687a7936438ee",
+      "group": "commons_multi_real",
+      "expected": [
+        "pizza",
+        "salad"
+      ],
+      "unscored": [
+        "panzanella mapped to supported broad salad category"
+      ],
+      "reference_frozen_utc": "2026-11-16T20:09:31.714277+00:00",
+      "id": "round2-snap_multi_pizza-salad",
+      "round": "round2",
+      "input_processing": "Source original: EXIF transpose, RGB conversion, aspect-preserving thumbnail max 1100 x 1100 with LANCZOS, JPEG quality 92. Supply exact cached bytes; regeneration must match sha256."
+    }
+  ]
+}
