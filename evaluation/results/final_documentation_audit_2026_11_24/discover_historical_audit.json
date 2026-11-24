@@ -1,0 +1,2369 @@
+{
+  "schema_version": 1,
+  "audit_kind": "historical_discover_evidence_reconciliation",
+  "audit_date_client": "2026-11-24",
+  "client_timezone": "America/Los_Angeles",
+  "generated_utc": "2026-11-24T21:20:54.551204+00:00",
+  "reviewed_final_repository_commit": "4be1cda19a19f2e4f893ff6ee6b75f945eb358c4",
+  "evaluated_historical_commit": "37259485b5eff73143f71c72eb5917f6a8a2af52",
+  "method": "Recalculate counts from existing raw JSON and reconcile every returned card with one existing CSV audit row; no API calls, model inference, secret access or new menu review.",
+  "source_files": {
+    "round_1_protocol": {
+      "absolute_path": "/Users/yeziyu/Documents/ChatGPT/COMM 586/tmp/choob-rehearsal-evaluation-2026-11-16/discover_protocol.json",
+      "workspace_relative_path": "tmp/choob-rehearsal-evaluation-2026-11-16/discover_protocol.json",
+      "sha256": "0794bbabdfd254a3d7ed9d64bb9051284aa26db0aeed6c7b7d0d16040b8fd8ad",
+      "bytes": 1120
+    },
+    "round_1_requests": {
+      "absolute_path": "/Users/yeziyu/Documents/ChatGPT/COMM 586/tmp/choob-rehearsal-evaluation-2026-11-16/discover_live_results.json",
+      "workspace_relative_path": "tmp/choob-rehearsal-evaluation-2026-11-16/discover_live_results.json",
+      "sha256": "d8f3b2e85dec5a5f023e036f979d74e143a25946be01ebecc28eb35a4eef426d",
+      "bytes": 15463
+    },
+    "round_1_card_audit": {
+      "absolute_path": "/Users/yeziyu/Documents/ChatGPT/COMM 586/tmp/choob-rehearsal-evaluation-2026-11-16/discover_card_audit.csv",
+      "workspace_relative_path": "tmp/choob-rehearsal-evaluation-2026-11-16/discover_card_audit.csv",
+      "sha256": "8b658856aa6c0e893f70082fdbe8be8cefd0cb06f13ea0e13791c61ed2a1a9b3",
+      "bytes": 8466
+    },
+    "round_2_protocol": {
+      "absolute_path": "/Users/yeziyu/Documents/ChatGPT/COMM 586/tmp/choob-rehearsal-evaluation-round-2/discover_protocol.json",
+      "workspace_relative_path": "tmp/choob-rehearsal-evaluation-round-2/discover_protocol.json",
+      "sha256": "e4a47b8282a276d4403e307332036ec5ce60dbb37ae1c057fae83f4514b47aef",
+      "bytes": 1120
+    },
+    "round_2_requests": {
+      "absolute_path": "/Users/yeziyu/Documents/ChatGPT/COMM 586/tmp/choob-rehearsal-evaluation-round-2/discover_live_results.json",
+      "workspace_relative_path": "tmp/choob-rehearsal-evaluation-round-2/discover_live_results.json",
+      "sha256": "0194faba5f7d9da54a07c825da8e352ff3d5eb39cbda1786600d3458cc6f2dd7",
+      "bytes": 12477
+    },
+    "round_2_card_audit": {
+      "absolute_path": "/Users/yeziyu/Documents/ChatGPT/COMM 586/tmp/choob-rehearsal-evaluation-round-2/discover_card_audit.csv",
+      "workspace_relative_path": "tmp/choob-rehearsal-evaluation-round-2/discover_card_audit.csv",
+      "sha256": "e201701949206582791369125c77fe2e199c09f85a2acdaf8054c27164c33a70",
+      "bytes": 5482
+    }
+  },
+  "rounds": [
+    {
+      "round": "round_1",
+      "original_protocol_created_utc": "2026-11-16T19:52:58.399462+00:00",
+      "evaluated_commit": "37259485b5eff73143f71c72eb5917f6a8a2af52",
+      "recorded_server_config": {
+        "cities": [
+          "Philadelphia",
+          "Los Angeles",
+          "New York",
+          "Chicago",
+          "San Francisco"
+        ],
+        "city": "Philadelphia",
+        "online_ready": true,
+        "provider": "gemini_tavily"
+      },
+      "actual_tested_cities": [
+        "Chicago",
+        "Los Angeles",
+        "New York",
+        "Philadelphia"
+      ],
+      "source_campaign": "one request per fixed case, no retries in first pass",
+      "client_concurrency": 2,
+      "counts": {
+        "requests": 9,
+        "requests_returning_recommendations": 6,
+        "request_success_rate": 0.6666666666666666,
+        "empty_without_http_error": 2,
+        "errors": 1,
+        "outcomes": {
+          "returned_recommendations": 6,
+          "empty_without_http_error": 2,
+          "gemini_busy_http_503": 1
+        },
+        "returned_cards": 15,
+        "definitions": {
+          "request_success": "HTTP 200 with at least one returned recommendation card.",
+          "busy": "HTTP 503 and the explicit Gemini temporarily-busy error message.",
+          "timeout": "HTTP 503 and an explicit Gemini timeout message; separate from busy.",
+          "card_quality": "Never inferred from request success or the app's own evidence checks."
+        },
+        "historically_audited_cards": 15,
+        "historical_card_verdicts": {
+          "pass": 9,
+          "insufficient_evidence": 3,
+          "fail": 3
+        }
+      }
+    },
+    {
+      "round": "round_2",
+      "original_protocol_created_utc": "2026-11-16T20:07:32.766473+00:00",
+      "evaluated_commit": "37259485b5eff73143f71c72eb5917f6a8a2af52",
+      "recorded_server_config": {
+        "cities": [
+          "Philadelphia",
+          "Los Angeles",
+          "New York",
+          "Chicago",
+          "San Francisco"
+        ],
+        "city": "Philadelphia",
+        "online_ready": true,
+        "provider": "gemini_tavily"
+      },
+      "actual_tested_cities": [
+        "Chicago",
+        "Los Angeles",
+        "New York",
+        "Philadelphia"
+      ],
+      "source_campaign": "one request per fixed case, no retries in first pass",
+      "client_concurrency": 2,
+      "counts": {
+        "requests": 9,
+        "requests_returning_recommendations": 5,
+        "request_success_rate": 0.5555555555555556,
+        "empty_without_http_error": 1,
+        "errors": 3,
+        "outcomes": {
+          "returned_recommendations": 5,
+          "gemini_busy_http_503": 2,
+          "empty_without_http_error": 1,
+          "gemini_timeout_http_503": 1
+        },
+        "returned_cards": 11,
+        "definitions": {
+          "request_success": "HTTP 200 with at least one returned recommendation card.",
+          "busy": "HTTP 503 and the explicit Gemini temporarily-busy error message.",
+          "timeout": "HTTP 503 and an explicit Gemini timeout message; separate from busy.",
+          "card_quality": "Never inferred from request success or the app's own evidence checks."
+        },
+        "historically_audited_cards": 11,
+        "historical_card_verdicts": {
+          "pass": 8,
+          "insufficient_evidence": 2,
+          "fail": 1
+        }
+      }
+    }
+  ],
+  "pooled_counts": {
+    "requests": 18,
+    "requests_returning_recommendations": 11,
+    "request_success_rate": 0.6111111111111112,
+    "empty_without_http_error": 3,
+    "errors": 4,
+    "outcomes": {
+      "returned_recommendations": 11,
+      "empty_without_http_error": 3,
+      "gemini_busy_http_503": 3,
+      "gemini_timeout_http_503": 1
+    },
+    "returned_cards": 26,
+    "definitions": {
+      "request_success": "HTTP 200 with at least one returned recommendation card.",
+      "busy": "HTTP 503 and the explicit Gemini temporarily-busy error message.",
+      "timeout": "HTTP 503 and an explicit Gemini timeout message; separate from busy.",
+      "card_quality": "Never inferred from request success or the app's own evidence checks."
+    },
+    "gemini_related_http_503_errors": 4,
+    "gemini_related_http_503_error_rate": 0.2222222222222222,
+    "strict_busy_http_503_errors": 3,
+    "strict_busy_http_503_error_rate": 0.16666666666666666,
+    "gemini_timeout_http_503_errors": 1,
+    "gemini_timeout_http_503_error_rate": 0.05555555555555555,
+    "historically_audited_cards": 26,
+    "historical_card_verdicts": {
+      "pass": 17,
+      "insufficient_evidence": 5,
+      "fail": 4
+    },
+    "historical_card_pass_rate": 0.6538461538461539
+  },
+  "requests": [
+    {
+      "round": "round_1",
+      "origin": {
+        "source_id": "round_1_requests",
+        "json_pointer": "/results/0"
+      },
+      "outcome": "returned_recommendations",
+      "record": {
+        "id": "D01",
+        "expected": {
+          "city": "Philadelphia",
+          "cuisine": "Italian",
+          "taste": "Crispy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Philadelphia",
+          "message": "Crispy",
+          "preferences": {
+            "cuisine": "Italian"
+          }
+        },
+        "status": 200,
+        "seconds": 18.25,
+        "response": {
+          "ai_used": false,
+          "city": "Philadelphia",
+          "options": [],
+          "preferences": {
+            "cuisine": "Italian",
+            "dish": "",
+            "taste": "Crispy"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I found 2 dishes matching your picks in online menu sources in Philadelphia.",
+          "results": [
+            {
+              "cuisine": "Italian",
+              "dish_name": "Fried Calamari",
+              "location": "Philadelphia",
+              "note": "Menu mentions “Fried Calamari”",
+              "restaurant_name": "Spasso Italian Grill",
+              "source_title": "Philadelphia Dinner Menu — Spasso Italian Grill",
+              "source_url": "https://www.spassoitaliangrill.com/philadelphia-dinner",
+              "why": "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for."
+            },
+            {
+              "cuisine": "Italian",
+              "dish_name": "Fried Calamari",
+              "location": "Philadelphia",
+              "note": "Menu mentions “Tender calamari lightly breaded then fried”",
+              "restaurant_name": "Capri Restaurant",
+              "source_title": "Capri Restaurant - Food Menu",
+              "source_url": "https://capriphilly.com/philadelphia-queen-village-capri-restaurant-food-menu",
+              "why": "You asked for crispy Italian food, and its menu listing says “Tender calamari lightly breaded then fried”."
+            }
+          ],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_1",
+      "origin": {
+        "source_id": "round_1_requests",
+        "json_pointer": "/results/1"
+      },
+      "outcome": "returned_recommendations",
+      "record": {
+        "id": "D02",
+        "expected": {
+          "city": "Philadelphia",
+          "cuisine": "Mexican",
+          "taste": "Any flavor",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Philadelphia",
+          "message": "Any flavor",
+          "preferences": {
+            "cuisine": "Mexican"
+          }
+        },
+        "status": 200,
+        "seconds": 7.89,
+        "response": {
+          "ai_used": false,
+          "city": "Philadelphia",
+          "options": [],
+          "preferences": {
+            "cuisine": "Mexican",
+            "dish": "",
+            "taste": "Any flavor"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I found 3 dishes matching your picks in online menu sources in Philadelphia.",
+          "results": [
+            {
+              "cuisine": "Mexican",
+              "dish_name": "Enchiladas Mixtas",
+              "location": "Philadelphia",
+              "note": "",
+              "restaurant_name": "El Vez Philadelphia",
+              "source_title": "El Vez Philadelphia - Mexican Cuisine & Tequila",
+              "source_url": "https://elvezrestaurant.com",
+              "why": "You asked for Mexican food, and this menu lists “Enchiladas Mixtas”."
+            },
+            {
+              "cuisine": "Mexican",
+              "dish_name": "Steak Tacos",
+              "location": "Philadelphia",
+              "note": "",
+              "restaurant_name": "El Fuerte de Loreto Philly",
+              "source_title": "El Fuerte de Loreto Philly | Mexican Brunch & Dinner",
+              "source_url": "https://www.elfuertedeloretophilly.com",
+              "why": "You asked for Mexican food, and this menu lists “Steak Tacos”."
+            },
+            {
+              "cuisine": "Mexican",
+              "dish_name": "Sopa Poblana",
+              "location": "Philadelphia",
+              "note": "",
+              "restaurant_name": "Blue Corn Mexican Restaurant & Bar",
+              "source_title": "Dinner Menu | Blue Corn Res. & Bar",
+              "source_url": "https://www.bluecornmexphilly.com/dinnermenu",
+              "why": "You asked for Mexican food, and this menu lists “Sopa Poblana”."
+            }
+          ],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_1",
+      "origin": {
+        "source_id": "round_1_requests",
+        "json_pointer": "/results/2"
+      },
+      "outcome": "returned_recommendations",
+      "record": {
+        "id": "D03",
+        "expected": {
+          "city": "Los Angeles",
+          "cuisine": "Chinese",
+          "taste": "Spicy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Los Angeles",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Chinese"
+          }
+        },
+        "status": 200,
+        "seconds": 57.69,
+        "response": {
+          "ai_used": false,
+          "city": "Los Angeles",
+          "options": [
+            "Sichuan",
+            "Hunan",
+            "Cantonese"
+          ],
+          "preferences": {
+            "cuisine": "Chinese",
+            "dish": "",
+            "taste": "Spicy"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I found 2 dishes matching your picks in online menu sources in Los Angeles. Menus that describe the heat directly come first. You can narrow by regional style below.",
+          "results": [
+            {
+              "cuisine": "Chinese",
+              "dish_name": "Mabu Tofu",
+              "location": "Los Angeles",
+              "note": "Menu mentions “slightly spicy brown sauce”",
+              "restaurant_name": "New Moon",
+              "source_title": "New Moon in Montrose & Los Angeles - Menu",
+              "source_url": "https://newmoonrestaurants.com/menu",
+              "why": "You asked for spicy Chinese food, and its menu listing says “slightly spicy brown sauce”."
+            },
+            {
+              "cuisine": "Chinese",
+              "dish_name": "Spicy Garlic Pepper Chicken Wings",
+              "location": "Los Angeles",
+              "note": "Menu mentions “Spicy Garlic Pepper Chicken Wings”",
+              "restaurant_name": "Wok On Fire",
+              "source_title": "Best Chinese in Los Angeles, CA | Wok On Fire | Order Online",
+              "source_url": "https://www.wokonfireonline.com/93hg0j4y/wok-on-fire-los-angeles-90035/order-online",
+              "why": "Its name on the menu, “Spicy Garlic Pepper Chicken Wings”, fits the spicy Chinese food you asked for."
+            }
+          ],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_1",
+      "origin": {
+        "source_id": "round_1_requests",
+        "json_pointer": "/results/3"
+      },
+      "outcome": "empty_without_http_error",
+      "record": {
+        "id": "D04",
+        "expected": {
+          "city": "Los Angeles",
+          "cuisine": "Chinese",
+          "taste": "Spicy",
+          "region": "Sichuan",
+          "dish": ""
+        },
+        "request": {
+          "city": "Los Angeles",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Chinese",
+            "region": "Sichuan"
+          }
+        },
+        "status": 200,
+        "seconds": 18.85,
+        "response": {
+          "ai_used": false,
+          "city": "Los Angeles",
+          "options": [
+            "Hunan",
+            "Cantonese",
+            "Any Chinese style"
+          ],
+          "preferences": {
+            "cuisine": "Chinese",
+            "dish": "",
+            "region": "Sichuan",
+            "taste": "Spicy"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I couldn’t verify a menu match for Sichuan and your other choices. Try Any Chinese style to widen the search.",
+          "results": [],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_1",
+      "origin": {
+        "source_id": "round_1_requests",
+        "json_pointer": "/results/4"
+      },
+      "outcome": "empty_without_http_error",
+      "record": {
+        "id": "D05",
+        "expected": {
+          "city": "Los Angeles",
+          "cuisine": "Chinese",
+          "taste": "Spicy",
+          "region": "Hunan",
+          "dish": ""
+        },
+        "request": {
+          "city": "Los Angeles",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Chinese",
+            "region": "Hunan"
+          }
+        },
+        "status": 200,
+        "seconds": 10.74,
+        "response": {
+          "ai_used": false,
+          "city": "Los Angeles",
+          "options": [
+            "Sichuan",
+            "Cantonese",
+            "Any Chinese style"
+          ],
+          "preferences": {
+            "cuisine": "Chinese",
+            "dish": "",
+            "region": "Hunan",
+            "taste": "Spicy"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I couldn’t verify a menu match for Hunan and your other choices. Try Any Chinese style to widen the search.",
+          "results": [],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_1",
+      "origin": {
+        "source_id": "round_1_requests",
+        "json_pointer": "/results/5"
+      },
+      "outcome": "returned_recommendations",
+      "record": {
+        "id": "D06",
+        "expected": {
+          "city": "Chicago",
+          "cuisine": "Japanese",
+          "taste": "Fresh & light",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Chicago",
+          "message": "Fresh & light",
+          "preferences": {
+            "cuisine": "Japanese"
+          }
+        },
+        "status": 200,
+        "seconds": 8.23,
+        "response": {
+          "ai_used": false,
+          "city": "Chicago",
+          "options": [],
+          "preferences": {
+            "cuisine": "Japanese",
+            "dish": "",
+            "taste": "Fresh & light"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I found 3 dishes matching your picks in online menu sources in Chicago.",
+          "results": [
+            {
+              "cuisine": "Japanese",
+              "dish_name": "KOMBU MARINATED VEGETABLES",
+              "location": "Chicago",
+              "note": "Menu mentions “celery / fermented green beans / radish / sesame”",
+              "restaurant_name": "GAIJIN",
+              "source_title": "Lunch & Dinner Menu | Cocktail | Japanese Cuisine | GAIJIN | CHICAGO",
+              "source_url": "https://gaijinchicago.com/menu",
+              "why": "You asked for fresh, light Japanese food, and its menu listing says “celery / fermented green beans / radish / sesame”."
+            },
+            {
+              "cuisine": "Japanese",
+              "dish_name": "Sashimi",
+              "location": "Chicago",
+              "note": "Menu mentions “assorted raw fish (6 pcs)”",
+              "restaurant_name": "Matsuya Japanese Restaurant",
+              "source_title": "Matsuya Japanese Restaurant - Chicago, IL on OpenTable",
+              "source_url": "https://www.opentable.com/r/matsuya-japanese-restaurant",
+              "why": "You asked for fresh, light Japanese food, and its menu listing says “assorted raw fish (6 pcs)”."
+            },
+            {
+              "cuisine": "Japanese",
+              "dish_name": "GRILLED HIRAMASA",
+              "location": "Chicago",
+              "note": "Menu mentions “citrus supremes”",
+              "restaurant_name": "NoMI",
+              "source_title": "Menus | NoMI",
+              "source_url": "https://www.nomichicago.com/menus",
+              "why": "You asked for fresh, light Japanese food, and its menu listing says “citrus supremes”."
+            }
+          ],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_1",
+      "origin": {
+        "source_id": "round_1_requests",
+        "json_pointer": "/results/6"
+      },
+      "outcome": "returned_recommendations",
+      "record": {
+        "id": "D07",
+        "expected": {
+          "city": "New York",
+          "cuisine": "Korean",
+          "taste": "Crispy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "New York",
+          "message": "Crispy",
+          "preferences": {
+            "cuisine": "Korean"
+          }
+        },
+        "status": 200,
+        "seconds": 11.3,
+        "response": {
+          "ai_used": false,
+          "city": "New York",
+          "options": [],
+          "preferences": {
+            "cuisine": "Korean",
+            "dish": "",
+            "taste": "Crispy"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I found 2 dishes matching your picks in online menu sources in New York.",
+          "results": [
+            {
+              "cuisine": "Korean",
+              "dish_name": "TRUFFLE POTATO PANCAKE",
+              "location": "New York",
+              "note": "Menu mentions “Crispy Korean potato pancake”",
+              "restaurant_name": "HOJOKBAN",
+              "source_title": "Menus | Modern Korean Restaurant in NYC — HOJOKBAN",
+              "source_url": "https://hojokban.com/new-york/menus",
+              "why": "You asked for crispy Korean food, and its menu listing says “Crispy Korean potato pancake”."
+            },
+            {
+              "cuisine": "Korean",
+              "dish_name": "Beef Tallow French Fries",
+              "location": "New York",
+              "note": "Menu mentions “extra crispy”",
+              "restaurant_name": "COQODAQ",
+              "source_title": "Menus | COQODAQ",
+              "source_url": "https://www.coqodaq.com/menus",
+              "why": "You asked for crispy Korean food, and its menu listing says “extra crispy”."
+            }
+          ],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_1",
+      "origin": {
+        "source_id": "round_1_requests",
+        "json_pointer": "/results/7"
+      },
+      "outcome": "returned_recommendations",
+      "record": {
+        "id": "D08",
+        "expected": {
+          "city": "Philadelphia",
+          "cuisine": "Thai",
+          "taste": "Spicy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Philadelphia",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Thai"
+          }
+        },
+        "status": 200,
+        "seconds": 5.13,
+        "response": {
+          "ai_used": false,
+          "city": "Philadelphia",
+          "options": [],
+          "preferences": {
+            "cuisine": "Thai",
+            "dish": "",
+            "taste": "Spicy"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I found 3 dishes matching your picks in online menu sources in Philadelphia.",
+          "results": [
+            {
+              "cuisine": "Thai",
+              "dish_name": "Pad Thai Signature Thai",
+              "location": "Philadelphia",
+              "note": "Menu mentions “Spicy”",
+              "restaurant_name": "Thai Square Restaurant",
+              "source_title": "Thai Square Restaurant Delivery Menu - Philadelphia - Grubhub",
+              "source_url": "https://www.grubhub.com/restaurant/thai-square-restaurant-2521-christian-st-philadelphia/300547",
+              "why": "You asked for spicy Thai food, and its menu listing says “Spicy”."
+            },
+            {
+              "cuisine": "Thai",
+              "dish_name": "Spicy Pumpkin Soup with Chicken",
+              "location": "Philadelphia",
+              "note": "Menu mentions “Spicy”",
+              "restaurant_name": "My Thai Restaurant",
+              "source_title": "Menus for My Thai Restaurant - Philadelphia - SinglePlatform",
+              "source_url": "http://places.singleplatform.com/my-thai-restaurant-4/menu",
+              "why": "You asked for spicy Thai food, and its menu listing says “Spicy”."
+            },
+            {
+              "cuisine": "Thai",
+              "dish_name": "spicy five spice sauce",
+              "location": "Philadelphia",
+              "note": "Menu mentions “spicy five spice sauce”",
+              "restaurant_name": "Golden Triangle",
+              "source_title": "Best Thai in Philadelphia, PA | Golden Triangle | Menu",
+              "source_url": "https://www.goldentrianglepa.net/menu",
+              "why": "Its name on the menu, “spicy five spice sauce”, fits the spicy Thai food you asked for."
+            }
+          ],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_1",
+      "origin": {
+        "source_id": "round_1_requests",
+        "json_pointer": "/results/8"
+      },
+      "outcome": "gemini_busy_http_503",
+      "record": {
+        "id": "D09",
+        "expected": {
+          "city": "New York",
+          "cuisine": "Japanese",
+          "taste": "Spicy",
+          "region": "",
+          "dish": "ramen"
+        },
+        "request": {
+          "city": "New York",
+          "message": "I'd like spicy ramen.",
+          "preferences": {}
+        },
+        "status": 503,
+        "seconds": 4.26,
+        "response": {
+          "error": "Gemini is temporarily busy. Try again in a moment."
+        }
+      }
+    },
+    {
+      "round": "round_2",
+      "origin": {
+        "source_id": "round_2_requests",
+        "json_pointer": "/results/0"
+      },
+      "outcome": "returned_recommendations",
+      "record": {
+        "id": "D01",
+        "expected": {
+          "city": "Philadelphia",
+          "cuisine": "Italian",
+          "taste": "Crispy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Philadelphia",
+          "message": "Crispy",
+          "preferences": {
+            "cuisine": "Italian"
+          }
+        },
+        "status": 200,
+        "seconds": 7.34,
+        "response": {
+          "ai_used": false,
+          "city": "Philadelphia",
+          "options": [],
+          "preferences": {
+            "cuisine": "Italian",
+            "dish": "",
+            "taste": "Crispy"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I found 2 dishes matching your picks in online menu sources in Philadelphia.",
+          "results": [
+            {
+              "cuisine": "Italian",
+              "dish_name": "Fried Calamari",
+              "location": "34 S Front Street Philadelphia, PA 19106",
+              "note": "Menu mentions “Fried Calamari”",
+              "restaurant_name": "Spasso Italian Grill",
+              "source_title": "Philadelphia Dinner Menu — Spasso Italian Grill",
+              "source_url": "https://www.spassoitaliangrill.com/philadelphia-dinner",
+              "why": "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for."
+            },
+            {
+              "cuisine": "Italian",
+              "dish_name": "Fried Calamari",
+              "location": "Philadelphia",
+              "note": "Menu mentions “Fried Calamari”",
+              "restaurant_name": "Capri Restaurant",
+              "source_title": "Capri Restaurant - Food Menu",
+              "source_url": "https://capriphilly.com/philadelphia-queen-village-capri-restaurant-food-menu",
+              "why": "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for."
+            }
+          ],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_2",
+      "origin": {
+        "source_id": "round_2_requests",
+        "json_pointer": "/results/1"
+      },
+      "outcome": "returned_recommendations",
+      "record": {
+        "id": "D02",
+        "expected": {
+          "city": "Philadelphia",
+          "cuisine": "Mexican",
+          "taste": "Any flavor",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Philadelphia",
+          "message": "Any flavor",
+          "preferences": {
+            "cuisine": "Mexican"
+          }
+        },
+        "status": 200,
+        "seconds": 19.6,
+        "response": {
+          "ai_used": false,
+          "city": "Philadelphia",
+          "options": [],
+          "preferences": {
+            "cuisine": "Mexican",
+            "dish": "",
+            "taste": "Any flavor"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I found 3 dishes matching your picks in online menu sources in Philadelphia.",
+          "results": [
+            {
+              "cuisine": "Mexican",
+              "dish_name": "Enchiladas Mixtas",
+              "location": "Philadelphia",
+              "note": "",
+              "restaurant_name": "El Vez Philadelphia",
+              "source_title": "El Vez Philadelphia - Mexican Cuisine & Tequila",
+              "source_url": "https://elvezrestaurant.com",
+              "why": "You asked for Mexican food, and this menu lists “Enchiladas Mixtas”."
+            },
+            {
+              "cuisine": "Mexican",
+              "dish_name": "Steak Tacos",
+              "location": "Philadelphia",
+              "note": "",
+              "restaurant_name": "El Fuerte de Loreto Philly",
+              "source_title": "El Fuerte de Loreto Philly | Mexican Brunch & Dinner",
+              "source_url": "https://www.elfuertedeloretophilly.com",
+              "why": "You asked for Mexican food, and this menu lists “Steak Tacos”."
+            },
+            {
+              "cuisine": "Mexican",
+              "dish_name": "Sopa Poblana",
+              "location": "Philadelphia",
+              "note": "",
+              "restaurant_name": "Blue Corn Mexican Restaurant & Bar",
+              "source_title": "Dinner Menu | Blue Corn Res. & Bar",
+              "source_url": "https://www.bluecornmexphilly.com/dinnermenu",
+              "why": "You asked for Mexican food, and this menu lists “Sopa Poblana”."
+            }
+          ],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_2",
+      "origin": {
+        "source_id": "round_2_requests",
+        "json_pointer": "/results/2"
+      },
+      "outcome": "returned_recommendations",
+      "record": {
+        "id": "D03",
+        "expected": {
+          "city": "Los Angeles",
+          "cuisine": "Chinese",
+          "taste": "Spicy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Los Angeles",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Chinese"
+          }
+        },
+        "status": 200,
+        "seconds": 15.14,
+        "response": {
+          "ai_used": false,
+          "city": "Los Angeles",
+          "options": [
+            "Sichuan",
+            "Hunan",
+            "Cantonese"
+          ],
+          "preferences": {
+            "cuisine": "Chinese",
+            "dish": "",
+            "taste": "Spicy"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I found 2 dishes matching your picks in online menu sources in Los Angeles. Menus that describe the heat directly come first. You can narrow by regional style below.",
+          "results": [
+            {
+              "cuisine": "Chinese",
+              "dish_name": "Mabu Tofu",
+              "location": "Los Angeles",
+              "note": "Menu mentions “slightly spicy brown sauce”",
+              "restaurant_name": "New Moon",
+              "source_title": "New Moon in Montrose & Los Angeles - Menu",
+              "source_url": "https://newmoonrestaurants.com/menu",
+              "why": "You asked for spicy Chinese food, and its menu listing says “slightly spicy brown sauce”."
+            },
+            {
+              "cuisine": "Chinese",
+              "dish_name": "Spicy Garlic Edamame",
+              "location": "Los Angeles",
+              "note": "Menu mentions “Spicy Garlic Edamame”",
+              "restaurant_name": "Wok On Fire",
+              "source_title": "Best Chinese in Los Angeles, CA | Wok On Fire | Order Online",
+              "source_url": "https://www.wokonfireonline.com/93hg0j4y/wok-on-fire-los-angeles-90035/order-online",
+              "why": "Its name on the menu, “Spicy Garlic Edamame”, fits the spicy Chinese food you asked for."
+            }
+          ],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_2",
+      "origin": {
+        "source_id": "round_2_requests",
+        "json_pointer": "/results/3"
+      },
+      "outcome": "gemini_busy_http_503",
+      "record": {
+        "id": "D04",
+        "expected": {
+          "city": "Los Angeles",
+          "cuisine": "Chinese",
+          "taste": "Spicy",
+          "region": "Sichuan",
+          "dish": ""
+        },
+        "request": {
+          "city": "Los Angeles",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Chinese",
+            "region": "Sichuan"
+          }
+        },
+        "status": 503,
+        "seconds": 7.17,
+        "response": {
+          "error": "Gemini is temporarily busy. Try again in a moment."
+        }
+      }
+    },
+    {
+      "round": "round_2",
+      "origin": {
+        "source_id": "round_2_requests",
+        "json_pointer": "/results/4"
+      },
+      "outcome": "empty_without_http_error",
+      "record": {
+        "id": "D05",
+        "expected": {
+          "city": "Los Angeles",
+          "cuisine": "Chinese",
+          "taste": "Spicy",
+          "region": "Hunan",
+          "dish": ""
+        },
+        "request": {
+          "city": "Los Angeles",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Chinese",
+            "region": "Hunan"
+          }
+        },
+        "status": 200,
+        "seconds": 1.2,
+        "response": {
+          "ai_used": false,
+          "city": "Los Angeles",
+          "options": [
+            "Sichuan",
+            "Cantonese",
+            "Any Chinese style"
+          ],
+          "preferences": {
+            "cuisine": "Chinese",
+            "dish": "",
+            "region": "Hunan",
+            "taste": "Spicy"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I couldn’t verify a menu match for Hunan and your other choices. Try Any Chinese style to widen the search.",
+          "results": [],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_2",
+      "origin": {
+        "source_id": "round_2_requests",
+        "json_pointer": "/results/5"
+      },
+      "outcome": "returned_recommendations",
+      "record": {
+        "id": "D06",
+        "expected": {
+          "city": "Chicago",
+          "cuisine": "Japanese",
+          "taste": "Fresh & light",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Chicago",
+          "message": "Fresh & light",
+          "preferences": {
+            "cuisine": "Japanese"
+          }
+        },
+        "status": 200,
+        "seconds": 31.78,
+        "response": {
+          "ai_used": false,
+          "city": "Chicago",
+          "options": [],
+          "preferences": {
+            "cuisine": "Japanese",
+            "dish": "",
+            "taste": "Fresh & light"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I found 2 dishes matching your picks in online menu sources in Chicago.",
+          "results": [
+            {
+              "cuisine": "Japanese",
+              "dish_name": "KOMBU MARINATED VEGETABLES",
+              "location": "Chicago",
+              "note": "Menu mentions “KOMBU MARINATED VEGETABLES”",
+              "restaurant_name": "GAIJIN",
+              "source_title": "Lunch & Dinner Menu | Cocktail | Japanese Cuisine | GAIJIN | CHICAGO",
+              "source_url": "https://gaijinchicago.com/menu",
+              "why": "Its name on the menu, “KOMBU MARINATED VEGETABLES”, fits the fresh, light Japanese food you asked for."
+            },
+            {
+              "cuisine": "Japanese",
+              "dish_name": "Sashimi",
+              "location": "Chicago",
+              "note": "Menu mentions “raw fish”",
+              "restaurant_name": "Matsuya Japanese Restaurant",
+              "source_title": "Matsuya Japanese Restaurant - Chicago, IL on OpenTable",
+              "source_url": "https://www.opentable.com/r/matsuya-japanese-restaurant",
+              "why": "You asked for fresh, light Japanese food, and its menu listing says “raw fish”."
+            }
+          ],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_2",
+      "origin": {
+        "source_id": "round_2_requests",
+        "json_pointer": "/results/6"
+      },
+      "outcome": "returned_recommendations",
+      "record": {
+        "id": "D07",
+        "expected": {
+          "city": "New York",
+          "cuisine": "Korean",
+          "taste": "Crispy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "New York",
+          "message": "Crispy",
+          "preferences": {
+            "cuisine": "Korean"
+          }
+        },
+        "status": 200,
+        "seconds": 2.23,
+        "response": {
+          "ai_used": false,
+          "city": "New York",
+          "options": [],
+          "preferences": {
+            "cuisine": "Korean",
+            "dish": "",
+            "taste": "Crispy"
+          },
+          "provider": "gemini_tavily",
+          "reply": "I found 2 dishes matching your picks in online menu sources in New York.",
+          "results": [
+            {
+              "cuisine": "Korean",
+              "dish_name": "TRUFFLE POTATO PANCAKE",
+              "location": "New York",
+              "note": "Menu mentions “Crispy Korean potato pancake”",
+              "restaurant_name": "HOJOKBAN",
+              "source_title": "Menus | Modern Korean Restaurant in NYC — HOJOKBAN",
+              "source_url": "https://hojokban.com/new-york/menus",
+              "why": "You asked for crispy Korean food, and its menu listing says “Crispy Korean potato pancake”."
+            },
+            {
+              "cuisine": "Korean",
+              "dish_name": "Beef Tallow French Fries",
+              "location": "New York",
+              "note": "Menu mentions “extra crispy”",
+              "restaurant_name": "COQODAQ",
+              "source_title": "Menus | COQODAQ",
+              "source_url": "https://www.coqodaq.com/menus",
+              "why": "You asked for crispy Korean food, and its menu listing says “extra crispy”."
+            }
+          ],
+          "stage": "results"
+        }
+      }
+    },
+    {
+      "round": "round_2",
+      "origin": {
+        "source_id": "round_2_requests",
+        "json_pointer": "/results/7"
+      },
+      "outcome": "gemini_timeout_http_503",
+      "record": {
+        "id": "D08",
+        "expected": {
+          "city": "Philadelphia",
+          "cuisine": "Thai",
+          "taste": "Spicy",
+          "region": "",
+          "dish": ""
+        },
+        "request": {
+          "city": "Philadelphia",
+          "message": "Spicy",
+          "preferences": {
+            "cuisine": "Thai"
+          }
+        },
+        "status": 503,
+        "seconds": 30.35,
+        "response": {
+          "error": "Gemini took too long to answer. Try again in a moment."
+        }
+      }
+    },
+    {
+      "round": "round_2",
+      "origin": {
+        "source_id": "round_2_requests",
+        "json_pointer": "/results/8"
+      },
+      "outcome": "gemini_busy_http_503",
+      "record": {
+        "id": "D09",
+        "expected": {
+          "city": "New York",
+          "cuisine": "Japanese",
+          "taste": "Spicy",
+          "region": "",
+          "dish": "ramen"
+        },
+        "request": {
+          "city": "New York",
+          "message": "I'd like spicy ramen.",
+          "preferences": {}
+        },
+        "status": 503,
+        "seconds": 0.76,
+        "response": {
+          "error": "Gemini is temporarily busy. Try again in a moment."
+        }
+      }
+    }
+  ],
+  "cards": [
+    {
+      "round": "round_1",
+      "request_id": "D01",
+      "rank": 1,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 0,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/0/response/results/0"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Italian",
+        "dish_name": "Fried Calamari",
+        "location": "Philadelphia",
+        "note": "Menu mentions “Fried Calamari”",
+        "restaurant_name": "Spasso Italian Grill",
+        "source_title": "Philadelphia Dinner Menu — Spasso Italian Grill",
+        "source_url": "https://www.spassoitaliangrill.com/philadelphia-dinner",
+        "why": "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for."
+      },
+      "historical_audit_row": {
+        "probe": "D01",
+        "rank": "1",
+        "city": "Philadelphia",
+        "requested_cuisine": "Italian",
+        "requested_flavor": "Crispy",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "Fried Calamari",
+        "restaurant": "Spasso Italian Grill",
+        "source": "https://www.spassoitaliangrill.com/philadelphia-dinner",
+        "displayed_reason": "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "yes",
+        "flavor_support": "yes",
+        "region_or_named_dish": "na",
+        "verdict": "pass",
+        "additional_status": "original verified",
+        "evidence": "Dish appears under Antipasti Caldi on the Philadelphia dinner menu. Fried preparation supports crispy by inference.",
+        "verification_urls": "https://www.spassoitaliangrill.com/philadelphia-dinner"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D01",
+      "rank": 2,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 1,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/0/response/results/1"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Italian",
+        "dish_name": "Fried Calamari",
+        "location": "Philadelphia",
+        "note": "Menu mentions “Tender calamari lightly breaded then fried”",
+        "restaurant_name": "Capri Restaurant",
+        "source_title": "Capri Restaurant - Food Menu",
+        "source_url": "https://capriphilly.com/philadelphia-queen-village-capri-restaurant-food-menu",
+        "why": "You asked for crispy Italian food, and its menu listing says “Tender calamari lightly breaded then fried”."
+      },
+      "historical_audit_row": {
+        "probe": "D01",
+        "rank": "2",
+        "city": "Philadelphia",
+        "requested_cuisine": "Italian",
+        "requested_flavor": "Crispy",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "Fried Calamari",
+        "restaurant": "Capri Restaurant",
+        "source": "https://capriphilly.com/philadelphia-queen-village-capri-restaurant-food-menu",
+        "displayed_reason": "You asked for crispy Italian food, and its menu listing says “Tender calamari lightly breaded then fried”.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "yes",
+        "flavor_support": "yes",
+        "region_or_named_dish": "na",
+        "verdict": "pass",
+        "additional_status": "original verified",
+        "evidence": "Antipasti listing describes breaded and fried calamari. Official home page identifies Italian cuisine and 757 South Front Street in Philadelphia.",
+        "verification_urls": "https://capriphilly.com/philadelphia-queen-village-capri-restaurant-food-menu | https://capriphilly.com/"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D02",
+      "rank": 1,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 2,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/1/response/results/0"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Mexican",
+        "dish_name": "Enchiladas Mixtas",
+        "location": "Philadelphia",
+        "note": "",
+        "restaurant_name": "El Vez Philadelphia",
+        "source_title": "El Vez Philadelphia - Mexican Cuisine & Tequila",
+        "source_url": "https://elvezrestaurant.com",
+        "why": "You asked for Mexican food, and this menu lists “Enchiladas Mixtas”."
+      },
+      "historical_audit_row": {
+        "probe": "D02",
+        "rank": "1",
+        "city": "Philadelphia",
+        "requested_cuisine": "Mexican",
+        "requested_flavor": "Any flavor",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "Enchiladas Mixtas",
+        "restaurant": "El Vez Philadelphia",
+        "source": "https://elvezrestaurant.com",
+        "displayed_reason": "You asked for Mexican food, and this menu lists “Enchiladas Mixtas”.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "yes",
+        "flavor_support": "na",
+        "region_or_named_dish": "na",
+        "verdict": "pass",
+        "additional_status": "original verified",
+        "evidence": "The official El Vez Philadelphia Mexican menu lists the mixed enchiladas with chicken, black bean and short rib.",
+        "verification_urls": "https://elvezrestaurant.com/"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D02",
+      "rank": 2,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 3,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/1/response/results/1"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Mexican",
+        "dish_name": "Steak Tacos",
+        "location": "Philadelphia",
+        "note": "",
+        "restaurant_name": "El Fuerte de Loreto Philly",
+        "source_title": "El Fuerte de Loreto Philly | Mexican Brunch & Dinner",
+        "source_url": "https://www.elfuertedeloretophilly.com",
+        "why": "You asked for Mexican food, and this menu lists “Steak Tacos”."
+      },
+      "historical_audit_row": {
+        "probe": "D02",
+        "rank": "2",
+        "city": "Philadelphia",
+        "requested_cuisine": "Mexican",
+        "requested_flavor": "Any flavor",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "Steak Tacos",
+        "restaurant": "El Fuerte de Loreto Philly",
+        "source": "https://www.elfuertedeloretophilly.com",
+        "displayed_reason": "You asked for Mexican food, and this menu lists “Steak Tacos”.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "yes",
+        "flavor_support": "na",
+        "region_or_named_dish": "na",
+        "verdict": "pass",
+        "additional_status": "original verified",
+        "evidence": "Exact dish under Los Tacos. The same official page identifies Mexican cuisine and 1412 S 5th Street, Philadelphia.",
+        "verification_urls": "https://www.elfuertedeloretophilly.com/"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D02",
+      "rank": 3,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 4,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/1/response/results/2"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Mexican",
+        "dish_name": "Sopa Poblana",
+        "location": "Philadelphia",
+        "note": "",
+        "restaurant_name": "Blue Corn Mexican Restaurant & Bar",
+        "source_title": "Dinner Menu | Blue Corn Res. & Bar",
+        "source_url": "https://www.bluecornmexphilly.com/dinnermenu",
+        "why": "You asked for Mexican food, and this menu lists “Sopa Poblana”."
+      },
+      "historical_audit_row": {
+        "probe": "D02",
+        "rank": "3",
+        "city": "Philadelphia",
+        "requested_cuisine": "Mexican",
+        "requested_flavor": "Any flavor",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "Sopa Poblana",
+        "restaurant": "Blue Corn Mexican Restaurant & Bar",
+        "source": "https://www.bluecornmexphilly.com/dinnermenu",
+        "displayed_reason": "You asked for Mexican food, and this menu lists “Sopa Poblana”.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "yes",
+        "flavor_support": "na",
+        "region_or_named_dish": "na",
+        "verdict": "pass",
+        "additional_status": "original verified",
+        "evidence": "Exact dish under Sopas on the official Mexican dinner menu, with the Philadelphia address on the page.",
+        "verification_urls": "https://www.bluecornmexphilly.com/dinnermenu"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D03",
+      "rank": 1,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 5,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/2/response/results/0"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Chinese",
+        "dish_name": "Mabu Tofu",
+        "location": "Los Angeles",
+        "note": "Menu mentions “slightly spicy brown sauce”",
+        "restaurant_name": "New Moon",
+        "source_title": "New Moon in Montrose & Los Angeles - Menu",
+        "source_url": "https://newmoonrestaurants.com/menu",
+        "why": "You asked for spicy Chinese food, and its menu listing says “slightly spicy brown sauce”."
+      },
+      "historical_audit_row": {
+        "probe": "D03",
+        "rank": "1",
+        "city": "Los Angeles",
+        "requested_cuisine": "Chinese",
+        "requested_flavor": "Spicy",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "Mabu Tofu",
+        "restaurant": "New Moon",
+        "source": "https://newmoonrestaurants.com/menu",
+        "displayed_reason": "You asked for spicy Chinese food, and its menu listing says “slightly spicy brown sauce”.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "yes",
+        "flavor_support": "yes",
+        "region_or_named_dish": "na",
+        "verdict": "pass",
+        "additional_status": "original verified",
+        "evidence": "Official menu lists the dish with a slightly spicy sauce. Official locations page confirms Downtown LA branch and Downtown LA merchant ordering menu lists the same tofu dish.",
+        "verification_urls": "https://newmoonrestaurants.com/menu | https://newmoonrestaurants.com/locations/ | https://apple-maps-app-clip.failover.ubereats.com/store/new-moon-restaurant-downtown-la/3GjiZ5GtWPyEeZXdIHg4eQ"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D03",
+      "rank": 2,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 6,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/2/response/results/1"
+      },
+      "recorded_verdict": "unresolved",
+      "normalized_verdict": "insufficient_evidence",
+      "returned_card": {
+        "cuisine": "Chinese",
+        "dish_name": "Spicy Garlic Pepper Chicken Wings",
+        "location": "Los Angeles",
+        "note": "Menu mentions “Spicy Garlic Pepper Chicken Wings”",
+        "restaurant_name": "Wok On Fire",
+        "source_title": "Best Chinese in Los Angeles, CA | Wok On Fire | Order Online",
+        "source_url": "https://www.wokonfireonline.com/93hg0j4y/wok-on-fire-los-angeles-90035/order-online",
+        "why": "Its name on the menu, “Spicy Garlic Pepper Chicken Wings”, fits the spicy Chinese food you asked for."
+      },
+      "historical_audit_row": {
+        "probe": "D03",
+        "rank": "2",
+        "city": "Los Angeles",
+        "requested_cuisine": "Chinese",
+        "requested_flavor": "Spicy",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "Spicy Garlic Pepper Chicken Wings",
+        "restaurant": "Wok On Fire",
+        "source": "https://www.wokonfireonline.com/93hg0j4y/wok-on-fire-los-angeles-90035/order-online",
+        "displayed_reason": "Its name on the menu, “Spicy Garlic Pepper Chicken Wings”, fits the spicy Chinese food you asked for.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "unknown",
+        "flavor_support": "yes",
+        "region_or_named_dish": "na",
+        "verdict": "unresolved",
+        "additional_status": "alternative merchant menu",
+        "evidence": "Original site blocked the audit browser (403). The merchant ordering menu at the same Los Angeles address lists the exact wings, marked hot. The venue serves a mixed Chinese and Japanese menu, and the item itself does not establish its cuisine.",
+        "verification_urls": "https://www.beyondmenu.com/20362/los-angeles/wok-on-fire-los-angeles-90035.aspx"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D06",
+      "rank": 1,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 7,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/5/response/results/0"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Japanese",
+        "dish_name": "KOMBU MARINATED VEGETABLES",
+        "location": "Chicago",
+        "note": "Menu mentions “celery / fermented green beans / radish / sesame”",
+        "restaurant_name": "GAIJIN",
+        "source_title": "Lunch & Dinner Menu | Cocktail | Japanese Cuisine | GAIJIN | CHICAGO",
+        "source_url": "https://gaijinchicago.com/menu",
+        "why": "You asked for fresh, light Japanese food, and its menu listing says “celery / fermented green beans / radish / sesame”."
+      },
+      "historical_audit_row": {
+        "probe": "D06",
+        "rank": "1",
+        "city": "Chicago",
+        "requested_cuisine": "Japanese",
+        "requested_flavor": "Fresh & light",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "KOMBU MARINATED VEGETABLES",
+        "restaurant": "GAIJIN",
+        "source": "https://gaijinchicago.com/menu",
+        "displayed_reason": "You asked for fresh, light Japanese food, and its menu listing says “celery / fermented green beans / radish / sesame”.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "yes",
+        "flavor_support": "yes",
+        "region_or_named_dish": "na",
+        "verdict": "pass",
+        "additional_status": "yes",
+        "evidence": "Official Chicago menu identifies Japanese cuisine and the exact small plate. Kombu marinade, celery, fermented green beans and radish reasonably fit fresh and light. Flavor judgment is ingredient-based.",
+        "verification_urls": "https://gaijinchicago.com/menu"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D06",
+      "rank": 2,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 8,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/5/response/results/1"
+      },
+      "recorded_verdict": "fail",
+      "normalized_verdict": "fail",
+      "returned_card": {
+        "cuisine": "Japanese",
+        "dish_name": "Sashimi",
+        "location": "Chicago",
+        "note": "Menu mentions “assorted raw fish (6 pcs)”",
+        "restaurant_name": "Matsuya Japanese Restaurant",
+        "source_title": "Matsuya Japanese Restaurant - Chicago, IL on OpenTable",
+        "source_url": "https://www.opentable.com/r/matsuya-japanese-restaurant",
+        "why": "You asked for fresh, light Japanese food, and its menu listing says “assorted raw fish (6 pcs)”."
+      },
+      "historical_audit_row": {
+        "probe": "D06",
+        "rank": "2",
+        "city": "Chicago",
+        "requested_cuisine": "Japanese",
+        "requested_flavor": "Fresh & light",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "Sashimi",
+        "restaurant": "Matsuya Japanese Restaurant",
+        "source": "https://www.opentable.com/r/matsuya-japanese-restaurant",
+        "displayed_reason": "You asked for fresh, light Japanese food, and its menu listing says “assorted raw fish (6 pcs)”.",
+        "menu_item": "yes",
+        "current_venue_city": "no",
+        "item_cuisine": "yes",
+        "flavor_support": "yes",
+        "region_or_named_dish": "na",
+        "verdict": "fail",
+        "additional_status": "no",
+        "evidence": "OpenTable shows the six-piece raw fish cold appetizer and historic Chicago address. Apothecary's current operator lists its cocktail lounge at that precise address. The menu match is historical and the recommendation directs to an obsolete venue.",
+        "verification_urls": "https://www.opentable.com/r/matsuya-japanese-restaurant | https://apothecary-lounge.com/contact/"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D06",
+      "rank": 3,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 9,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/5/response/results/2"
+      },
+      "recorded_verdict": "unresolved",
+      "normalized_verdict": "insufficient_evidence",
+      "returned_card": {
+        "cuisine": "Japanese",
+        "dish_name": "GRILLED HIRAMASA",
+        "location": "Chicago",
+        "note": "Menu mentions “citrus supremes”",
+        "restaurant_name": "NoMI",
+        "source_title": "Menus | NoMI",
+        "source_url": "https://www.nomichicago.com/menus",
+        "why": "You asked for fresh, light Japanese food, and its menu listing says “citrus supremes”."
+      },
+      "historical_audit_row": {
+        "probe": "D06",
+        "rank": "3",
+        "city": "Chicago",
+        "requested_cuisine": "Japanese",
+        "requested_flavor": "Fresh & light",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "GRILLED HIRAMASA",
+        "restaurant": "NoMI",
+        "source": "https://www.nomichicago.com/menus",
+        "displayed_reason": "You asked for fresh, light Japanese food, and its menu listing says “citrus supremes”.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "unknown",
+        "flavor_support": "unknown",
+        "region_or_named_dish": "na",
+        "verdict": "unresolved",
+        "additional_status": "yes",
+        "evidence": "NoMI confirms the item, citrus and Chicago location. Hyatt describes NoMI Kitchen as modern American with French techniques and separately describes its sushi counter. This dinner entrée has a French butter sauce and no item-level support for a Japanese preparation. Citrus supports some freshness but the richness of the beurre blanc makes lightness uncertain.",
+        "verification_urls": "https://www.nomichicago.com/menu/dinner/ | https://www.nomichicago.com/location/nomi/ | https://www.hyatt.com/park-hyatt/en-US/chiph-park-hyatt-chicago/dining"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D07",
+      "rank": 1,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 10,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/6/response/results/0"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Korean",
+        "dish_name": "TRUFFLE POTATO PANCAKE",
+        "location": "New York",
+        "note": "Menu mentions “Crispy Korean potato pancake”",
+        "restaurant_name": "HOJOKBAN",
+        "source_title": "Menus | Modern Korean Restaurant in NYC — HOJOKBAN",
+        "source_url": "https://hojokban.com/new-york/menus",
+        "why": "You asked for crispy Korean food, and its menu listing says “Crispy Korean potato pancake”."
+      },
+      "historical_audit_row": {
+        "probe": "D07",
+        "rank": "1",
+        "city": "New York",
+        "requested_cuisine": "Korean",
+        "requested_flavor": "Crispy",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "TRUFFLE POTATO PANCAKE",
+        "restaurant": "HOJOKBAN",
+        "source": "https://hojokban.com/new-york/menus",
+        "displayed_reason": "You asked for crispy Korean food, and its menu listing says “Crispy Korean potato pancake”.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "yes",
+        "flavor_support": "yes",
+        "region_or_named_dish": "na",
+        "verdict": "pass",
+        "additional_status": "yes",
+        "evidence": "Official New York venue menu names the item and directly calls it a crispy Korean potato pancake in the item's image description. The same page lists the Madison Avenue address.",
+        "verification_urls": "https://hojokban.com/new-york/menus"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D07",
+      "rank": 2,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 11,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/6/response/results/1"
+      },
+      "recorded_verdict": "unresolved",
+      "normalized_verdict": "insufficient_evidence",
+      "returned_card": {
+        "cuisine": "Korean",
+        "dish_name": "Beef Tallow French Fries",
+        "location": "New York",
+        "note": "Menu mentions “extra crispy”",
+        "restaurant_name": "COQODAQ",
+        "source_title": "Menus | COQODAQ",
+        "source_url": "https://www.coqodaq.com/menus",
+        "why": "You asked for crispy Korean food, and its menu listing says “extra crispy”."
+      },
+      "historical_audit_row": {
+        "probe": "D07",
+        "rank": "2",
+        "city": "New York",
+        "requested_cuisine": "Korean",
+        "requested_flavor": "Crispy",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "Beef Tallow French Fries",
+        "restaurant": "COQODAQ",
+        "source": "https://www.coqodaq.com/menus",
+        "displayed_reason": "You asked for crispy Korean food, and its menu listing says “extra crispy”.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "unknown",
+        "flavor_support": "yes",
+        "region_or_named_dish": "na",
+        "verdict": "unresolved",
+        "additional_status": "yes",
+        "evidence": "Official 12 East 22nd Street menu lists classic-cut extra-crispy fries. The venue has Korean influence and serves Korean dishes, but this specific side is classic French fries with no Korean preparation or seasoning given.",
+        "verification_urls": "https://www.coqodaq.com/menus | https://www.coqodaq.com/"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D08",
+      "rank": 1,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 12,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/7/response/results/0"
+      },
+      "recorded_verdict": "fail",
+      "normalized_verdict": "fail",
+      "returned_card": {
+        "cuisine": "Thai",
+        "dish_name": "Pad Thai Signature Thai",
+        "location": "Philadelphia",
+        "note": "Menu mentions “Spicy”",
+        "restaurant_name": "Thai Square Restaurant",
+        "source_title": "Thai Square Restaurant Delivery Menu - Philadelphia - Grubhub",
+        "source_url": "https://www.grubhub.com/restaurant/thai-square-restaurant-2521-christian-st-philadelphia/300547",
+        "why": "You asked for spicy Thai food, and its menu listing says “Spicy”."
+      },
+      "historical_audit_row": {
+        "probe": "D08",
+        "rank": "1",
+        "city": "Philadelphia",
+        "requested_cuisine": "Thai",
+        "requested_flavor": "Spicy",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "Pad Thai Signature Thai",
+        "restaurant": "Thai Square Restaurant",
+        "source": "https://www.grubhub.com/restaurant/thai-square-restaurant-2521-christian-st-philadelphia/300547",
+        "displayed_reason": "You asked for spicy Thai food, and its menu listing says “Spicy”.",
+        "menu_item": "no",
+        "current_venue_city": "yes",
+        "item_cuisine": "yes",
+        "flavor_support": "unknown",
+        "region_or_named_dish": "na",
+        "verdict": "fail",
+        "additional_status": "yes",
+        "evidence": "Delivery menus list the dish as Pad Thai. Signature Thai dish is the description, so the card incorporated description text into the name. No item-level spicy claim was found, though other entries on those menus explicitly mention spice. The app's Grubhub link showed an interstitial during audit.",
+        "verification_urls": "https://www.ubereats.com/store/thai-square-restaurant/-DpnKLNEXzuWSJZPzOqqmw | https://order.online/store/thai-square-23992997"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D08",
+      "rank": 2,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 13,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/7/response/results/1"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Thai",
+        "dish_name": "Spicy Pumpkin Soup with Chicken",
+        "location": "Philadelphia",
+        "note": "Menu mentions “Spicy”",
+        "restaurant_name": "My Thai Restaurant",
+        "source_title": "Menus for My Thai Restaurant - Philadelphia - SinglePlatform",
+        "source_url": "http://places.singleplatform.com/my-thai-restaurant-4/menu",
+        "why": "You asked for spicy Thai food, and its menu listing says “Spicy”."
+      },
+      "historical_audit_row": {
+        "probe": "D08",
+        "rank": "2",
+        "city": "Philadelphia",
+        "requested_cuisine": "Thai",
+        "requested_flavor": "Spicy",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "Spicy Pumpkin Soup with Chicken",
+        "restaurant": "My Thai Restaurant",
+        "source": "http://places.singleplatform.com/my-thai-restaurant-4/menu",
+        "displayed_reason": "You asked for spicy Thai food, and its menu listing says “Spicy”.",
+        "menu_item": "yes",
+        "current_venue_city": "yes",
+        "item_cuisine": "yes",
+        "flavor_support": "yes",
+        "region_or_named_dish": "na",
+        "verdict": "pass",
+        "additional_status": "yes",
+        "evidence": "The vendor's public listing reproduces that exact soup name and marks it mildly spicy. It identifies Thai cuisine and 2200 South St, Philadelphia. A second orderable menu confirms the venue and the same pumpkin and chicken soup without the spicy adjective.",
+        "verification_urls": "https://places.singleplatform.com/my-thai-restaurant-4/menu | https://www.beyondmenu.com/48254/philadelphia/my-thai-philadelphia-19146.aspx"
+      }
+    },
+    {
+      "round": "round_1",
+      "request_id": "D08",
+      "rank": 3,
+      "origin": {
+        "source_id": "round_1_card_audit",
+        "csv_data_row_index_zero_based": 14,
+        "request_source_id": "round_1_requests",
+        "request_json_pointer": "/results/7/response/results/2"
+      },
+      "recorded_verdict": "fail",
+      "normalized_verdict": "fail",
+      "returned_card": {
+        "cuisine": "Thai",
+        "dish_name": "spicy five spice sauce",
+        "location": "Philadelphia",
+        "note": "Menu mentions “spicy five spice sauce”",
+        "restaurant_name": "Golden Triangle",
+        "source_title": "Best Thai in Philadelphia, PA | Golden Triangle | Menu",
+        "source_url": "https://www.goldentrianglepa.net/menu",
+        "why": "Its name on the menu, “spicy five spice sauce”, fits the spicy Thai food you asked for."
+      },
+      "historical_audit_row": {
+        "probe": "D08",
+        "rank": "3",
+        "city": "Philadelphia",
+        "requested_cuisine": "Thai",
+        "requested_flavor": "Spicy",
+        "requested_region": "",
+        "requested_dish": "",
+        "dish": "spicy five spice sauce",
+        "restaurant": "Golden Triangle",
+        "source": "https://www.goldentrianglepa.net/menu",
+        "displayed_reason": "Its name on the menu, “spicy five spice sauce”, fits the spicy Thai food you asked for.",
+        "menu_item": "no",
+        "current_venue_city": "yes",
+        "item_cuisine": "unknown",
+        "flavor_support": "yes",
+        "region_or_named_dish": "na",
+        "verdict": "fail",
+        "additional_status": "yes",
+        "evidence": "The quoted words identify a sauce in the description of Golden Five Spice, not the name of an orderable dish. The mixed-cuisine menu does not identify that appetizer as Thai. The app's official menu URL returned 403 during audit. Independent ordering menus confirm the actual item and branch.",
+        "verification_urls": "https://www.beyondmenu.com/38874/philadelphia/golden-triangle-philadelphia-19147.aspx | https://www.order.com/order/restaurant/golden-triangle-menu/8168"
+      }
+    },
+    {
+      "round": "round_2",
+      "request_id": "D01",
+      "rank": 1,
+      "origin": {
+        "source_id": "round_2_card_audit",
+        "csv_data_row_index_zero_based": 0,
+        "request_source_id": "round_2_requests",
+        "request_json_pointer": "/results/0/response/results/0"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Italian",
+        "dish_name": "Fried Calamari",
+        "location": "34 S Front Street Philadelphia, PA 19106",
+        "note": "Menu mentions “Fried Calamari”",
+        "restaurant_name": "Spasso Italian Grill",
+        "source_title": "Philadelphia Dinner Menu — Spasso Italian Grill",
+        "source_url": "https://www.spassoitaliangrill.com/philadelphia-dinner",
+        "why": "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for."
+      },
+      "historical_audit_row": {
+        "probe": "D01",
+        "rank": "1",
+        "location": "Philadelphia",
+        "request_cuisine": "Italian",
+        "request_flavor": "Crispy",
+        "request_region": "",
+        "request_dish": "",
+        "dish": "Fried Calamari",
+        "restaurant": "Spasso Italian Grill",
+        "source": "https://www.spassoitaliangrill.com/philadelphia-dinner",
+        "displayed_reason": "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for.",
+        "item": "yes",
+        "restaurant_city": "yes",
+        "cuisine": "yes",
+        "flavor": "yes",
+        "region_or_requested_dish": "na",
+        "overall": "pass",
+        "link_status": "original verified",
+        "evidence": "Dish appears under Antipasti Caldi on the Philadelphia dinner menu. Fried preparation supports crispy by inference.",
+        "verification_url": "https://www.spassoitaliangrill.com/philadelphia-dinner"
+      }
+    },
+    {
+      "round": "round_2",
+      "request_id": "D01",
+      "rank": 2,
+      "origin": {
+        "source_id": "round_2_card_audit",
+        "csv_data_row_index_zero_based": 1,
+        "request_source_id": "round_2_requests",
+        "request_json_pointer": "/results/0/response/results/1"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Italian",
+        "dish_name": "Fried Calamari",
+        "location": "Philadelphia",
+        "note": "Menu mentions “Fried Calamari”",
+        "restaurant_name": "Capri Restaurant",
+        "source_title": "Capri Restaurant - Food Menu",
+        "source_url": "https://capriphilly.com/philadelphia-queen-village-capri-restaurant-food-menu",
+        "why": "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for."
+      },
+      "historical_audit_row": {
+        "probe": "D01",
+        "rank": "2",
+        "location": "Philadelphia",
+        "request_cuisine": "Italian",
+        "request_flavor": "Crispy",
+        "request_region": "",
+        "request_dish": "",
+        "dish": "Fried Calamari",
+        "restaurant": "Capri Restaurant",
+        "source": "https://capriphilly.com/philadelphia-queen-village-capri-restaurant-food-menu",
+        "displayed_reason": "Its name on the menu, “Fried Calamari”, fits the crispy Italian food you asked for.",
+        "item": "yes",
+        "restaurant_city": "yes",
+        "cuisine": "yes",
+        "flavor": "yes",
+        "region_or_requested_dish": "na",
+        "overall": "pass",
+        "link_status": "original verified",
+        "evidence": "Antipasti listing describes breaded and fried calamari. Official home page identifies Italian cuisine and 757 South Front Street in Philadelphia.",
+        "verification_url": "https://capriphilly.com/philadelphia-queen-village-capri-restaurant-food-menu | https://capriphilly.com/"
+      }
+    },
+    {
+      "round": "round_2",
+      "request_id": "D02",
+      "rank": 1,
+      "origin": {
+        "source_id": "round_2_card_audit",
+        "csv_data_row_index_zero_based": 2,
+        "request_source_id": "round_2_requests",
+        "request_json_pointer": "/results/1/response/results/0"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Mexican",
+        "dish_name": "Enchiladas Mixtas",
+        "location": "Philadelphia",
+        "note": "",
+        "restaurant_name": "El Vez Philadelphia",
+        "source_title": "El Vez Philadelphia - Mexican Cuisine & Tequila",
+        "source_url": "https://elvezrestaurant.com",
+        "why": "You asked for Mexican food, and this menu lists “Enchiladas Mixtas”."
+      },
+      "historical_audit_row": {
+        "probe": "D02",
+        "rank": "1",
+        "location": "Philadelphia",
+        "request_cuisine": "Mexican",
+        "request_flavor": "Any flavor",
+        "request_region": "",
+        "request_dish": "",
+        "dish": "Enchiladas Mixtas",
+        "restaurant": "El Vez Philadelphia",
+        "source": "https://elvezrestaurant.com",
+        "displayed_reason": "You asked for Mexican food, and this menu lists “Enchiladas Mixtas”.",
+        "item": "yes",
+        "restaurant_city": "yes",
+        "cuisine": "yes",
+        "flavor": "na",
+        "region_or_requested_dish": "na",
+        "overall": "pass",
+        "link_status": "original verified",
+        "evidence": "The official El Vez Philadelphia Mexican menu lists the mixed enchiladas with chicken, black bean and short rib.",
+        "verification_url": "https://elvezrestaurant.com/"
+      }
+    },
+    {
+      "round": "round_2",
+      "request_id": "D02",
+      "rank": 2,
+      "origin": {
+        "source_id": "round_2_card_audit",
+        "csv_data_row_index_zero_based": 3,
+        "request_source_id": "round_2_requests",
+        "request_json_pointer": "/results/1/response/results/1"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Mexican",
+        "dish_name": "Steak Tacos",
+        "location": "Philadelphia",
+        "note": "",
+        "restaurant_name": "El Fuerte de Loreto Philly",
+        "source_title": "El Fuerte de Loreto Philly | Mexican Brunch & Dinner",
+        "source_url": "https://www.elfuertedeloretophilly.com",
+        "why": "You asked for Mexican food, and this menu lists “Steak Tacos”."
+      },
+      "historical_audit_row": {
+        "probe": "D02",
+        "rank": "2",
+        "location": "Philadelphia",
+        "request_cuisine": "Mexican",
+        "request_flavor": "Any flavor",
+        "request_region": "",
+        "request_dish": "",
+        "dish": "Steak Tacos",
+        "restaurant": "El Fuerte de Loreto Philly",
+        "source": "https://www.elfuertedeloretophilly.com",
+        "displayed_reason": "You asked for Mexican food, and this menu lists “Steak Tacos”.",
+        "item": "yes",
+        "restaurant_city": "yes",
+        "cuisine": "yes",
+        "flavor": "na",
+        "region_or_requested_dish": "na",
+        "overall": "pass",
+        "link_status": "original verified",
+        "evidence": "Exact dish under Los Tacos. The same official page identifies Mexican cuisine and 1412 S 5th Street, Philadelphia.",
+        "verification_url": "https://www.elfuertedeloretophilly.com/"
+      }
+    },
+    {
+      "round": "round_2",
+      "request_id": "D02",
+      "rank": 3,
+      "origin": {
+        "source_id": "round_2_card_audit",
+        "csv_data_row_index_zero_based": 4,
+        "request_source_id": "round_2_requests",
+        "request_json_pointer": "/results/1/response/results/2"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Mexican",
+        "dish_name": "Sopa Poblana",
+        "location": "Philadelphia",
+        "note": "",
+        "restaurant_name": "Blue Corn Mexican Restaurant & Bar",
+        "source_title": "Dinner Menu | Blue Corn Res. & Bar",
+        "source_url": "https://www.bluecornmexphilly.com/dinnermenu",
+        "why": "You asked for Mexican food, and this menu lists “Sopa Poblana”."
+      },
+      "historical_audit_row": {
+        "probe": "D02",
+        "rank": "3",
+        "location": "Philadelphia",
+        "request_cuisine": "Mexican",
+        "request_flavor": "Any flavor",
+        "request_region": "",
+        "request_dish": "",
+        "dish": "Sopa Poblana",
+        "restaurant": "Blue Corn Mexican Restaurant & Bar",
+        "source": "https://www.bluecornmexphilly.com/dinnermenu",
+        "displayed_reason": "You asked for Mexican food, and this menu lists “Sopa Poblana”.",
+        "item": "yes",
+        "restaurant_city": "yes",
+        "cuisine": "yes",
+        "flavor": "na",
+        "region_or_requested_dish": "na",
+        "overall": "pass",
+        "link_status": "original verified",
+        "evidence": "Exact dish under Sopas on the official Mexican dinner menu, with the Philadelphia address on the page.",
+        "verification_url": "https://www.bluecornmexphilly.com/dinnermenu"
+      }
+    },
+    {
+      "round": "round_2",
+      "request_id": "D03",
+      "rank": 1,
+      "origin": {
+        "source_id": "round_2_card_audit",
+        "csv_data_row_index_zero_based": 5,
+        "request_source_id": "round_2_requests",
+        "request_json_pointer": "/results/2/response/results/0"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Chinese",
+        "dish_name": "Mabu Tofu",
+        "location": "Los Angeles",
+        "note": "Menu mentions “slightly spicy brown sauce”",
+        "restaurant_name": "New Moon",
+        "source_title": "New Moon in Montrose & Los Angeles - Menu",
+        "source_url": "https://newmoonrestaurants.com/menu",
+        "why": "You asked for spicy Chinese food, and its menu listing says “slightly spicy brown sauce”."
+      },
+      "historical_audit_row": {
+        "probe": "D03",
+        "rank": "1",
+        "location": "Los Angeles",
+        "request_cuisine": "Chinese",
+        "request_flavor": "Spicy",
+        "request_region": "",
+        "request_dish": "",
+        "dish": "Mabu Tofu",
+        "restaurant": "New Moon",
+        "source": "https://newmoonrestaurants.com/menu",
+        "displayed_reason": "You asked for spicy Chinese food, and its menu listing says “slightly spicy brown sauce”.",
+        "item": "yes",
+        "restaurant_city": "yes",
+        "cuisine": "yes",
+        "flavor": "yes",
+        "region_or_requested_dish": "na",
+        "overall": "pass",
+        "link_status": "original verified",
+        "evidence": "Official menu lists the dish with a slightly spicy sauce. Official locations page confirms Downtown LA branch and Downtown LA merchant ordering menu lists the same tofu dish.",
+        "verification_url": "https://newmoonrestaurants.com/menu | https://newmoonrestaurants.com/locations/ | https://apple-maps-app-clip.failover.ubereats.com/store/new-moon-restaurant-downtown-la/3GjiZ5GtWPyEeZXdIHg4eQ"
+      }
+    },
+    {
+      "round": "round_2",
+      "request_id": "D03",
+      "rank": 2,
+      "origin": {
+        "source_id": "round_2_card_audit",
+        "csv_data_row_index_zero_based": 6,
+        "request_source_id": "round_2_requests",
+        "request_json_pointer": "/results/2/response/results/1"
+      },
+      "recorded_verdict": "unresolved",
+      "normalized_verdict": "insufficient_evidence",
+      "returned_card": {
+        "cuisine": "Chinese",
+        "dish_name": "Spicy Garlic Edamame",
+        "location": "Los Angeles",
+        "note": "Menu mentions “Spicy Garlic Edamame”",
+        "restaurant_name": "Wok On Fire",
+        "source_title": "Best Chinese in Los Angeles, CA | Wok On Fire | Order Online",
+        "source_url": "https://www.wokonfireonline.com/93hg0j4y/wok-on-fire-los-angeles-90035/order-online",
+        "why": "Its name on the menu, “Spicy Garlic Edamame”, fits the spicy Chinese food you asked for."
+      },
+      "historical_audit_row": {
+        "probe": "D03",
+        "rank": "2",
+        "location": "Los Angeles",
+        "request_cuisine": "Chinese",
+        "request_flavor": "Spicy",
+        "request_region": "",
+        "request_dish": "",
+        "dish": "Spicy Garlic Edamame",
+        "restaurant": "Wok On Fire",
+        "source": "https://www.wokonfireonline.com/93hg0j4y/wok-on-fire-los-angeles-90035/order-online",
+        "displayed_reason": "Its name on the menu, “Spicy Garlic Edamame”, fits the spicy Chinese food you asked for.",
+        "item": "yes",
+        "restaurant_city": "yes",
+        "cuisine": "unknown",
+        "flavor": "yes",
+        "region_or_requested_dish": "na",
+        "overall": "unresolved",
+        "link_status": "alternative merchant menu",
+        "evidence": "Los Angeles merchant ordering menu lists the exact spicy item. It lists both Chinese and Japanese preparations and does not identify this appetizer as Chinese.",
+        "verification_url": "https://www.beyondmenu.com/20362/los-angeles/wok-on-fire-los-angeles-90035.aspx"
+      }
+    },
+    {
+      "round": "round_2",
+      "request_id": "D06",
+      "rank": 1,
+      "origin": {
+        "source_id": "round_2_card_audit",
+        "csv_data_row_index_zero_based": 7,
+        "request_source_id": "round_2_requests",
+        "request_json_pointer": "/results/5/response/results/0"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Japanese",
+        "dish_name": "KOMBU MARINATED VEGETABLES",
+        "location": "Chicago",
+        "note": "Menu mentions “KOMBU MARINATED VEGETABLES”",
+        "restaurant_name": "GAIJIN",
+        "source_title": "Lunch & Dinner Menu | Cocktail | Japanese Cuisine | GAIJIN | CHICAGO",
+        "source_url": "https://gaijinchicago.com/menu",
+        "why": "Its name on the menu, “KOMBU MARINATED VEGETABLES”, fits the fresh, light Japanese food you asked for."
+      },
+      "historical_audit_row": {
+        "probe": "D06",
+        "rank": "1",
+        "location": "Chicago",
+        "request_cuisine": "Japanese",
+        "request_flavor": "Fresh & light",
+        "request_region": "",
+        "request_dish": "",
+        "dish": "KOMBU MARINATED VEGETABLES",
+        "restaurant": "GAIJIN",
+        "source": "https://gaijinchicago.com/menu",
+        "displayed_reason": "Its name on the menu, “KOMBU MARINATED VEGETABLES”, fits the fresh, light Japanese food you asked for.",
+        "item": "yes",
+        "restaurant_city": "yes",
+        "cuisine": "yes",
+        "flavor": "yes",
+        "region_or_requested_dish": "na",
+        "overall": "pass",
+        "link_status": "yes",
+        "evidence": "Official Chicago menu identifies Japanese cuisine and the exact small plate. Kombu marinade, celery, fermented green beans and radish reasonably fit fresh and light. Flavor judgment is ingredient-based.",
+        "verification_url": "https://gaijinchicago.com/menu"
+      }
+    },
+    {
+      "round": "round_2",
+      "request_id": "D06",
+      "rank": 2,
+      "origin": {
+        "source_id": "round_2_card_audit",
+        "csv_data_row_index_zero_based": 8,
+        "request_source_id": "round_2_requests",
+        "request_json_pointer": "/results/5/response/results/1"
+      },
+      "recorded_verdict": "fail",
+      "normalized_verdict": "fail",
+      "returned_card": {
+        "cuisine": "Japanese",
+        "dish_name": "Sashimi",
+        "location": "Chicago",
+        "note": "Menu mentions “raw fish”",
+        "restaurant_name": "Matsuya Japanese Restaurant",
+        "source_title": "Matsuya Japanese Restaurant - Chicago, IL on OpenTable",
+        "source_url": "https://www.opentable.com/r/matsuya-japanese-restaurant",
+        "why": "You asked for fresh, light Japanese food, and its menu listing says “raw fish”."
+      },
+      "historical_audit_row": {
+        "probe": "D06",
+        "rank": "2",
+        "location": "Chicago",
+        "request_cuisine": "Japanese",
+        "request_flavor": "Fresh & light",
+        "request_region": "",
+        "request_dish": "",
+        "dish": "Sashimi",
+        "restaurant": "Matsuya Japanese Restaurant",
+        "source": "https://www.opentable.com/r/matsuya-japanese-restaurant",
+        "displayed_reason": "You asked for fresh, light Japanese food, and its menu listing says “raw fish”.",
+        "item": "yes",
+        "restaurant_city": "no",
+        "cuisine": "yes",
+        "flavor": "yes",
+        "region_or_requested_dish": "na",
+        "overall": "fail",
+        "link_status": "no",
+        "evidence": "OpenTable shows the six-piece raw fish cold appetizer and historic Chicago address. Apothecary's current operator lists its cocktail lounge at that precise address. The menu match is historical and the recommendation directs to an obsolete venue.",
+        "verification_url": "https://www.opentable.com/r/matsuya-japanese-restaurant | https://apothecary-lounge.com/contact/"
+      }
+    },
+    {
+      "round": "round_2",
+      "request_id": "D07",
+      "rank": 1,
+      "origin": {
+        "source_id": "round_2_card_audit",
+        "csv_data_row_index_zero_based": 9,
+        "request_source_id": "round_2_requests",
+        "request_json_pointer": "/results/6/response/results/0"
+      },
+      "recorded_verdict": "pass",
+      "normalized_verdict": "pass",
+      "returned_card": {
+        "cuisine": "Korean",
+        "dish_name": "TRUFFLE POTATO PANCAKE",
+        "location": "New York",
+        "note": "Menu mentions “Crispy Korean potato pancake”",
+        "restaurant_name": "HOJOKBAN",
+        "source_title": "Menus | Modern Korean Restaurant in NYC — HOJOKBAN",
+        "source_url": "https://hojokban.com/new-york/menus",
+        "why": "You asked for crispy Korean food, and its menu listing says “Crispy Korean potato pancake”."
+      },
+      "historical_audit_row": {
+        "probe": "D07",
+        "rank": "1",
+        "location": "New York",
+        "request_cuisine": "Korean",
+        "request_flavor": "Crispy",
+        "request_region": "",
+        "request_dish": "",
+        "dish": "TRUFFLE POTATO PANCAKE",
+        "restaurant": "HOJOKBAN",
+        "source": "https://hojokban.com/new-york/menus",
+        "displayed_reason": "You asked for crispy Korean food, and its menu listing says “Crispy Korean potato pancake”.",
+        "item": "yes",
+        "restaurant_city": "yes",
+        "cuisine": "yes",
+        "flavor": "yes",
+        "region_or_requested_dish": "na",
+        "overall": "pass",
+        "link_status": "yes",
+        "evidence": "Official New York venue menu names the item and directly calls it a crispy Korean potato pancake in the item's image description. The same page lists the Madison Avenue address.",
+        "verification_url": "https://hojokban.com/new-york/menus"
+      }
+    },
+    {
+      "round": "round_2",
+      "request_id": "D07",
+      "rank": 2,
+      "origin": {
+        "source_id": "round_2_card_audit",
+        "csv_data_row_index_zero_based": 10,
+        "request_source_id": "round_2_requests",
+        "request_json_pointer": "/results/6/response/results/1"
+      },
+      "recorded_verdict": "unresolved",
+      "normalized_verdict": "insufficient_evidence",
+      "returned_card": {
+        "cuisine": "Korean",
+        "dish_name": "Beef Tallow French Fries",
+        "location": "New York",
+        "note": "Menu mentions “extra crispy”",
+        "restaurant_name": "COQODAQ",
+        "source_title": "Menus | COQODAQ",
+        "source_url": "https://www.coqodaq.com/menus",
+        "why": "You asked for crispy Korean food, and its menu listing says “extra crispy”."
+      },
+      "historical_audit_row": {
+        "probe": "D07",
+        "rank": "2",
+        "location": "New York",
+        "request_cuisine": "Korean",
+        "request_flavor": "Crispy",
+        "request_region": "",
+        "request_dish": "",
+        "dish": "Beef Tallow French Fries",
+        "restaurant": "COQODAQ",
+        "source": "https://www.coqodaq.com/menus",
+        "displayed_reason": "You asked for crispy Korean food, and its menu listing says “extra crispy”.",
+        "item": "yes",
+        "restaurant_city": "yes",
+        "cuisine": "unknown",
+        "flavor": "yes",
+        "region_or_requested_dish": "na",
+        "overall": "unresolved",
+        "link_status": "yes",
+        "evidence": "Official 12 East 22nd Street menu lists classic-cut extra-crispy fries. The venue has Korean influence and serves Korean dishes, but this specific side is classic French fries with no Korean preparation or seasoning given.",
+        "verification_url": "https://www.coqodaq.com/menus | https://www.coqodaq.com/"
+      }
+    }
+  ],
+  "latest_slide_claims": {
+    "status": "unverified_no_located_raw_final_request_and_card_audit",
+    "reported_sample": "12 live searches in five cities",
+    "slide_reported_percentages": {
+      "requests_returning_dishes": 75,
+      "cards_menu_verified": 76,
+      "gemini_busy": 17
+    },
+    "excluded_from_verified_results": true,
+    "reason": "No corresponding twelve-request records, exact card denominator, or final scoring/reviewer protocol was located in the inspected repository and local evaluation artifacts.",
+    "not_reconstructable_from_historical_replay": true,
+    "new_rerun_policy": "A future run must be reported with its own date, serving commit, model and protocol, using the measured results even when they differ from the slides."
+  },
+  "limitations": [
+    "This is a recomputation of historical response logs and recorded menu audits, not a new live run or a new source/venue review.",
+    "The evaluated application was build 37259485b5eff73143f71c72eb5917f6a8a2af52 on November 16, 2026; these metrics do not measure final commit 4be1cda19a19f2e4f893ff6ee6b75f945eb358c4.",
+    "Nine query cases were repeated across two rounds in four cities. Repeated queries and recommendation cards are not independent users or unique restaurants.",
+    "The config lists five supported cities, but the actual requests used only Philadelphia, Los Angeles, Chicago and New York.",
+    "The 22.2% error figure pools three Gemini busy messages and one Gemini timeout. Strict busy alone is 16.7%; these categories must not be conflated.",
+    "The existing card annotations are retained with source/evidence URLs. Reviewer independence, agreement and contemporaneous full-page snapshots are not established by this reconciliation.",
+    "Unresolved card verdicts are normalized to insufficient_evidence and count in the 26-card denominator; they do not count as passes.",
+    "Menus and venues may have changed since the original audit. No current menu freshness is asserted."
+  ]
+}

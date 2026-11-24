@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "audit_date_client": "2026-11-24",
+  "generated_utc": "2026-11-24T21:20:54.551204+00:00",
+  "evaluated_commit": "37259485b5eff73143f71c72eb5917f6a8a2af52",
+  "evaluation_date": "2026-11-16",
+  "requests_returning_recommendations": "11/18 (61.1%)",
+  "empty_without_http_error": "3/18 (16.7%)",
+  "gemini_related_http_503_errors": "4/18 (22.2%)",
+  "strict_busy_errors": "3/18 (16.7%)",
+  "gemini_timeout_errors": "1/18 (5.6%)",
+  "card_passes": "17/26 (65.4%)",
+  "card_failures": "4/26 (15.4%)",
+  "card_insufficient_evidence": "5/26 (19.2%)",
+  "pooled_counts": {
+    "requests": 18,
+    "requests_returning_recommendations": 11,
+    "request_success_rate": 0.6111111111111112,
+    "empty_without_http_error": 3,
+    "errors": 4,
+    "outcomes": {
+      "returned_recommendations": 11,
+      "empty_without_http_error": 3,
+      "gemini_busy_http_503": 3,
+      "gemini_timeout_http_503": 1
+    },
+    "returned_cards": 26,
+    "definitions": {
+      "request_success": "HTTP 200 with at least one returned recommendation card.",
+      "busy": "HTTP 503 and the explicit Gemini temporarily-busy error message.",
+      "timeout": "HTTP 503 and an explicit Gemini timeout message; separate from busy.",
+      "card_quality": "Never inferred from request success or the app's own evidence checks."
+    },
+    "gemini_related_http_503_errors": 4,
+    "gemini_related_http_503_error_rate": 0.2222222222222222,
+    "strict_busy_http_503_errors": 3,
+    "strict_busy_http_503_error_rate": 0.16666666666666666,
+    "gemini_timeout_http_503_errors": 1,
+    "gemini_timeout_http_503_error_rate": 0.05555555555555555,
+    "historically_audited_cards": 26,
+    "historical_card_verdicts": {
+      "pass": 17,
+      "insufficient_evidence": 5,
+      "fail": 4
+    },
+    "historical_card_pass_rate": 0.6538461538461539
+  },
+  "latest_slide_claims": {
+    "status": "unverified_no_located_raw_final_request_and_card_audit",
+    "reported_sample": "12 live searches in five cities",
+    "slide_reported_percentages": {
+      "requests_returning_dishes": 75,
+      "cards_menu_verified": 76,
+      "gemini_busy": 17
+    },
+    "excluded_from_verified_results": true,
+    "reason": "No corresponding twelve-request records, exact card denominator, or final scoring/reviewer protocol was located in the inspected repository and local evaluation artifacts.",
+    "not_reconstructable_from_historical_replay": true,
+    "new_rerun_policy": "A future run must be reported with its own date, serving commit, model and protocol, using the measured results even when they differ from the slides."
+  },
+  "limitations": [
+    "This is a recomputation of historical response logs and recorded menu audits, not a new live run or a new source/venue review.",
+    "The evaluated application was build 37259485b5eff73143f71c72eb5917f6a8a2af52 on November 16, 2026; these metrics do not measure final commit 4be1cda19a19f2e4f893ff6ee6b75f945eb358c4.",
+    "Nine query cases were repeated across two rounds in four cities. Repeated queries and recommendation cards are not independent users or unique restaurants.",
+    "The config lists five supported cities, but the actual requests used only Philadelphia, Los Angeles, Chicago and New York.",
+    "The 22.2% error figure pools three Gemini busy messages and one Gemini timeout. Strict busy alone is 16.7%; these categories must not be conflated.",
+    "The existing card annotations are retained with source/evidence URLs. Reviewer independence, agreement and contemporaneous full-page snapshots are not established by this reconciliation.",
+    "Unresolved card verdicts are normalized to insufficient_evidence and count in the 26-card denominator; they do not count as passes.",
+    "Menus and venues may have changed since the original audit. No current menu freshness is asserted."
+  ],
+  "evidence_file": "discover_historical_audit.json"
+}
